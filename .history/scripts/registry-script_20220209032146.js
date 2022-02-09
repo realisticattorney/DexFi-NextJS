@@ -15,7 +15,7 @@ async function main() {
   // exchange = await Exchange.deploy(token.address);
   // await exchange.deployed();
 
-  const Exchange = await registry.createExchange(token.address);
+  
 
   console.log('Registry contract address:', registry.address);
   console.log('ScammCoin contract address:', token.address);

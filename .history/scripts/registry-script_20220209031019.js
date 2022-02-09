@@ -1,25 +1,26 @@
 const { ethers } = require('hardhat');
 
 async function main() {
-  const Registry = await ethers.getContractFactory('Registry');
-  const registry = await Registry.deploy();
-  await registry.deployed();
+  const Registry 
 
+  // ethers is avaialble in the global scope
   const [deployer] = await ethers.getSigners();
+  console.log(
+    'Deploying the contracts with the account:',
+    await deployer.getAddress()
+  );
+
 
   const Token = await ethers.getContractFactory('ScammCoin');
+  [signer, addr1, addr2, ...addrs] = await ethers.getSigners();
   token = await Token.deploy(ethers.utils.parseEther('1000'));
   await token.deployed();
 
-  // const Exchange = await ethers.getContractFactory('Exchange');
-  // exchange = await Exchange.deploy(token.address);
-  // await exchange.deployed();
-
-  const Exchange = await registry.createExchange(token.address);
-
-  console.log('Registry contract address:', registry.address);
+  const Exchange = await ethers.getContractFactory('Exchange');
+  exchange = await Exchange.deploy(token.address);
+  await exchange.deployed();
   console.log('ScammCoin contract address:', token.address);
-  console.log('ScammExchange contract address:', exchange.address);
+  console.log('Exchange contract address:', exchange.address);
 
   // We also save the contract's artifacts and address in the frontend directory
   //   saveFrontendFiles(token);

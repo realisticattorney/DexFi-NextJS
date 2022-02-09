@@ -4,22 +4,27 @@ async function main() {
   const Registry = await ethers.getContractFactory('Registry');
   const registry = await Registry.deploy();
   await registry.deployed();
+  console.log("Registry address", registry.address);
 
   const [deployer] = await ethers.getSigners();
+  console.log(
+    'Deploying the contracts with the account:',
+    await deployer.address
+  );
 
   const Token = await ethers.getContractFactory('ScammCoin');
+  
   token = await Token.deploy(ethers.utils.parseEther('1000'));
   await token.deployed();
 
-  // const Exchange = await ethers.getContractFactory('Exchange');
-  // exchange = await Exchange.deploy(token.address);
-  // await exchange.deployed();
+  const Exchange = await ethers.getContractFactory('Exchange');
+  exchange = await Exchange.deploy(token.address);
+  await exchange.deployed();
 
-  const Exchange = await registry.createExchange(token.address);
 
-  console.log('Registry contract address:', registry.address);
   console.log('ScammCoin contract address:', token.address);
-  console.log('ScammExchange contract address:', exchange.address);
+  console.log('ScammCoin contract address:', token.address);
+  console.log('Scammxchange contract address:', exchange.address);
 
   // We also save the contract's artifacts and address in the frontend directory
   //   saveFrontendFiles(token);
