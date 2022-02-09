@@ -33,10 +33,7 @@ describe('Registry deployment', function () {
     console.log('Receipt:', exchangeAddress);
     //  console.log('ScammExchange contract address:', addressExchange);
     const getExchangeAddress = await registry.getExchange(token.address);
-    console.log(
-      'Mapping of ScammExchange contract address:',
-      getExchangeAddress
-    );
-    expect(getExchangeAddress).to.equal(exchangeAddress);
+    console.log('Mapping of ScammExchange contract address:', scammExchange);
+     expect(scammExchange).to.equal(exchangeAddress);
   });
 });
