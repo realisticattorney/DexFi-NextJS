@@ -9,8 +9,8 @@ import {
   scammcoinAddress,
 } from '../config.js';
 
-import Registry from '../artifacts/contracts/Registry.sol/Registry.json';
-import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
+import NFT from '../artifacts/contracts/NFT.sol/NFT.json';
+import KBMarket from '../artifacts/contracts/KBMarket.sol/KBMarket.json';
 
 export default function Home() {
   return <div className="">home</div>;
