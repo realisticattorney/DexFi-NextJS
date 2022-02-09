@@ -1,11 +1,10 @@
 import '../styles/globals.css';
 import Link from 'next/link';
-
 function MyApp({ Component, pageProps }) {
   return (
     <div>
       <nav className="border-b p-6">
-        <p className="text-4xl font-bold">DexFi</p>
+        <p className="text-4xl font-bold">Metaverse Marketplace</p>
         <div className="flex mt-4">
           <Link href="/">
             <a className="mr-6 text-pink-500">Home</a>
@@ -14,7 +13,7 @@ function MyApp({ Component, pageProps }) {
             <a className="mr-6 text-pink-500">Exchange</a>
           </Link>
           <Link href="/liquidity">
-            <a className="mr-6 text-pink-500">Liquidity</a>
+            <a className="mr-6 text-pink-500">My Digital Assets</a>
           </Link>
           {/* <Link href="/creator-dashboard">
             <a className="mr-6 text-pink-500">Creator Dashboard</a>

@@ -5,7 +5,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <div>
       <nav className="border-b p-6">
-        <p className="text-4xl font-bold">DexFi</p>
+        <p className="text-4xl font-bold">Dexfi</p>
         <div className="flex mt-4">
           <Link href="/">
             <a className="mr-6 text-pink-500">Home</a>
