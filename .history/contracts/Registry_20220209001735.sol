@@ -18,7 +18,7 @@ contract Registry {
             tokenToExchange[_tokenAddress] == address(0),
             "exchange already exists"
         );
-        Exchange exchange = new Exchange(_tokenAddress); //data type Exchange
+        Exchange exchange = new Exchange(_tokenAddress); //type Exchange
         tokenToExchange[_tokenAddress] = address(exchange);
         return address(exchange);
     }
