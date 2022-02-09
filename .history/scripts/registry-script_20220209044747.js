@@ -2,7 +2,7 @@ const { ethers } = require('hardhat');
 
 async function main() {
   const Registry = await ethers.getContractFactory('Registry');
-  const registry = await Registry.deploy();
+  registry = await Registry.deploy(); //do not define registry as const, it won't make it outside the beforeEach function scope
   await registry.deployed();
 
   const [deployer] = await ethers.getSigners();
@@ -11,15 +11,26 @@ async function main() {
   token = await Token.deploy(ethers.utils.parseEther('1000'));
   await token.deployed();
 
-  // const Exchange = await ethers.getContractFactory('Exchange');
-  // exchange = await Exchange.deploy(token.address);
-  // await exchange.deployed();
-
-  const Exchange = await registry.createExchange(token.address);
-
+  console.log('Deployer address:', deployer.address);
   console.log('Registry contract address:', registry.address);
   console.log('ScammCoin contract address:', token.address);
-  console.log('ScammExchange contract address:', exchange.address);
+
+  let exchange = await registry.createExchange(token.address);
+  let txReceipt = await exchange.wait();
+  const [, exchangeAddress] = txReceipt.events[0].args;
+  const getExchangeAddress = await registry.getExchange(token.address);
+   console.log('Receipt:', exchangeAddress);
+   console.log('Mapping of ScammExchange contract address:', getExchangeAddress);
+
+}
+
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+
 
   // We also save the contract's artifacts and address in the frontend directory
   //   saveFrontendFiles(token);
@@ -44,11 +55,3 @@ async function main() {
   //     contractsDir + '/Token.json',
   //     JSON.stringify(TokenArtifact, null, 2)
   //   );
-}
-
-main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });

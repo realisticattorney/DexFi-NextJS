@@ -30,9 +30,12 @@ describe('Registry deployment', function () {
     let exchange = await registry.createExchange(token.address);
     let txReceipt = await exchange.wait();
     const [, exchangeAddress] = txReceipt.events[0].args;
-    const getExchangeAddress = await registry.getExchange(token.address);
     //  console.log('Receipt:', exchangeAddress);
-    //  console.log('Mapping of ScammExchange contract address:', getExchangeAddress);
+    const getExchangeAddress = await registry.getExchange(token.address);
+    //  console.log(
+    // 'Mapping of ScammExchange contract address:',
+    // getExchangeAddress
+    //  );
     expect(getExchangeAddress).to.equal(exchangeAddress);
   });
 });

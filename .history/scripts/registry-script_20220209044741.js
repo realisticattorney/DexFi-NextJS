@@ -1,0 +1,32 @@
+const { ethers } = require('hardhat');
+
+async function main() {
+  const Registry = await ethers.getContractFactory('Registry');
+  registry = await Registry.deploy(); //do not define registry as const, it won't make it outside the beforeEach function scope
+  await registry.deployed();
+
+  const [deployer] = await ethers.getSigners();
+
+  const Token = await ethers.getContractFactory('ScammCoin');
+  token = await Token.deploy(ethers.utils.parseEther('1000'));
+  await token.deployed();
+
+  console.log('Deployer address:', deployer.address);
+  console.log('Registry contract address:', registry.address);
+  console.log('ScammCoin contract address:', token.address);
+
+  let exchange = await registry.createExchange(token.address);
+  let txReceipt = await exchange.wait();
+  const [, exchangeAddress] = txReceipt.events[0].args;
+  const getExchangeAddress = await registry.getExchange(token.address);
+  //  console.log('Receipt:', exchangeAddress);
+  //  console.log('Mapping of ScammExchange contract address:', getExchangeAddress);
+
+}
+
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });

@@ -22,17 +22,21 @@ describe('Registry deployment', function () {
 
   it('No ScammExchange instance in Registry mapping', async function () {
     const scammExchange = await registry.getExchange(token.address);
-    //   console.log('ScammExchange contract address:', scammExchange);
+    //  console.log('ScammExchange contract address:', scammExchange);
     expect(scammExchange).to.equal(constants.ZERO_ADDRESS);
   });
 
   it('Deploys Exchange instance, finds it in Registry mapping', async function () {
     let exchange = await registry.createExchange(token.address);
     let txReceipt = await exchange.wait();
+    // const addressExchange
     const [, exchangeAddress] = txReceipt.events[0].args;
+    console.log('Receipt:', exchangeAddress);
     const getExchangeAddress = await registry.getExchange(token.address);
-    //  console.log('Receipt:', exchangeAddress);
-    //  console.log('Mapping of ScammExchange contract address:', getExchangeAddress);
+    console.log(
+      'Mapping of ScammExchange contract address:',
+      getExchangeAddress
+    );
     expect(getExchangeAddress).to.equal(exchangeAddress);
   });
 });
