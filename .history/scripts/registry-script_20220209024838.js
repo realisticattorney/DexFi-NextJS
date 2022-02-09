@@ -1,4 +1,4 @@
-const { ethers } = require('hardhat');
+const { ethers, waffle } = require('hardhat');
 
 async function main() {
   // ethers is avaialble in the global scope

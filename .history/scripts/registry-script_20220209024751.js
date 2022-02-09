@@ -1,5 +1,5 @@
-const { ethers } = require('hardhat');
-
+// This is a script for deploying your contracts. You can adapt it to deploy
+// yours, or create new ones.
 async function main() {
   // ethers is avaialble in the global scope
   const [deployer] = await ethers.getSigners();
@@ -8,7 +8,7 @@ async function main() {
     await deployer.getAddress()
   );
 
-  //   console.log('Account balance:', (await deployer.getBalance()).toString());
+//   console.log('Account balance:', (await deployer.getBalance()).toString());
 
   const Token = await ethers.getContractFactory('ScammCoin');
   [signer, addr1, addr2, ...addrs] = await ethers.getSigners();

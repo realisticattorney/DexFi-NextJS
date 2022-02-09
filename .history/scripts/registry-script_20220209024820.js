@@ -1,4 +1,6 @@
-const { ethers } = require('hardhat');
+const { expect } = require('chai');
+const { ethers, waffle } = require('hardhat');
+const { provider } = waffle;
 
 async function main() {
   // ethers is avaialble in the global scope
