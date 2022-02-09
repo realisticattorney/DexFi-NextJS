@@ -21,7 +21,7 @@ export default function Home() {
   }, []);
 
   async function loadExchange() {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const provider = new ethers.providers.Web3Provider(Web3Modal.web3Provider);
     const registry = new ethers.Contract(
       registryAddress,
       Registry.abi,

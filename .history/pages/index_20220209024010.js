@@ -21,7 +21,7 @@ export default function Home() {
   }, []);
 
   async function loadExchange() {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const provider = new ethers.providers.Web3Provider(web3Modal.web3Provider);
     const registry = new ethers.Contract(
       registryAddress,
       Registry.abi,
@@ -33,7 +33,7 @@ export default function Home() {
     if (getExchangeAddress === '0x0000000000000000000000000000000000000000') {
       const exchangeAddress = await registry.createExchange(scammAddress);
     }
-
+    
     const exchange = new ethers.Contract(
       exchangeAddress,
       Exchange.abi,

@@ -5,8 +5,8 @@ import Web3Modal from 'web3modal'; //way to connect to user's wallet
 import Image from 'next/image';
 import {
   registryAddress,
-  scammExchangeAddress,
-  scammAddress,
+  exchangeAddress,
+  scammcoinAddress,
 } from '../config.js';
 
 import Registry from '../artifacts/contracts/Registry.sol/Registry.json';
@@ -21,19 +21,13 @@ export default function Home() {
   }, []);
 
   async function loadExchange() {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const provider = new ethers.providers.Web3Provider(web3Modal.web3Provider);
     const registry = new ethers.Contract(
       registryAddress,
       Registry.abi,
       provider
     );
-
-    const getExchangeAddress = await registry.getExchange(scammAddress);
-
-    if (getExchangeAddress === '0x0000000000000000000000000000000000000000') {
-      const exchangeAddress = await registry.createExchange(scammAddress);
-    }
-
+    const exchangeAddress = registry.exchange();
     const exchange = new ethers.Contract(
       exchangeAddress,
       Exchange.abi,
