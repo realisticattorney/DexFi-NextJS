@@ -137,49 +137,11 @@ contract Exchange is ERC20 {
         }
     }
 
-    function tokenToEthSwap(
-        uint256 _tokenAmount,
-        uint256 _minEth,
-        address _referrer
-    ) public payable {
-        require(_tokenAmount > 0, "You must have some tokens");
-        uint256 ethAmount = _getAmount(
-            _tokenAmount,
-            getReserve(),
-            address(this).balance
-        );
-        require(
-            ethAmount >= _minEth,
-            "Not enough liquidity in the contract to get the minimum amount"
-        );
-        IERC20 token = IERC20(tokenAddress);
-        token.transferFrom(msg.sender, address(this), _tokenAmount);
-        payable(msg.sender).transfer(ethAmount);
-        uint256 swapLps = ((totalSupply() * ethAmount) /
-            (200 * address(this).balance));
-
-        if (
-            _referrer != address(0) &&
-            _referrer != msg.sender &&
-            referrers[address(msg.sender)] == address(0) &&
-            address(_referrer).balance > 0
-        ) {
-            referrers[address(msg.sender)] = _referrer;
-        }
-
-        if (referrers[address(msg.sender)] != address(0)) {
-            address k = address(msg.sender);
-            for (uint256 i = 1; i < 10; i += 4) {
-                uint256 _swapLps = swapLps / i;
-                _mint(k, _swapLps);
-                k = referrers[k];
-                if (k == address(0)) {
-                    break;
-                }
-            }
-        } else {
-            _mint(msg.sender, swapLps);
-        }
+    function ethToTokenTransfer(uint256 _minTokens, address recipient)
+        public
+        payable
+    {
+        ethToToken(_minTokens, recipient);
     }
 
     function tokenToTokenSwap(
@@ -218,10 +180,5 @@ contract Exchange is ERC20 {
         );
     }
 
-    function ethToTokenTransfer(uint256 _minTokens, address recipient)
-        public
-        payable
-    {
-        ethToToken(_minTokens, recipient);
-    }
+  
 }

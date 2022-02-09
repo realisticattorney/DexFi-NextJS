@@ -182,6 +182,7 @@ contract Exchange is ERC20 {
         }
     }
 
+
     function tokenToTokenSwap(
         uint256 _tokensSold,
         uint256 _minTokensBought,
@@ -216,12 +217,5 @@ contract Exchange is ERC20 {
             _minTokensBought,
             msg.sender
         );
-    }
-
-    function ethToTokenTransfer(uint256 _minTokens, address recipient)
-        public
-        payable
-    {
-        ethToToken(_minTokens, recipient);
     }
 }

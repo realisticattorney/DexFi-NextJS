@@ -217,11 +217,4 @@ contract Exchange is ERC20 {
             msg.sender
         );
     }
-
-    function ethToTokenTransfer(uint256 _minTokens, address recipient)
-        public
-        payable
-    {
-        ethToToken(_minTokens, recipient);
-    }
 }

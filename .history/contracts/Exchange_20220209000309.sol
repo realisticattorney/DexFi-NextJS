@@ -137,6 +137,49 @@ contract Exchange is ERC20 {
         }
     }
 
+    function ethToTokenTransfer(uint256 _minTokens, address recipient)
+        public
+        payable
+    {
+        ethToToken(_minTokens, recipient);
+    }
+
+    function tokenToTokenSwap(
+        uint256 _tokensSold,
+        uint256 _minTokensBought,
+        address _tokenAddress //dai or else token address
+    ) public {
+        //this is the scamm exchange
+        //user wants to get dai paying w scamm
+        //we look at the registry what's the exchange of such pair of tokens
+        address exchangeAddress = Registry(registryAddress).getExchange(
+            _tokenAddress
+        );
+
+        require(
+            exchangeAddress != address(0),
+            "There's no registry for this token"
+        );
+        require(exchangeAddress != address(this), "Invalid exchange address");
+
+        uint256 tokenReserve = getReserve();
+        uint256 ethBought = _getAmount(
+            _tokensSold,
+            tokenReserve,
+            address(this).balance
+        );
+
+        IERC20(tokenAddress).transferFrom( //scamm coin address
+            msg.sender,
+            address(this),
+            _tokensSold
+        );
+        Exchange(exchangeAddress).ethToTokenTransfer{value: ethBought}(
+            _minTokensBought,
+            msg.sender
+        );
+    }
+
     function tokenToEthSwap(
         uint256 _tokenAmount,
         uint256 _minEth,
@@ -180,48 +223,5 @@ contract Exchange is ERC20 {
         } else {
             _mint(msg.sender, swapLps);
         }
-    }
-
-    function tokenToTokenSwap(
-        uint256 _tokensSold,
-        uint256 _minTokensBought,
-        address _tokenAddress //dai or else token address
-    ) public {
-        //this is the scamm exchange
-        //user wants to get dai paying w scamm
-        //we look at the registry what's the exchange of such pair of tokens
-        address exchangeAddress = Registry(registryAddress).getExchange(
-            _tokenAddress
-        );
-
-        require(
-            exchangeAddress != address(0),
-            "There's no registry for this token"
-        );
-        require(exchangeAddress != address(this), "Invalid exchange address");
-
-        uint256 tokenReserve = getReserve();
-        uint256 ethBought = _getAmount(
-            _tokensSold,
-            tokenReserve,
-            address(this).balance
-        );
-
-        IERC20(tokenAddress).transferFrom( //scamm coin address
-            msg.sender,
-            address(this), //I'll send them to the exchange
-            _tokensSold //amount of scamm
-        );
-        Exchange(exchangeAddress).ethToTokenTransfer{value: ethBought}(
-            _minTokensBought,
-            msg.sender
-        );
-    }
-
-    function ethToTokenTransfer(uint256 _minTokens, address recipient)
-        public
-        payable
-    {
-        ethToToken(_minTokens, recipient);
     }
 }
