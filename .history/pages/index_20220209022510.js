@@ -14,7 +14,8 @@ import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 
 export default function Home() {
   const [exchange, setExchange] = useState(null);
-  const [loadingState, setLoadingState] = useState('not-loaded');
-
+  const [loadingState, setLoadingState] = useState("true");
+  
+  
   return <div className="">home</div>;
 }

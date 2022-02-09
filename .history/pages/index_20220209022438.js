@@ -13,8 +13,8 @@ import Registry from '../artifacts/contracts/Registry.sol/Registry.json';
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 
 export default function Home() {
-  const [exchange, setExchange] = useState(null);
-  const [loadingState, setLoadingState] = useState('not-loaded');
-
+  
+  
+  
   return <div className="">home</div>;
 }
