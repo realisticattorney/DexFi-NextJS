@@ -1,4 +1,8 @@
 require('@nomiclabs/hardhat-waffle');
+// require('dotenv').config({ path: __dirname + '/.env.local' });
+// const YOUR_ALCHEMY_API_KEY = process.env.YOUR_ALCHEMY_API_KEY;
+// const YOUR_PRIVATE_MAINNET_ACCOUNT_KEY =
+//   process.env.YOUR_PRIVATE_MAINNET_ACCOUNT_KEY;
 const fs = require('fs');
 const mumbaiApiKey = fs.readFileSync('.mumbai').toString();
 const privateKey = fs.readFileSync('.secret').toString();
