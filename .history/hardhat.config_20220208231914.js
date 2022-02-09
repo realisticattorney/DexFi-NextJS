@@ -1,6 +1,7 @@
 require('@nomiclabs/hardhat-waffle');
 const fs = require('fs');
 
+
 const mumbaiApiKey = fs.readFileSync('.mumbai').toString();
 const privateKey = fs.readFileSync('.secret').toString();
 
@@ -29,4 +30,3 @@ module.exports = {
     },
   },
 };
-https://eth-rinkeby.alchemyapi.io/v2/

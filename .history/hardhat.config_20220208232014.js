@@ -29,4 +29,4 @@ module.exports = {
     },
   },
 };
-https://eth-rinkeby.alchemyapi.io/v2/
+https://eth-rinkeby.alchemyapi.io/v2/nyTlwya67CtkePdd15Xx8GeeMmHBHC4J
