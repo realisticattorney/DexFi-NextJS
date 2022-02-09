@@ -1,8 +1,6 @@
 const { ethers } = require('hardhat');
 
 async function main() {
-  const 
-
   // ethers is avaialble in the global scope
   const [deployer] = await ethers.getSigners();
   console.log(
@@ -10,6 +8,7 @@ async function main() {
     await deployer.getAddress()
   );
 
+  //   console.log('Account balance:', (await deployer.getBalance()).toString());
 
   const Token = await ethers.getContractFactory('ScammCoin');
   [signer, addr1, addr2, ...addrs] = await ethers.getSigners();
@@ -24,7 +23,7 @@ async function main() {
 
   // We also save the contract's artifacts and address in the frontend directory
   //   saveFrontendFiles(token);
-  // }
+  // }0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
 
   // function saveFrontendFiles(token) {
   //   const fs = require('fs');

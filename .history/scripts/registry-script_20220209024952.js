@@ -1,8 +1,6 @@
 const { ethers } = require('hardhat');
 
 async function main() {
-  const 
-
   // ethers is avaialble in the global scope
   const [deployer] = await ethers.getSigners();
   console.log(
@@ -10,6 +8,7 @@ async function main() {
     await deployer.getAddress()
   );
 
+  //   console.log('Account balance:', (await deployer.getBalance()).toString());
 
   const Token = await ethers.getContractFactory('ScammCoin');
   [signer, addr1, addr2, ...addrs] = await ethers.getSigners();

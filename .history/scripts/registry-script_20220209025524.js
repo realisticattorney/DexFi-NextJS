@@ -1,7 +1,7 @@
 const { ethers } = require('hardhat');
 
 async function main() {
-  const 
+  
 
   // ethers is avaialble in the global scope
   const [deployer] = await ethers.getSigners();
