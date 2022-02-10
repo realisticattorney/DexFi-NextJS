@@ -132,22 +132,7 @@ const Layout = ({ children }) => {
             </div>
           </div>
 
-          <div className="self-end -ml-3.5 md:-ml-4">
-            <ul className="text-xs flex-col">
-              <li className="text-deepoe-cream font-thin text-opacity-70 mb-0.5">
-                designed & developed by
-              </li>
-              <li className="-mb-1.5">
-                <a
-                  href="https://www.germanaquila.com"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  German Aquila{' '}
-                </a>
-              </li>
-            </ul>
-          </div>
+    
           {/* <div className="self-end">
             <ul className="text-xs flex-col">
               <li className="text-deepoe-cream font-thin text-opacity-70 -mb-1.5">

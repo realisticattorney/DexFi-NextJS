@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
       <main className="h-full flex-grow lg:max-w-screen-lg  lg:overflow-y-auto lg:mx-auto xxl:max-w-screen-xxl">
         {children}
       </main>
-      <footer className=" text-white  text-sm font-extralight font-mono  p-5 bg-dexfi-space_gray">
+      <footer className=" text-white  text-sm font-extralight font-mono  p-5 bg-black">
         <div className="grid col-span-3 grid-cols-3 grid-rows-2 h-60 lg:max-w-4xl md:mx-auto md:max-w-2xl md:grid-cols-6 md:grid-rows-1 md:h-40">
           <div className="inline-flex col-span-1 row-span-1 ">
             <ul className="flex-col space-y-1.7 ">
@@ -121,14 +121,14 @@ const Layout = ({ children }) => {
             <div className="flex-col space-y-0">
               <div className="-pl-2 -mb-1 pr-3 md:pr-0">
                 <Image
-                  src="/DexFi-logo.png"
+                  src="/logo.svg"
                   height={48}
-                  width={70}
+                  width={48}
                   className="svg-stroke"
                   alt=""
                 />
               </div>
-              <p className="">© 2022 DexFi</p>
+              <p className="">© 2022 deepoe</p>
             </div>
           </div>
 

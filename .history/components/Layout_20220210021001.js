@@ -123,7 +123,7 @@ const Layout = ({ children }) => {
                 <Image
                   src="/DexFi-logo.png"
                   height={48}
-                  width={70}
+                  width={48}
                   className="svg-stroke"
                   alt=""
                 />

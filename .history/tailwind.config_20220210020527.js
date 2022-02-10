@@ -5,11 +5,11 @@ module.exports = {
     extend: {
       colors: {
         dexfi: {
-          space_gray: '#27262C',
+          
         },
-        // deepoe_default: {
-        //   black: '#302e2f',
-        // },
+        deepoe_default: {
+          black: '#302e2f',
+        },
       },
       fontSize: {
         xs: ' 0.625rem',

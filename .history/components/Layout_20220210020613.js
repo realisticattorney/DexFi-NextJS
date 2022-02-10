@@ -121,9 +121,9 @@ const Layout = ({ children }) => {
             <div className="flex-col space-y-0">
               <div className="-pl-2 -mb-1 pr-3 md:pr-0">
                 <Image
-                  src="/DexFi-logo.png"
+                  src="/logo.svg"
                   height={48}
-                  width={70}
+                  width={48}
                   className="svg-stroke"
                   alt=""
                 />
