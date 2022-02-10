@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
   return (
     <div className="flex flex-col min-h-screen   ">
       <Nav />
-      <main className="h-full w-full flex-grow bg-dexfi-sky">
+      <main className="h-full flex-grow lg:max-w-screen-lg  lg:overflow-y-auto lg:mx-auto xxl:max-w-screen-xxl bg-dexfi-sky">
         {children}
       </main>
       <footer className=" text-white  text-sm font-extralight font-mono  p-5 bg-dexfi-space_gray">

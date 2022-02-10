@@ -34,16 +34,9 @@ export default function Home() {
   }
 
   return (
-    <div className="flex-col ">
-      <nav className="bg-white py-3 ">
-        <div className="mx-auto flex  w-fit space-x-4">
-          <h1>Exchange</h1>
-          <h1>Liquidity</h1>
-        </div>
-      </nav>
-      <div className="p-6  mx-auto w-min">
-        <div className="w-[326px] h-[518px] bg-white rounded-3xl border "></div>
-      </div>
+    <div className="p-4 h-full mx-auto">
+      <h1>home</h1>
+      <div className="h-56 w-32 bg-white "></div>
     </div>
   );
 }

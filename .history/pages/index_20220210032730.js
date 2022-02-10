@@ -41,8 +41,8 @@ export default function Home() {
           <h1>Liquidity</h1>
         </div>
       </nav>
-      <div className="p-6  mx-auto w-min">
-        <div className="w-[326px] h-[518px] bg-white rounded-3xl border "></div>
+      <div className="p-4  mx-auto w-min">
+        <div className="w-[80] h-[518px] bg-white "></div>
       </div>
     </div>
   );

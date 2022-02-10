@@ -34,15 +34,10 @@ export default function Home() {
   }
 
   return (
-    <div className="flex-col ">
-      <nav className="bg-white py-3 ">
-        <div className="mx-auto flex  w-fit space-x-4">
-          <h1>Exchange</h1>
-          <h1>Liquidity</h1>
-        </div>
-      </nav>
-      <div className="p-6  mx-auto w-min">
-        <div className="w-[326px] h-[518px] bg-white rounded-3xl border "></div>
+    <div className="mx-auto justify-center text-center">
+      <h1>home</h1>
+      <div className='h-56 w-32 '>
+
       </div>
     </div>
   );
@@ -53,13 +48,25 @@ export default function Home() {
 
 //then the button SCAMM will render this popover where you can pick the token to-trade
 
-// const registry = new ethers.Contract(
-//   registryAddress,
-//   Registry.abi,
-//   provider
-// );
-// const getExchangeAddress = await registry.getExchange(scammAddress);
 
-// if (getExchangeAddress === '0x0000000000000000000000000000000000000000') {
-//   const exchangeAddress = await registry.createExchange(scammAddress);
-// }
+
+
+
+
+
+
+
+
+
+
+
+  // const registry = new ethers.Contract(
+    //   registryAddress,
+    //   Registry.abi,
+    //   provider
+    // );
+    // const getExchangeAddress = await registry.getExchange(scammAddress);
+
+    // if (getExchangeAddress === '0x0000000000000000000000000000000000000000') {
+    //   const exchangeAddress = await registry.createExchange(scammAddress);
+    // }
