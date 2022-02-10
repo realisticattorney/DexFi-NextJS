@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const Layout = ({ children }) => {
   return (
-    <div className="flex flex-col min-h-screen   ">
+    <div className="flex flex-col min-h-screen bg-slate-200  ">
       <Nav />
       <main className="h-full flex-grow lg:max-w-screen-lg  lg:overflow-y-auto lg:mx-auto xxl:max-w-screen-xxl">
         {children}

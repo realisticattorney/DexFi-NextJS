@@ -3,11 +3,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 const Nav = () => {
   return (
-    <div className="flex border-b border-gray-300 p-0 items-center">
+    <div className="flex border-b border-gray-600 p-3 items-center">
       <Image
         src="/DexFi-logo.png"
-        height={70}
-        width={140}
+        height={100}
+        width={200}
         className="svg-stroke"
         alt=""
       />
