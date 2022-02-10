@@ -34,7 +34,7 @@ export default function Home() {
   }
 
   const myLoader = () =>
-    `https://assets.trustwalletapp.com/blockchains/smartchain/assets/0x3ee2200efb3400fabb9aacf31297cbdd1d435d47/logo.png`;
+    `https://assets.trustwalletapp.com/blockchains/smartchain/assets/0x1ce0c2827e2ef14d5c4f29a091d735a204794041/logo.png`;
 
   return (
     <div className="flex-col ">
@@ -58,13 +58,7 @@ export default function Home() {
           <div className="flex flex-col space-y-2 p-5">
             <button>
               BNB
-              <Image
-                src="https://assets.trustwalletapp.com/blockchains/smartchain/assets/0x3ee2200efb3400fabb9aacf31297cbdd1d435d47/logo.png"
-                height={24}
-                width={24}
-                quality={50}
-                alt=""
-              />
+              <Image loader={myLoader} height={24} width={24} alt="" />
             </button>
           </div>
         </div>

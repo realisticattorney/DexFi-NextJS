@@ -62,7 +62,6 @@ export default function Home() {
                 src="https://assets.trustwalletapp.com/blockchains/smartchain/assets/0x3ee2200efb3400fabb9aacf31297cbdd1d435d47/logo.png"
                 height={24}
                 width={24}
-                quality={50}
                 alt=""
               />
             </button>

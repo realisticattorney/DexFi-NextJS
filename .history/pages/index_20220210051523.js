@@ -59,10 +59,11 @@ export default function Home() {
             <button>
               BNB
               <Image
-                src="https://assets.trustwalletapp.com/blockchains/smartchain/assets/0x3ee2200efb3400fabb9aacf31297cbdd1d435d47/logo.png"
+              loader={myLoader}
+                src="/BNB.png"
                 height={24}
                 width={24}
-                quality={50}
+                unoptimized={true}
                 alt=""
               />
             </button>

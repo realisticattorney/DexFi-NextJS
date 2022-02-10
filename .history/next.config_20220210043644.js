@@ -3,4 +3,4 @@ module.exports = {
   images: {
     domains: ['assets.trustwalletapp.com'],
   },
-};
+}
