@@ -25,7 +25,7 @@ export default function Home() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
     const exchange = new ethers.Contract(
-      scammExchangeAddress,
+      scammExchangeAddress
       Exchange.abi,
       provider
     );

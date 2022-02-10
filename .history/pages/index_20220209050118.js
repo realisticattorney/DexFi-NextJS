@@ -23,9 +23,19 @@ export default function Home() {
 
   async function loadExchange() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const registry = new ethers.Contract(
+      registryAddress,
+      Registry.abi,
+      provider
+    );
+    // const getExchangeAddress = await registry.getExchange(scammAddress);
+
+    // if (getExchangeAddress === '0x0000000000000000000000000000000000000000') {
+    //   const exchangeAddress = await registry.createExchange(scammAddress);
+    // }
 
     const exchange = new ethers.Contract(
-      scammExchangeAddress,
+      exchangeAddress,
       Exchange.abi,
       provider
     );
@@ -39,31 +49,3 @@ export default function Home() {
     </div>
   );
 }
-
-//dynamic server side rendering, passing the input of every exchange to the Home component as an array of objects
-//this object will contain the exchange address, the exchange name, and the exchange logo, and the current price for each. lots of things, really, can we do that through metamask? idk. the other option is to get those things as the user demands for them, but pretty slow solution imo.
-
-//then the button SCAMM will render this popover where you can pick the token to-trade
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // const registry = new ethers.Contract(
-    //   registryAddress,
-    //   Registry.abi,
-    //   provider
-    // );
-    // const getExchangeAddress = await registry.getExchange(scammAddress);
-
-    // if (getExchangeAddress === '0x0000000000000000000000000000000000000000') {
-    //   const exchangeAddress = await registry.createExchange(scammAddress);
-    // }
