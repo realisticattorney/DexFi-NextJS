@@ -4,6 +4,3 @@
 @tailwind utilities;
 
 
-.MuiBackdrop-root {
-   background-color: rgba(40, 13, 95, 0.6);
-}

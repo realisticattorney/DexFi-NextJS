@@ -18,7 +18,6 @@ import Menu from '@mui/material/Menu';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 
-
 const options = [
   'Show some love to MUI',
   'Show all notification content',
@@ -26,7 +25,9 @@ const options = [
   'Hide all notification content',
 ];
 
-const modalstyle = {
+const modalstyle = { paperRoot: {
+  backgroundColor: "red"
+}
   position: 'absolute',
   top: '30%',
   left: '50%',
@@ -36,7 +37,6 @@ const modalstyle = {
   boxShadow: 1,
   borderRadius: 9,
   p: 2,
-  
 };
 
 import {

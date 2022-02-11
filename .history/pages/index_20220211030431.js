@@ -18,7 +18,6 @@ import Menu from '@mui/material/Menu';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 
-
 const options = [
   'Show some love to MUI',
   'Show all notification content',
@@ -33,10 +32,10 @@ const modalstyle = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  boxShadow: 1,
-  borderRadius: 9,
+  border: '2px solid #000',
+  boxShadow: 24,
   p: 2,
-  
+  overflow: 'auto',
 };
 
 import {
@@ -131,9 +130,6 @@ export default function Home(props) {
               <Fade in={open}>
                 <Paper sx={modalstyle}>
                   <MenuList>
-                  <div className='flex px-3 pb-5 text-xl font-medium text-dexfi-violet border-b mb-4'>
-                    <h1>Select a Token</h1>
-                  </div>
                     {currencies.map((currency, index) => (
                       <MenuItem
                         key={currency.symbol}

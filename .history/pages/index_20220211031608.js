@@ -32,11 +32,10 @@ const modalstyle = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
-  bgcolor: 'background.paper',
+  bgcolor: 'red',
   boxShadow: 1,
   borderRadius: 9,
   p: 2,
-  
 };
 
 import {

@@ -18,7 +18,6 @@ import Menu from '@mui/material/Menu';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 
-
 const options = [
   'Show some love to MUI',
   'Show all notification content',
@@ -33,10 +32,9 @@ const modalstyle = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
+  border: '2px solid #000',
   boxShadow: 1,
-  borderRadius: 9,
   p: 2,
-  
 };
 
 import {

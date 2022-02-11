@@ -36,7 +36,6 @@ const modalstyle = {
   boxShadow: 1,
   borderRadius: 9,
   p: 2,
-  
 };
 
 import {
