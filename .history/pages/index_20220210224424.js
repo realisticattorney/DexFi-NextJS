@@ -125,10 +125,11 @@ export async function getStaticProps() {
       address,
     }))
     .push({
-      symbol: 'SCAM',
-      logoURI: '/public/logo.png',
+      symbol: 'SCM',
+      logoURI:
+        'https://assets.trustwalletapp.com/blockchains/ethereum/assets/0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/logo.png',
       decimals: 18,
-      address: scammcoinAddress,
+      
     });
 
   return {

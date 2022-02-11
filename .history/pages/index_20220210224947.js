@@ -125,8 +125,8 @@ export async function getStaticProps() {
       address,
     }))
     .push({
-      symbol: 'SCAM',
-      logoURI: '/public/logo.png',
+      symbol: 'SCM',
+      logoURI: '/logo.png',
       decimals: 18,
       address: scammcoinAddress,
     });

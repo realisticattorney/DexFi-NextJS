@@ -73,7 +73,7 @@ export default function Home(props) {
               <h1>BNB</h1>
             </button>
           </div>
-
+          
           <div className="flex flex-col space-y-2 p-5">
             <button>
               <Image
@@ -97,39 +97,23 @@ export async function getStaticProps() {
   const filePath = path.join(
     process.cwd(),
     'data',
-    'ethereum',
+    'binance',
     'tokenlist.json'
   );
   const jsonCurrenciesData = await fs.readFile(filePath);
   const allCurrenciesData = JSON.parse(jsonCurrenciesData);
   //map over all currencies and get their symbol, logoUri, and decimals
-  //filter out the ones that symbol is BNB
-  const selectedCurrencies = allCurrenciesData.tokens.filter(
-    ({ symbol }) =>
-      symbol === 'WETH' ||
-      symbol === 'USDT' ||
-      symbol === 'DAI' ||
-      symbol === 'MATIC' ||
-      symbol === 'UNI' ||
-      symbol === 'SUSHI' ||
-      symbol === 'BUSD' ||
-      symbol === 'AAVE' ||
-      symbol === 'SHIB'
-  );
+  //
+  const selectedCurrencies = allCurrenciesData.tokens.filter(({symbol}) => ({
 
-  const currencies = selectedCurrencies.tokens
-    .map(({ symbol, logoURI, decimals }) => ({
+
+  const currencies = allCurrenciesData.tokens.map(
+    ({ symbol, logoURI, decimals }) => ({
       symbol,
       logoURI,
       decimals,
-      address,
-    }))
-    .push({
-      symbol: 'SCAM',
-      logoURI: '/public/logo.png',
-      decimals: 18,
-      address: scammcoinAddress,
-    });
+    })
+  );
 
   return {
     props: {

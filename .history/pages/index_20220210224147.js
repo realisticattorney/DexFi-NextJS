@@ -107,6 +107,7 @@ export async function getStaticProps() {
   const selectedCurrencies = allCurrenciesData.tokens.filter(
     ({ symbol }) =>
       symbol === 'WETH' ||
+      symbol === 'WBTC' ||
       symbol === 'USDT' ||
       symbol === 'DAI' ||
       symbol === 'MATIC' ||
@@ -117,18 +118,16 @@ export async function getStaticProps() {
       symbol === 'SHIB'
   );
 
-  const currencies = selectedCurrencies.tokens
-    .map(({ symbol, logoURI, decimals }) => ({
+  const currencies = selectedCurrencies.tokens.map(
+    ({ symbol, logoURI, decimals }) => ({
       symbol,
       logoURI,
       decimals,
-      address,
-    }))
-    .push({
-      symbol: 'SCAM',
-      logoURI: '/public/logo.png',
-      decimals: 18,
-      address: scammcoinAddress,
+    })
+  ).push({
+    symbol: 'BNB',
+    logoURI: 'https://assets.trustwalletapp.com/blockchains/ethereum/assets/0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/logo.png',
+    decimals: 18,
     });
 
   return {

@@ -12,6 +12,7 @@
     "@nomiclabs/hardhat-ethers": "^2.0.4",
     "@nomiclabs/hardhat-waffle": "^2.0.2",
     "@openzeppelin/contracts": "^4.4.2",
+    "@pancakeswap/uikit": "^0.63.1",
     "axios": "^0.25.0",
     "chai": "^4.3.6",
     "ethereum-waffle": "^3.4.0",

@@ -107,29 +107,24 @@ export async function getStaticProps() {
   const selectedCurrencies = allCurrenciesData.tokens.filter(
     ({ symbol }) =>
       symbol === 'WETH' ||
+      symbol === 'WBTC' ||
       symbol === 'USDT' ||
       symbol === 'DAI' ||
       symbol === 'MATIC' ||
       symbol === 'UNI' ||
       symbol === 'SUSHI' ||
       symbol === 'BUSD' ||
-      symbol === 'AAVE' ||
       symbol === 'SHIB'
   );
 
-  const currencies = selectedCurrencies.tokens
-    .map(({ symbol, logoURI, decimals }) => ({
+  const currencies = selectedCurrencies.tokens.map(
+    ({ symbol, logoURI, decimals }) => ({
       symbol,
       logoURI,
       decimals,
-      address,
-    }))
-    .push({
-      symbol: 'SCAM',
-      logoURI: '/public/logo.png',
-      decimals: 18,
-      address: scammcoinAddress,
-    });
+    })
+  ).push({
+    ;
 
   return {
     props: {
