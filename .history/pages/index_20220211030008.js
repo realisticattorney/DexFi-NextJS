@@ -112,7 +112,7 @@ export default function Home(props) {
                 quality={50}
                 alt=""
               />
-              <h1 className='ml-1'>{exchangeCurrency.symbol}</h1>
+              <h1>{exchangeCurrency.symbol}</h1>
             </Button>
             <Modal
               disablePortal

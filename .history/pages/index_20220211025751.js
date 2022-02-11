@@ -112,7 +112,7 @@ export default function Home(props) {
                 quality={50}
                 alt=""
               />
-              <h1 className='ml-1'>{exchangeCurrency.symbol}</h1>
+              <h1>{exchangeCurrency.symbol}</h1>
             </Button>
             <Modal
               disablePortal
@@ -132,18 +132,11 @@ export default function Home(props) {
                     {currencies.map((currency, index) => (
                       <MenuItem
                         key={currency.symbol}
-                        disabled={index === selectedIndex}
+                        // disabled={index === 0}
                         selected={index === selectedIndex}
                         onClick={(event) => handleMenuItemClick(event, index)}
                       >
-                        <Image
-                          src={currency.logoURI}
-                          height={24}
-                          width={24}
-                          quality={50}
-                          alt=""
-                        />
-                        <h1 className='ml-3'>{currency.symbol}</h1>
+                        {currency.symbol}
                       </MenuItem>
                     ))}
                   </MenuList>
