@@ -11,15 +11,15 @@ async function main() {
   const token = await Token.deploy(ethers.utils.parseEther('1000'));
   await token.deployed();
 
-  console.log('Deployer address:', deployer.address);
-  console.log('Registry contract address:', registry.address);
-  console.log('ScammCoin contract address:', token.address);
+  // console.log('Deployer address:', deployer.address);
+  // console.log('Registry contract address:', registry.address);
+  // console.log('ScammCoin contract address:', token.address);
 
   let scammExchange = await registry.createExchange(token.address);
-  // let txReceipt = await scammExchange.wait();
+  let txReceipt = await scammExchange.wait();
   // const [, exchangeAddress] = txReceipt.events[0].args;
-  // console.log('Receipt:', exchangeAddress);
   const getExchangeAddress = await registry.getExchange(token.address);
+  console.log('Receipt:', exchangeAddress);
   console.log('Mapping of ScammExchange contract address:', getExchangeAddress);
 }
 
