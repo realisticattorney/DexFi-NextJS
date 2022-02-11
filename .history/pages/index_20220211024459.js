@@ -61,12 +61,13 @@ export default function Home(props) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [selectedIndex, setSelectedIndex] = useState(1);
-  // const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
-    handleClose();
+    // setAnchorEl(null);
   };
+
 
   useEffect(() => {
     loadExchange();
@@ -128,7 +129,7 @@ export default function Home(props) {
             >
               <Fade in={open}>
                 <Paper sx={modalstyle}>
-                  <MenuList>
+                <MenuList>
                     {options.map((option, index) => (
                       <MenuItem
                         key={option}

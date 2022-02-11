@@ -16,7 +16,6 @@ import Typography from '@mui/material/Typography';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Paper from '@mui/material/Paper';
-import MenuList from '@mui/material/MenuList';
 
 const options = [
   'Show some love to MUI',
@@ -61,13 +60,8 @@ export default function Home(props) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [selectedIndex, setSelectedIndex] = useState(1);
-  // const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleMenuItemClick = (event, index) => {
-    setSelectedIndex(index);
-    handleClose();
-  };
-
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  
   useEffect(() => {
     loadExchange();
   }, []);
@@ -127,19 +121,28 @@ export default function Home(props) {
               }}
             >
               <Fade in={open}>
-                <Paper sx={modalstyle}>
-                  <MenuList>
-                    {options.map((option, index) => (
-                      <MenuItem
-                        key={option}
-                        disabled={index === 0}
-                        selected={index === selectedIndex}
-                        onClick={(event) => handleMenuItemClick(event, index)}
-                      >
-                        {option}
-                      </MenuItem>
-                    ))}
-                  </MenuList>
+              <Paper sx={modalstyle}>
+                <Menu
+                  id="lock-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    'aria-labelledby': 'lock-button',
+                    role: 'listbox',
+                  }}
+                >
+                  {options.map((option, index) => (
+                    <MenuItem
+                      key={option}
+                      disabled={index === 0}
+                      selected={index === selectedIndex}
+                      onClick={(event) => handleMenuItemClick(event, index)}
+                    >
+                      {option}
+                    </MenuItem>
+                  ))}
+                </Menu>
                 </Paper>
               </Fade>
             </Modal>

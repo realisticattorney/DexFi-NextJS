@@ -13,17 +13,6 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import Paper from '@mui/material/Paper';
-import MenuList from '@mui/material/MenuList';
-
-const options = [
-  'Show some love to MUI',
-  'Show all notification content',
-  'Hide sensitive notification content',
-  'Hide all notification content',
-];
 
 const modalstyle = {
   position: 'absolute',
@@ -61,12 +50,11 @@ export default function Home(props) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [selectedIndex, setSelectedIndex] = useState(1);
-  // const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleMenuItemClick = (event, index) => {
-    setSelectedIndex(index);
-    handleClose();
-  };
+
+
+
+  
 
   useEffect(() => {
     loadExchange();
@@ -127,20 +115,19 @@ export default function Home(props) {
               }}
             >
               <Fade in={open}>
-                <Paper sx={modalstyle}>
-                  <MenuList>
-                    {options.map((option, index) => (
-                      <MenuItem
-                        key={option}
-                        disabled={index === 0}
-                        selected={index === selectedIndex}
-                        onClick={(event) => handleMenuItemClick(event, index)}
-                      >
-                        {option}
-                      </MenuItem>
-                    ))}
-                  </MenuList>
-                </Paper>
+                <Box sx={modalstyle}>
+                  <Typography
+                    id="transition-modal-title"
+                    variant="h6"
+                    component="h2"
+                  >
+                    Text in a modal
+                  </Typography>
+                  <Typography
+                    id="transition-modal-description"
+                    sx={{ mt: 2 }}
+                  ></Typography>
+                </Box>
               </Fade>
             </Modal>
           </div>
