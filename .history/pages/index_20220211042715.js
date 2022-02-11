@@ -68,11 +68,9 @@ export default function Home(props) {
 
   const handleMenuItemClick = (event, index) => {
     if (index === selectedIndexSecond) {
-      const prevIndex = selectedIndex;
       const newIndex = selectedIndexSecond;
       setSelectedIndex(newIndex);
-      setSelectedIndexSecond(prevIndex);
-      setToSwapCurrency(currencies[prevIndex]);
+      setSelectedIndexSecond(index);
       setExchangeCurrency(currencies[newIndex]);
     } else {
       setSelectedIndex(index);
@@ -83,17 +81,15 @@ export default function Home(props) {
 
   const handleMenuItemClickSecond = (event, index) => {
     if (index === selectedIndex) {
-      const prevIndex = selectedIndexSecond;
       const newIndex = selectedIndex;
-      setSelectedIndex(prevIndex);
       setSelectedIndexSecond(newIndex);
-      setToSwapCurrency(currencies[newIndex]);
-      setExchangeCurrency(currencies[prevIndex]);
+      setSelectedIndex(index);
+      toSwapCurrency(currencies[newIndex]);
     } else {
       setSelectedIndexSecond(index);
-      setToSwapCurrency(currencies[index]);
+      toSwapCurrency(currencies[index]);
     }
-    handleCloseSecond();
+    handleClose();
   };
 
   useEffect(() => {

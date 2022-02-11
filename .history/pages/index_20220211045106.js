@@ -83,12 +83,12 @@ export default function Home(props) {
 
   const handleMenuItemClickSecond = (event, index) => {
     if (index === selectedIndex) {
-      const prevIndex = selectedIndexSecond;
-      const newIndex = selectedIndex;
-      setSelectedIndex(prevIndex);
-      setSelectedIndexSecond(newIndex);
-      setToSwapCurrency(currencies[newIndex]);
-      setExchangeCurrency(currencies[prevIndex]);
+      const prevIndex = selectedIndex;
+      const newIndex = selectedIndexSecond;
+      setSelectedIndex(newIndex);
+      setSelectedIndexSecond(prevIndex);
+      setToSwapCurrency(currencies[prevIndex]);
+      setExchangeCurrency(currencies[newIndex]);
     } else {
       setSelectedIndexSecond(index);
       setToSwapCurrency(currencies[index]);

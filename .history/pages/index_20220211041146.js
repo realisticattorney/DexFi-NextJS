@@ -18,6 +18,7 @@ import Menu from '@mui/material/Menu';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 
+
 const options = [
   'Show some love to MUI',
   'Show all notification content',
@@ -35,6 +36,7 @@ const modalstyle = {
   boxShadow: 1,
   borderRadius: 9,
   p: 2,
+  
 };
 
 import {
@@ -64,36 +66,11 @@ export default function Home(props) {
   const handleClose = () => setOpen(false);
   const handleCloseSecond = () => setOpenSecond(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [selectedIndexSecond, setSelectedIndexSecond] = useState(1);
 
   const handleMenuItemClick = (event, index) => {
-    if (index === selectedIndexSecond) {
-      const prevIndex = selectedIndex;
-      const newIndex = selectedIndexSecond;
-      setSelectedIndex(newIndex);
-      setSelectedIndexSecond(prevIndex);
-      setToSwapCurrency(currencies[prevIndex]);
-      setExchangeCurrency(currencies[newIndex]);
-    } else {
-      setSelectedIndex(index);
-      setExchangeCurrency(currencies[index]);
-    }
+    setSelectedIndex(index);
+    setExchangeCurrency(currencies[index]);
     handleClose();
-  };
-
-  const handleMenuItemClickSecond = (event, index) => {
-    if (index === selectedIndex) {
-      const prevIndex = selectedIndexSecond;
-      const newIndex = selectedIndex;
-      setSelectedIndex(prevIndex);
-      setSelectedIndexSecond(newIndex);
-      setToSwapCurrency(currencies[newIndex]);
-      setExchangeCurrency(currencies[prevIndex]);
-    } else {
-      setSelectedIndexSecond(index);
-      setToSwapCurrency(currencies[index]);
-    }
-    handleCloseSecond();
   };
 
   useEffect(() => {
@@ -157,9 +134,9 @@ export default function Home(props) {
               <Fade in={open}>
                 <Paper sx={modalstyle}>
                   <MenuList>
-                    <div className="flex px-3 pb-5 text-xl font-medium text-dexfi-violet border-b mb-4">
-                      <h1>Select a Token</h1>
-                    </div>
+                  <div className='flex px-3 pb-5 text-xl font-medium text-dexfi-violet border-b mb-4'>
+                    <h1>Select a Token</h1>
+                  </div>
                     {currencies.map((currency, index) => (
                       <MenuItem
                         key={currency.symbol}
@@ -182,53 +159,41 @@ export default function Home(props) {
               </Fade>
             </Modal>
           </div>
-          {''}
-          {''}
-          {''}
-          {''}
-          {''}
-          {''}
-          {''}
-          {''}
-          {''}
-          {''}
           <div className="flex flex-col space-y-2 p-5">
-            <Button onClick={handleOpenSecond} className="flex">
+            <Button onClick={handleOpen} className="flex">
               <Image
-                src={toSwapCurrency.logoURI}
+                src={exchangeCurrency.logoURI}
                 height={24}
                 width={24}
                 quality={50}
                 alt=""
               />
-              <h1 className="ml-1">{toSwapCurrency.symbol}</h1>
+              <h1 className="ml-1">{exchangeCurrency.symbol}</h1>
             </Button>
             <Modal
               disablePortal
               aria-labelledby="transition-modal-title"
               aria-describedby="transition-modal-description"
-              open={openSecond}
-              onClose={handleCloseSecond}
+              open={open}
+              onClose={handleClose}
               closeAfterTransition
               BackdropComponent={Backdrop}
               BackdropProps={{
                 timeout: 500,
               }}
             >
-              <Fade in={openSecond}>
+              <Fade in={open}>
                 <Paper sx={modalstyle}>
                   <MenuList>
-                    <div className="flex px-3 pb-5 text-xl font-medium text-dexfi-violet border-b mb-4">
-                      <h1>Select a Token</h1>
-                    </div>
+                  <div className='flex px-3 pb-5 text-xl font-medium text-dexfi-violet border-b mb-4'>
+                    <h1>Select a Token</h1>
+                  </div>
                     {currencies.map((currency, index) => (
                       <MenuItem
                         key={currency.symbol}
-                        disabled={index === selectedIndexSecond}
-                        selected={index === selectedIndexSecond}
-                        onClick={(event) =>
-                          handleMenuItemClickSecond(event, index)
-                        }
+                        disabled={index === selectedIndex}
+                        selected={index === selectedIndex}
+                        onClick={(event) => handleMenuItemClick(event, index)}
                       >
                         <Image
                           src={currency.logoURI}

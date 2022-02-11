@@ -88,7 +88,7 @@ export default function Home(props) {
       setSelectedIndex(prevIndex);
       setSelectedIndexSecond(newIndex);
       setToSwapCurrency(currencies[newIndex]);
-      setExchangeCurrency(currencies[prevIndex]);
+      setExchangeCurrency(currencies[newIndex]);
     } else {
       setSelectedIndexSecond(index);
       setToSwapCurrency(currencies[index]);

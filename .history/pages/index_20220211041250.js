@@ -64,36 +64,11 @@ export default function Home(props) {
   const handleClose = () => setOpen(false);
   const handleCloseSecond = () => setOpenSecond(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [selectedIndexSecond, setSelectedIndexSecond] = useState(1);
 
   const handleMenuItemClick = (event, index) => {
-    if (index === selectedIndexSecond) {
-      const prevIndex = selectedIndex;
-      const newIndex = selectedIndexSecond;
-      setSelectedIndex(newIndex);
-      setSelectedIndexSecond(prevIndex);
-      setToSwapCurrency(currencies[prevIndex]);
-      setExchangeCurrency(currencies[newIndex]);
-    } else {
-      setSelectedIndex(index);
-      setExchangeCurrency(currencies[index]);
-    }
+    setSelectedIndex(index);
+    setExchangeCurrency(currencies[index]);
     handleClose();
-  };
-
-  const handleMenuItemClickSecond = (event, index) => {
-    if (index === selectedIndex) {
-      const prevIndex = selectedIndexSecond;
-      const newIndex = selectedIndex;
-      setSelectedIndex(prevIndex);
-      setSelectedIndexSecond(newIndex);
-      setToSwapCurrency(currencies[newIndex]);
-      setExchangeCurrency(currencies[prevIndex]);
-    } else {
-      setSelectedIndexSecond(index);
-      setToSwapCurrency(currencies[index]);
-    }
-    handleCloseSecond();
   };
 
   useEffect(() => {
@@ -207,7 +182,7 @@ export default function Home(props) {
               disablePortal
               aria-labelledby="transition-modal-title"
               aria-describedby="transition-modal-description"
-              open={openSecond}
+              open={open}
               onClose={handleCloseSecond}
               closeAfterTransition
               BackdropComponent={Backdrop}
@@ -215,7 +190,7 @@ export default function Home(props) {
                 timeout: 500,
               }}
             >
-              <Fade in={openSecond}>
+              <Fade in={open}>
                 <Paper sx={modalstyle}>
                   <MenuList>
                     <div className="flex px-3 pb-5 text-xl font-medium text-dexfi-violet border-b mb-4">
@@ -224,11 +199,9 @@ export default function Home(props) {
                     {currencies.map((currency, index) => (
                       <MenuItem
                         key={currency.symbol}
-                        disabled={index === selectedIndexSecond}
-                        selected={index === selectedIndexSecond}
-                        onClick={(event) =>
-                          handleMenuItemClickSecond(event, index)
-                        }
+                        disabled={index === selectedIndex}
+                        selected={index === selectedIndex}
+                        onClick={(event) => handleMenuItemClick(event, index)}
                       >
                         <Image
                           src={currency.logoURI}
