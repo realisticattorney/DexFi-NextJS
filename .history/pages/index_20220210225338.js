@@ -23,9 +23,6 @@ export default function Home(props) {
   const [exchange, setExchange] = useState(null);
   const [loadingState, setLoadingState] = useState('not-loaded');
 
-  const [exchangeCurrency, setExchangeCurrency] = useState(currencies[0]);
-  const [toSwapCurrency, setToSwapCurrency] = useState(currencies[1]);
-
   useEffect(() => {
     loadExchange();
   }, []);
@@ -41,6 +38,9 @@ export default function Home(props) {
     setExchange(exchange);
     setLoadingState('loaded');
   }
+
+  const myLoader = () =>
+    `https://assets.trustwalletapp.com/blockchains/smartchain/assets/0x3ee2200efb3400fabb9aacf31297cbdd1d435d47/logo.png`;
 
   return (
     <div className="flex-col ">
@@ -64,26 +64,26 @@ export default function Home(props) {
           <div className="flex flex-col space-y-2 p-5">
             <button className="flex">
               <Image
-                src={exchangeCurrency.logoURI}
+                src={currencies[0].logoURI}
                 height={24}
                 width={24}
                 quality={50}
                 alt=""
               />
-              <h1>{exchangeCurrency.symbol}</h1>
+              <h1>BNB</h1>
             </button>
           </div>
 
           <div className="flex flex-col space-y-2 p-5">
             <button>
               <Image
-                src={toSwapCurrency.logoURI}
+                src={currencies[6].logoURI}
                 height={24}
                 width={24}
                 quality={50}
                 alt=""
               />
-              <h1>{toSwapCurrency.symbol}</h1>
+              BNB
             </button>
           </div>
         </div>
@@ -104,12 +104,6 @@ export async function getStaticProps() {
   const allCurrenciesData = JSON.parse(jsonCurrenciesData);
   //map over all currencies and get their symbol, logoUri, and decimals
   //filter out the ones that symbol is BNB
-  const scammCurrency = {
-    symbol: 'SCAM',
-    logoURI: '/logo.png',
-    decimals: 18,
-    address: scammcoinAddress,
-  };
   const selectedCurrencies = allCurrenciesData.tokens.filter(
     ({ symbol }) =>
       symbol === 'WETH' ||
@@ -122,15 +116,15 @@ export async function getStaticProps() {
       symbol === 'AAVE' ||
       symbol === 'SHIB'
   );
-  const currencies = selectedCurrencies.map(
-    ({ symbol, logoURI, decimals, address }) => ({
+
+  const currencies = selectedCurrencies
+    .map(({ symbol, logoURI, decimals, address }) => ({
       symbol,
       logoURI,
       decimals,
       address,
-    })
-  );
-  currencies.unshift(scammCurrency);
+    }))
+    .sort((a, b) => a.symbol.localeCompare(b.symbol));
 
   return {
     props: {

@@ -26,6 +26,7 @@ export default function Home(props) {
   const [exchangeCurrency, setExchangeCurrency] = useState(currencies[0]);
   const [toSwapCurrency, setToSwapCurrency] = useState(currencies[1]);
 
+
   useEffect(() => {
     loadExchange();
   }, []);
@@ -71,6 +72,7 @@ export default function Home(props) {
                 alt=""
               />
               <h1>{exchangeCurrency.symbol}</h1>
+              <h1>{exchangeCurrency.symbol}</h1>
             </button>
           </div>
 
@@ -83,7 +85,7 @@ export default function Home(props) {
                 quality={50}
                 alt=""
               />
-              <h1>{toSwapCurrency.symbol}</h1>
+              BNB
             </button>
           </div>
         </div>
@@ -121,7 +123,7 @@ export async function getStaticProps() {
       symbol === 'BUSD' ||
       symbol === 'AAVE' ||
       symbol === 'SHIB'
-  );
+  )
   const currencies = selectedCurrencies.map(
     ({ symbol, logoURI, decimals, address }) => ({
       symbol,
