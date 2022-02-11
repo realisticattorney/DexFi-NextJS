@@ -63,7 +63,7 @@ export default function Home(props) {
           </div>
 
           <div className="flex flex-col space-y-2 p-5">
-            <button className="flex">
+            <button className="just">
               <Image
                 src={currencies[0].logoURI}
                 height={24}
@@ -71,7 +71,7 @@ export default function Home(props) {
                 quality={50}
                 alt=""
               />
-              <h1>BNB</h1>
+              BNB
             </button>
           </div>
           <div className="flex flex-col space-y-2 p-5">

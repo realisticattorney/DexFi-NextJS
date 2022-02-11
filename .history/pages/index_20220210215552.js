@@ -20,7 +20,6 @@ import ScammCoin from '../artifacts/contracts/ScammCoin.sol/ScammCoin.json';
 export default function Home(props) {
   const { currencies } = props;
   console.log(currencies);
-
   const [exchange, setExchange] = useState(null);
   const [loadingState, setLoadingState] = useState('not-loaded');
 
@@ -63,27 +62,15 @@ export default function Home(props) {
           </div>
 
           <div className="flex flex-col space-y-2 p-5">
-            <button className="flex">
-              <Image
-                src={currencies[0].logoURI}
-                height={24}
-                width={24}
-                quality={50}
-                alt=""
-              />
-              <h1>BNB</h1>
-            </button>
-          </div>
-          <div className="flex flex-col space-y-2 p-5">
             <button>
+              BNB
               <Image
-                src={currencies[0].logoURI}
+                src="https://assets.trustwalletapp.com/blockchains/smartchain/assets/0x3ee2200efb3400fabb9aacf31297cbdd1d435d47/logo.png"
                 height={24}
                 width={24}
                 quality={50}
                 alt=""
               />
-              BNB
             </button>
           </div>
         </div>
@@ -103,17 +90,11 @@ export async function getStaticProps() {
   const jsonCurrenciesData = await fs.readFile(filePath);
   const allCurrenciesData = JSON.parse(jsonCurrenciesData);
   //map over all currencies and get their symbol, logoUri, and decimals
-  const currencies = allCurrenciesData.tokens.map(
-    ({ symbol, logoURI, decimals }) => ({
-      symbol,
-      logoURI,
-      decimals,
-    })
-  );
+  const currencies = allCurrenciesData.map((currency) => {
 
   return {
     props: {
-      currencies,
+      currencies: currenciesData.tokens,
     },
   };
 }

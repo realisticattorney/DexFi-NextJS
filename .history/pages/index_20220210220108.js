@@ -21,6 +21,7 @@ export default function Home(props) {
   const { currencies } = props;
   console.log(currencies);
 
+
   const [exchange, setExchange] = useState(null);
   const [loadingState, setLoadingState] = useState('not-loaded');
 
@@ -63,19 +64,8 @@ export default function Home(props) {
           </div>
 
           <div className="flex flex-col space-y-2 p-5">
-            <button className="flex">
-              <Image
-                src={currencies[0].logoURI}
-                height={24}
-                width={24}
-                quality={50}
-                alt=""
-              />
-              <h1>BNB</h1>
-            </button>
-          </div>
-          <div className="flex flex-col space-y-2 p-5">
             <button>
+              BNB
               <Image
                 src={currencies[0].logoURI}
                 height={24}
@@ -83,7 +73,6 @@ export default function Home(props) {
                 quality={50}
                 alt=""
               />
-              BNB
             </button>
           </div>
         </div>

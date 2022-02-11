@@ -63,7 +63,7 @@ export default function Home(props) {
           </div>
 
           <div className="flex flex-col space-y-2 p-5">
-            <button className="flex">
+            <button className="justify-center justify-items-center">
               <Image
                 src={currencies[0].logoURI}
                 height={24}
