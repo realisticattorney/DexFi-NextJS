@@ -65,7 +65,7 @@ export default function Home(props) {
 
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
-    setExchangeCurrency(currencies[index]);
+    
     handleClose();
   };
 

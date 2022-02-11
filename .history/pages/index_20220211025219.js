@@ -54,7 +54,7 @@ export default function Home(props) {
   const [exchange, setExchange] = useState(null);
   const [loadingState, setLoadingState] = useState('not-loaded');
 
-  const [exchangeCurrency, setExchangeCurrency] = useState(currencies[0]);
+  const [, setExchangeCurrency] = useState(currencies[0]);
   const [toSwapCurrency, setToSwapCurrency] = useState(currencies[1]);
 
   const [open, setOpen] = useState(false);
@@ -65,7 +65,6 @@ export default function Home(props) {
 
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
-    setExchangeCurrency(currencies[index]);
     handleClose();
   };
 
