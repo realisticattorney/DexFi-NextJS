@@ -133,7 +133,7 @@ export default function Home(props) {
             ? ethers.utils.formatEther(await exchange.getEthAmount(price2))
             : ethers.utils.formatEther(await exchange.getTokenAmount(price2));
       } else {
-        amount = input;
+        amount = input
       }
     } else {
       amount =
