@@ -128,21 +128,16 @@ export default function Home(props) {
 
     if (selectedIndex !== 1) {
       if (selectedIndexSecond === 1) {
-        amount =
-          id === 'outlined-number-1'
-            ? ethers.utils.formatEther(await exchange.getEthAmount(price2))
-            : ethers.utils.formatEther(await exchange.getTokenAmount(price2));
+        amount = ethers.utils.formatEther(await exchange.getEthAmount(price2));
       } else {
         // amount = ethers.utils.formatEther(await exchange.getEthAmount(price2));
       }
     } else {
-      amount =
-        id === 'outlined-number-1'
-          ? ethers.utils.formatEther(await exchange.getTokenAmount(price2))
-          : ethers.utils.formatEther(await exchange.getEthAmount(price2));
+      amount = ethers.utils.formatEther(await exchange.getTokenAmount(price2));
     }
 
-    if (id === 'outlined-number-1') {
+    // console.log('getAmount', amount);
+    // if (id === 'outlined-number-1') {
       setInputOne(input);
       setInputSecond(amount);
     } else {

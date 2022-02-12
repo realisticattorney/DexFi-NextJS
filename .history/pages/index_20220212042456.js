@@ -142,6 +142,7 @@ export default function Home(props) {
           : ethers.utils.formatEther(await exchange.getEthAmount(price2));
     }
 
+    console.log('getAmount', amount);
     if (id === 'outlined-number-1') {
       setInputOne(input);
       setInputSecond(amount);
