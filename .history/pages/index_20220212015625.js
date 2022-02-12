@@ -120,11 +120,11 @@ export default function Home(props) {
   // }, [inputOne]);
 
   async function callExchange(input) {
-    const price2 = ethers.utils.parseEther(input.toString());
+    const price = ethers.utils.formatEther(input.toString());
+    const price2 = ethers.utils.parseEther(price).toString();
     console.log(exchange);
-    const getAmount = await exchange.getEthAmount(price2);
+    // const getAmount = await exchange.getEthAmount(price2);
     // const getBalance = await provider.getBalance(exchange.address);
-    console.log("getAmount",getAmount);
   }
 
   return (

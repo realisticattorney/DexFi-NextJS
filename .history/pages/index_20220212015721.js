@@ -124,7 +124,7 @@ export default function Home(props) {
     console.log(exchange);
     const getAmount = await exchange.getEthAmount(price2);
     // const getBalance = await provider.getBalance(exchange.address);
-    console.log("getAmount",getAmount);
+    console.log(getAmount);
   }
 
   return (

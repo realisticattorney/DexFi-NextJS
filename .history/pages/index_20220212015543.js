@@ -92,10 +92,10 @@ export default function Home(props) {
 
   const handleInputOneChange = (event) => {
     // console.log(event.target.value);
-    if (event.target.value > 0) {
-      const formatValue = event.target.value * 10 ** 18;
-      callExchange(formatValue);
-    }
+    // if (event.target.value > 0) {
+    //   const formatValue = event.target.value * 10 ** 18;
+    //   await callExchange(formatValue);
+    // }
     setInputOne(event.target.value);
   };
 
@@ -115,18 +115,23 @@ export default function Home(props) {
     setLoadingState('loaded');
   }
 
-  // useEffect(() => {
-  //   callExchange();
-  // }, [inputOne]);
+  
+  async function callExchange() {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const price = ethers.utils.formatEther(inputOne.toString());
+    const price2 = ethers.utils.parseEther(price).toString();
 
-  async function callExchange(input) {
-    const price2 = ethers.utils.parseEther(input.toString());
-    console.log(exchange);
     const getAmount = await exchange.getEthAmount(price2);
-    // const getBalance = await provider.getBalance(exchange.address);
-    console.log("getAmount",getAmount);
+    const getBalance = await provider.getBalance(exchange.address);
+    console.log(getBalance);
+    // console.log(getAmount)
   }
-
+  useEffect(() => {
+    if(inputOne > 0) {
+    callExchange();
+    }
+  }, [inputOne]);
+  
   return (
     <div className="flex-col ">
       <nav className="bg-white py-3 ">
