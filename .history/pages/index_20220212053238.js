@@ -100,10 +100,9 @@ export default function Home(props) {
       setInputSecond(null);
     } else if (event.target.value === '00') {
       setInputOne(inputOne);
-      setInputSecond(inputSecond);
     } else {
       setInputOne(event.target.value);
-      setInputSecond(event.target.value);
+      setInputOne(event.target.value);
     }
   };
 

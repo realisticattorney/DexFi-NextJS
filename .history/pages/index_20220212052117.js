@@ -100,10 +100,8 @@ export default function Home(props) {
       setInputSecond(null);
     } else if (event.target.value === '00') {
       setInputOne(inputOne);
-      setInputSecond(inputSecond);
     } else {
       setInputOne(event.target.value);
-      setInputSecond(event.target.value);
     }
   };
 
@@ -336,24 +334,13 @@ export default function Home(props) {
               </div>
             </Box>
           </div>
-          <div className="h-10 ">
-            {inputOne !== null &&
-              inputSecond !== null &&
-              inputOne !== 0 &&
-              inputSecond !== 0 && (
-                <div className="flex w-full justify-evenly">
-                  <h1>Price</h1>
-                  <h1 className="truncate text-sm">{`${
-                    (inputOne / inputSecond).toString().length > 9
-                      ? (inputOne / inputSecond).toString().substring(0, 10)
-                      : (inputOne / inputSecond).toString()
-                  } ${currencies[selectedIndex].symbol} per ${
-                    currencies[selectedIndexSecond].symbol
-                  }`}</h1>
-                </div>
+              <div className='h-10'>
+              {inputOne !== null && inputSecond !== null && (
+                
+                <h1 className='truncate'>{`${(inputOne / inputSecond)} ${currencies[selectedIndex].symbol} per ${currencies[selectedIndexSecond].symbol}`}</h1>
               )}
-          </div>
-          <div className="mx-5 ">
+              </div>
+          <div className='mx-5 '>
             <button
               className="w-full bg-pink-500 text-white font-bold py-2 px-12 rounded"
               onClick={() => buyNft(nft)}
