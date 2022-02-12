@@ -339,8 +339,8 @@ export default function Home(props) {
           <div className="h-10 ">
             {inputOne !== null &&
               inputSecond !== null &&
-              inputOne !== '0' &&
-              inputSecond !== '0' && (
+              inputOne !== "0" &&
+              inputSecond !== 0 && (
                 <div className="flex w-full justify-evenly">
                   <h1>Price</h1>
                   <h1 className="truncate text-sm">{`${
