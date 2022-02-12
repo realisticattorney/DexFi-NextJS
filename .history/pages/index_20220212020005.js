@@ -93,7 +93,8 @@ export default function Home(props) {
   const handleInputOneChange = (event) => {
     // console.log(event.target.value);
     if (event.target.value > 0) {
-      callExchange(event.target.value);
+      const formatValue = event.target.value * 10 ** 18;
+      callExchange(formatValue);
     }
     setInputOne(event.target.value);
   };
@@ -117,7 +118,7 @@ export default function Home(props) {
   async function callExchange(input) {
     const price2 = ethers.utils.parseEther(input.toString());
     console.log(exchange);
-    const getAmount = ethers.utils.formatEther(await exchange.getEthAmount(price2));
+    const getAmount = await exchange.getEthAmount(price2);
     // const getBalance = await provider.getBalance(exchange.address);
     console.log("getAmount",getAmount);
   }

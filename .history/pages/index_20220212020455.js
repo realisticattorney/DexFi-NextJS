@@ -93,7 +93,7 @@ export default function Home(props) {
   const handleInputOneChange = (event) => {
     // console.log(event.target.value);
     if (event.target.value > 0) {
-      callExchange(event.target.value);
+      callExchange(formatValue);
     }
     setInputOne(event.target.value);
   };
