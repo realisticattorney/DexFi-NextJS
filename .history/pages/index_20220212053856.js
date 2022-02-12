@@ -162,7 +162,7 @@ export default function Home(props) {
         </div>
       </nav>
       <div className="p-6 mx-auto w-min">
-        <div className="flex-col relative py-5 w-[326px] h-[518px] bg-white rounded-3xl border ">
+        <div className="flex-col py-5 w-[326px] h-[518px] bg-white rounded-3xl border ">
           <div className="text-center pb-6 border-b">
             <h1 className="text-xl font-bold tracking-wide text-dexfi-violet">
               Swap
@@ -336,11 +336,11 @@ export default function Home(props) {
               </div>
             </Box>
           </div>
-          {inputOne !== null &&
-            inputSecond !== null &&
-            inputOne !== '0' &&
-            inputSecond !== '0' && (
-              <div className="h-8">
+            {inputOne !== null &&
+              inputSecond !== null &&
+              inputOne !== '0' &&
+              inputSecond !== '0' && (
+          <div className="h-8">
                 <div className="flex w-full justify-around">
                   <h1 className="text-xs font-bold text-dexfi-violet">Price</h1>
                   <h1 className="truncate text-sm">{`${
@@ -351,22 +351,20 @@ export default function Home(props) {
                     currencies[selectedIndexSecond].symbol
                   }`}</h1>
                 </div>
-              </div>
-            )}
+          </div>
+              )}
           <div className="h-10">
             <div className="flex w-full justify-around">
-              <h1 className="text-xs font-bold text-dexfi-violet mr-20">
-                Slippage tolerance
-              </h1>
+              <h1 className="text-xs font-bold text-dexfi-violet mr-20">Slippage tolerance</h1>
               <h1 className="truncate text-sm">0.5%</h1>
             </div>
           </div>
-          <div className="px-4 absolute w-full bottom-4">
+          <div className="mx-5 ">
             <button
-              className="w-full bg-pink-500 text-white font-bold py-3.5 px-12 rounded-xl"
+              className="w-full bg-pink-500 text-white font-bold py-2 px-12 rounded"
               onClick={() => buyNft(nft)}
             >
-              Connect Wallet
+              Buy
             </button>
           </div>
         </div>

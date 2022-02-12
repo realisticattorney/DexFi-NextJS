@@ -363,7 +363,7 @@ export default function Home(props) {
           </div>
           <div className="px-4 absolute w-full bottom-4">
             <button
-              className="w-full bg-pink-500 text-white font-bold py-3.5 px-12 rounded-xl"
+              className="w-full bg-pink-500 text-white font-bold py-4 px-12 rounded-xl"
               onClick={() => buyNft(nft)}
             >
               Connect Wallet

@@ -361,9 +361,9 @@ export default function Home(props) {
               <h1 className="truncate text-sm">0.5%</h1>
             </div>
           </div>
-          <div className="px-4 absolute w-full bottom-4">
+          <div className="mx-5 absolute bottom-5">
             <button
-              className="w-full bg-pink-500 text-white font-bold py-3.5 px-12 rounded-xl"
+              className="w-full bg-pink-500 text-white font-bold py-2 px-12 rounded-xl"
               onClick={() => buyNft(nft)}
             >
               Connect Wallet

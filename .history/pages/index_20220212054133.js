@@ -162,7 +162,7 @@ export default function Home(props) {
         </div>
       </nav>
       <div className="p-6 mx-auto w-min">
-        <div className="flex-col relative py-5 w-[326px] h-[518px] bg-white rounded-3xl border ">
+        <div className="flex-col py-5 w-[326px] h-[518px] bg-white rounded-3xl border ">
           <div className="text-center pb-6 border-b">
             <h1 className="text-xl font-bold tracking-wide text-dexfi-violet">
               Swap
@@ -361,9 +361,9 @@ export default function Home(props) {
               <h1 className="truncate text-sm">0.5%</h1>
             </div>
           </div>
-          <div className="px-4 absolute w-full bottom-4">
+          <div className="mx-5 relative bottom-0">
             <button
-              className="w-full bg-pink-500 text-white font-bold py-3.5 px-12 rounded-xl"
+              className="w-full bg-pink-500 text-white font-bold py-2 px-12 rounded-xl"
               onClick={() => buyNft(nft)}
             >
               Connect Wallet
