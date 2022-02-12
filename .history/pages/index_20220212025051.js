@@ -88,21 +88,16 @@ export default function Home(props) {
     handleCloseSecond();
   };
 
-  const [inputOne, setInputOne] = useState(null);
-  const [inputSecond, setInputSecond] = useState(null);
+  const [inputOne, setInputOne] = useState(0);
+  const [inputSecond, setInputSecond] = useState(0);
+
 
   const handleInputOneChange = (event) => {
-    console.log(event.target.value);
+    console.log(event.target.id);
     if (event.target.value > 0) {
-      callExchange(event.target.value, event.target.id);
-    } else if (event.target.value === '') {
-      setInputOne(null);
-      setInputSecond(null);
-    } else if (event.target.value === '00') {
-      setInputOne(inputOne);
-    } else {
-      setInputOne(event.target.value);
+      callExchange(event.target.value,event.target.id);
     }
+    // setInputOne(event.target.value);
   };
 
   useEffect(() => {
@@ -121,19 +116,16 @@ export default function Home(props) {
     setLoadingState('loaded');
   }
 
-  async function callExchange(input, id) {
+  async function callExchange(input,id) {
     const price2 = ethers.utils.parseEther(input.toString());
     console.log(exchange);
     const getAmount = ethers.utils.formatEther(
       await exchange.getEthAmount(price2)
     );
     console.log('getAmount', getAmount);
-    if (id === 'outlined-number-1') {
-      setInputOne(input);
-      setInputSecond(getAmount);
-    } else {
+    if(id === 'outlined-number-1'){
       setInputOne(getAmount);
-      setInputSecond(input);
+    }else{
     }
   }
 
@@ -225,7 +217,7 @@ export default function Home(props) {
                   required
                   id="outlined-number-1"
                   type="number"
-                  value={inputOne === null ? '' : inputOne}
+                  value={inputOne === 0 ? '' : inputOne}
                   placeholder="0.0"
                   onChange={handleInputOneChange}
                 />
@@ -313,7 +305,7 @@ export default function Home(props) {
                   required
                   id="outlined-number-2"
                   type="number"
-                  value={inputSecond === null ? '' : inputSecond}
+                  value={inputSecond === 0 ? '' : inputSecond}
                   placeholder="0.0"
                   onChange={handleInputOneChange}
                 />

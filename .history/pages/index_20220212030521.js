@@ -92,17 +92,19 @@ export default function Home(props) {
   const [inputSecond, setInputSecond] = useState(null);
 
   const handleInputOneChange = (event) => {
-    console.log(event.target.value);
+    console.log(typeof event.target.value);
     if (event.target.value > 0) {
       callExchange(event.target.value, event.target.id);
-    } else if (event.target.value === '') {
+    } 
+    if(event.target.value === '') {
       setInputOne(null);
       setInputSecond(null);
-    } else if (event.target.value === '00') {
-      setInputOne(inputOne);
-    } else {
-      setInputOne(event.target.value);
     }
+    if(event.target.value === '00') {
+      setInputOne(0);
+
+    }
+    setInputOne(event.target.value);
   };
 
   useEffect(() => {

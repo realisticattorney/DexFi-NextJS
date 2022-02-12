@@ -98,11 +98,10 @@ export default function Home(props) {
     } else if (event.target.value === '') {
       setInputOne(null);
       setInputSecond(null);
-    } else if (event.target.value === '00') {
+    } else if (event.target.value === "00") {
       setInputOne(inputOne);
     } else {
-      setInputOne(event.target.value);
-    }
+    setInputOne(event.target.value);
   };
 
   useEffect(() => {

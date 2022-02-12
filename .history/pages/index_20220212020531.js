@@ -88,21 +88,14 @@ export default function Home(props) {
     handleCloseSecond();
   };
 
-  const [inputOne, setInputOne] = useState(null);
-  const [inputSecond, setInputSecond] = useState(null);
+  const [inputOne, setInputOne] = useState(0);
 
   const handleInputOneChange = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     if (event.target.value > 0) {
-      callExchange(event.target.value, event.target.id);
-    } else if (event.target.value === '') {
-      setInputOne(null);
-      setInputSecond(null);
-    } else if (event.target.value === '00') {
-      setInputOne(inputOne);
-    } else {
-      setInputOne(event.target.value);
+      callExchange(event.target.value);
     }
+    setInputOne(event.target.value);
   };
 
   useEffect(() => {
@@ -121,20 +114,11 @@ export default function Home(props) {
     setLoadingState('loaded');
   }
 
-  async function callExchange(input, id) {
+  async function callExchange(input) {
     const price2 = ethers.utils.parseEther(input.toString());
     console.log(exchange);
-    const getAmount = ethers.utils.formatEther(
-      await exchange.getEthAmount(price2)
-    );
-    console.log('getAmount', getAmount);
-    if (id === 'outlined-number-1') {
-      setInputOne(input);
-      setInputSecond(getAmount);
-    } else {
-      setInputOne(getAmount);
-      setInputSecond(input);
-    }
+    const getAmount = ethers.utils.formatEther(await exchange.getEthAmount(price2));
+    console.log("getAmount",getAmount);
   }
 
   return (
@@ -223,9 +207,9 @@ export default function Home(props) {
               <div>
                 <TextField
                   required
-                  id="outlined-number-1"
+                  id="outlined-number"
                   type="number"
-                  value={inputOne === null ? '' : inputOne}
+                  value={inputOne === 0 ? '' : inputOne}
                   placeholder="0.0"
                   onChange={handleInputOneChange}
                 />
@@ -243,7 +227,7 @@ export default function Home(props) {
           {''}
           {''}
           <div className="flex flex-col space-y-2 p-5">
-            <button onClick={handleOpenSecond} className="flex items-center">
+            <Button onClick={handleOpenSecond} className="flex">
               <Image
                 src={toSwapCurrency.logoURI}
                 height={24}
@@ -251,11 +235,8 @@ export default function Home(props) {
                 quality={50}
                 alt=""
               />
-              <h1 className="ml-1 font-bold text-dexfi-violet">
-                {toSwapCurrency.symbol}
-              </h1>
-              <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />
-            </button>
+              <h1 className="ml-1">{toSwapCurrency.symbol}</h1>
+            </Button>
             <Modal
               disablePortal
               aria-labelledby="transition-modal-title"
@@ -297,28 +278,6 @@ export default function Home(props) {
                 </Paper>
               </Fade>
             </Modal>
-            <Box
-              component="form"
-              sx={{
-                '& .MuiTextField-root': {
-                  m: 0,
-                  width: '100%',
-                },
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <div>
-                <TextField
-                  required
-                  id="outlined-number-2"
-                  type="number"
-                  value={inputSecond === null ? '' : inputSecond}
-                  placeholder="0.0"
-                  onChange={handleInputOneChange}
-                />
-              </div>
-            </Box>
           </div>
         </div>
       </div>

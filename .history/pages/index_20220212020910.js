@@ -88,21 +88,14 @@ export default function Home(props) {
     handleCloseSecond();
   };
 
-  const [inputOne, setInputOne] = useState(null);
-  const [inputSecond, setInputSecond] = useState(null);
+  const [inputOne, setInputOne] = useState(0);
 
   const handleInputOneChange = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     if (event.target.value > 0) {
-      callExchange(event.target.value, event.target.id);
-    } else if (event.target.value === '') {
-      setInputOne(null);
-      setInputSecond(null);
-    } else if (event.target.value === '00') {
-      setInputOne(inputOne);
-    } else {
-      setInputOne(event.target.value);
+      callExchange(event.target.value);
     }
+    setInputOne(event.target.value);
   };
 
   useEffect(() => {
@@ -121,20 +114,13 @@ export default function Home(props) {
     setLoadingState('loaded');
   }
 
-  async function callExchange(input, id) {
+  async function callExchange(input) {
     const price2 = ethers.utils.parseEther(input.toString());
     console.log(exchange);
     const getAmount = ethers.utils.formatEther(
       await exchange.getEthAmount(price2)
     );
     console.log('getAmount', getAmount);
-    if (id === 'outlined-number-1') {
-      setInputOne(input);
-      setInputSecond(getAmount);
-    } else {
-      setInputOne(getAmount);
-      setInputSecond(input);
-    }
   }
 
   return (
@@ -223,9 +209,9 @@ export default function Home(props) {
               <div>
                 <TextField
                   required
-                  id="outlined-number-1"
+                  id="outlined-number"
                   type="number"
-                  value={inputOne === null ? '' : inputOne}
+                  value={inputOne === 0 ? '' : inputOne}
                   placeholder="0.0"
                   onChange={handleInputOneChange}
                 />
@@ -311,14 +297,68 @@ export default function Home(props) {
               <div>
                 <TextField
                   required
-                  id="outlined-number-2"
+                  id="outlined-number"
                   type="number"
-                  value={inputSecond === null ? '' : inputSecond}
+                  value={inputOne === 0 ? '' : inputOne}
                   placeholder="0.0"
                   onChange={handleInputOneChange}
                 />
               </div>
             </Box>
+          </div>
+
+          <div className="flex flex-col space-y-2 p-5">
+            <Button onClick={handleOpenSecond} className="flex">
+              <Image
+                src={toSwapCurrency.logoURI}
+                height={24}
+                width={24}
+                quality={50}
+                alt=""
+              />
+              <h1 className="ml-1">{toSwapCurrency.symbol}</h1>
+            </Button>
+            <Modal
+              disablePortal
+              aria-labelledby="transition-modal-title"
+              aria-describedby="transition-modal-description"
+              open={openSecond}
+              onClose={handleCloseSecond}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500,
+              }}
+            >
+              <Fade in={openSecond}>
+                <Paper sx={modalstyle}>
+                  <MenuList>
+                    <div className="flex px-3 pb-5 text-xl font-medium text-dexfi-violet border-b mb-4">
+                      <h1>Select a Token</h1>
+                    </div>
+                    {currencies.map((currency, index) => (
+                      <MenuItem
+                        key={currency.symbol}
+                        disabled={index === selectedIndexSecond}
+                        selected={index === selectedIndexSecond}
+                        onClick={(event) =>
+                          handleMenuItemClickSecond(event, index)
+                        }
+                      >
+                        <Image
+                          src={currency.logoURI}
+                          height={24}
+                          width={24}
+                          quality={50}
+                          alt=""
+                        />
+                        <h1 className="ml-3">{currency.symbol}</h1>
+                      </MenuItem>
+                    ))}
+                  </MenuList>
+                </Paper>
+              </Fade>
+            </Modal>
           </div>
         </div>
       </div>

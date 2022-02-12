@@ -95,14 +95,12 @@ export default function Home(props) {
     console.log(event.target.value);
     if (event.target.value > 0) {
       callExchange(event.target.value, event.target.id);
-    } else if (event.target.value === '') {
-      setInputOne(null);
-      setInputSecond(null);
-    } else if (event.target.value === '00') {
-      setInputOne(inputOne);
-    } else {
-      setInputOne(event.target.value);
+    } 
+    if()
+      setInputOne(0);
+      setInputSecond(0);
     }
+    // setInputOne(event.target.value);
   };
 
   useEffect(() => {
