@@ -174,11 +174,7 @@ export default function Home(props) {
       currencies[selectedIndex].address
     );
 
-    const tokenUserConnection = new ethers.Contract(
-      currencies[selectedIndex].address,
-      Token.abi,
-      signer
-    );
+    const tokenUserConnection
 
     const exchangeUserConnection = new ethers.Contract(
       getExchangeAddress,
