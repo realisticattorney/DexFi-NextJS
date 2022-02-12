@@ -89,15 +89,12 @@ export default function Home(props) {
   };
 
   const [inputOne, setInputOne] = useState(0);
-
-  // const handleInputOneChange = (event) => {
-  //   // console.log(event.target.value);
-  //   // if (event.target.value > 0) {
-  //   //   const formatValue = event.target.value * 10 ** 18;
-  //   //   await callExchange(formatValue);
-  //   // }
-  //   setInputOne(event.target.value);
-  // };
+  
+  const handleInputOneChange = (event) => {
+    // console.log(event.target.value);
+    setInputOne(event.target.value);
+    callExchange()
+  };
 
   useEffect(() => {
     loadExchange();
@@ -115,15 +112,16 @@ export default function Home(props) {
     setLoadingState('loaded');
   }
 
-  async function handleInputOneChange(event) {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const formatValue = event.target.value * 10 ** 18;
-    const price2 = ethers.utils.parseEther('80');
-    const getAmount = await exchange.getEthAmount(price2);
-    const getBalance = await provider.getBalance(exchange.address);
-    console.log(getBalance);
-    // console.log(getAmount)
+  // useEffect(() => {
+  //   callExchange();
+  // }, [inputOne]);
+
+  async function callExchange() {
+    const price =  ethers.utils.formatEther(inputOne.toString())
+    // const getAmount = await exchange.getEthAmount(price)
+    console.log(price)
   }
+
 
   return (
     <div className="flex-col ">
@@ -215,7 +213,7 @@ export default function Home(props) {
                   type="number"
                   value={inputOne === 0 ? '' : inputOne}
                   placeholder="0.0"
-                  onChange={handleInputOneChange}
+                  onChange={() => handleInputOneChange}
                 />
               </div>
             </Box>

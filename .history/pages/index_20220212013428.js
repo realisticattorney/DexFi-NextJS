@@ -90,14 +90,14 @@ export default function Home(props) {
 
   const [inputOne, setInputOne] = useState(0);
 
-  // const handleInputOneChange = (event) => {
-  //   // console.log(event.target.value);
-  //   // if (event.target.value > 0) {
-  //   //   const formatValue = event.target.value * 10 ** 18;
-  //   //   await callExchange(formatValue);
-  //   // }
-  //   setInputOne(event.target.value);
-  // };
+  const handleInputOneChange = (event) => {
+    // console.log(event.target.value);
+    // if (event.target.value > 0) {
+    //   const formatValue = event.target.value * 10 ** 18;
+    //   await callExchange(formatValue);
+    // }
+    setInputOne(event.target.value);
+  };
 
   useEffect(() => {
     loadExchange();
@@ -115,16 +115,20 @@ export default function Home(props) {
     setLoadingState('loaded');
   }
 
-  async function handleInputOneChange(event) {
+  
+  async function callExchange() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const formatValue = event.target.value * 10 ** 18;
-    const price2 = ethers.utils.parseEther('80');
+    const price = ethers.utils.formatEther(inputOne.toString());
+    const price2 = ethers.utils.parseEther(price).toString();
     const getAmount = await exchange.getEthAmount(price2);
     const getBalance = await provider.getBalance(exchange.address);
     console.log(getBalance);
     // console.log(getAmount)
   }
-
+  useEffect(() => {
+    callExchange();
+  }, [inputOne]);
+  
   return (
     <div className="flex-col ">
       <nav className="bg-white py-3 ">

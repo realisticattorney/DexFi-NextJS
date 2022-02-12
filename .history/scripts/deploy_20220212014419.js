@@ -1,6 +1,4 @@
 const { ethers } = require('hardhat');
-const amountA = ethers.utils.parseEther('10000');
-const amountB = ethers.utils.parseEther('1000');
 
 async function main() {
   const Registry = await ethers.getContractFactory('Registry');
@@ -23,20 +21,10 @@ async function main() {
   // console.log('Receipt:', exchangeAddress);
   // const getExchangeAddress = await registry.getExchange(token.address);
   const Exchange = await ethers.getContractFactory('Exchange');
-  exchange = await Exchange.deploy(token.address);
-  await exchange.deployed();
-  console.log('Mapping of ScammExchange contract address:', exchange.address);
-  // console.log('Mapping of ScammExchange contract address:', getExchangeAddress);
-  await token.approve(exchange.address, amountA);
-  const allowanceAmount = ethers.utils.formatEther(
-    await token.allowance(deployer.address, exchange.address)
-  );
-  console.log('AllowedScammCoinsToTranfer', allowanceAmount);
-  await exchange.addLiquidity(amountA, { value: amountB });
-  const ethProvided = ethers.utils.formatEther(
-    await provider.getBalance(exchange.address)
-  );
-  console.log('EthProvided', ethProvided);
+      exchange = await Exchange.deploy(token.address);
+      await exchange.deployed();
+  
+  console.log('Mapping of ScammExchange contract address:', getExchangeAddress);
 }
 
 main()

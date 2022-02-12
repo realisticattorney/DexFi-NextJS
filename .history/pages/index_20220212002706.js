@@ -90,14 +90,14 @@ export default function Home(props) {
 
   const [inputOne, setInputOne] = useState(0);
 
-  // const handleInputOneChange = (event) => {
-  //   // console.log(event.target.value);
-  //   // if (event.target.value > 0) {
-  //   //   const formatValue = event.target.value * 10 ** 18;
-  //   //   await callExchange(formatValue);
-  //   // }
-  //   setInputOne(event.target.value);
-  // };
+  const handleInputOneChange = (event) => {
+    // console.log(event.target.value);
+    if (event.target.value > 0) {
+      const formatValue = event.target.value * 10**18
+      callExchange(formatValue);
+    }
+    setInputOne(event.target.value);
+  };
 
   useEffect(() => {
     loadExchange();
@@ -115,14 +115,16 @@ export default function Home(props) {
     setLoadingState('loaded');
   }
 
-  async function handleInputOneChange(event) {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const formatValue = event.target.value * 10 ** 18;
-    const price2 = ethers.utils.parseEther('80');
-    const getAmount = await exchange.getEthAmount(price2);
-    const getBalance = await provider.getBalance(exchange.address);
-    console.log(getBalance);
-    // console.log(getAmount)
+  // useEffect(() => {
+  //   callExchange();
+  // }, [inputOne]);
+
+  async function callExchange(input) {
+    const price = ethers.utils.formatEther(input.toString());
+    const price2 = ethers.utils.parseEther(price);
+    // const getAmount = await exchange.getEthAmount(price)
+    console.log(price);
+    
   }
 
   return (

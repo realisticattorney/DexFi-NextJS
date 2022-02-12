@@ -115,10 +115,11 @@ export default function Home(props) {
     setLoadingState('loaded');
   }
 
+  
   async function handleInputOneChange(event) {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const formatValue = event.target.value * 10 ** 18;
-    const price2 = ethers.utils.parseEther('80');
+    const price = ethers.utils.formatEther(formatValue.toString());
     const getAmount = await exchange.getEthAmount(price2);
     const getBalance = await provider.getBalance(exchange.address);
     console.log(getBalance);

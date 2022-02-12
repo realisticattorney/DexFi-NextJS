@@ -1,6 +1,10 @@
 const { ethers } = require('hardhat');
 const amountA = ethers.utils.parseEther('10000');
 const amountB = ethers.utils.parseEther('1000');
+const amountC = ethers.utils.parseEther('900');
+const amountAFromScammCoinOwnerToEachAddr = ethers.utils.parseEther('20000');
+const amountTokenToEthFromEachAddr = ethers.utils.parseEther('981.6');
+const amountBO = ethers.utils.parseEther('100');
 
 async function main() {
   const Registry = await ethers.getContractFactory('Registry');
@@ -37,6 +41,7 @@ async function main() {
     await provider.getBalance(exchange.address)
   );
   console.log('EthProvided', ethProvided);
+
 }
 
 main()

@@ -1,6 +1,4 @@
 const { ethers } = require('hardhat');
-const amountA = ethers.utils.parseEther('10000');
-const amountB = ethers.utils.parseEther('1000');
 
 async function main() {
   const Registry = await ethers.getContractFactory('Registry');
@@ -35,8 +33,8 @@ async function main() {
   await exchange.addLiquidity(amountA, { value: amountB });
   const ethProvided = ethers.utils.formatEther(
     await provider.getBalance(exchange.address)
+    
   );
-  console.log('EthProvided', ethProvided);
 }
 
 main()

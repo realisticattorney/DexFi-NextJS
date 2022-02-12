@@ -37,6 +37,7 @@ async function main() {
     await provider.getBalance(exchange.address)
   );
   console.log('EthProvided', ethProvided);
+
 }
 
 main()
