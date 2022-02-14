@@ -143,6 +143,39 @@ contract ExchangeNoRefs is ERC20 {
         ethToToken(_minAmount, recipient);
     }
 
+    function tokenToTokenSwap(
+        uint256 _tokensSold,
+        uint256 _minTokensBought,
+        address _tokenAddress
+    ) public {
+        address exchangeAddress = Registry(registryAddress).getExchange(
+            _tokenAddress
+        );
+
+        require(
+            exchangeAddress != address(0),
+            "There's no registry for this token"
+        );
+        require(exchangeAddress != address(this), "Invalid exchange address");
+
+        uint256 tokenReserve = getReserve();
+        uint256 ethBought = _getAmount(
+            _tokensSold,
+            tokenReserve,
+            address(this).balance
+        );
+
+        IERC20(tokenAddress).transferFrom(
+            msg.sender,
+            address(this),
+            _tokensSold
+        );
+        Exchange(exchangeAddress).ethToTokenTransfer{value: ethBought}(
+            _minTokensBought,
+            msg.sender
+        );
+    }
+
     function tokenToEthSwap(uint256 _tokenAmount, uint256 _minEth)
         public
         payable
@@ -160,38 +193,5 @@ contract ExchangeNoRefs is ERC20 {
         IERC20 token = IERC20(tokenAddress);
         token.transferFrom(msg.sender, address(this), _tokenAmount);
         payable(msg.sender).transfer(ethAmount);
-        emit EthPurchase(msg.sender, ethAmount, _tokenAmount);
-    }
-
-    function tokenToTokenSwap(
-        uint256 _tokensSold,
-        uint256 _minTokensBought,
-        address _tokenAddress
-    ) public {
-        address exchangeAddress = Registry(registryAddress).getExchange(
-            _tokenAddress
-        );
-
-        require(
-            exchangeAddress != address(0),
-            "There's no registry for this token"
-        );
-        require(exchangeAddress != address(this), "Invalid exchange address");
-
-        uint256 ethBought = _getAmount(
-            _tokensSold,
-            getReserve(),
-            address(this).balance
-        );
-
-        IERC20(tokenAddress).transferFrom(
-            msg.sender,
-            address(this),
-            _tokensSold
-        );
-        Exchange(exchangeAddress).ethToTokenTransfer{value: ethBought}(
-            _minTokensBought,
-            msg.sender
-        );
     }
 }

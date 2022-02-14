@@ -180,7 +180,7 @@ contract ExchangeNoRefs is ERC20 {
 
         uint256 ethBought = _getAmount(
             _tokensSold,
-            getReserve(),
+            tokenReserve,
             address(this).balance
         );
 

@@ -178,9 +178,10 @@ contract ExchangeNoRefs is ERC20 {
         );
         require(exchangeAddress != address(this), "Invalid exchange address");
 
+        uint256 tokenReserve = getReserve();
         uint256 ethBought = _getAmount(
             _tokensSold,
-            getReserve(),
+            tokenReserve,
             address(this).balance
         );
 

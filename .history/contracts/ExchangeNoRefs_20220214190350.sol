@@ -160,9 +160,7 @@ contract ExchangeNoRefs is ERC20 {
         IERC20 token = IERC20(tokenAddress);
         token.transferFrom(msg.sender, address(this), _tokenAmount);
         payable(msg.sender).transfer(ethAmount);
-        emit EthPurchase(msg.sender, ethAmount, _tokenAmount);
     }
-
     function tokenToTokenSwap(
         uint256 _tokensSold,
         uint256 _minTokensBought,
@@ -178,9 +176,10 @@ contract ExchangeNoRefs is ERC20 {
         );
         require(exchangeAddress != address(this), "Invalid exchange address");
 
+        uint256 tokenReserve = getReserve();
         uint256 ethBought = _getAmount(
             _tokensSold,
-            getReserve(),
+            tokenReserve,
             address(this).balance
         );
 
@@ -194,4 +193,5 @@ contract ExchangeNoRefs is ERC20 {
             msg.sender
         );
     }
+
 }

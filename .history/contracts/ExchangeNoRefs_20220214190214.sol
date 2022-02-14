@@ -128,19 +128,52 @@ contract ExchangeNoRefs is ERC20 {
         );
         IERC20 token = IERC20(tokenAddress);
         token.transfer(recipient, tokenAmount);
-
+        
         emit TokenPurchase(msg.sender, msg.value, tokenAmount);
     }
 
     function ethToTokenSwap(uint256 _minAmount) public payable {
-        ethToToken(_minAmount, msg.sender);
+         ethToToken(_minAmount, msg.sender);
     }
 
-    function ethToTokenTransfer(uint256 _minAmount, address recipient)
+    function ethToTokenTransfer(uint256 _minTokens, address recipient)
         public
         payable
     {
-        ethToToken(_minAmount, recipient);
+        ethToToken(_minTokens, recipient);
+    }
+
+    function tokenToTokenSwap(
+        uint256 _tokensSold,
+        uint256 _minTokensBought,
+        address _tokenAddress
+    ) public {
+        address exchangeAddress = Registry(registryAddress).getExchange(
+            _tokenAddress
+        );
+
+        require(
+            exchangeAddress != address(0),
+            "There's no registry for this token"
+        );
+        require(exchangeAddress != address(this), "Invalid exchange address");
+
+        uint256 tokenReserve = getReserve();
+        uint256 ethBought = _getAmount(
+            _tokensSold,
+            tokenReserve,
+            address(this).balance
+        );
+
+        IERC20(tokenAddress).transferFrom(
+            msg.sender,
+            address(this),
+            _tokensSold
+        );
+        Exchange(exchangeAddress).ethToTokenTransfer{value: ethBought}(
+            _minTokensBought,
+            msg.sender
+        );
     }
 
     function tokenToEthSwap(uint256 _tokenAmount, uint256 _minEth)
@@ -160,38 +193,5 @@ contract ExchangeNoRefs is ERC20 {
         IERC20 token = IERC20(tokenAddress);
         token.transferFrom(msg.sender, address(this), _tokenAmount);
         payable(msg.sender).transfer(ethAmount);
-        emit EthPurchase(msg.sender, ethAmount, _tokenAmount);
-    }
-
-    function tokenToTokenSwap(
-        uint256 _tokensSold,
-        uint256 _minTokensBought,
-        address _tokenAddress
-    ) public {
-        address exchangeAddress = Registry(registryAddress).getExchange(
-            _tokenAddress
-        );
-
-        require(
-            exchangeAddress != address(0),
-            "There's no registry for this token"
-        );
-        require(exchangeAddress != address(this), "Invalid exchange address");
-
-        uint256 ethBought = _getAmount(
-            _tokensSold,
-            getReserve(),
-            address(this).balance
-        );
-
-        IERC20(tokenAddress).transferFrom(
-            msg.sender,
-            address(this),
-            _tokensSold
-        );
-        Exchange(exchangeAddress).ethToTokenTransfer{value: ethBought}(
-            _minTokensBought,
-            msg.sender
-        );
     }
 }
