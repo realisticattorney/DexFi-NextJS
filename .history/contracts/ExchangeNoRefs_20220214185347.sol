@@ -96,9 +96,9 @@ contract ExchangeNoRefs is ERC20 {
     ) private pure returns (uint256) {
         require(inputReserve > 0 && outputReserve > 0, "invalid reserves");
 
-        uint256 inputAmountwithFee = inputAmount * 99;
+        uint256 inputAmountwithFee = inputAmount * fee;
         uint256 numerator = inputAmountwithFee * outputReserve;
-        uint256 denominator = (inputReserve * 100) + inputAmountwithFee;
+        uint256 denominator = ((inputReserve * 100) + inputAmountwithFee);
         uint256 outputAmount = numerator / denominator;
         return outputAmount;
     }
