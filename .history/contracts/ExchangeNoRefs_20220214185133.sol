@@ -80,8 +80,7 @@ contract ExchangeNoRefs is ERC20 {
         IERC20 token = IERC20(tokenAddress);
         token.transfer(msg.sender, tokenWithdrawn);
 
-        emit RemoveLiquidity(msg.sender, ethWithdrawn, tokenWithdrawn);
-
+        emit RemoveLiquidity(msg.sender, ethAmount, tokenAmount);
         return (ethWithdrawn, tokenWithdrawn);
     }
 

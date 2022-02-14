@@ -71,7 +71,7 @@ contract ExchangeNoRefs is ERC20 {
         returns (uint256, uint256)
     {
         require(_amount > 0, "Amount is too low");
-
+        
         uint256 ethWithdrawn = (address(this).balance * _amount) /
             totalSupply();
         uint256 tokenWithdrawn = (getReserve() * _amount) / totalSupply();
@@ -79,9 +79,6 @@ contract ExchangeNoRefs is ERC20 {
         payable(msg.sender).transfer(ethWithdrawn);
         IERC20 token = IERC20(tokenAddress);
         token.transfer(msg.sender, tokenWithdrawn);
-
-        emit RemoveLiquidity(msg.sender, ethWithdrawn, tokenWithdrawn);
-
         return (ethWithdrawn, tokenWithdrawn);
     }
 

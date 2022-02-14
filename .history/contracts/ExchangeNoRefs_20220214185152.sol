@@ -81,7 +81,6 @@ contract ExchangeNoRefs is ERC20 {
         token.transfer(msg.sender, tokenWithdrawn);
 
         emit RemoveLiquidity(msg.sender, ethWithdrawn, tokenWithdrawn);
-
         return (ethWithdrawn, tokenWithdrawn);
     }
 
