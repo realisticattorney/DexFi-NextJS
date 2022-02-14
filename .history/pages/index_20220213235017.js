@@ -165,6 +165,9 @@ export default function Home(props) {
     const connection = await web3modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
+    const address = await signer.getAddress();
+    // const address2
+    console.log("address: ",address);
     //esto tiene que conectarse de una. y si la persona no lo activa. deberia estar como en un condicional si lo activo o no antes de llamar a este swap. por lo que este swap deberia estar dentro de una funcion que primer chequea eso, sino estoy repitiendo la conexion cada vez que hago el swap a pesar de que...bah capaz no. osea cuantos swaps vas a hacer.
 
     //a esta altura ya hay deployado un contrato para este par de monedas. asi que hay que conectarlo de una. lo que si estaria bueno agregar es el searchbar en el modal donde si no encuentra la moneda, puede o agregar la direccion manualmente, o incluso podria ser ah ya se, tiene que fetchear con alguna api como base de datos de monedas.
@@ -173,6 +176,8 @@ export default function Home(props) {
     const getExchangeAddress = await registry.getExchange(
       currencies[selectedIndex].address
     );
+    console.log('signer', signer);
+    console.log('signer address', await signer.getAddress());
     //habria que chequear si es un ERC20 o si no hace falta aprove. pero despues si hay o no aprove hecho, esta siempre en mi control porque se aprueba que mi contrato pueda o no mandar. entonces lo que deberia hacer ahora, es
     const tokenUserConnection = new ethers.Contract(
       // currencies[selectedIndex].address,
@@ -185,38 +190,37 @@ export default function Home(props) {
       Exchange.abi,
       signer
     );
-    const wasApproved = await tokenUserConnection.approve(
-      scammExchangeAddress,
-      ethers.utils.parseEther(inputOne)
-    );
+    console.log('we are good til this point');
+    // const wasApproved = await tokenUserConnection.approve(
+    //   scammExchangeAddress,
+    //   inputOne
+    // );
 
-    console.log('was approved?', wasApproved);
+    // console.log('was approved?', wasApproved);
 
-    const allowanceAmount = ethers.utils.formatEther(
-      await tokenUserConnection.allowance(
-        await signer.getAddress(),
-        scammExchangeAddress
-      )
-    );
+    // const allowanceAmount =
+    //   // ethers.utils.formatEther(
+    //   await tokenUserConnection.allowance(signer, scammExchangeAddress);
+    // // );
+
+    //     console.log("we are good til this point too lol")
     console.log('allowanceAmount', allowanceAmount);
 
-    if (allowanceAmount === '0') {
-      console.log('no allowance');
-    }
+    // if (allowanceAmount === '0') {
+    //   console.log('no allowance');
+    // }
 
     // if (allowanceAmount < inputOne) {
     //   console.log('not enough allowance');
     // }
 
-    if (allowanceAmount >= inputOne) {
-      let transaction = await exchangeUserConnection.tokenToEthSwap(
-        ethers.utils.parseEther(inputOne),
-        ethers.utils.parseEther((inputSecond * 0.98).toString()),
-        await signer.getAddress()
-      );
-      console.log('transaction', transaction);
-    }
-    console.log('transaction done!');
+    // if (allowanceAmount >= inputOne) {
+    //   let transaction = await exchangeUserConnection.tokenToEthSwap(
+    //     ethers.utils.parseEther(inputOne),
+    //     ethers.utils.parseEther(inputSecond * 0.99)
+    //   );
+    //   console.log('transaction', transaction);
+    // }
     // if (selectedIndex !== 1) {
     //   if (selectedIndexSecond === 1) {
     //     amount =

@@ -204,15 +204,14 @@ export default function Home(props) {
       console.log('no allowance');
     }
 
-    // if (allowanceAmount < inputOne) {
-    //   console.log('not enough allowance');
-    // }
+    if (allowanceAmount < inputOne) {
+      console.log('not enough allowance');
+    }
 
     if (allowanceAmount >= inputOne) {
       let transaction = await exchangeUserConnection.tokenToEthSwap(
         ethers.utils.parseEther(inputOne),
-        ethers.utils.parseEther((inputSecond * 0.98).toString()),
-        await signer.getAddress()
+        ethers.utils.parseEther(inputSecond * 0.98)
       );
       console.log('transaction', transaction);
     }

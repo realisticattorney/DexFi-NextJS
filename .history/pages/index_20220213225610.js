@@ -173,50 +173,35 @@ export default function Home(props) {
     const getExchangeAddress = await registry.getExchange(
       currencies[selectedIndex].address
     );
+      console.log("signer",signer)
     //habria que chequear si es un ERC20 o si no hace falta aprove. pero despues si hay o no aprove hecho, esta siempre en mi control porque se aprueba que mi contrato pueda o no mandar. entonces lo que deberia hacer ahora, es
     const tokenUserConnection = new ethers.Contract(
-      // currencies[selectedIndex].address,
-      scammcoinAddress,
-      ScammCoin.abi,
+      currencies[selectedIndex].address,
+      Token.abi,
       signer
     );
     const exchangeUserConnection = new ethers.Contract(
-      scammExchangeAddress,
+      getExchangeAddress,
       Exchange.abi,
       signer
     );
-    const wasApproved = await tokenUserConnection.approve(
-      scammExchangeAddress,
-      ethers.utils.parseEther(inputOne)
-    );
 
-    console.log('was approved?', wasApproved);
+    await tokenUserConnection.approve(getExchangeAddress, selectedIndex);
 
     const allowanceAmount = ethers.utils.formatEther(
-      await tokenUserConnection.allowance(
-        await signer.getAddress(),
-        scammExchangeAddress
-      )
+      await tokenUserConnection.allowance(signer.address, getExchangeAddress)
     );
-    console.log('allowanceAmount', allowanceAmount);
 
     if (allowanceAmount === '0') {
       console.log('no allowance');
-    }
+    } else if (allowanceAmount < selectedIndex) {
+      console.log('not enough allowance');
+      
 
-    // if (allowanceAmount < inputOne) {
-    //   console.log('not enough allowance');
-    // }
-
-    if (allowanceAmount >= inputOne) {
-      let transaction = await exchangeUserConnection.tokenToEthSwap(
-        ethers.utils.parseEther(inputOne),
-        ethers.utils.parseEther((inputSecond * 0.98).toString()),
-        await signer.getAddress()
-      );
-      console.log('transaction', transaction);
-    }
-    console.log('transaction done!');
+    let transaction = await contract.swap(
+      ethers.utils.parseEther(inputOne),
+      ethers.utils.parseEther(inputSecond)
+    );
     // if (selectedIndex !== 1) {
     //   if (selectedIndexSecond === 1) {
     //     amount =
@@ -446,11 +431,11 @@ export default function Home(props) {
             <button
               className="w-full bg-pink-500 shadow-sm text-white font-bold py-3.5 px-12 rounded-xl"
               onClick={() => swap()}
-              // disabled={
-              //   inputOne?.replace('0.', '') > 0 || inputOne === null
-              //     ? true
-              //     : false
-              // }
+              disabled={
+                inputOne?.replace('0.', '') > 0 || inputOne === null
+                  ? true
+                  : false
+              }
             >
               Connect Wallet
             </button>

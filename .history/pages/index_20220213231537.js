@@ -173,6 +173,7 @@ export default function Home(props) {
     const getExchangeAddress = await registry.getExchange(
       currencies[selectedIndex].address
     );
+    console.log('signer', signer);
     //habria que chequear si es un ERC20 o si no hace falta aprove. pero despues si hay o no aprove hecho, esta siempre en mi control porque se aprueba que mi contrato pueda o no mandar. entonces lo que deberia hacer ahora, es
     const tokenUserConnection = new ethers.Contract(
       // currencies[selectedIndex].address,
@@ -185,38 +186,28 @@ export default function Home(props) {
       Exchange.abi,
       signer
     );
-    const wasApproved = await tokenUserConnection.approve(
-      scammExchangeAddress,
-      ethers.utils.parseEther(inputOne)
-    );
 
-    console.log('was approved?', wasApproved);
+    await tokenUserConnection.approve(getExchangeAddress, inputOne);
 
     const allowanceAmount = ethers.utils.formatEther(
-      await tokenUserConnection.allowance(
-        await signer.getAddress(),
-        scammExchangeAddress
-      )
+      await tokenUserConnection.allowance(signer.address, getExchangeAddress)
     );
-    console.log('allowanceAmount', allowanceAmount);
 
     if (allowanceAmount === '0') {
       console.log('no allowance');
     }
 
-    // if (allowanceAmount < inputOne) {
-    //   console.log('not enough allowance');
-    // }
+    if (allowanceAmount < inputOne) {
+      console.log('not enough allowance');
+    }
 
     if (allowanceAmount >= inputOne) {
       let transaction = await exchangeUserConnection.tokenToEthSwap(
         ethers.utils.parseEther(inputOne),
-        ethers.utils.parseEther((inputSecond * 0.98).toString()),
-        await signer.getAddress()
+        ethers.utils.parseEther(inputSecond * 0.99)
       );
       console.log('transaction', transaction);
     }
-    console.log('transaction done!');
     // if (selectedIndex !== 1) {
     //   if (selectedIndexSecond === 1) {
     //     amount =

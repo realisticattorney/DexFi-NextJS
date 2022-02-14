@@ -173,6 +173,7 @@ export default function Home(props) {
     const getExchangeAddress = await registry.getExchange(
       currencies[selectedIndex].address
     );
+    console.log('signer', signer);
     //habria que chequear si es un ERC20 o si no hace falta aprove. pero despues si hay o no aprove hecho, esta siempre en mi control porque se aprueba que mi contrato pueda o no mandar. entonces lo que deberia hacer ahora, es
     const tokenUserConnection = new ethers.Contract(
       // currencies[selectedIndex].address,
@@ -185,38 +186,35 @@ export default function Home(props) {
       Exchange.abi,
       signer
     );
+    console.log('we are good til this point');
     const wasApproved = await tokenUserConnection.approve(
       scammExchangeAddress,
-      ethers.utils.parseEther(inputOne)
+      inputOne
     );
 
     console.log('was approved?', wasApproved);
 
-    const allowanceAmount = ethers.utils.formatEther(
-      await tokenUserConnection.allowance(
-        await signer.getAddress(),
-        scammExchangeAddress
-      )
-    );
-    console.log('allowanceAmount', allowanceAmount);
+      const allowanceAmount = ethers.utils.formatEther(
+        await tokenUserConnection.allowance(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266, scammExchangeAddress)
+        );
+    //     console.log("we are good til this point too lol")
+    // console.log('allowanceAmount', allowanceAmount);
 
-    if (allowanceAmount === '0') {
-      console.log('no allowance');
-    }
+    // if (allowanceAmount === '0') {
+    //   console.log('no allowance');
+    // }
 
     // if (allowanceAmount < inputOne) {
     //   console.log('not enough allowance');
     // }
 
-    if (allowanceAmount >= inputOne) {
-      let transaction = await exchangeUserConnection.tokenToEthSwap(
-        ethers.utils.parseEther(inputOne),
-        ethers.utils.parseEther((inputSecond * 0.98).toString()),
-        await signer.getAddress()
-      );
-      console.log('transaction', transaction);
-    }
-    console.log('transaction done!');
+    // if (allowanceAmount >= inputOne) {
+    //   let transaction = await exchangeUserConnection.tokenToEthSwap(
+    //     ethers.utils.parseEther(inputOne),
+    //     ethers.utils.parseEther(inputSecond * 0.99)
+    //   );
+    //   console.log('transaction', transaction);
+    // }
     // if (selectedIndex !== 1) {
     //   if (selectedIndexSecond === 1) {
     //     amount =
