@@ -210,7 +210,7 @@ export default function Home(props) {
 
     if (allowanceAmount >= inputOne) {
       let transaction = await exchangeUserConnection.tokenToEthSwap(
-        ethers.utils.parseEther(allowanceAmount.toString()),
+        ethers.utils.parseEther(allowanceAmount),
         ethers.utils.parseEther((inputSecond * 0.98).toString()),
         await signer.getAddress()
       );
