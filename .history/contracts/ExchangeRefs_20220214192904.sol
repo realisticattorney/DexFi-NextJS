@@ -10,26 +10,7 @@ contract Exchange is ERC20 {
     address public tokenAddress;
     address public registryAddress;
 
-    event TokenPurchase(
-        address indexed buyer,
-        uint256 indexed ethSold,
-        uint256 indexed tokensBought
-    );
-    event EthPurchase(
-        address indexed buyer,
-        uint256 indexed tokensSold,
-        uint256 indexed ethBought
-    );
-    event AddLiquidity(
-        address indexed provider,
-        uint256 indexed ethAmount,
-        uint256 indexed tokenAmount
-    );
-    event RemoveLiquidity(
-        address indexed provider,
-        uint256 indexed ethAmount,
-        uint256 indexed tokenAmount
-    );
+    mapping(address => address) public referrers;
 
     constructor(address _token) ERC20("DexFi LP Tokens", "XFI") {
         require(
@@ -50,7 +31,7 @@ contract Exchange is ERC20 {
             liquidity = address(this).balance;
         } else {
             uint256 ethReserve = address(this).balance - msg.value;
-            uint256 tokenReserve = getReserve(); //reserve of the token that's not ETH on the pair the LP provided
+            uint256 tokenReserve = getReserve();
             uint256 correctTokenAmount = (msg.value * tokenReserve) /
                 ethReserve;
             require(
@@ -62,7 +43,6 @@ contract Exchange is ERC20 {
         IERC20 token = IERC20(tokenAddress);
         token.transferFrom(msg.sender, address(this), _tokenAmount);
         _mint(msg.sender, liquidity);
-        emit AddLiquidity(msg.sender, msg.value, _tokenAmount);
         return liquidity;
     }
 
@@ -71,7 +51,6 @@ contract Exchange is ERC20 {
         returns (uint256, uint256)
     {
         require(_amount > 0, "Amount is too low");
-
         uint256 ethWithdrawn = (address(this).balance * _amount) /
             totalSupply();
         uint256 tokenWithdrawn = (getReserve() * _amount) / totalSupply();
@@ -79,9 +58,6 @@ contract Exchange is ERC20 {
         payable(msg.sender).transfer(ethWithdrawn);
         IERC20 token = IERC20(tokenAddress);
         token.transfer(msg.sender, tokenWithdrawn);
-
-        emit RemoveLiquidity(msg.sender, ethWithdrawn, tokenWithdrawn);
-
         return (ethWithdrawn, tokenWithdrawn);
     }
 
@@ -94,11 +70,10 @@ contract Exchange is ERC20 {
         uint256 inputReserve,
         uint256 outputReserve
     ) private pure returns (uint256) {
-        require(inputReserve > 0 && outputReserve > 0, "invalid reserves");
-
-        uint256 inputAmountwithFee = inputAmount * 99;
+        uint256 fee = 99;
+        uint256 inputAmountwithFee = inputAmount * fee;
         uint256 numerator = inputAmountwithFee * outputReserve;
-        uint256 denominator = (inputReserve * 100) + inputAmountwithFee;
+        uint256 denominator = ((inputReserve * 100) + inputAmountwithFee);
         uint256 outputAmount = numerator / denominator;
         return outputAmount;
     }
@@ -128,25 +103,45 @@ contract Exchange is ERC20 {
         );
         IERC20 token = IERC20(tokenAddress);
         token.transfer(recipient, tokenAmount);
-
-        emit TokenPurchase(msg.sender, msg.value, tokenAmount);
     }
 
-    function ethToTokenSwap(uint256 _minAmount) public payable {
-        ethToToken(_minAmount, msg.sender);
-    }
-
-    function ethToTokenTransfer(uint256 _minAmount, address recipient)
+    function ethToTokenSwap(uint256 _minTokens, address _referrer)
         public
         payable
     {
-        ethToToken(_minAmount, recipient);
+        ethToToken(_minTokens, msg.sender);
+        uint256 swapLps = (totalSupply() * msg.value) /
+            (200 * address(this).balance);
+
+        if (
+            _referrer != address(0) &&
+            _referrer != msg.sender &&
+            referrers[address(msg.sender)] == address(0) &&
+            address(_referrer).balance > 0
+        ) {
+            referrers[address(msg.sender)] = _referrer;
+        }
+
+        if (referrers[address(msg.sender)] != address(0)) {
+            address k = address(msg.sender);
+            for (uint256 i = 1; i < 10; i += 4) {
+                uint256 _swapLps = swapLps / i;
+                _mint(k, _swapLps);
+                k = referrers[k];
+                if (k == address(0)) {
+                    break;
+                }
+            }
+        } else {
+            _mint(msg.sender, swapLps);
+        }
     }
 
-    function tokenToEthSwap(uint256 _tokenAmount, uint256 _minEth)
-        public
-        payable
-    {
+    function tokenToEthSwap(
+        uint256 _tokenAmount,
+        uint256 _minEth,
+        address _referrer
+    ) public payable {
         require(_tokenAmount > 0, "You must have some tokens");
         uint256 ethAmount = _getAmount(
             _tokenAmount,
@@ -160,14 +155,41 @@ contract Exchange is ERC20 {
         IERC20 token = IERC20(tokenAddress);
         token.transferFrom(msg.sender, address(this), _tokenAmount);
         payable(msg.sender).transfer(ethAmount);
-        emit EthPurchase(msg.sender, ethAmount, _tokenAmount);
+        uint256 swapLps = ((totalSupply() * ethAmount) /
+            (200 * address(this).balance));
+
+        if (
+            _referrer != address(0) &&
+            _referrer != msg.sender &&
+            referrers[address(msg.sender)] == address(0) &&
+            address(_referrer).balance > 0
+        ) {
+            referrers[address(msg.sender)] = _referrer;
+        }
+
+        if (referrers[address(msg.sender)] != address(0)) {
+            address k = address(msg.sender);
+            for (uint256 i = 1; i < 10; i += 4) {
+                uint256 _swapLps = swapLps / i;
+                _mint(k, _swapLps);
+                k = referrers[k];
+                if (k == address(0)) {
+                    break;
+                }
+            }
+        } else {
+            _mint(msg.sender, swapLps);
+        }
     }
 
     function tokenToTokenSwap(
         uint256 _tokensSold,
         uint256 _minTokensBought,
-        address _tokenAddress
+        address _tokenAddress //dai or else token address
     ) public {
+        //this is the scamm exchange
+        //user wants to get dai paying w scamm
+        //we look at the registry what's the exchange of such pair of tokens
         address exchangeAddress = Registry(registryAddress).getExchange(
             _tokenAddress
         );
@@ -178,20 +200,28 @@ contract Exchange is ERC20 {
         );
         require(exchangeAddress != address(this), "Invalid exchange address");
 
+        uint256 tokenReserve = getReserve();
         uint256 ethBought = _getAmount(
             _tokensSold,
-            getReserve(),
+            tokenReserve,
             address(this).balance
         );
 
-        IERC20(tokenAddress).transferFrom(
+        IERC20(tokenAddress).transferFrom( //scamm coin address
             msg.sender,
-            address(this),
-            _tokensSold
+            address(this), //I'll send them to the exchange
+            _tokensSold //amount of scamm
         );
         Exchange(exchangeAddress).ethToTokenTransfer{value: ethBought}(
             _minTokensBought,
             msg.sender
         );
+    }
+
+    function ethToTokenTransfer(uint256 _minTokens, address recipient)
+        public
+        payable
+    {
+        ethToToken(_minTokens, recipient);
     }
 }

@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 import "./Registry.sol";
 
-contract ExchangeNoRefs is ERC20 {
+contract Exchange is ERC20 {
     address public tokenAddress;
     address public registryAddress;
 
