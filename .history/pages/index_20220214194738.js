@@ -41,6 +41,7 @@ import ScammCoin from '../artifacts/contracts/ScammCoin.sol/ScammCoin.json';
 
 export default function Home(props) {
   const { currencies } = props;
+  // console.log(currencies);
 
   const [registry, setRegistry] = useState(null);
   const [exchange, setExchange] = useState(null);
@@ -164,6 +165,7 @@ export default function Home(props) {
     const connection = await web3modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
+    //esto tiene que conectarse de una. y si la persona no lo activa. deberia estar como en un condicional si lo activo o no antes de llamar a este swap. por lo que este swap deberia estar dentro de una funcion que primer chequea eso, sino estoy repitiendo la conexion cada vez que hago el swap a pesar de que...bah capaz no. osea cuantos swaps vas a hacer.
 
     //a esta altura ya hay deployado un contrato para este par de monedas. asi que hay que conectarlo de una. lo que si estaria bueno agregar es el searchbar en el modal donde si no encuentra la moneda, puede o agregar la direccion manualmente, o incluso podria ser ah ya se, tiene que fetchear con alguna api como base de datos de monedas.
     //y una vez que clickeas en esa moneda se chequea si ya esta en el registry mapping y si no esta, se llama a la createExchange function.

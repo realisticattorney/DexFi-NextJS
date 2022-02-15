@@ -41,6 +41,7 @@ import ScammCoin from '../artifacts/contracts/ScammCoin.sol/ScammCoin.json';
 
 export default function Home(props) {
   const { currencies } = props;
+  // console.log(currencies);
 
   const [registry, setRegistry] = useState(null);
   const [exchange, setExchange] = useState(null);
