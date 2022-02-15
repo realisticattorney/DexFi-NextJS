@@ -1,6 +1,6 @@
 import '../styles/globals.css';
-import { MoralisProvider } from "react-moralis";
 import Layout from '../components/Layout';
+import { MoralisProvider } from 'react-moralis';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -18,3 +18,5 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
+//
+//

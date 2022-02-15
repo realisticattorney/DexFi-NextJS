@@ -1,10 +1,10 @@
 import '../styles/globals.css';
-import { MoralisProvider } from "react-moralis";
 import Layout from '../components/Layout';
+import { MoralisProvider } from 'react-moralis';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    
       <MoralisProvider
         appId={process.env.NEXT_PUBLIC_APP_ID}
         serverUrl={process.env.NEXT_PUBLIC_SERVER_URL}
@@ -13,8 +13,9 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </Layout>
       </MoralisProvider>
-    </>
   );
 }
 
 export default MyApp;
+//
+//
