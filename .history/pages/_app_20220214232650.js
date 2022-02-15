@@ -5,11 +5,10 @@ import { MoralisProvider } from 'react-moralis';
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <MoralisProvider appId=>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </MoralisProvider>
+    <MoralisProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </>
   );
 }

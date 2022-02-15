@@ -5,7 +5,7 @@ import { MoralisProvider } from 'react-moralis';
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <MoralisProvider appId=>
+      <MoralisProvider>
         <Layout>
           <Component {...pageProps} />
         </Layout>
