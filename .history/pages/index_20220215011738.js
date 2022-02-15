@@ -2,7 +2,6 @@ import { ethers } from 'ethers';
 import { useState, useEffect } from 'react'; //hooks
 import axios from 'axios'; //data fetching library
 import Web3Modal from 'web3modal'; //way to connect to user's wallet
-import Web3 from "web3"; 
 import styled from 'styled-components';
 import Image from 'next/image';
 import fs from 'fs/promises';
@@ -18,7 +17,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useMoralis } from 'react-moralis';
-import Moralis from 'moralis';
+
 const modalstyle = {
   position: 'absolute',
   top: '30%',
@@ -48,7 +47,7 @@ export default function Home(props) {
     // if (isAuthenticated) router.replace("/dashboard");
   }, [isAuthenticated]);
 
-  // console.log(useMoralis().provider)
+  console.log(useMoralis().provider)
 
 
   const { currencies } = props;
@@ -124,8 +123,7 @@ export default function Home(props) {
 
   async function loadExchange() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    // await Moralis.enableWeb3();
-    // const web3Js = new Web3(Moralis.provider)
+
     const registry = new ethers.Contract(
       registryAddress,
       Registry.abi,
@@ -454,7 +452,7 @@ export default function Home(props) {
             </div>
           </div>
           <div className="px-4 absolute w-full bottom-4">
-            {/* <button
+            <button
               className="w-full bg-pink-500 shadow-sm text-white font-bold py-3.5 px-12 rounded-xl"
               onClick={() => {
                 isAuthenticated
@@ -470,17 +468,6 @@ export default function Home(props) {
               // }
             >
               {isAuthenticated ? 'Swap' : 'Connect Wallet'}
-            </button> */}
-            <button
-              className="w-full bg-pink-500 shadow-sm text-white font-bold py-3.5 px-12 rounded-xl"
-              onClick={() => swap()}
-              // disabled={
-              //   inputOne?.replace('0.', '') > 0 || inputOne === null
-              //     ? true
-              //     : false
-              // }
-            >
-              Connect Wallet
             </button>
           </div>
         </div>

@@ -42,13 +42,13 @@ import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import ScammCoin from '../artifacts/contracts/ScammCoin.sol/ScammCoin.json';
 
 export default function Home(props) {
-  const { isAuthenticated, authenticate } = useMoralis();
+  // const { isAuthenticated, authenticate } = useMoralis();
 
-  useEffect(() => {
-    // if (isAuthenticated) router.replace("/dashboard");
-  }, [isAuthenticated]);
+  // useEffect(() => {
+  //   // if (isAuthenticated) router.replace("/dashboard");
+  // }, [isAuthenticated]);
 
-  // console.log(useMoralis().provider)
+  console.log(useMoralis().provider)
 
 
   const { currencies } = props;
@@ -454,7 +454,7 @@ export default function Home(props) {
             </div>
           </div>
           <div className="px-4 absolute w-full bottom-4">
-            {/* <button
+            <button
               className="w-full bg-pink-500 shadow-sm text-white font-bold py-3.5 px-12 rounded-xl"
               onClick={() => {
                 isAuthenticated
@@ -470,17 +470,6 @@ export default function Home(props) {
               // }
             >
               {isAuthenticated ? 'Swap' : 'Connect Wallet'}
-            </button> */}
-            <button
-              className="w-full bg-pink-500 shadow-sm text-white font-bold py-3.5 px-12 rounded-xl"
-              onClick={() => swap()}
-              // disabled={
-              //   inputOne?.replace('0.', '') > 0 || inputOne === null
-              //     ? true
-              //     : false
-              // }
-            >
-              Connect Wallet
             </button>
           </div>
         </div>

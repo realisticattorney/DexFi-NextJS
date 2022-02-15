@@ -48,7 +48,7 @@ export default function Home(props) {
     // if (isAuthenticated) router.replace("/dashboard");
   }, [isAuthenticated]);
 
-  // console.log(useMoralis().provider)
+  console.log(useMoralis().provider)
 
 
   const { currencies } = props;

@@ -42,11 +42,11 @@ import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import ScammCoin from '../artifacts/contracts/ScammCoin.sol/ScammCoin.json';
 
 export default function Home(props) {
-  const { isAuthenticated, authenticate } = useMoralis();
+  // const { isAuthenticated, authenticate } = useMoralis();
 
-  useEffect(() => {
-    // if (isAuthenticated) router.replace("/dashboard");
-  }, [isAuthenticated]);
+  // useEffect(() => {
+  //   // if (isAuthenticated) router.replace("/dashboard");
+  // }, [isAuthenticated]);
 
   // console.log(useMoralis().provider)
 
