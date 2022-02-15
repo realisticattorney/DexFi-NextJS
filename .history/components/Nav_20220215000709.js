@@ -2,12 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useMoralis } from 'react-moralis';
-import { useEffect } from 'react';
 
 const Nav = () => {
-  const { isAuthenticated, authenticate, logout } = useMoralis();
-
-  useEffect(() => {}, [isAuthenticated]);
+  const { isAuthenticated, authenticate } = useMoralis();
 
   return (
     <div className="flex border-b border-gray-300 p-0 items-center">
@@ -28,25 +25,11 @@ const Nav = () => {
       <Link href="/liquidity">
         <a className="mr-6 text-gray-500 font-semibold">Liquidity</a>
       </Link>
-      {isAuthenticated ? (
-        <button
-          className="ml-auto mr-6 text-gray-500 font-semibold"
-          onClick={logout}
-        >
-          Logout
-        </button>
-      ) : (
-        <button
-          className="ml-auto mr-6 text-gray-500 font-semibold"
-          onClick={() =>
-            authenticate({
-              signingMessage: 'Authorize linking of your wallet',
-            })
-          }
-        >
-          Login
-        </button>
-      )}
+      <div className='ml-auto'>
+      <button className=''>
+        {isAuthenticated ? "Logout" : "Login"}
+      </button>
+      </div>
     </div>
   );
 };

@@ -44,7 +44,7 @@ const Nav = () => {
             })
           }
         >
-          Login
+          {isAuthenticated ? 'Logout' : 'Login'}
         </button>
       )}
     </div>

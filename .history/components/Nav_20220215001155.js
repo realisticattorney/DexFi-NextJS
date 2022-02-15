@@ -38,13 +38,12 @@ const Nav = () => {
       ) : (
         <button
           className="ml-auto mr-6 text-gray-500 font-semibold"
-          onClick={() =>
-            authenticate({
-              signingMessage: 'Authorize linking of your wallet',
-            })
-          }
+          onClick={() => authenticate({
+                  signingMessage: 'Authorize linking of your wallet',
+                });
+          }}
         >
-          Login
+          {isAuthenticated ? 'Logout' : 'Login'}
         </button>
       )}
     </div>

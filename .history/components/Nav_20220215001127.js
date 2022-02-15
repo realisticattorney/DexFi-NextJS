@@ -29,24 +29,27 @@ const Nav = () => {
         <a className="mr-6 text-gray-500 font-semibold">Liquidity</a>
       </Link>
       {isAuthenticated ? (
-        <button
-          className="ml-auto mr-6 text-gray-500 font-semibold"
-          onClick={logout}
-        >
-          Logout
-        </button>
-      ) : (
-        <button
-          className="ml-auto mr-6 text-gray-500 font-semibold"
-          onClick={() =>
-            authenticate({
-              signingMessage: 'Authorize linking of your wallet',
-            })
-          }
-        >
-          Login
-        </button>
-      )}
+        
+      <button
+        className="ml-auto mr-6 text-gray-500 font-semibold"
+        onClick={logout
+            }
+      >
+        {isAuthenticated ? 'Logout' : 'Login'}
+      </button>
+      :
+      <button
+        className="ml-auto mr-6 text-gray-500 font-semibold"
+        onClick={() => {
+          isAuthenticated
+            ? logout
+            : authenticate({
+                signingMessage: 'Authorize linking of your wallet',
+              });
+        }}
+      >
+        {isAuthenticated ? 'Logout' : 'Login'}
+      </button>
     </div>
   );
 };
