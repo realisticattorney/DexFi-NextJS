@@ -70,32 +70,39 @@ export default function Home(props) {
   const [selectedIndexSecond, setSelectedIndexSecond] = useState(1);
 
   const handleMenuItemClick = (event, index) => {
+    // console.log('eveeeeenntnt', event.target.id);
     if (event.target.id === 'menu-item-1') {
-      if (index === selectedIndexSecond) {
-        handleMenuItemSwitch(selectedIndex, selectedIndexSecond);
-      } else {
-        setSelectedIndex(index);
-        setExchangeCurrency(currencies[index]);
-      }
-      handleClose();
-    } else {
-      if (index === selectedIndex) {
-        handleMenuItemSwitch(selectedIndexSecond, selectedIndex);
-      } else {
-        setSelectedIndexSecond(index);
-        setToSwapCurrency(currencies[index]);
-      }
-      handleCloseSecond();
+
     }
+    if (index === selectedIndexSecond) {
+      const prevIndex = selectedIndex;
+      const newIndex = selectedIndexSecond;
+      setSelectedIndex(newIndex);
+      setSelectedIndexSecond(prevIndex);
+      setToSwapCurrency(currencies[prevIndex]);
+      setExchangeCurrency(currencies[newIndex]);
+    } else {
+      setSelectedIndex(index);
+      setExchangeCurrency(currencies[index]);
+    }
+    handleClose();
   };
 
-  const handleMenuItemSwitch = (prevSelected, newSelected) => {
-    const prevIndex = prevSelected;
-    const newIndex = newSelected;
-    setSelectedIndex(newIndex);
-    setSelectedIndexSecond(prevIndex);
-    setToSwapCurrency(currencies[prevIndex]);
-    setExchangeCurrency(currencies[newIndex]);
+  const 
+
+  const handleMenuItemClickSecond = (event, index) => {
+    if (index === selectedIndex) {
+      const prevIndex = selectedIndexSecond;
+      const newIndex = selectedIndex;
+      setSelectedIndex(prevIndex);
+      setSelectedIndexSecond(newIndex);
+      setToSwapCurrency(currencies[newIndex]);
+      setExchangeCurrency(currencies[prevIndex]);
+    } else {
+      setSelectedIndexSecond(index);
+      setToSwapCurrency(currencies[index]);
+    }
+    handleCloseSecond();
   };
 
   const [inputOne, setInputOne] = useState(null);
@@ -121,9 +128,9 @@ export default function Home(props) {
     loadDefaultExchange();
   }, []);
 
-  // useEffect(() => {
-  //   loadExchange();
-  // }, [exchangeCurrency]);
+  useEffect(() => {
+    loadExchange();
+  }, [exchangeCurrency]);
 
   async function loadExchange() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -397,7 +404,9 @@ export default function Home(props) {
                         key={currency.symbol}
                         disabled={index === selectedIndexSecond}
                         selected={index === selectedIndexSecond}
-                        onClick={(event) => handleMenuItemClick(event, index)}
+                        onClick={(event) =>
+                          handleMenuItemClickSecond(event, index)
+                        }
                       >
                         <Image
                           src={currency.logoURI}

@@ -78,7 +78,8 @@ export default function Home(props) {
         setExchangeCurrency(currencies[index]);
       }
       handleClose();
-    } else {
+    }
+    if (event.target.id === 'menu-item-2') {
       if (index === selectedIndex) {
         handleMenuItemSwitch(selectedIndexSecond, selectedIndex);
       } else {

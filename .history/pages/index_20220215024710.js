@@ -2,7 +2,7 @@ import { ethers } from 'ethers';
 import { useState, useEffect } from 'react'; //hooks
 import axios from 'axios'; //data fetching library
 import Web3Modal from 'web3modal'; //way to connect to user's wallet
-import Web3 from 'web3';
+import Web3 from "web3"; 
 import styled from 'styled-components';
 import Image from 'next/image';
 import fs from 'fs/promises';
@@ -50,7 +50,7 @@ export default function Home(props) {
 
   // console.log(useMoralis().provider)
 
-  //call exchange.address to check whether is the same or not
+
   const { currencies } = props;
 
   const [registry, setRegistry] = useState(null);
@@ -70,32 +70,33 @@ export default function Home(props) {
   const [selectedIndexSecond, setSelectedIndexSecond] = useState(1);
 
   const handleMenuItemClick = (event, index) => {
-    if (event.target.id === 'menu-item-1') {
-      if (index === selectedIndexSecond) {
-        handleMenuItemSwitch(selectedIndex, selectedIndexSecond);
-      } else {
-        setSelectedIndex(index);
-        setExchangeCurrency(currencies[index]);
-      }
-      handleClose();
+    if (index === selectedIndexSecond) {
+      const prevIndex = selectedIndex;
+      const newIndex = selectedIndexSecond;
+      setSelectedIndex(newIndex);
+      setSelectedIndexSecond(prevIndex);
+      setToSwapCurrency(currencies[prevIndex]);
+      setExchangeCurrency(currencies[newIndex]);
     } else {
-      if (index === selectedIndex) {
-        handleMenuItemSwitch(selectedIndexSecond, selectedIndex);
-      } else {
-        setSelectedIndexSecond(index);
-        setToSwapCurrency(currencies[index]);
-      }
-      handleCloseSecond();
+      setSelectedIndex(index);
+      setExchangeCurrency(currencies[index]);
     }
+    handleClose();
   };
 
-  const handleMenuItemSwitch = (prevSelected, newSelected) => {
-    const prevIndex = prevSelected;
-    const newIndex = newSelected;
-    setSelectedIndex(newIndex);
-    setSelectedIndexSecond(prevIndex);
-    setToSwapCurrency(currencies[prevIndex]);
-    setExchangeCurrency(currencies[newIndex]);
+  const handleMenuItemClickSecond = (event, index) => {
+    if (index === selectedIndex) {
+      const prevIndex = selectedIndexSecond;
+      const newIndex = selectedIndex;
+      setSelectedIndex(prevIndex);
+      setSelectedIndexSecond(newIndex);
+      setToSwapCurrency(currencies[newIndex]);
+      setExchangeCurrency(currencies[prevIndex]);
+    } else {
+      setSelectedIndexSecond(index);
+      setToSwapCurrency(currencies[index]);
+    }
+    handleCloseSecond();
   };
 
   const [inputOne, setInputOne] = useState(null);
@@ -121,19 +122,16 @@ export default function Home(props) {
     loadDefaultExchange();
   }, []);
 
-  // useEffect(() => {
-  //   loadExchange();
-  // }, [exchangeCurrency]);
+  useEffect(() => {
+    loadExchange();
+  }, []);
 
-  async function loadExchange() {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    if (exchangeCurrency === currencies[1]) {
-    }
-  }
+  as
 
   async function loadDefaultExchange() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-
+    // await Moralis.enableWeb3();
+    // const web3Js = new Web3(Moralis.provider)
     const registry = new ethers.Contract(
       registryAddress,
       Registry.abi,
@@ -207,9 +205,9 @@ export default function Home(props) {
       scammExchangeAddress,
       ethers.utils.parseEther(inputOne)
     );
-    console.log('not yet confirmed');
+    console.log("not yet confirmed")
     let waitDude = await wasApproved.wait();
-    console.log('waitdudeee', waitDude);
+    console.log("waitdudeee",waitDude)
     console.log('was approved?', wasApproved);
 
     const allowanceAmount = ethers.utils.formatEther(
@@ -318,9 +316,7 @@ export default function Home(props) {
                           quality={50}
                           alt=""
                         />
-                        <h1 className="ml-3" id="menu-item-1">
-                          {currency.symbol}
-                        </h1>
+                        <h1 className="ml-3">{currency.symbol}</h1>
                       </MenuItem>
                     ))}
                   </MenuList>
@@ -397,7 +393,9 @@ export default function Home(props) {
                         key={currency.symbol}
                         disabled={index === selectedIndexSecond}
                         selected={index === selectedIndexSecond}
-                        onClick={(event) => handleMenuItemClick(event, index)}
+                        onClick={(event) =>
+                          handleMenuItemClickSecond(event, index)
+                        }
                       >
                         <Image
                           src={currency.logoURI}
@@ -406,9 +404,7 @@ export default function Home(props) {
                           quality={50}
                           alt=""
                         />
-                        <h1 className="ml-3" id="menu-item-2">
-                          {currency.symbol}
-                        </h1>
+                        <h1 className="ml-3">{currency.symbol}</h1>
                       </MenuItem>
                     ))}
                   </MenuList>

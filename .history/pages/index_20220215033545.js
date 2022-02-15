@@ -79,6 +79,7 @@ export default function Home(props) {
       }
       handleClose();
     } else {
+      
       if (index === selectedIndex) {
         handleMenuItemSwitch(selectedIndexSecond, selectedIndex);
       } else {

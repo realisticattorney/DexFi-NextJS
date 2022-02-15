@@ -72,15 +72,26 @@ export default function Home(props) {
   const handleMenuItemClick = (event, index) => {
     if (event.target.id === 'menu-item-1') {
       if (index === selectedIndexSecond) {
-        handleMenuItemSwitch(selectedIndex, selectedIndexSecond);
+        const prevIndex = selectedIndex;
+        const newIndex = selectedIndexSecond;
+        setSelectedIndex(newIndex);
+        setSelectedIndexSecond(prevIndex);
+        setToSwapCurrency(currencies[prevIndex]);
+        setExchangeCurrency(currencies[newIndex]);
       } else {
         setSelectedIndex(index);
         setExchangeCurrency(currencies[index]);
       }
       handleClose();
-    } else {
+    }
+    if (event.target.id === 'menu-item-2') {
       if (index === selectedIndex) {
-        handleMenuItemSwitch(selectedIndexSecond, selectedIndex);
+        const prevIndex = selectedIndexSecond;
+        const newIndex = selectedIndex;
+        setSelectedIndex(prevIndex);
+        setSelectedIndexSecond(newIndex);
+        setToSwapCurrency(currencies[newIndex]);
+        setExchangeCurrency(currencies[prevIndex]);
       } else {
         setSelectedIndexSecond(index);
         setToSwapCurrency(currencies[index]);
@@ -89,13 +100,21 @@ export default function Home(props) {
     }
   };
 
-  const handleMenuItemSwitch = (prevSelected, newSelected) => {
-    const prevIndex = prevSelected;
-    const newIndex = newSelected;
-    setSelectedIndex(newIndex);
-    setSelectedIndexSecond(prevIndex);
-    setToSwapCurrency(currencies[prevIndex]);
-    setExchangeCurrency(currencies[newIndex]);
+  const handleMenuItemSwitch = (index, prevSelected, newSelected) => {
+    if (index === selectedIndexSecond) {
+      const prevIndex = prevSelected;
+      const newIndex = newSelected;
+      setSelectedIndex(newIndex);
+      setSelectedIndexSecond(prevIndex);
+      setToSwapCurrency(currencies[prevIndex]);
+      setExchangeCurrency(currencies[newIndex]);
+    } else {
+      setSelectedIndex(index);
+      setExchangeCurrency(currencies[index]);
+    }
+    handleClose();
+
+
   };
 
   const [inputOne, setInputOne] = useState(null);
