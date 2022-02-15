@@ -61,14 +61,15 @@ export default function Home(props) {
   const handleCloseSecond = () => setOpenSecond(false);
 
   const handleMenuItemClick = (event, index, menuItem) => {
-    if (menuItem === 1) {
+    if (event.target.id === 'menu-item-1') {
       if (index === toSwapCurrency[1]) {
         handleMenuItemSwitch(exchangeCurrency[1], toSwapCurrency[1]);
       } else {
         setExchangeCurrency([currencies[index], index]);
       }
       handleClose();
-    } else {
+    } 
+    if(event.target.id === 'menu-item-2') {
       if (index === exchangeCurrency[1]) {
         handleMenuItemSwitch(toSwapCurrency[1], exchangeCurrency[1]);
       } else {
@@ -296,9 +297,7 @@ export default function Home(props) {
                         key={currency.symbol}
                         disabled={index === exchangeCurrency[1]}
                         selected={index === exchangeCurrency[1]}
-                        onClick={(event) =>
-                          handleMenuItemClick(event, index, 1)
-                        }
+                        onClick={(event) => handleMenuItemClick(event, index, 1)}
                       >
                         <Image
                           src={currency.logoURI}
@@ -307,7 +306,9 @@ export default function Home(props) {
                           quality={50}
                           alt=""
                         />
-                        <h1 className="ml-3">{currency.symbol}</h1>
+                        <h1 className="ml-3">
+                          {currency.symbol}
+                        </h1>
                       </MenuItem>
                     ))}
                   </MenuList>
@@ -384,9 +385,7 @@ export default function Home(props) {
                         key={currency.symbol}
                         disabled={index === toSwapCurrency[1]}
                         selected={index === toSwapCurrency[1]}
-                        onClick={(event) =>
-                          handleMenuItemClick(event, index, 2)
-                        }
+                        onClick={(event) => handleMenuItemClick(event, index, 2)}
                       >
                         <Image
                           src={currency.logoURI}
@@ -395,7 +394,9 @@ export default function Home(props) {
                           quality={50}
                           alt=""
                         />
-                        <h1 className="ml-3">{currency.symbol}</h1>
+                        <h1 className="ml-3" >
+                          {currency.symbol}
+                        </h1>
                       </MenuItem>
                     ))}
                   </MenuList>

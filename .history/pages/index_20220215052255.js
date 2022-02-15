@@ -60,15 +60,22 @@ export default function Home(props) {
   const handleClose = () => setOpen(false);
   const handleCloseSecond = () => setOpenSecond(false);
 
-  const handleMenuItemClick = (event, index, menuItem) => {
-    if (menuItem === 1) {
+  console.log('exchangeCurrency', exchangeCurrency);
+  console.log('toSwapCurrency', toSwapCurrency);
+  const handleMenuItemClick = (event, index) => {
+    // console.log("exchangeCurrency",exchangeCurrency);
+    // console.log("toSwapCurrency",toSwapCurrency);
+    console.log('event', event);
+    console.log('index', index);
+    if (event.target.id === 'menu-item-1') {
       if (index === toSwapCurrency[1]) {
         handleMenuItemSwitch(exchangeCurrency[1], toSwapCurrency[1]);
       } else {
         setExchangeCurrency([currencies[index], index]);
       }
       handleClose();
-    } else {
+    }
+    if (event.target.id === 'menu-item-2') {
       if (index === exchangeCurrency[1]) {
         handleMenuItemSwitch(toSwapCurrency[1], exchangeCurrency[1]);
       } else {
@@ -292,23 +299,25 @@ export default function Home(props) {
                       <h1>Select a Token</h1>
                     </div>
                     {currencies.map((currency, index) => (
-                      <MenuItem
-                        key={currency.symbol}
-                        disabled={index === exchangeCurrency[1]}
-                        selected={index === exchangeCurrency[1]}
-                        onClick={(event) =>
-                          handleMenuItemClick(event, index, 1)
-                        }
-                      >
-                        <Image
-                          src={currency.logoURI}
-                          height={24}
-                          width={24}
-                          quality={50}
-                          alt=""
-                        />
-                        <h1 className="ml-3">{currency.symbol}</h1>
-                      </MenuItem>
+                      <div key={currency.symbol}>
+                        <MenuItem
+                          key={currency.symbol}
+                          disabled={index === exchangeCurrency[1]}
+                          selected={index === exchangeCurrency[1]}
+                          onClick={(event) => handleMenuItemClick(event, index)}
+                        >
+                          <Image
+                            src={currency.logoURI}
+                            height={24}
+                            width={24}
+                            quality={50}
+                            alt=""
+                          />
+                          <h1 className="ml-3" id="menu-item-1">
+                            {currency.symbol}
+                          </h1>
+                        </MenuItem>
+                      </div>
                     ))}
                   </MenuList>
                 </Paper>
@@ -384,9 +393,7 @@ export default function Home(props) {
                         key={currency.symbol}
                         disabled={index === toSwapCurrency[1]}
                         selected={index === toSwapCurrency[1]}
-                        onClick={(event) =>
-                          handleMenuItemClick(event, index, 2)
-                        }
+                        onClick={(event) => handleMenuItemClick(event, index)}
                       >
                         <Image
                           src={currency.logoURI}
@@ -395,7 +402,9 @@ export default function Home(props) {
                           quality={50}
                           alt=""
                         />
-                        <h1 className="ml-3">{currency.symbol}</h1>
+                        <h1 className="ml-3" id="menu-item-2">
+                          {currency.symbol}
+                        </h1>
                       </MenuItem>
                     ))}
                   </MenuList>

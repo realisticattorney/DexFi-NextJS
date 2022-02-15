@@ -39,11 +39,12 @@ import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import ScammCoin from '../artifacts/contracts/ScammCoin.sol/ScammCoin.json';
 
 export default function Home(props) {
-  // const { isAuthenticated, authenticate } = useMoralis();
+  const { isAuthenticated, authenticate } = useMoralis();
 
-  // useEffect(() => {
-  //   // if (isAuthenticated) router.replace("/dashboard");
-  // }, [isAuthenticated]);
+  useEffect(() => {
+    // if (isAuthenticated) router.replace("/dashboard");
+  }, [isAuthenticated]);
+
 
   const { currencies } = props;
 
@@ -53,6 +54,7 @@ export default function Home(props) {
 
   const [exchangeCurrency, setExchangeCurrency] = useState([currencies[0], 0]);
   const [toSwapCurrency, setToSwapCurrency] = useState([currencies[1], 1]);
+  console.log(exchangeCurrency);
   const [open, setOpen] = useState(false);
   const [openSecond, setOpenSecond] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -60,13 +62,16 @@ export default function Home(props) {
   const handleClose = () => setOpen(false);
   const handleCloseSecond = () => setOpenSecond(false);
 
-  const handleMenuItemClick = (event, index, menuItem) => {
-    if (menuItem === 1) {
+  const handleMenuItemClick = (event, index) => {
+    console.log(""exchangeCurrency);
+    console.log("index",index);
+    if (event.target.id === 'menu-item-1') {
       if (index === toSwapCurrency[1]) {
         handleMenuItemSwitch(exchangeCurrency[1], toSwapCurrency[1]);
       } else {
         setExchangeCurrency([currencies[index], index]);
       }
+      console.log(exchangeCurrency);
       handleClose();
     } else {
       if (index === exchangeCurrency[1]) {
@@ -296,9 +301,7 @@ export default function Home(props) {
                         key={currency.symbol}
                         disabled={index === exchangeCurrency[1]}
                         selected={index === exchangeCurrency[1]}
-                        onClick={(event) =>
-                          handleMenuItemClick(event, index, 1)
-                        }
+                        onClick={(event) => handleMenuItemClick(event, index)}
                       >
                         <Image
                           src={currency.logoURI}
@@ -307,7 +310,9 @@ export default function Home(props) {
                           quality={50}
                           alt=""
                         />
-                        <h1 className="ml-3">{currency.symbol}</h1>
+                        <h1 className="ml-3" id="menu-item-1">
+                          {currency.symbol}
+                        </h1>
                       </MenuItem>
                     ))}
                   </MenuList>
@@ -384,9 +389,7 @@ export default function Home(props) {
                         key={currency.symbol}
                         disabled={index === toSwapCurrency[1]}
                         selected={index === toSwapCurrency[1]}
-                        onClick={(event) =>
-                          handleMenuItemClick(event, index, 2)
-                        }
+                        onClick={(event) => handleMenuItemClick(event, index)}
                       >
                         <Image
                           src={currency.logoURI}
@@ -395,7 +398,9 @@ export default function Home(props) {
                           quality={50}
                           alt=""
                         />
-                        <h1 className="ml-3">{currency.symbol}</h1>
+                        <h1 className="ml-3" id="menu-item-2">
+                          {currency.symbol}
+                        </h1>
                       </MenuItem>
                     ))}
                   </MenuList>
