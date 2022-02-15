@@ -15,7 +15,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useMoralis } from 'react-moralis';
-
+import Moralis from 'moralis';
 const modalstyle = {
   position: 'absolute',
   top: '30%',
@@ -66,7 +66,6 @@ export default function Home(props) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedIndexSecond, setSelectedIndexSecond] = useState(1);
 
-  
   const handleMenuItemClick = (event, index) => {
     if (event.target.id === 'menu-item-1') {
       if (index === selectedIndexSecond) {
@@ -75,7 +74,6 @@ export default function Home(props) {
         setSelectedIndex(index);
         setExchangeCurrency(currencies[index]);
       }
-      
       handleClose();
     } else {
       if (index === selectedIndex) {

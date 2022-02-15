@@ -40,7 +40,7 @@ import ScammCoin from '../artifacts/contracts/ScammCoin.sol/ScammCoin.json';
 
 export default function Home(props) {
   const { isAuthenticated, authenticate } = useMoralis();
-
+console.log()
   useEffect(() => {
     // if (isAuthenticated) router.replace("/dashboard");
   }, [isAuthenticated]);
@@ -66,7 +66,6 @@ export default function Home(props) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedIndexSecond, setSelectedIndexSecond] = useState(1);
 
-  
   const handleMenuItemClick = (event, index) => {
     if (event.target.id === 'menu-item-1') {
       if (index === selectedIndexSecond) {
@@ -75,7 +74,6 @@ export default function Home(props) {
         setSelectedIndex(index);
         setExchangeCurrency(currencies[index]);
       }
-      
       handleClose();
     } else {
       if (index === selectedIndex) {

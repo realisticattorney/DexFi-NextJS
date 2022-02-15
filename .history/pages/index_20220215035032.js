@@ -65,9 +65,10 @@ export default function Home(props) {
   const handleCloseSecond = () => setOpenSecond(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedIndexSecond, setSelectedIndexSecond] = useState(1);
-
   
   const handleMenuItemClick = (event, index) => {
+    console.log("ExchangUndex",currencies.indexOf(exchangeCurrency))
+    console.log("toswapUndex",currencies.indexOf(toSwapCurrency))
     if (event.target.id === 'menu-item-1') {
       if (index === selectedIndexSecond) {
         handleMenuItemSwitch(selectedIndex, selectedIndexSecond);
