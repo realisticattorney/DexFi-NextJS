@@ -53,10 +53,10 @@ export default function Home(props) {
   const [registry, setRegistry] = useState(null);
   const [exchange, setExchange] = useState(null);
   const [loadingState, setLoadingState] = useState('not-loaded');
-
   const [exchangeCurrency, setExchangeCurrency] = useState([currencies[0], 0]);
   const [toSwapCurrency, setToSwapCurrency] = useState([currencies[1], 1]);
-console.log(exchangeCurrency)
+  console.log(exchangeCurrency)
+
   const [open, setOpen] = useState(false);
   const [openSecond, setOpenSecond] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -67,22 +67,22 @@ console.log(exchangeCurrency)
   // const [selectedIndexSecond, setSelectedIndexSecond] = useState(1);
 
   const handleMenuItemClick = (event, index) => {
-    console.log(exchangeCurrency)
+    console.log("exchangeCurrency",exchangeCurrency)
     if (event.target.id === 'menu-item-1') {
       if (index === toSwapCurrency[1]) {
         handleMenuItemSwitch(exchangeCurrency[1], toSwapCurrency[1]);
       } else {
         // setSelectedIndex(index);
-        setExchangeCurrency([currencies[index], index]);
+        setExchangeCurrency(currencies[index], index);
       }
-      console.log(exchangeCurrency)
+
       handleClose();
     } else {
       if (index === exchangeCurrency[1]) {
         handleMenuItemSwitch(toSwapCurrency[1], exchangeCurrency[1]);
       } else {
         // setSelectedIndexSecond(index);
-        setToSwapCurrency([currencies[index], index]);
+        setToSwapCurrency(currencies[index], index);
       }
       handleCloseSecond();
     }
@@ -93,8 +93,8 @@ console.log(exchangeCurrency)
     const newIndex = newSelected;
     // setSelectedIndex(newIndex);
     // setSelectedIndexSecond(prevIndex);
-    setExchangeCurrency([currencies[newIndex], newIndex]);
-    setToSwapCurrency([currencies[prevIndex], prevIndex]);
+    setToSwapCurrency(currencies[prevIndex], prevIndex);
+    setExchangeCurrency(currencies[newIndex], newIndex);
   };
 
   const [inputOne, setInputOne] = useState(null);
@@ -273,15 +273,15 @@ console.log(exchangeCurrency)
 
           <div className="flex flex-col space-y-2 p-5">
             <button onClick={handleOpen} className="flex items-center">
-              <Image
+              {/* <Image
                 src={exchangeCurrency[0].logoURI}
                 height={24}
                 width={24}
                 quality={50}
                 alt=""
-              />
+              /> */}
               <h1 className="ml-1 font-bold text-dexfi-violet">
-                {exchangeCurrency[0].symbol}
+                {/* {exchangeCurrency[0].symbol} */}
               </h1>
               <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />
             </button>
@@ -361,15 +361,15 @@ console.log(exchangeCurrency)
           {''}
           <div className="flex flex-col space-y-2 p-5">
             <button onClick={handleOpenSecond} className="flex items-center">
-              <Image
+              {/* <Image
                 src={toSwapCurrency[0].logoURI}
                 height={24}
                 width={24}
                 quality={50}
                 alt=""
-              />
+              /> */}
               <h1 className="ml-1 font-bold text-dexfi-violet">
-                {toSwapCurrency[0].symbol}
+                {/* {toSwapCurrency[0].symbol} */}
               </h1>
               <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />
             </button>

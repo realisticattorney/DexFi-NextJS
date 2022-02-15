@@ -56,33 +56,33 @@ export default function Home(props) {
 
   const [exchangeCurrency, setExchangeCurrency] = useState([currencies[0], 0]);
   const [toSwapCurrency, setToSwapCurrency] = useState([currencies[1], 1]);
-console.log(exchangeCurrency)
+
   const [open, setOpen] = useState(false);
   const [openSecond, setOpenSecond] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleOpenSecond = () => setOpenSecond(true);
   const handleClose = () => setOpen(false);
   const handleCloseSecond = () => setOpenSecond(false);
-  // const [selectedIndex, setSelectedIndex] = useState(0);
-  // const [selectedIndexSecond, setSelectedIndexSecond] = useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndexSecond, setSelectedIndexSecond] = useState(1);
 
+  
   const handleMenuItemClick = (event, index) => {
-    console.log(exchangeCurrency)
     if (event.target.id === 'menu-item-1') {
-      if (index === toSwapCurrency[1]) {
-        handleMenuItemSwitch(exchangeCurrency[1], toSwapCurrency[1]);
+      if (index === tokenToEthSwap[1]) {
+        handleMenuItemSwitch(exchangeCurrency[1], tokenToEthSwap[1]);
       } else {
         // setSelectedIndex(index);
-        setExchangeCurrency([currencies[index], index]);
+        setExchangeCurrency(currencies[index]);
       }
-      console.log(exchangeCurrency)
+      
       handleClose();
     } else {
       if (index === exchangeCurrency[1]) {
-        handleMenuItemSwitch(toSwapCurrency[1], exchangeCurrency[1]);
+        handleMenuItemSwitch(tokenToEthSwap[1], selectedIndex);
       } else {
         // setSelectedIndexSecond(index);
-        setToSwapCurrency([currencies[index], index]);
+        setToSwapCurrency(currencies[index]);
       }
       handleCloseSecond();
     }
@@ -91,10 +91,10 @@ console.log(exchangeCurrency)
   const handleMenuItemSwitch = (prevSelected, newSelected) => {
     const prevIndex = prevSelected;
     const newIndex = newSelected;
-    // setSelectedIndex(newIndex);
-    // setSelectedIndexSecond(prevIndex);
-    setExchangeCurrency([currencies[newIndex], newIndex]);
-    setToSwapCurrency([currencies[prevIndex], prevIndex]);
+    setSelectedIndex(newIndex);
+    setSelectedIndexSecond(prevIndex);
+    setToSwapCurrency(currencies[prevIndex]);
+    setExchangeCurrency(currencies[newIndex]);
   };
 
   const [inputOne, setInputOne] = useState(null);
@@ -124,11 +124,11 @@ console.log(exchangeCurrency)
   //   loadExchange();
   // }, [exchangeCurrency]);
 
-  // async function loadExchange() {
-  //   const provider = new ethers.providers.Web3Provider(window.ethereum);
-  //   if (exchangeCurrency[1] === currencies[1]) {
-  //   }
-  // }
+  async function loadExchange() {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    if (exchangeCurrency === currencies[1]) {
+    }
+  }
 
   async function loadDefaultExchange() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -153,8 +153,8 @@ console.log(exchangeCurrency)
     console.log(exchange);
     let amount;
 
-    if (exchangeCurrency[1] !== 1) {
-      if (toSwapCurrency[1] === 1) {
+    if (selectedIndex !== 1) {
+      if (selectedIndexSecond === 1) {
         amount =
           id === 'outlined-number-1'
             ? ethers.utils.formatEther(await exchange.getEthAmount(price))
@@ -188,7 +188,7 @@ console.log(exchangeCurrency)
     //y una vez que clickeas en esa moneda se chequea si ya esta en el registry mapping y si no esta, se llama a la createExchange function.
     //o sea se tiene que chequear en el registry cuando se cambia el selectedIndex si currencies[selectedIndex].address esta en el registry, y si esta llamo aca al getExchangeAddress de registry
     const getExchangeAddress = await registry.getExchange(
-      exchangeCurrency[0].address
+      currencies[selectedIndex].address
     );
     //habria que chequear si es un ERC20 o si no hace falta aprove. pero despues si hay o no aprove hecho, esta siempre en mi control porque se aprueba que mi contrato pueda o no mandar. entonces lo que deberia hacer ahora, es
     const tokenUserConnection = new ethers.Contract(
@@ -306,8 +306,8 @@ console.log(exchangeCurrency)
                     {currencies.map((currency, index) => (
                       <MenuItem
                         key={currency.symbol}
-                        disabled={index === exchangeCurrency[1]}
-                        selected={index === exchangeCurrency[1]}
+                        disabled={index === selectedIndex}
+                        selected={index === selectedIndex}
                         onClick={(event) => handleMenuItemClick(event, index)}
                       >
                         <Image
@@ -449,7 +449,7 @@ console.log(exchangeCurrency)
                       ? (inputOne / inputSecond).toString().substring(0, 10)
                       : (inputOne / inputSecond).toString()
                   } ${exchangeCurrency[0].symbol} per ${
-                    toSwapCurrency[0].symbol
+                    tokenToEthSwap[0].symbol
                   }`}</h1>
                 </div>
               </div>

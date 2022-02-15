@@ -56,7 +56,7 @@ export default function Home(props) {
 
   const [exchangeCurrency, setExchangeCurrency] = useState([currencies[0], 0]);
   const [toSwapCurrency, setToSwapCurrency] = useState([currencies[1], 1]);
-console.log(exchangeCurrency)
+
   const [open, setOpen] = useState(false);
   const [openSecond, setOpenSecond] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -67,22 +67,21 @@ console.log(exchangeCurrency)
   // const [selectedIndexSecond, setSelectedIndexSecond] = useState(1);
 
   const handleMenuItemClick = (event, index) => {
-    console.log(exchangeCurrency)
     if (event.target.id === 'menu-item-1') {
       if (index === toSwapCurrency[1]) {
         handleMenuItemSwitch(exchangeCurrency[1], toSwapCurrency[1]);
       } else {
         // setSelectedIndex(index);
-        setExchangeCurrency([currencies[index], index]);
+        setExchangeCurrency(currencies[index], index);
       }
-      console.log(exchangeCurrency)
+
       handleClose();
     } else {
       if (index === exchangeCurrency[1]) {
         handleMenuItemSwitch(toSwapCurrency[1], exchangeCurrency[1]);
       } else {
         // setSelectedIndexSecond(index);
-        setToSwapCurrency([currencies[index], index]);
+        setToSwapCurrency(currencies[index], index);
       }
       handleCloseSecond();
     }
@@ -93,8 +92,8 @@ console.log(exchangeCurrency)
     const newIndex = newSelected;
     // setSelectedIndex(newIndex);
     // setSelectedIndexSecond(prevIndex);
-    setExchangeCurrency([currencies[newIndex], newIndex]);
-    setToSwapCurrency([currencies[prevIndex], prevIndex]);
+    setToSwapCurrency(currencies[prevIndex], prevIndex);
+    setExchangeCurrency(currencies[newIndex], newIndex);
   };
 
   const [inputOne, setInputOne] = useState(null);
@@ -124,11 +123,11 @@ console.log(exchangeCurrency)
   //   loadExchange();
   // }, [exchangeCurrency]);
 
-  // async function loadExchange() {
-  //   const provider = new ethers.providers.Web3Provider(window.ethereum);
-  //   if (exchangeCurrency[1] === currencies[1]) {
-  //   }
-  // }
+  async function loadExchange() {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    if (exchangeCurrency === currencies[1]) {
+    }
+  }
 
   async function loadDefaultExchange() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -228,7 +227,7 @@ console.log(exchangeCurrency)
     // }
 
     if (allowanceAmount >= inputOne) {
-      let transaction = await exchangeUserConnection.tokenToEthSwap(
+      let transaction = await exchangeUserConnection.to(
         ethers.utils.parseEther(allowanceAmount.toString()),
         ethers.utils.parseEther((inputSecond * 0.98).toString())
       );
@@ -449,7 +448,7 @@ console.log(exchangeCurrency)
                       ? (inputOne / inputSecond).toString().substring(0, 10)
                       : (inputOne / inputSecond).toString()
                   } ${exchangeCurrency[0].symbol} per ${
-                    toSwapCurrency[0].symbol
+                    tokenToEthSwap[0].symbol
                   }`}</h1>
                 </div>
               </div>

@@ -73,16 +73,16 @@ console.log(exchangeCurrency)
         handleMenuItemSwitch(exchangeCurrency[1], toSwapCurrency[1]);
       } else {
         // setSelectedIndex(index);
-        setExchangeCurrency([currencies[index], index]);
+        setExchangeCurrency(currencies[index], index);
       }
-      console.log(exchangeCurrency)
+
       handleClose();
     } else {
       if (index === exchangeCurrency[1]) {
         handleMenuItemSwitch(toSwapCurrency[1], exchangeCurrency[1]);
       } else {
         // setSelectedIndexSecond(index);
-        setToSwapCurrency([currencies[index], index]);
+        setToSwapCurrency(currencies[index], index);
       }
       handleCloseSecond();
     }
@@ -93,8 +93,8 @@ console.log(exchangeCurrency)
     const newIndex = newSelected;
     // setSelectedIndex(newIndex);
     // setSelectedIndexSecond(prevIndex);
-    setExchangeCurrency([currencies[newIndex], newIndex]);
-    setToSwapCurrency([currencies[prevIndex], prevIndex]);
+    setToSwapCurrency(currencies[prevIndex], prevIndex);
+    setExchangeCurrency(currencies[newIndex], newIndex);
   };
 
   const [inputOne, setInputOne] = useState(null);

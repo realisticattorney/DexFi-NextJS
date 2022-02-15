@@ -93,8 +93,8 @@ console.log(exchangeCurrency)
     const newIndex = newSelected;
     // setSelectedIndex(newIndex);
     // setSelectedIndexSecond(prevIndex);
-    setExchangeCurrency([currencies[newIndex], newIndex]);
     setToSwapCurrency([currencies[prevIndex], prevIndex]);
+    setExchangeCurrency([currencies[newIndex], newIndex]);
   };
 
   const [inputOne, setInputOne] = useState(null);
