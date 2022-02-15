@@ -25,7 +25,7 @@ async function main() {
   console.log('Deployer address:', deployer.address);
   console.log('Registry contract address:', registry.address);
   console.log('ScammCoin contract address:', token.address);
-  console.log('USDC contract address:', tokenTwo.address);
+  console.log('ScammCoin contract address:', tokenTwo.address);
 
   // let scammExchange = await registry.createExchange(token.address);
   // let txReceipt = await scammExchange.wait();
