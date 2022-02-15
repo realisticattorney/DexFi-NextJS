@@ -120,7 +120,7 @@ export default function Home(props) {
         exchange.address === a[0].address ||
         exchange.address === b[0].address
       ) {
-        console.log('we are stil with this contract');
+        console.log('just switching bro');
         return;
       } else {
         const provider = new ethers.providers.Web3Provider(window.ethereum);

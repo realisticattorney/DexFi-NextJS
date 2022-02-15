@@ -112,37 +112,13 @@ export default function Home(props) {
   }, []);
 
   useEffect(() => {
-    function loadExchange(a, b) {
-      if (exchange === null) {
-        console.log('not even loading');
-        return;
-      } else if (
-        exchange.address === a[0].address ||
-        exchange.address === b[0].address
-      ) {
-        console.log('we are stil with this contract');
-        return;
-      } else {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        if (a[1] === 1) {
-          setExchange(
-            new ethers.Contract(b[0].address, Exchange.abi, provider)
-          );
-          console.log('it was the former', exchange);
-          return;
-        }
-        if (b[1] === 1) {
-          setExchange(
-            new ethers.Contract(a[0].address, Exchange.abi, provider)
-          );
-          console.log('it was the latter', exchange);
-          return;
-        }
-        console.log('something went wrongworngwrong');
-      }
+    function loadExchange(exchangeCurrency[0].address, toSwapCurrency[0].address) {
+    
     }
-    loadExchange(exchangeCurrency, toSwapCurrency);
-  }, [exchangeCurrency, toSwapCurrency, exchange]);
+  }, [exchangeCurrency, loadExchange, toSwapCurrency]);
+
+
+
 
   async function loadDefaultExchange() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
