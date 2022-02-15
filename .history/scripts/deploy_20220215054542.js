@@ -56,7 +56,7 @@ async function main() {
   const allowanceAmountTwo = ethers.utils.formatEther(
     await tokenTwo.allowance(deployer.address, exchangeTwo.address)
   );
-  console.log('AllowedUSDCToTranfer', allowanceAmountTwo);
+  console.log('AllowedUSDCCoinsToTranfer', allowanceAmountTwo);
   await exchangeTwo.addLiquidity(amountA, { value: amountB });
   const ethProvidedTwo = ethers.utils.formatEther(
     await provider.getBalance(exchangeTwo.address)

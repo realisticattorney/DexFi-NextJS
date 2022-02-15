@@ -33,14 +33,9 @@ async function main() {
   const Exchange = await ethers.getContractFactory('Exchange');
   exchange = await Exchange.deploy(token.address);
   await exchange.deployed();
-  exchangeTwo = await Exchange.deploy(tokenTwo.address);
-  await exchangeTwo.deployed();
-
+  
   console.log('Mapping of ScammExchange contract address:', exchange.address);
-  console.log('Mapping of USDCExchange contract address:', exchangeTwo.address);
   // console.log('Mapping of ScammExchange contract address:', getExchangeAddress);
-  
-  
   await token.approve(exchange.address, amountA);
   const allowanceAmount = ethers.utils.formatEther(
     await token.allowance(deployer.address, exchange.address)
@@ -50,18 +45,7 @@ async function main() {
   const ethProvided = ethers.utils.formatEther(
     await provider.getBalance(exchange.address)
   );
-  console.log('EthProvidedToScammExchange', ethProvided);
-  
-  await tokenTwo.approve(exchangeTwo.address, amountA);
-  const allowanceAmountTwo = ethers.utils.formatEther(
-    await tokenTwo.allowance(deployer.address, exchangeTwo.address)
-  );
-  console.log('AllowedUSDCToTranfer', allowanceAmountTwo);
-  await exchangeTwo.addLiquidity(amountA, { value: amountB });
-  const ethProvidedTwo = ethers.utils.formatEther(
-    await provider.getBalance(exchangeTwo.address)
-  );
-  console.log('EthProvidedToUSDCExchange', ethProvidedTwo);
+  console.log('EthProvided', ethProvided);
 }
 
 main()

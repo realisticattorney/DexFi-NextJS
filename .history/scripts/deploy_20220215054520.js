@@ -56,12 +56,12 @@ async function main() {
   const allowanceAmountTwo = ethers.utils.formatEther(
     await tokenTwo.allowance(deployer.address, exchangeTwo.address)
   );
-  console.log('AllowedUSDCToTranfer', allowanceAmountTwo);
+  console.log('AllowedScammCoinsToTranfer', allowanceAmountTwo);
   await exchangeTwo.addLiquidity(amountA, { value: amountB });
   const ethProvidedTwo = ethers.utils.formatEther(
     await provider.getBalance(exchangeTwo.address)
   );
-  console.log('EthProvidedToUSDCExchange', ethProvidedTwo);
+  console.log('EthProvidedTwoToScammExchange', ethProvidedTwo);
 }
 
 main()

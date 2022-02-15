@@ -50,18 +50,7 @@ async function main() {
   const ethProvided = ethers.utils.formatEther(
     await provider.getBalance(exchange.address)
   );
-  console.log('EthProvidedToScammExchange', ethProvided);
-  
-  await tokenTwo.approve(exchangeTwo.address, amountA);
-  const allowanceAmountTwo = ethers.utils.formatEther(
-    await tokenTwo.allowance(deployer.address, exchangeTwo.address)
-  );
-  console.log('AllowedUSDCToTranfer', allowanceAmountTwo);
-  await exchangeTwo.addLiquidity(amountA, { value: amountB });
-  const ethProvidedTwo = ethers.utils.formatEther(
-    await provider.getBalance(exchangeTwo.address)
-  );
-  console.log('EthProvidedToUSDCExchange', ethProvidedTwo);
+  console.log('EthProvidedToScamm', ethProvided);
 }
 
 main()

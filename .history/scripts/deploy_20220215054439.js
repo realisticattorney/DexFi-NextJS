@@ -52,16 +52,16 @@ async function main() {
   );
   console.log('EthProvidedToScammExchange', ethProvided);
   
-  await tokenTwo.approve(exchangeTwo.address, amountA);
-  const allowanceAmountTwo = ethers.utils.formatEther(
-    await tokenTwo.allowance(deployer.address, exchangeTwo.address)
+  await token.approve(exchange.address, amountA);
+  const allowanceAmount = ethers.utils.formatEther(
+    await token.allowance(deployer.address, exchange.address)
   );
-  console.log('AllowedUSDCToTranfer', allowanceAmountTwo);
-  await exchangeTwo.addLiquidity(amountA, { value: amountB });
-  const ethProvidedTwo = ethers.utils.formatEther(
-    await provider.getBalance(exchangeTwo.address)
+  console.log('AllowedScammCoinsToTranfer', allowanceAmount);
+  await exchange.addLiquidity(amountA, { value: amountB });
+  const ethProvided = ethers.utils.formatEther(
+    await provider.getBalance(exchange.address)
   );
-  console.log('EthProvidedToUSDCExchange', ethProvidedTwo);
+  console.log('EthProvidedToScammExchange', ethProvided);
 }
 
 main()

@@ -14,33 +14,24 @@ async function main() {
   const token = await Token.deploy(ethers.utils.parseEther('100000'));
   await token.deployed();
 
-  const TokenTwo = await ethers.getContractFactory('USDC');
+  const TokenTwo = await ethers.getContractFactory('ScammCoin');
   const tokenTwo = await TokenTwo.deploy(ethers.utils.parseEther('100000'));
   await tokenTwo.deployed();
 
   console.log('Deployer address:', deployer.address);
   console.log('Registry contract address:', registry.address);
   console.log('ScammCoin contract address:', token.address);
-  console.log('ScammCoin contract address:', tokenTwo.address);
 
   // let scammExchange = await registry.createExchange(token.address);
   // let txReceipt = await scammExchange.wait();
   // const [, exchangeAddress] = txReceipt.events[0].args;
   // console.log('Receipt:', exchangeAddress);
   // const getExchangeAddress = await registry.getExchange(token.address);
-
-
   const Exchange = await ethers.getContractFactory('Exchange');
   exchange = await Exchange.deploy(token.address);
   await exchange.deployed();
-  exchangeTwo = await Exchange.deploy(tokenTwo.address);
-  await exchangeTwo.deployed();
-
   console.log('Mapping of ScammExchange contract address:', exchange.address);
-  console.log('Mapping of USDCExchange contract address:', exchangeTwo.address);
   // console.log('Mapping of ScammExchange contract address:', getExchangeAddress);
-  
-  
   await token.approve(exchange.address, amountA);
   const allowanceAmount = ethers.utils.formatEther(
     await token.allowance(deployer.address, exchange.address)
@@ -50,18 +41,7 @@ async function main() {
   const ethProvided = ethers.utils.formatEther(
     await provider.getBalance(exchange.address)
   );
-  console.log('EthProvidedToScammExchange', ethProvided);
-  
-  await tokenTwo.approve(exchangeTwo.address, amountA);
-  const allowanceAmountTwo = ethers.utils.formatEther(
-    await tokenTwo.allowance(deployer.address, exchangeTwo.address)
-  );
-  console.log('AllowedUSDCToTranfer', allowanceAmountTwo);
-  await exchangeTwo.addLiquidity(amountA, { value: amountB });
-  const ethProvidedTwo = ethers.utils.formatEther(
-    await provider.getBalance(exchangeTwo.address)
-  );
-  console.log('EthProvidedToUSDCExchange', ethProvidedTwo);
+  console.log('EthProvided', ethProvided);
 }
 
 main()
