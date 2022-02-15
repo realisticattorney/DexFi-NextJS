@@ -43,13 +43,11 @@ import ScammCoin from '../artifacts/contracts/ScammCoin.sol/ScammCoin.json';
 export default function Home(props) {
   const { isAuthenticated, authenticate } = useMoralis();
 
-  useEffect(() => {
-    // if (isAuthenticated) router.replace("/dashboard");
-  }, [isAuthenticated]);
 
 
 
 
+  
   const { currencies } = props;
 
   const [registry, setRegistry] = useState(null);

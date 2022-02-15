@@ -44,7 +44,7 @@ export default function Home(props) {
   const { isAuthenticated, authenticate } = useMoralis();
 
   useEffect(() => {
-    // if (isAuthenticated) router.replace("/dashboard");
+    if (isAuthenticated) router.replace("/dashboard");
   }, [isAuthenticated]);
 
 

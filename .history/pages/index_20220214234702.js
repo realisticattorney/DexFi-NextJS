@@ -43,13 +43,6 @@ import ScammCoin from '../artifacts/contracts/ScammCoin.sol/ScammCoin.json';
 export default function Home(props) {
   const { isAuthenticated, authenticate } = useMoralis();
 
-  useEffect(() => {
-    // if (isAuthenticated) router.replace("/dashboard");
-  }, [isAuthenticated]);
-
-
-
-
   const { currencies } = props;
 
   const [registry, setRegistry] = useState(null);
@@ -117,9 +110,9 @@ export default function Home(props) {
     }
   };
 
-  useEffect(() => {
-    loadExchange();
-  }, []);
+  // useEffect(() => {
+  //   loadExchange();
+  // }, []);
 
   async function loadExchange() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -452,13 +445,7 @@ export default function Home(props) {
           <div className="px-4 absolute w-full bottom-4">
             <button
               className="w-full bg-pink-500 shadow-sm text-white font-bold py-3.5 px-12 rounded-xl"
-              onClick={() => {
-                isAuthenticated
-                  ? swap()
-                  : authenticate({
-                      signingMessage: 'Authorize linking of your wallet',
-                    });
-              }}
+              onClick={() => swap()}
               // disabled={
               //   inputOne?.replace('0.', '') > 0 || inputOne === null
               //     ? true
