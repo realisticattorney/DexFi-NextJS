@@ -512,7 +512,7 @@ export async function getStaticProps() {
     symbol: 'USDC',
     logoURI: '/USDClogo.png',
     decimals: 18,
-    address: USDCAddress,
+    address: scammcoinAddress,
   };
   const selectedCurrencies = allCurrenciesData.tokens.filter(
     ({ symbol }) =>

@@ -32,14 +32,12 @@ import {
   registryAddress,
   scammExchangeAddress,
   scammcoinAddress,
-  USDCAddress,
-  USDCExchangeAddress,
 } from '../config.js';
 
 import Registry from '../artifacts/contracts/Registry.sol/Registry.json';
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import ScammCoin from '../artifacts/contracts/ScammCoin.sol/ScammCoin.json';
-import USDC from '../artifacts/contracts/USDC.sol/USDC.json';
+import ScammCoin from '../artifacts/contracts/ScammCoin.sol/ScammCoin.json';
 
 export default function Home(props) {
   // const { isAuthenticated, authenticate } = useMoralis();
@@ -507,13 +505,6 @@ export async function getStaticProps() {
     decimals: 18,
     address: scammcoinAddress,
   };
-
-  const USDCCurrency = {
-    symbol: 'USDC',
-    logoURI: '/USDClogo.png',
-    decimals: 18,
-    address: USDCAddress,
-  };
   const selectedCurrencies = allCurrenciesData.tokens.filter(
     ({ symbol }) =>
       symbol === 'WETH' ||
@@ -535,7 +526,6 @@ export async function getStaticProps() {
     })
   );
   currencies.unshift(scammCurrency);
-  currencies.push(USDCCurrency);
 
   return {
     props: {

@@ -32,8 +32,6 @@ import {
   registryAddress,
   scammExchangeAddress,
   scammcoinAddress,
-  USDCAddress,
-  USDCExchangeAddress,
 } from '../config.js';
 
 import Registry from '../artifacts/contracts/Registry.sol/Registry.json';
@@ -509,10 +507,10 @@ export async function getStaticProps() {
   };
 
   const USDCCurrency = {
-    symbol: 'USDC',
-    logoURI: '/USDClogo.png',
+    symbol: 'SCAM',
+    logoURI: '/logo.png',
     decimals: 18,
-    address: USDCAddress,
+    address: scammcoinAddress,
   };
   const selectedCurrencies = allCurrenciesData.tokens.filter(
     ({ symbol }) =>
@@ -535,7 +533,6 @@ export async function getStaticProps() {
     })
   );
   currencies.unshift(scammCurrency);
-  currencies.push(USDCCurrency);
 
   return {
     props: {
