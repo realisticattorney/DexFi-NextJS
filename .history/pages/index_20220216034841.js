@@ -199,6 +199,7 @@ export default function Home(props) {
   //   loadExchange(exchangeCurrency, toSwapCurrency, exchange, registry);
   // }, [exchangeCurrency, toSwapCurrency, exchange, registry]);
 
+
   useEffect(() => {
     loadDefaultExchange();
   }, []);
@@ -215,17 +216,14 @@ export default function Home(props) {
 
   async function loadDefaultExchange() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
+
     const registry = new ethers.Contract(
       registryAddress,
       Registry.abi,
       provider
     );
-    let baseExchangeTokenAddress = await registry.getExchange(
-      exchangeCurrency[0].address
-    );
-
     const exchange = new ethers.Contract(
-      baseExchangeTokenAddress,
+      scammExchangeAddress,
       Exchange.abi,
       provider
     );
@@ -234,6 +232,8 @@ export default function Home(props) {
     setSwapType('tokenToEthSwap');
     setLoadingState('loaded');
   }
+
+
 
   async function callExchange(input, id) {
     // console.log('input', typeof input);

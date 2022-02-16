@@ -199,41 +199,10 @@ export default function Home(props) {
   //   loadExchange(exchangeCurrency, toSwapCurrency, exchange, registry);
   // }, [exchangeCurrency, toSwapCurrency, exchange, registry]);
 
-  useEffect(() => {
-    loadDefaultExchange();
-  }, []);
 
-  // useEffect(() => {
-  //   loadExchange();
-  // }, [exchangeCurrency]);
 
-  // async function loadExchange() {
-  //   const provider = new ethers.providers.Web3Provider(window.ethereum);
-  //   if (exchangeCurrency[1] === currencies[1]) {
-  //   }
-  // }
 
-  async function loadDefaultExchange() {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const registry = new ethers.Contract(
-      registryAddress,
-      Registry.abi,
-      provider
-    );
-    let baseExchangeTokenAddress = await registry.getExchange(
-      exchangeCurrency[0].address
-    );
-
-    const exchange = new ethers.Contract(
-      baseExchangeTokenAddress,
-      Exchange.abi,
-      provider
-    );
-    setRegistry(registry);
-    setExchange(exchange);
-    setSwapType('tokenToEthSwap');
-    setLoadingState('loaded');
-  }
+  
 
   async function callExchange(input, id) {
     // console.log('input', typeof input);
