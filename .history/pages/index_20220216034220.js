@@ -578,12 +578,12 @@ export async function getStaticProps() {
     decimals: 18,
     address: USDCAddress,
   };
-
-  const ETCCurrency = {
-    symbol: 'ETC',
-    logoURI: '/ETClogo.png',
+  
+  const USDCCurrency = {
+    symbol: 'USDC',
+    logoURI: '/USDClogo.png',
     decimals: 18,
-    address: ETCAddress,
+    address: USDCAddress,
   };
   const selectedCurrencies = allCurrenciesData.tokens.filter(
     ({ symbol }) =>
@@ -607,7 +607,6 @@ export async function getStaticProps() {
   );
   currencies.unshift(scammCurrency);
   currencies.push(USDCCurrency);
-  currencies.push(ETCCurrency);
 
   return {
     props: {

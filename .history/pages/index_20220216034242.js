@@ -607,7 +607,6 @@ export async function getStaticProps() {
   );
   currencies.unshift(scammCurrency);
   currencies.push(USDCCurrency);
-  currencies.push(ETCCurrency);
 
   return {
     props: {

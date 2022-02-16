@@ -35,7 +35,7 @@ import {
   USDCAddress,
   USDCExchangeAddress,
   ETCAddress,
-  ETCExchangeAddress,
+  
 } from '../config.js';
 
 import Registry from '../artifacts/contracts/Registry.sol/Registry.json';
@@ -118,6 +118,7 @@ export default function Home(props) {
       let exchangeTokenAddress = await c?.tokenAddress();
       if (exchange === null) {
         async function loadDefaultExchange() {
+
           const registry = new ethers.Contract(
             registryAddress,
             Registry.abi,
@@ -134,7 +135,7 @@ export default function Home(props) {
           );
           setRegistry(registry);
           setExchange(exchange);
-          setSwapType('tokenToEthSwap');
+          setSwapType("tokenToEthSwap")
           setLoadingState('loaded');
         }
         loadDefaultExchange();
@@ -145,26 +146,18 @@ export default function Home(props) {
         exchangeTokenAddress === b[0].address
       ) {
         if (exchangeTokenAddress === a[0].address && b[1] === 1) {
-          setSwapType('tokenToEthSwap');
-          console.log(
-            'exchange instance unchanged. Type of swap: tokenToEthSwap'
-          );
+          setSwapType("tokenToEthSwap")
+          console.log('exchange instance unchanged. Type of swap: tokenToEthSwap');
           return;
         } else if (exchangeTokenAddress === b[0].address && a[1] === 1) {
-          setSwapType('ethToTokenSwap');
-          console.log(
-            'exchange instance unchanged. Type of swap: ethToTokenSwap'
-          );
-        } else if (exchangeTokenAddress === a[0].address && b[1] !== 1) {
-          setSwapType('tokenToTokenSwap');
-          console.log(
-            'exchange instance unchanged. Type of swap: tokenToTokenSwap'
-          );
+          setSwapType("ethToTokenSwap")
+          console.log('exchange instance unchanged. Type of swap: ethToTokenSwap');
+        } else if(exchangeTokenAddress === a[0].address && b[1] !== 1) {
+          setSwapType("tokenToTokenSwap")
+          console.log('exchange instance unchanged. Type of swap: tokenToTokenSwap');
         } else {
-          setSwapType('tokenToTokenSwap');
-          console.log(
-            'exchange instance unchanged. Type of swap: tokenToTokenSwap'
-          );
+          setSwapType("tokenToTokenSwap")
+          console.log('exchange instance unchanged. Type of swap: tokenToTokenSwap');
         }
         setInputOne(null);
         setInputSecond(null); //I should check whether this is changing from token-eth to eth-token or token-token. In the first case, no need to reset the inputs. For the latter, I should reset the inputs.
@@ -578,13 +571,6 @@ export async function getStaticProps() {
     decimals: 18,
     address: USDCAddress,
   };
-
-  const ETCCurrency = {
-    symbol: 'ETC',
-    logoURI: '/ETClogo.png',
-    decimals: 18,
-    address: ETCAddress,
-  };
   const selectedCurrencies = allCurrenciesData.tokens.filter(
     ({ symbol }) =>
       symbol === 'WETH' ||
@@ -607,7 +593,6 @@ export async function getStaticProps() {
   );
   currencies.unshift(scammCurrency);
   currencies.push(USDCCurrency);
-  currencies.push(ETCCurrency);
 
   return {
     props: {
