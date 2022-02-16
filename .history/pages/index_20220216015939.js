@@ -77,7 +77,7 @@ export default function Home(props) {
       handleClose();
     } else {
       if (index === exchangeCurrency[1]) {
-        handleMenuItemSwitch(exchangeCurrency[1],toSwapCurrency[1] );
+        handleMenuItemSwitch(toSwapCurrency[1], exchangeCurrency[1]);
       } else {
         setToSwapCurrency([currencies[index], index]);
       }

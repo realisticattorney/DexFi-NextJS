@@ -64,10 +64,7 @@ export default function Home(props) {
   const handleCloseSecond = () => setOpenSecond(false);
 
   const handleMenuItemClick = (event, index, menuItem) => {
-    console.log('index', index);
-    console.log('menuItem', menuItem);
-    console.log('toswapCurrency', toSwapCurrency[1]);
-    console.log('exchangeCurrency', exchangeCurrency[1]);
+    console.log("",index)
     if (menuItem === 1) {
       if (index === toSwapCurrency[1]) {
         handleMenuItemSwitch(exchangeCurrency[1], toSwapCurrency[1]);
@@ -77,7 +74,7 @@ export default function Home(props) {
       handleClose();
     } else {
       if (index === exchangeCurrency[1]) {
-        handleMenuItemSwitch(exchangeCurrency[1],toSwapCurrency[1] );
+        handleMenuItemSwitch(toSwapCurrency[1], exchangeCurrency[1]);
       } else {
         setToSwapCurrency([currencies[index], index]);
       }
@@ -111,6 +108,7 @@ export default function Home(props) {
       setInputSecond(event.target.value);
     }
   };
+
 
   useEffect(() => {
     async function loadExchange(a, b, c, d) {
