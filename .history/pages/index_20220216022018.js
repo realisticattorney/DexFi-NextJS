@@ -63,8 +63,6 @@ export default function Home(props) {
   const handleClose = () => setOpen(false);
   const handleCloseSecond = () => setOpenSecond(false);
 
-  const [swapType, setSwapType] = useState(null); //Disable Connect Wallet/Swap button if null
-
   const handleMenuItemClick = (event, index, menuItem) => {
     if (menuItem === 1) {
       if (index === toSwapCurrency[1]) {
@@ -112,10 +110,10 @@ export default function Home(props) {
 
   useEffect(() => {
     async function loadExchange(a, b, c, d) {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
       let exchangeTokenAddress = await c?.tokenAddress();
       if (exchange === null) {
         async function loadDefaultExchange() {
+          const provider = new ethers.providers.Web3Provider(window.ethereum);
 
           const registry = new ethers.Contract(
             registryAddress,
@@ -133,7 +131,6 @@ export default function Home(props) {
           );
           setRegistry(registry);
           setExchange(exchange);
-          setSwapType("tokenToEthSwap")
           setLoadingState('loaded');
         }
         loadDefaultExchange();
@@ -143,25 +140,19 @@ export default function Home(props) {
         exchangeTokenAddress === a[0].address ||
         exchangeTokenAddress === b[0].address
       ) {
-        if (exchangeTokenAddress === a[0].address && b[1] === 1) {
-          setSwapType("tokenToEthSwap")
-          console.log('exchange instance unchanged. Type of swap: tokenToEthSwap');
+        if (
+          (exchangeTokenAddress === a[0].address && b[1] === 1) ||
+          
+        ) {
+          console.log('exchange instance unchanged');
           return;
-        } else if (exchangeTokenAddress === b[0].address && a[1] === 1) {
-          setSwapType("ethToTokenSwap")
-          console.log('exchange instance unchanged. Type of swap: ethToTokenSwap');
-        } else if(exchangeTokenAddress === a[0].address && b[1] !== 1) {
-          setSwapType("tokenToTokenSwap")
-          console.log('exchange instance unchanged. Type of swap: tokenToTokenSwap');
-        } else {
-          setSwapType("tokenToTokenSwap")
-          console.log('exchange instance unchanged. Type of swap: tokenToTokenSwap');
         }
         setInputOne(null);
         setInputSecond(null); //I should check whether this is changing from token-eth to eth-token or token-token. In the first case, no need to reset the inputs. For the latter, I should reset the inputs.
         console.log('exchange instance unchanged');
         return;
       } else {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
         if (a[1] === 1) {
           let newExchangeTokenAddress = await d.getExchange(b[0].address);
           setExchange(

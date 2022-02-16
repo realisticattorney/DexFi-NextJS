@@ -3,7 +3,6 @@ const { provider } = waffle;
 const amountA = ethers.utils.parseEther('20000');
 const amountB = ethers.utils.parseEther('1000');
 const amountC = ethers.utils.parseEther('500');
-const amountD = ethers.utils.parseEther('250');
 
 async function main() {
   const Registry = await ethers.getContractFactory('Registry');
@@ -77,8 +76,6 @@ async function main() {
   );
   console.log('EthProvidedToScammExchange', ethProvided);
 
-
-
   await tokenTwo.approve(USDCExchangeContract.address, amountA);
   const allowanceAmountTwo = ethers.utils.formatEther(
     await tokenTwo.allowance(deployer.address, USDCExchangeContract.address)
@@ -89,19 +86,17 @@ async function main() {
     await provider.getBalance(USDCExchangeContract.address)
   );
   console.log('EthProvidedToUSDCExchange', ethProvidedTwo);
-
-
-
-  await tokenThree.approve(ETCExchangeContract.address, amountA);
-  const allowanceAmountThree = ethers.utils.formatEther(
-    await tokenThree.allowance(deployer.address, ETCExchangeContract.address)
+ 
+  await tokenThree.approve(USDCExchangeContract.address, amountA);
+  const allowanceAmountTwo = ethers.utils.formatEther(
+    await tokenThree.allowance(deployer.address, USDCExchangeContract.address)
   );
-  console.log('AllowedETCToTranfer', allowanceAmountThree);
-  await ETCExchangeContract.addLiquidity(amountA, { value: amountD });
-  const ethProvidedThree = ethers.utils.formatEther(
-    await provider.getBalance(ETCExchangeContract.address)
+  console.log('AllowedUSDCToTranfer', allowanceAmountTwo);
+  await USDCExchangeContract.addLiquidity(amountA, { value: amountC });
+  const ethProvidedTwo = ethers.utils.formatEther(
+    await provider.getBalance(USDCExchangeContract.address)
   );
-  console.log('EthProvidedToETCExchange', ethProvidedThree);
+  console.log('EthProvidedToUSDCExchange', ethProvidedTwo);
 }
 
 main()

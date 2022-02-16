@@ -112,8 +112,8 @@ export default function Home(props) {
 
   useEffect(() => {
     async function loadExchange(a, b, c, d) {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
       let exchangeTokenAddress = await c?.tokenAddress();
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
       if (exchange === null) {
         async function loadDefaultExchange() {
 

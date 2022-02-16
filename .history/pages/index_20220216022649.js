@@ -112,10 +112,10 @@ export default function Home(props) {
 
   useEffect(() => {
     async function loadExchange(a, b, c, d) {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
       let exchangeTokenAddress = await c?.tokenAddress();
       if (exchange === null) {
         async function loadDefaultExchange() {
+          const provider = new ethers.providers.Web3Provider(window.ethereum);
 
           const registry = new ethers.Contract(
             registryAddress,
@@ -162,6 +162,7 @@ export default function Home(props) {
         console.log('exchange instance unchanged');
         return;
       } else {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
         if (a[1] === 1) {
           let newExchangeTokenAddress = await d.getExchange(b[0].address);
           setExchange(

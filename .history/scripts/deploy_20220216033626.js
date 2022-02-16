@@ -77,8 +77,6 @@ async function main() {
   );
   console.log('EthProvidedToScammExchange', ethProvided);
 
-
-
   await tokenTwo.approve(USDCExchangeContract.address, amountA);
   const allowanceAmountTwo = ethers.utils.formatEther(
     await tokenTwo.allowance(deployer.address, USDCExchangeContract.address)
@@ -91,17 +89,17 @@ async function main() {
   console.log('EthProvidedToUSDCExchange', ethProvidedTwo);
 
 
-
+  
   await tokenThree.approve(ETCExchangeContract.address, amountA);
   const allowanceAmountThree = ethers.utils.formatEther(
     await tokenThree.allowance(deployer.address, ETCExchangeContract.address)
   );
-  console.log('AllowedETCToTranfer', allowanceAmountThree);
+  console.log('AllowedUSDCToTranfer', allowanceAmountThree);
   await ETCExchangeContract.addLiquidity(amountA, { value: amountD });
   const ethProvidedThree = ethers.utils.formatEther(
     await provider.getBalance(ETCExchangeContract.address)
   );
-  console.log('EthProvidedToETCExchange', ethProvidedThree);
+  console.log('EthProvidedToUSDCExchange', ethProvidedThree);
 }
 
 main()
