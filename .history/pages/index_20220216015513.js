@@ -108,6 +108,9 @@ export default function Home(props) {
     }
   };
 
+  // useEffect(() => {
+  //   loadDefaultExchange();
+  // }, [loadDefaultExchange]);
 
   useEffect(() => {
     async function loadExchange(a, b, c, d) {
@@ -141,7 +144,7 @@ export default function Home(props) {
         exchangeTokenAddress === a[0].address ||
         exchangeTokenAddress === b[0].address
       ) {
-        console.log('exchange instance unchanged');
+        console.log('exchange instance');
         return;
       } else {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -150,7 +153,7 @@ export default function Home(props) {
           setExchange(
             new ethers.Contract(newExchangeTokenAddress, Exchange.abi, provider)
           );
-          console.log('exchange instance change to token at the top', exchange);
+          console.log('it was the former', exchange);
           setInputOne(null);
           setInputSecond(null);
           return;
@@ -160,10 +163,7 @@ export default function Home(props) {
           setExchange(
             new ethers.Contract(newExchangeTokenAddress, Exchange.abi, provider)
           );
-          console.log(
-            'exchange instance change to token at the bottom',
-            exchange
-          );
+          console.log('it was the latter', exchange);
           setInputOne(null);
           setInputSecond(null);
           return;

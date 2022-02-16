@@ -108,6 +108,9 @@ export default function Home(props) {
     }
   };
 
+  // useEffect(() => {
+  //   loadDefaultExchange();
+  // }, [loadDefaultExchange]);
 
   useEffect(() => {
     async function loadExchange(a, b, c, d) {
@@ -160,10 +163,7 @@ export default function Home(props) {
           setExchange(
             new ethers.Contract(newExchangeTokenAddress, Exchange.abi, provider)
           );
-          console.log(
-            'exchange instance change to token at the bottom',
-            exchange
-          );
+          console.log('it was the latter', exchange);
           setInputOne(null);
           setInputSecond(null);
           return;

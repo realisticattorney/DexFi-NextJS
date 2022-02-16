@@ -108,6 +108,9 @@ export default function Home(props) {
     }
   };
 
+  // useEffect(() => {
+  //   loadDefaultExchange();
+  // }, [loadDefaultExchange]);
 
   useEffect(() => {
     async function loadExchange(a, b, c, d) {
