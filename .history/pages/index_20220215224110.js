@@ -151,7 +151,7 @@ export default function Home(props) {
           );
           console.log('it was the latter', exchange);
           setInputOne(null);
-          setInputSecond(null);
+      setInputSecond(null);
           return;
         }
       }

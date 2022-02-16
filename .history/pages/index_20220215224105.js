@@ -136,9 +136,8 @@ export default function Home(props) {
             new ethers.Contract(newExchangeTokenAddress, Exchange.abi, provider)
           );
           console.log('it was the former', exchange);
-          setInputOne(null);
-          setInputSecond(null);
-          return;
+          
+          return
         }
         if (b[1] === 1) {
           let newExchangeTokenAddress = await d.getExchange(a[0].address);
@@ -150,9 +149,7 @@ export default function Home(props) {
             new ethers.Contract(newExchangeTokenAddress, Exchange.abi, provider)
           );
           console.log('it was the latter', exchange);
-          setInputOne(null);
-          setInputSecond(null);
-          return;
+          return
         }
       }
     }

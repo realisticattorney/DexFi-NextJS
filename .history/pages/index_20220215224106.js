@@ -150,8 +150,6 @@ export default function Home(props) {
             new ethers.Contract(newExchangeTokenAddress, Exchange.abi, provider)
           );
           console.log('it was the latter', exchange);
-          setInputOne(null);
-          setInputSecond(null);
           return;
         }
       }
