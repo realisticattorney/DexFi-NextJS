@@ -138,7 +138,7 @@ export default function Home(props) {
           console.log('it was the former', exchange);
         }
         if (b[1] === 1) {
-          let newExchangeTokenAddress = await d.getExchange(USDCAddress);
+          let newExchangeTokenAddress = await d.getExchange(a[0].address);
           console.log("newExchangeTokenAddress22222", await newExchangeTokenAddress);
           setExchange(
             new ethers.Contract(newExchangeTokenAddress, Exchange.abi, provider)

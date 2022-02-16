@@ -2,8 +2,6 @@ const { ethers, waffle } = require('hardhat');
 const { provider } = waffle;
 const amountA = ethers.utils.parseEther('10000');
 const amountB = ethers.utils.parseEther('1000');
-const amountC = ethers.utils.parseEther('500');
-
 
 async function main() {
   const Registry = await ethers.getContractFactory('Registry');
@@ -55,28 +53,29 @@ async function main() {
     getUSDCExchangeAddress
   );
 
-  const scammExchangeContract = await Exchange.attach(scammExchangeAddress);
-  const USDCExchangeContract = await Exchange.attach(USDCExchangeAddress);
+  const scammExchangeInstance = new ethers.Contract(
+    USDCExchangeAddress
+  );
 
-  await token.approve(scammExchangeContract.address, amountA);
+  await token.approve(USDCExchangeAddress, amountA);
   const allowanceAmount = ethers.utils.formatEther(
-    await token.allowance(deployer.address, scammExchangeContract.address)
+    await token.allowance(deployer.address, USDCExchangeAddress)
   );
   console.log('AllowedScammCoinsToTranfer', allowanceAmount);
-  await scammExchangeContract.addLiquidity(amountA, { value: amountB });
+  await exchange.addLiquidity(amountA, { value: amountB });
   const ethProvided = ethers.utils.formatEther(
-    await provider.getBalance(scammExchangeContract.address)
+    await provider.getBalance(exchange.address)
   );
   console.log('EthProvidedToScammExchange', ethProvided);
 
-  await tokenTwo.approve(USDCExchangeContract.address, amountA);
+  await tokenTwo.approve(exchangeTwo.address, amountA);
   const allowanceAmountTwo = ethers.utils.formatEther(
-    await tokenTwo.allowance(deployer.address, USDCExchangeContract.address)
+    await tokenTwo.allowance(deployer.address, exchangeTwo.address)
   );
   console.log('AllowedUSDCToTranfer', allowanceAmountTwo);
-  await USDCExchangeContract.addLiquidity(amountA, { value: amountB });
+  await exchangeTwo.addLiquidity(amountA, { value: amountB });
   const ethProvidedTwo = ethers.utils.formatEther(
-    await provider.getBalance(USDCExchangeContract.address)
+    await provider.getBalance(exchangeTwo.address)
   );
   console.log('EthProvidedToUSDCExchange', ethProvidedTwo);
 }

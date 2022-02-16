@@ -2,8 +2,6 @@ const { ethers, waffle } = require('hardhat');
 const { provider } = waffle;
 const amountA = ethers.utils.parseEther('10000');
 const amountB = ethers.utils.parseEther('1000');
-const amountC = ethers.utils.parseEther('500');
-
 
 async function main() {
   const Registry = await ethers.getContractFactory('Registry');

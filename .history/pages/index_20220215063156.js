@@ -112,44 +112,39 @@ export default function Home(props) {
   }, []);
 
   useEffect(() => {
-    async function loadExchange(a, b, c, d) {
-      console.log('scammExchange address', a[0].address);
-      console.log("exchangeeeeee", c)
-      let exchangeTokenAddress = await c?.tokenAddress();
-      console.log('exchangeTokenAddress', exchangeTokenAddress);
+    function loadExchange(a, b) {
+      console.log("exchange address",exchange.address)
+      console.log("exchange address",exchange.address)
       if (exchange === null) {
         console.log('not even loading');
         return;
       } else if (
-        exchangeTokenAddress === a[0].address ||
-        exchangeTokenAddress === b[0].address
+        exchange.address === a[0].address ||
+        exchange.address === b[0].address
       ) {
         console.log('we are stil with this contract');
         return;
       } else {
-        console.log('exchange object', exchange);
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         if (a[1] === 1) {
-          let newExchangeTokenAddress = await d.getExchange(b[0].address);
-          console.log("newExchangeTokenAddress22222", newExchangeTokenAddress);
           setExchange(
-            new ethers.Contract(newExchangeTokenAddress, Exchange.abi, provider)
+            new ethers.Contract(b[0].address, Exchange.abi, provider)
           );
           console.log('it was the former', exchange);
+          return;
         }
         if (b[1] === 1) {
-          let newExchangeTokenAddress = await d.getExchange(USDCAddress);
-          console.log("newExchangeTokenAddress22222", await newExchangeTokenAddress);
           setExchange(
-            new ethers.Contract(newExchangeTokenAddress, Exchange.abi, provider)
+            new ethers.Contract(a[0].address, Exchange.abi, provider)
           );
           console.log('it was the latter', exchange);
+          return;
         }
         console.log('something went wrongworngwrong');
       }
     }
-    loadExchange(exchangeCurrency, toSwapCurrency, exchange, registry);
-  }, [exchangeCurrency, toSwapCurrency, exchange, registry]);
+    loadExchange(exchangeCurrency, toSwapCurrency);
+  }, [exchangeCurrency, toSwapCurrency, exchange]);
 
   async function loadDefaultExchange() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
