@@ -140,8 +140,6 @@ export default function Home(props) {
         exchangeTokenAddress === a[0].address ||
         exchangeTokenAddress === b[0].address
       ) {
-        setInputOne(null);
-        setInputSecond(null);
         console.log('exchange instance unchanged');
         return;
       } else {

@@ -64,6 +64,10 @@ export default function Home(props) {
   const handleCloseSecond = () => setOpenSecond(false);
 
   const handleMenuItemClick = (event, index, menuItem) => {
+    console.log('index', index);
+    console.log('menuItem', menuItem);
+    console.log('toswapCurrency', toSwapCurrency[1]);
+    console.log('exchangeCurrency', exchangeCurrency[1]);
     if (menuItem === 1) {
       if (index === toSwapCurrency[1]) {
         handleMenuItemSwitch(exchangeCurrency[1], toSwapCurrency[1]);
@@ -140,8 +144,6 @@ export default function Home(props) {
         exchangeTokenAddress === a[0].address ||
         exchangeTokenAddress === b[0].address
       ) {
-        setInputOne(null);
-        setInputSecond(null);
         console.log('exchange instance unchanged');
         return;
       } else {
