@@ -1,6 +1,6 @@
 const { ethers, waffle } = require('hardhat');
 const { provider } = waffle;
-const amountA = ethers.utils.parseEther('20000');
+const amountA = ethers.utils.parseEther('2000');
 const amountB = ethers.utils.parseEther('1000');
 const amountC = ethers.utils.parseEther('500');
 

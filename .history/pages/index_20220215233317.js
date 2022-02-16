@@ -168,24 +168,23 @@ export default function Home(props) {
       Registry.abi,
       provider
     );
-    let ExchangeTokenAddress = await registry.getExchange(exchangeCurrency[0].address);
-
     const exchange = new ethers.Contract(
-      ExchangeTokenAddress,
+      scammExchangeAddress,
       Exchange.abi,
       provider
     );
-    setRegistry(registry);
     setExchange(exchange);
+    setRegistry(registry);
     setLoadingState('loaded');
   }
 
   async function callExchange(input, id) {
-    // console.log('input', typeof input);
+    console.log('input', typeof input);
+    if(input === "1") {
+      input = ethers.utils.parseEther("1")
+    }
     let price = await ethers.utils.parseEther(input);
-    // console.log('price', ethers.utils.formatEther(price));
-    // console.log("el exchange manoooooooo",exchange);
-    // console.log("lalalalalalalal", ethers.utils.formatEther(await exchange.getEthAmount(ethers.utils.parseEther("1"))))
+    console.log('price', ethers.utils.formatEther(price));
     let amount;
 
     if (exchangeCurrency[1] !== 1) {
@@ -194,7 +193,7 @@ export default function Home(props) {
           id === 'outlined-number-1'
             ? ethers.utils.formatEther(await exchange.getEthAmount(price))
             : ethers.utils.formatEther(await exchange.getTokenAmount(price));
-        // console.log('lalalalalalalalla');
+        console.log('lalalalalalalalla');
       } else {
         amount = input;
       }

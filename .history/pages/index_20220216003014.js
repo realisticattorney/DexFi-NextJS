@@ -175,8 +175,8 @@ export default function Home(props) {
       Exchange.abi,
       provider
     );
-    setRegistry(registry);
     setExchange(exchange);
+    setRegistry(registry);
     setLoadingState('loaded');
   }
 

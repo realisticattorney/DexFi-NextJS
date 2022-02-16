@@ -168,15 +168,13 @@ export default function Home(props) {
       Registry.abi,
       provider
     );
-    let ExchangeTokenAddress = await registry.getExchange(exchangeCurrency[0].address);
-
     const exchange = new ethers.Contract(
-      ExchangeTokenAddress,
+      scammExchangeAddress,
       Exchange.abi,
       provider
     );
-    setRegistry(registry);
     setExchange(exchange);
+    setRegistry(registry);
     setLoadingState('loaded');
   }
 
@@ -194,7 +192,7 @@ export default function Home(props) {
           id === 'outlined-number-1'
             ? ethers.utils.formatEther(await exchange.getEthAmount(price))
             : ethers.utils.formatEther(await exchange.getTokenAmount(price));
-        // console.log('lalalalalalalalla');
+        console.log('lalalalalalalalla');
       } else {
         amount = input;
       }

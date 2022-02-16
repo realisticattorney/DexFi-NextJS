@@ -92,8 +92,7 @@ export default function Home(props) {
   const [inputSecond, setInputSecond] = useState(null);
 
   const handleInputOneChange = (event) => {
-    console.log('evento', event.target.value);
-    console.log('evento target', event.target.id);
+    console.log("evento",event.target.value);
     if (event.target.value > 0) {
       callExchange(event.target.value, event.target.id);
     } else if (event.target.value === '') {
@@ -168,24 +167,19 @@ export default function Home(props) {
       Registry.abi,
       provider
     );
-    let ExchangeTokenAddress = await registry.getExchange(exchangeCurrency[0].address);
-
     const exchange = new ethers.Contract(
-      ExchangeTokenAddress,
+      scammExchangeAddress,
       Exchange.abi,
       provider
     );
-    setRegistry(registry);
     setExchange(exchange);
+    setRegistry(registry);
     setLoadingState('loaded');
   }
 
   async function callExchange(input, id) {
-    // console.log('input', typeof input);
-    let price = await ethers.utils.parseEther(input);
-    // console.log('price', ethers.utils.formatEther(price));
-    // console.log("el exchange manoooooooo",exchange);
-    // console.log("lalalalalalalal", ethers.utils.formatEther(await exchange.getEthAmount(ethers.utils.parseEther("1"))))
+    const price = ethers.utils.parseEther(input.toString());
+    console.log(exchange);
     let amount;
 
     if (exchangeCurrency[1] !== 1) {
@@ -194,7 +188,6 @@ export default function Home(props) {
           id === 'outlined-number-1'
             ? ethers.utils.formatEther(await exchange.getEthAmount(price))
             : ethers.utils.formatEther(await exchange.getTokenAmount(price));
-        // console.log('lalalalalalalalla');
       } else {
         amount = input;
       }
@@ -204,7 +197,7 @@ export default function Home(props) {
           ? ethers.utils.formatEther(await exchange.getTokenAmount(price))
           : ethers.utils.formatEther(await exchange.getEthAmount(price));
     }
-    console.log('amount', amount);
+
     if (id === 'outlined-number-1') {
       setInputOne(input);
       setInputSecond(amount);

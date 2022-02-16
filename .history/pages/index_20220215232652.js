@@ -92,8 +92,8 @@ export default function Home(props) {
   const [inputSecond, setInputSecond] = useState(null);
 
   const handleInputOneChange = (event) => {
-    console.log('evento', event.target.value);
-    console.log('evento target', event.target.id);
+    console.log("evento",event.target.value);
+    console.log("evento target",event.target.id);
     if (event.target.value > 0) {
       callExchange(event.target.value, event.target.id);
     } else if (event.target.value === '') {
@@ -168,24 +168,22 @@ export default function Home(props) {
       Registry.abi,
       provider
     );
-    let ExchangeTokenAddress = await registry.getExchange(exchangeCurrency[0].address);
-
     const exchange = new ethers.Contract(
-      ExchangeTokenAddress,
+      scammExchangeAddress,
       Exchange.abi,
       provider
     );
-    setRegistry(registry);
     setExchange(exchange);
+    setRegistry(registry);
     setLoadingState('loaded');
   }
 
   async function callExchange(input, id) {
-    // console.log('input', typeof input);
-    let price = await ethers.utils.parseEther(input);
-    // console.log('price', ethers.utils.formatEther(price));
-    // console.log("el exchange manoooooooo",exchange);
-    // console.log("lalalalalalalal", ethers.utils.formatEther(await exchange.getEthAmount(ethers.utils.parseEther("1"))))
+    console.log('input', input);
+    const price = await ethers.utils.parseEther(input.toString());
+    console.log('price', ethers.utils.formatEther(price));
+    if (ethers.utils.formatEther(price) === )
+    console.log(exchange);
     let amount;
 
     if (exchangeCurrency[1] !== 1) {
@@ -194,7 +192,7 @@ export default function Home(props) {
           id === 'outlined-number-1'
             ? ethers.utils.formatEther(await exchange.getEthAmount(price))
             : ethers.utils.formatEther(await exchange.getTokenAmount(price));
-        // console.log('lalalalalalalalla');
+            console.log("lalalalalalalalla")
       } else {
         amount = input;
       }

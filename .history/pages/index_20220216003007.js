@@ -171,12 +171,12 @@ export default function Home(props) {
     let ExchangeTokenAddress = await registry.getExchange(exchangeCurrency[0].address);
 
     const exchange = new ethers.Contract(
-      ExchangeTokenAddress,
+      scammExchangeAddress,
       Exchange.abi,
       provider
     );
-    setRegistry(registry);
     setExchange(exchange);
+    setRegistry(registry);
     setLoadingState('loaded');
   }
 
