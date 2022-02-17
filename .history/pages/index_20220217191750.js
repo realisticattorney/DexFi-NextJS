@@ -52,7 +52,7 @@ export default function Home(props) {
   const [loadingState, setLoadingState] = useState('not-loaded');
   const [loadingRegistry, setLoadingRegistry] = useState(false);
   const [inputToken, setInputToken] = useState([currencies[0], 0]);
-  const [outputToken, setOutputToken] = useState([currencies[1], 1]);
+  const [outputToken, setoutputToken] = useState([currencies[1], 1]);
   const [open, setOpen] = useState(false);
   const [openSecond, setOpenSecond] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -78,11 +78,11 @@ export default function Home(props) {
         handleMenuItemSwitch(inputToken[1], outputToken[1]);
         isSwitch = true;
       } else {
-        setOutputToken([currencies[index], index]);
+        setoutputToken([currencies[index], index]);
       }
       handleCloseSecond();
     }
-    console.log('naa');
+    console.log('naa')
     if (wasSwitch && !isSwitch) {
       setWasSwitch(false);
     }
@@ -94,9 +94,9 @@ export default function Home(props) {
     const prevIndex = prevSelected;
     const newIndex = newSelected;
     setInputToken([currencies[newIndex], newIndex]);
-    setOutputToken([currencies[prevIndex], prevIndex]);
+    setoutputToken([currencies[prevIndex], prevIndex]);
     setWasSwitch(true);
-    console.log(' handleMenuItemSwitch wasSwitch: ', wasSwitch);
+    console.log(" handleMenuItemSwitch wasSwitch: ", wasSwitch);
   };
 
   const [inputOne, setInputOne] = useState(null);
@@ -147,7 +147,7 @@ export default function Home(props) {
     if (loadingState === 'loaded' || loadingRegistry === false) {
       return;
     }
-    console.log('wasSwitchInside', wasSwitch);
+    console.log("wasSwitchInside",wasSwitch)
     async function loadExchange(a, b, c, d, e) {
       let isMenuTwoEth = b[1] === 1 ? 'yes' : 'no';
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -234,7 +234,13 @@ export default function Home(props) {
       setLoadingState('loaded');
       console.log('base exchange loaded');
     }
-    loadExchange(inputToken, outputToken, exchange, registry, swapType);
+    loadExchange(
+      inputToken,
+      outputToken,
+      exchange,
+      registry,
+      swapType
+    );
   }, [
     inputToken,
     outputToken,
@@ -526,7 +532,9 @@ export default function Home(props) {
                     (inputOne / inputSecond).toString().length > 9
                       ? (inputOne / inputSecond).toString().substring(0, 10)
                       : (inputOne / inputSecond).toString()
-                  } ${inputToken[0].symbol} per ${outputToken[0].symbol}`}</h1>
+                  } ${inputToken[0].symbol} per ${
+                    outputToken[0].symbol
+                  }`}</h1>
                 </div>
               </div>
             )}

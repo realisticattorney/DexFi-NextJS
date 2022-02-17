@@ -42,17 +42,22 @@ import Registry from '../artifacts/contracts/Registry.sol/Registry.json';
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import ScammCoin from '../artifacts/contracts/ScammCoin.sol/ScammCoin.json';
 import USDC from '../artifacts/contracts/USDC.sol/USDC.json';
-import { set } from 'lodash';
 
 export default function Home(props) {
+  // const { isAuthenticated, authenticate } = useMoralis();
+
+  // useEffect(() => {
+  //   // if (isAuthenticated) router.replace("/dashboard");
+  // }, [isAuthenticated]);
+
   const { currencies } = props;
 
   const [registry, setRegistry] = useState(null);
   const [exchange, setExchange] = useState(null);
   const [loadingState, setLoadingState] = useState('not-loaded');
   const [loadingRegistry, setLoadingRegistry] = useState(false);
-  const [inputToken, setInputToken] = useState([currencies[0], 0]);
-  const [outputToken, setOutputToken] = useState([currencies[1], 1]);
+  const [exchangeCurrency, setExchangeCurrency] = useState([currencies[0], 0]);
+  const [toSwapCurrency, setToSwapCurrency] = useState([currencies[1], 1]);
   const [open, setOpen] = useState(false);
   const [openSecond, setOpenSecond] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -63,47 +68,47 @@ export default function Home(props) {
 
   const [swapType, setSwapType] = useState(null); //Disable Connect Wallet/Swap button if null
 
-  const handleMenuItemClick = async (event, index, menuItem) => {
-    let isSwitch = false;
+  const handleMenuItemClick = (event, index, menuItem) => {
+    let isSwitch = 'no';
     if (menuItem === 1) {
-      if (index === outputToken[1]) {
-        handleMenuItemSwitch(inputToken[1], outputToken[1]);
+      if (index === toSwapCurrency[1]) {
+        handleMenuItemSwitch(exchangeCurrency[1], toSwapCurrency[1]);
         isSwitch = true;
       } else {
-        setInputToken([currencies[index], index]);
+        setExchangeCurrency([currencies[index], index]);
       }
       handleClose();
     } else {
-      if (index === inputToken[1]) {
-        handleMenuItemSwitch(inputToken[1], outputToken[1]);
+      if (index === exchangeCurrency[1]) {
+        handleMenuItemSwitch(exchangeCurrency[1], toSwapCurrency[1]);
         isSwitch = true;
       } else {
-        setOutputToken([currencies[index], index]);
+        setToSwapCurrency([currencies[index], index]);
       }
       handleCloseSecond();
     }
-    console.log('naa');
-    if (wasSwitch && !isSwitch) {
+    if (isSwitch === 'no' && wasSwitch) {
       setWasSwitch(false);
     }
     setLoadingState('not-loaded');
   };
 
   const handleMenuItemSwitch = (prevSelected, newSelected) => {
-    console.log('is here>');
     const prevIndex = prevSelected;
     const newIndex = newSelected;
-    setInputToken([currencies[newIndex], newIndex]);
-    setOutputToken([currencies[prevIndex], prevIndex]);
-    setWasSwitch(true);
-    console.log(' handleMenuItemSwitch wasSwitch: ', wasSwitch);
+    let typeOfSwitch =
+      prevSelected[1] === 1 || newSelected[1] === 1
+        ? 'ethSwitch'
+        : 'currencySwitch';
+    setExchangeCurrency([currencies[newIndex], newIndex]);
+    setToSwapCurrency([currencies[prevIndex], prevIndex]);
+    setWasSwitch(typeOfSwitch);
   };
 
   const [inputOne, setInputOne] = useState(null);
   const [inputSecond, setInputSecond] = useState(null);
 
   const handleInputOneChange = (event) => {
-    event.preventDefault();
     console.log('evento', event.target.value);
     console.log('evento target', event.target.id);
     if (event.target.value > 0) {
@@ -142,33 +147,28 @@ export default function Home(props) {
   }, []);
 
   console.log('swapType', swapType);
-
   useEffect(() => {
     if (loadingState === 'loaded' || loadingRegistry === false) {
       return;
     }
-    console.log('wasSwitchInside', wasSwitch);
+
     async function loadExchange(a, b, c, d, e) {
       let isMenuTwoEth = b[1] === 1 ? 'yes' : 'no';
       const provider = new ethers.providers.Web3Provider(window.ethereum);
-      // if (wasSwitch === 'ethSwitch') {
-      //   if (isMenuTwoEth === 'yes') {
-      //     setSwapType('TokenToEthSwap');
-      //   } else {
-      //     setSwapType('ethToTokenSwap');
-      //   }
-      //   console.log('it was switch');
-      // } else if (wasSwitch === 'currencySwitch') {
-      //   setExchange(
-      //     new ethers.Contract(
-      //       await d.getExchange(a[0].address),
-      //       Exchange.abi,
-      //       provider
-      //     )
-      //   );
-      //   setSwapType('TokenToTokenSwap');
-      if (wasSwitch) {
+      if (wasSwitch === 'ethSwitch') {
+        if (isMenuTwoEth === 'yes') {
+          setSwapType('TokenToEthSwap');
+        } else {
+          setSwapType('ethToTokenSwap');
+        }
         console.log('it was switch');
+        return;
+      } else if (wasSwitch === 'currencySwitch') {
+        setExchange(new ethers.Contract(
+                await d.getExchange(a[0].address),
+                Exchange.abi,
+                provider
+              );)
       } else {
         let exchange;
         let swapType;
@@ -230,14 +230,21 @@ export default function Home(props) {
             );
           }
         }
+
+        setLoadingState('loaded');
+        console.log('base exchange loaded');
       }
-      setLoadingState('loaded');
-      console.log('base exchange loaded');
     }
-    loadExchange(inputToken, outputToken, exchange, registry, swapType);
+    loadExchange(
+      exchangeCurrency,
+      toSwapCurrency,
+      exchange,
+      registry,
+      swapType
+    );
   }, [
-    inputToken,
-    outputToken,
+    exchangeCurrency,
+    toSwapCurrency,
     exchange,
     registry,
     swapType,
@@ -247,15 +254,20 @@ export default function Home(props) {
   ]);
 
   async function callExchange(input, id) {
+    // console.log('input', typeof input);
     let price = await ethers.utils.parseEther(input);
+    // console.log('price', ethers.utils.formatEther(price));
+    // console.log("el exchange manoooooooo",exchange);
+    // console.log("lalalalalalalal", ethers.utils.formatEther(await exchange.getEthAmount(ethers.utils.parseEther("1"))))
     let amount;
 
-    if (inputToken[1] !== 1) {
-      if (outputToken[1] === 1) {
+    if (exchangeCurrency[1] !== 1) {
+      if (toSwapCurrency[1] === 1) {
         amount =
           id === 'outlined-number-1'
             ? ethers.utils.formatEther(await exchange.getEthAmount(price))
             : ethers.utils.formatEther(await exchange.getTokenAmount(price));
+        // console.log('lalalalalalalalla');
       } else {
         amount = input;
       }
@@ -280,8 +292,12 @@ export default function Home(props) {
     const connection = await web3modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
+
+    //a esta altura ya hay deployado un contrato para este par de monedas. asi que hay que conectarlo de una. lo que si estaria bueno agregar es el searchbar en el modal donde si no encuentra la moneda, puede o agregar la direccion manualmente, o incluso podria ser ah ya se, tiene que fetchear con alguna api como base de datos de monedas.
+    //y una vez que clickeas en esa moneda se chequea si ya esta en el registry mapping y si no esta, se llama a la createExchange function.
+    //o sea se tiene que chequear en el registry cuando se cambia el selectedIndex si currencies[selectedIndex].address esta en el registry, y si esta llamo aca al getExchangeAddress de registry
     const getExchangeAddress = await registry.getExchange(
-      inputToken[0].address
+      exchangeCurrency[0].address
     );
     //habria que chequear si es un ERC20 o si no hace falta aprove. pero despues si hay o no aprove hecho, esta siempre en mi control porque se aprueba que mi contrato pueda o no mandar. entonces lo que deberia hacer ahora, es
     const tokenUserConnection = new ethers.Contract(
@@ -328,6 +344,21 @@ export default function Home(props) {
       console.log('transaction', transaction);
     }
     console.log('transaction done!');
+    // if (selectedIndex !== 1) {
+    //   if (selectedIndexSecond === 1) {
+    //     amount =
+    //       id === 'outlined-number-1'
+    //         ? ethers.utils.formatEther(await exchange.getEthAmount(price))
+    //         : ethers.utils.formatEther(await exchange.getTokenAmount(price));
+    //   } else {
+    //     amount = input;
+    //   }
+    // } else {
+    //   amount =
+    //     id === 'outlined-number-1'
+    //       ? ethers.utils.formatEther(await exchange.getTokenAmount(price))
+    //       : ethers.utils.formatEther(await exchange.getEthAmount(price));
+    // }
   }
 
   return (
@@ -352,14 +383,14 @@ export default function Home(props) {
           <div className="flex flex-col space-y-2 p-5">
             <button onClick={handleOpen} className="flex items-center">
               <Image
-                src={inputToken[0].logoURI}
+                src={exchangeCurrency[0].logoURI}
                 height={24}
                 width={24}
                 quality={50}
                 alt=""
               />
               <h1 className="ml-1 font-bold text-dexfi-violet">
-                {inputToken[0].symbol}
+                {exchangeCurrency[0].symbol}
               </h1>
               <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />
             </button>
@@ -384,8 +415,8 @@ export default function Home(props) {
                     {currencies.map((currency, index) => (
                       <MenuItem
                         key={currency.symbol}
-                        disabled={index === inputToken[1]}
-                        selected={index === inputToken[1]}
+                        disabled={index === exchangeCurrency[1]}
+                        selected={index === exchangeCurrency[1]}
                         onClick={(event) =>
                           handleMenuItemClick(event, index, 1)
                         }
@@ -440,14 +471,14 @@ export default function Home(props) {
           <div className="flex flex-col space-y-2 p-5">
             <button onClick={handleOpenSecond} className="flex items-center">
               <Image
-                src={outputToken[0].logoURI}
+                src={toSwapCurrency[0].logoURI}
                 height={24}
                 width={24}
                 quality={50}
                 alt=""
               />
               <h1 className="ml-1 font-bold text-dexfi-violet">
-                {outputToken[0].symbol}
+                {toSwapCurrency[0].symbol}
               </h1>
               <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />
             </button>
@@ -472,8 +503,8 @@ export default function Home(props) {
                     {currencies.map((currency, index) => (
                       <MenuItem
                         key={currency.symbol}
-                        disabled={index === outputToken[1]}
-                        selected={index === outputToken[1]}
+                        disabled={index === toSwapCurrency[1]}
+                        selected={index === toSwapCurrency[1]}
                         onClick={(event) =>
                           handleMenuItemClick(event, index, 2)
                         }
@@ -526,7 +557,9 @@ export default function Home(props) {
                     (inputOne / inputSecond).toString().length > 9
                       ? (inputOne / inputSecond).toString().substring(0, 10)
                       : (inputOne / inputSecond).toString()
-                  } ${inputToken[0].symbol} per ${outputToken[0].symbol}`}</h1>
+                  } ${exchangeCurrency[0].symbol} per ${
+                    toSwapCurrency[0].symbol
+                  }`}</h1>
                 </div>
               </div>
             )}
@@ -639,3 +672,16 @@ export async function getStaticProps() {
 
 //dynamic server side rendering, passing the input of every exchange to the Home component as an array of objects
 //this object will contain the exchange address, the exchange name, and the exchange logo, and the current price for each. lots of things, really, can we do that through metamask? idk. the other option is to get those things as the user demands for them, but pretty slow solution imo.
+
+//then the button SCAMM will render this popover where you can pick the token to-trade
+
+// const registry = new ethers.Contract(
+//   registryAddress,
+//   Registry.abi,
+//   provider
+// );
+// const getExchangeAddress = await registry.getExchange(scammAddress);
+
+// if (getExchangeAddress === '0x0000000000000000000000000000000000000000') {
+//   const exchangeAddress = await registry.createExchange(scammAddress);
+// }
