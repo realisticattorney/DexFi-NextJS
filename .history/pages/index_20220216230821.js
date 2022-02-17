@@ -44,6 +44,12 @@ import ScammCoin from '../artifacts/contracts/ScammCoin.sol/ScammCoin.json';
 import USDC from '../artifacts/contracts/USDC.sol/USDC.json';
 
 export default function Home(props) {
+  // const { isAuthenticated, authenticate } = useMoralis();
+
+  // useEffect(() => {
+  //   // if (isAuthenticated) router.replace("/dashboard");
+  // }, [isAuthenticated]);
+
   const { currencies } = props;
 
   const [registry, setRegistry] = useState(null);
@@ -62,7 +68,7 @@ export default function Home(props) {
 
   const [swapType, setSwapType] = useState(null); //Disable Connect Wallet/Swap button if null
 
-  const handleMenuItemClick = async (event, index, menuItem) => {
+  const handleMenuItemClick = (event, index, menuItem) => {
     let isSwitch = 'no';
     if (menuItem === 1) {
       if (index === toSwapCurrency[1]) {
@@ -250,7 +256,11 @@ export default function Home(props) {
   // ]);
 
   async function callExchange(input, id) {
+    // console.log('input', typeof input);
     let price = await ethers.utils.parseEther(input);
+    // console.log('price', ethers.utils.formatEther(price));
+    // console.log("el exchange manoooooooo",exchange);
+    // console.log("lalalalalalalal", ethers.utils.formatEther(await exchange.getEthAmount(ethers.utils.parseEther("1"))))
     let amount;
 
     if (exchangeCurrency[1] !== 1) {
@@ -259,6 +269,7 @@ export default function Home(props) {
           id === 'outlined-number-1'
             ? ethers.utils.formatEther(await exchange.getEthAmount(price))
             : ethers.utils.formatEther(await exchange.getTokenAmount(price));
+        // console.log('lalalalalalalalla');
       } else {
         amount = input;
       }
@@ -283,6 +294,10 @@ export default function Home(props) {
     const connection = await web3modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
+
+    //a esta altura ya hay deployado un contrato para este par de monedas. asi que hay que conectarlo de una. lo que si estaria bueno agregar es el searchbar en el modal donde si no encuentra la moneda, puede o agregar la direccion manualmente, o incluso podria ser ah ya se, tiene que fetchear con alguna api como base de datos de monedas.
+    //y una vez que clickeas en esa moneda se chequea si ya esta en el registry mapping y si no esta, se llama a la createExchange function.
+    //o sea se tiene que chequear en el registry cuando se cambia el selectedIndex si currencies[selectedIndex].address esta en el registry, y si esta llamo aca al getExchangeAddress de registry
     const getExchangeAddress = await registry.getExchange(
       exchangeCurrency[0].address
     );
@@ -331,6 +346,21 @@ export default function Home(props) {
       console.log('transaction', transaction);
     }
     console.log('transaction done!');
+    // if (selectedIndex !== 1) {
+    //   if (selectedIndexSecond === 1) {
+    //     amount =
+    //       id === 'outlined-number-1'
+    //         ? ethers.utils.formatEther(await exchange.getEthAmount(price))
+    //         : ethers.utils.formatEther(await exchange.getTokenAmount(price));
+    //   } else {
+    //     amount = input;
+    //   }
+    // } else {
+    //   amount =
+    //     id === 'outlined-number-1'
+    //       ? ethers.utils.formatEther(await exchange.getTokenAmount(price))
+    //       : ethers.utils.formatEther(await exchange.getEthAmount(price));
+    // }
   }
 
   return (
@@ -644,3 +674,16 @@ export async function getStaticProps() {
 
 //dynamic server side rendering, passing the input of every exchange to the Home component as an array of objects
 //this object will contain the exchange address, the exchange name, and the exchange logo, and the current price for each. lots of things, really, can we do that through metamask? idk. the other option is to get those things as the user demands for them, but pretty slow solution imo.
+
+//then the button SCAMM will render this popover where you can pick the token to-trade
+
+// const registry = new ethers.Contract(
+//   registryAddress,
+//   Registry.abi,
+//   provider
+// );
+// const getExchangeAddress = await registry.getExchange(scammAddress);
+
+// if (getExchangeAddress === '0x0000000000000000000000000000000000000000') {
+//   const exchangeAddress = await registry.createExchange(scammAddress);
+// }

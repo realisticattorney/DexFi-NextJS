@@ -331,6 +331,21 @@ export default function Home(props) {
       console.log('transaction', transaction);
     }
     console.log('transaction done!');
+    // if (selectedIndex !== 1) {
+    //   if (selectedIndexSecond === 1) {
+    //     amount =
+    //       id === 'outlined-number-1'
+    //         ? ethers.utils.formatEther(await exchange.getEthAmount(price))
+    //         : ethers.utils.formatEther(await exchange.getTokenAmount(price));
+    //   } else {
+    //     amount = input;
+    //   }
+    // } else {
+    //   amount =
+    //     id === 'outlined-number-1'
+    //       ? ethers.utils.formatEther(await exchange.getTokenAmount(price))
+    //       : ethers.utils.formatEther(await exchange.getEthAmount(price));
+    // }
   }
 
   return (

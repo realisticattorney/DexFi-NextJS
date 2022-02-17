@@ -259,6 +259,7 @@ export default function Home(props) {
           id === 'outlined-number-1'
             ? ethers.utils.formatEther(await exchange.getEthAmount(price))
             : ethers.utils.formatEther(await exchange.getTokenAmount(price));
+        // console.log('lalalalalalalalla');
       } else {
         amount = input;
       }
@@ -283,6 +284,10 @@ export default function Home(props) {
     const connection = await web3modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
+
+    //a esta altura ya hay deployado un contrato para este par de monedas. asi que hay que conectarlo de una. lo que si estaria bueno agregar es el searchbar en el modal donde si no encuentra la moneda, puede o agregar la direccion manualmente, o incluso podria ser ah ya se, tiene que fetchear con alguna api como base de datos de monedas.
+    //y una vez que clickeas en esa moneda se chequea si ya esta en el registry mapping y si no esta, se llama a la createExchange function.
+    //o sea se tiene que chequear en el registry cuando se cambia el selectedIndex si currencies[selectedIndex].address esta en el registry, y si esta llamo aca al getExchangeAddress de registry
     const getExchangeAddress = await registry.getExchange(
       exchangeCurrency[0].address
     );
@@ -331,6 +336,21 @@ export default function Home(props) {
       console.log('transaction', transaction);
     }
     console.log('transaction done!');
+    // if (selectedIndex !== 1) {
+    //   if (selectedIndexSecond === 1) {
+    //     amount =
+    //       id === 'outlined-number-1'
+    //         ? ethers.utils.formatEther(await exchange.getEthAmount(price))
+    //         : ethers.utils.formatEther(await exchange.getTokenAmount(price));
+    //   } else {
+    //     amount = input;
+    //   }
+    // } else {
+    //   amount =
+    //     id === 'outlined-number-1'
+    //       ? ethers.utils.formatEther(await exchange.getTokenAmount(price))
+    //       : ethers.utils.formatEther(await exchange.getEthAmount(price));
+    // }
   }
 
   return (
