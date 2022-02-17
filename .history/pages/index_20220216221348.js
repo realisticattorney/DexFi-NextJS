@@ -57,9 +57,7 @@ export default function Home(props) {
   const [loadingState, setLoadingState] = useState('not-loaded');
   const [loadingRegistry, setLoadingRegistry] = useState(false);
   const [exchangeCurrency, setExchangeCurrency] = useState([currencies[0], 0]);
-  const [prevExchangeCurrency, setPrevExchangeCurrency] = useState(null);
   const [toSwapCurrency, setToSwapCurrency] = useState([currencies[1], 1]);
-  const [prevToSwapCurrency, setPrevToSwapCurrency] = useState(null);
   const [open, setOpen] = useState(false);
   const [openSecond, setOpenSecond] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -71,11 +69,9 @@ export default function Home(props) {
   const [swapType, setSwapType] = useState(null); //Disable Connect Wallet/Swap button if null
 
   const handleMenuItemClick = (event, index, menuItem) => {
-    let isSwitch = 'no';
     if (menuItem === 1) {
       if (index === toSwapCurrency[1]) {
         handleMenuItemSwitch(exchangeCurrency[1], toSwapCurrency[1]);
-        isSwitch = true;
       } else {
         setExchangeCurrency([currencies[index], index]);
       }
@@ -83,14 +79,10 @@ export default function Home(props) {
     } else {
       if (index === exchangeCurrency[1]) {
         handleMenuItemSwitch(exchangeCurrency[1], toSwapCurrency[1]);
-        isSwitch = true;
       } else {
         setToSwapCurrency([currencies[index], index]);
       }
       handleCloseSecond();
-    }
-    if (isSwitch === 'no' && wasSwitch === true) {
-      setWasSwitch(false);
     }
     setLoadingState('not-loaded');
   };
@@ -149,79 +141,74 @@ export default function Home(props) {
     if (loadingState === 'loaded' || loadingRegistry === false) {
       return;
     }
-
+    if(wasSwitch)
     async function loadExchange(a, b, c, d, e) {
-      if (wasSwitch) {
-        setSwapType('ethToTokenSwap');
-        console.log('it was switch');
-        return;
-      } else {
-        let exchange;
-        let swapType;
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        let exchangeTokenAddress = await c?.tokenAddress();
+      let exchange;
+      let swapType;
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      let exchangeTokenAddress = await c?.tokenAddress();
 
-        console.log('exchangeTokenAddress', exchangeTokenAddress);
-        let isMenuOneEth = a[1] === 1 ? 'yes' : 'no';
-        let isMenuTwoEth = b[1] === 1 ? 'yes' : 'no';
-        let menuOneHasChanged =
-          exchangeTokenAddress === a[0].address ? 'no' : 'yes';
-        let menuTwoHasChanged =
-          exchangeTokenAddress === b[0].address ? 'no' : 'yes';
+      console.log('exchangeTokenAddress', exchangeTokenAddress);
+      let isMenuOneEth = a[1] === 1 ? 'yes' : 'no';
+      let isMenuTwoEth = b[1] === 1 ? 'yes' : 'no';
+      let menuOneHasChanged =
+        exchangeTokenAddress === a[0].address ? 'no' : 'yes';
+      let menuTwoHasChanged =
+        exchangeTokenAddress === b[0].address ? 'no' : 'yes';
 
-        console.log('botomm exchange addgress', b[0].address);
+      console.log('botomm exchange addgress', b[0].address);
 
-        if (isMenuOneEth === 'no') {
-          //Menu one SHOULD BE THE EXCHANGE
-          console.log('Menu ONE SHOULD BE THE EXCHANGE');
-          if (isMenuTwoEth === 'yes') {
-            console.log('And Menu TWO IS ETH');
-            if (menuOneHasChanged === 'yes') {
-              exchange = new ethers.Contract(
-                await d.getExchange(a[0].address),
-                Exchange.abi,
-                provider
-              );
-              swapType = 'TokenToEthSwap';
-              console.log('Exchange is Menu one and it has changed');
-            } else {
-              swapType = 'TokenToEthSwap';
-              console.log(
-                'Exchange is still Menu one and Menu two has changed to ETH'
-              );
-            }
-          } else {
-            //Menu one SHOULD BE THE EXCHANGE & Menu two is not ETH
-            console.log('Menu ONE SHOULD BE THE EXCHANGE');
-            console.log('And Menu TWO IS ANOTHER TOKEN');
-            if (menuOneHasChanged === 'yes') {
-              exchange = new ethers.Contract(
-                await d.getExchange(a[0].address),
-                Exchange.abi,
-                provider
-              );
-              swapType = 'TokenToTokenSwap';
-            } else {
-              swapType = e === 'TokenToEthSwap' ? 'TokenToTokenSwap' : null;
-            }
-          }
-        } else {
-          //Menu TWO SHOULD BE THE EXCHANGE
-          console.log('Menu TWO SHOULD BE THE EXCHANGE');
+      if (isMenuOneEth === 'no') {
+        //Menu one SHOULD BE THE EXCHANGE
+        console.log('Menu ONE SHOULD BE THE EXCHANGE');
+        if (isMenuTwoEth === 'yes') {
+          console.log('And Menu TWO IS ETH');
           if (menuOneHasChanged === 'yes') {
-            setSwapType('EthToTokenSwap');
-          } else {
             exchange = new ethers.Contract(
-              await d.getExchange(b[0].address),
+              await d.getExchange(a[0].address),
               Exchange.abi,
               provider
             );
+            swapType = 'TokenToEthSwap';
+            console.log('Exchange is Menu one and it has changed');
+          } else {
+            swapType = 'TokenToEthSwap';
+            console.log(
+              'Exchange is still Menu one and Menu two has changed to ETH'
+            );
+          }
+        } else {
+          //Menu one SHOULD BE THE EXCHANGE & Menu two is not ETH
+          console.log('Menu ONE SHOULD BE THE EXCHANGE');
+          console.log('And Menu TWO IS ANOTHER TOKEN');
+          if (menuOneHasChanged === 'yes') {
+            exchange = new ethers.Contract(
+              await d.getExchange(a[0].address),
+              Exchange.abi,
+              provider
+            );
+            swapType = 'TokenToTokenSwap';
+          } else {
+            swapType = e === 'TokenToEthSwap' ? 'TokenToTokenSwap' : null;
           }
         }
-
-        setLoadingState('loaded');
-        console.log('base exchange loaded');
+      } else {
+        //Menu TWO SHOULD BE THE EXCHANGE
+        console.log('Menu TWO SHOULD BE THE EXCHANGE');
+        if (menuOneHasChanged === 'yes') {
+          
+          setSwapType('EthToTokenSwap');
+        } else {
+          exchange = new ethers.Contract(
+            await d.getExchange(b[0].address),
+            Exchange.abi,
+            provider
+          );
+        }
       }
+
+      setLoadingState('loaded');
+      console.log('base exchange loaded');
     }
     loadExchange(
       exchangeCurrency,
@@ -238,7 +225,6 @@ export default function Home(props) {
     swapType,
     loadingState,
     loadingRegistry,
-    wasSwitch,
   ]);
 
   async function callExchange(input, id) {

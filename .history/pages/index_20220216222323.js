@@ -57,9 +57,7 @@ export default function Home(props) {
   const [loadingState, setLoadingState] = useState('not-loaded');
   const [loadingRegistry, setLoadingRegistry] = useState(false);
   const [exchangeCurrency, setExchangeCurrency] = useState([currencies[0], 0]);
-  const [prevExchangeCurrency, setPrevExchangeCurrency] = useState(null);
   const [toSwapCurrency, setToSwapCurrency] = useState([currencies[1], 1]);
-  const [prevToSwapCurrency, setPrevToSwapCurrency] = useState(null);
   const [open, setOpen] = useState(false);
   const [openSecond, setOpenSecond] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -71,7 +69,7 @@ export default function Home(props) {
   const [swapType, setSwapType] = useState(null); //Disable Connect Wallet/Swap button if null
 
   const handleMenuItemClick = (event, index, menuItem) => {
-    let isSwitch = 'no';
+    let isSwitch = false;
     if (menuItem === 1) {
       if (index === toSwapCurrency[1]) {
         handleMenuItemSwitch(exchangeCurrency[1], toSwapCurrency[1]);
@@ -89,9 +87,7 @@ export default function Home(props) {
       }
       handleCloseSecond();
     }
-    if (isSwitch === 'no' && wasSwitch === true) {
-      setWasSwitch(false);
-    }
+    if (!isSwitch) {
     setLoadingState('not-loaded');
   };
 
@@ -154,6 +150,7 @@ export default function Home(props) {
       if (wasSwitch) {
         setSwapType('ethToTokenSwap');
         console.log('it was switch');
+        // setWasSwitch(false);
         return;
       } else {
         let exchange;

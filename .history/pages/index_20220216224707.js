@@ -57,9 +57,12 @@ export default function Home(props) {
   const [loadingState, setLoadingState] = useState('not-loaded');
   const [loadingRegistry, setLoadingRegistry] = useState(false);
   const [exchangeCurrency, setExchangeCurrency] = useState([currencies[0], 0]);
-  const [prevExchangeCurrency, setPrevExchangeCurrency] = useState(null);
+  const [prevExchangeCurrency, setPrevExchangeCurrency] = useState([
+    currencies[0],
+    0,
+  ]);
   const [toSwapCurrency, setToSwapCurrency] = useState([currencies[1], 1]);
-  const [prevToSwapCurrency, setPrevToSwapCurrency] = useState(null);
+  const [toSwapCurrency, setToSwapCurrency] = useState([currencies[1], 1]);
   const [open, setOpen] = useState(false);
   const [openSecond, setOpenSecond] = useState(false);
   const handleOpen = () => setOpen(true);
