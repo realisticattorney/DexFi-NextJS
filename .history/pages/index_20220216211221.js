@@ -83,7 +83,6 @@ export default function Home(props) {
       }
       handleCloseSecond();
     }
-    setLoadingState('not-loaded');
   };
 
   const handleMenuItemSwitch = (prevSelected, newSelected) => {
@@ -214,6 +213,7 @@ export default function Home(props) {
             return;
           }
         }
+        setLoadingState('loaded');
       }
       // } else if (
       //   exchangeTokenAddress === a[0].address ||
@@ -270,7 +270,6 @@ export default function Home(props) {
       //     return;
       //   }
       // }
-      setLoadingState('loaded');
     }
     loadExchange(
       exchangeCurrency,

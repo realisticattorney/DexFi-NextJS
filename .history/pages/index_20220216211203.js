@@ -83,7 +83,6 @@ export default function Home(props) {
       }
       handleCloseSecond();
     }
-    setLoadingState('not-loaded');
   };
 
   const handleMenuItemSwitch = (prevSelected, newSelected) => {
@@ -140,6 +139,7 @@ export default function Home(props) {
           setRegistry(registry);
           setExchange(exchange);
           setSwapType('tokenToEthSwap');
+          setLoadingState('loaded');
         }
         loadDefaultExchange();
         console.log('base exchange loaded');
@@ -270,7 +270,6 @@ export default function Home(props) {
       //     return;
       //   }
       // }
-      setLoadingState('loaded');
     }
     loadExchange(
       exchangeCurrency,

@@ -83,7 +83,6 @@ export default function Home(props) {
       }
       handleCloseSecond();
     }
-    setLoadingState('not-loaded');
   };
 
   const handleMenuItemSwitch = (prevSelected, newSelected) => {
@@ -117,8 +116,6 @@ export default function Home(props) {
   useEffect(() => {
     async function loadExchange(a, b, c, d, e) {
       if(loadingState === 'loaded') {
-        return;
-      }
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       let exchangeTokenAddress = await c?.tokenAddress();
       if (exchange === null) {
@@ -140,6 +137,7 @@ export default function Home(props) {
           setRegistry(registry);
           setExchange(exchange);
           setSwapType('tokenToEthSwap');
+          setLoadingState('loaded');
         }
         loadDefaultExchange();
         console.log('base exchange loaded');
@@ -270,7 +268,6 @@ export default function Home(props) {
       //     return;
       //   }
       // }
-      setLoadingState('loaded');
     }
     loadExchange(
       exchangeCurrency,

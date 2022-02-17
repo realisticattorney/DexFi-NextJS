@@ -83,7 +83,6 @@ export default function Home(props) {
       }
       handleCloseSecond();
     }
-    setLoadingState('not-loaded');
   };
 
   const handleMenuItemSwitch = (prevSelected, newSelected) => {
@@ -115,10 +114,7 @@ export default function Home(props) {
 
   console.log('swapType', swapType);
   useEffect(() => {
-    async function loadExchange(a, b, c, d, e) {
-      if(loadingState === 'loaded') {
-        return;
-      }
+    async function loadExchange(a, b, c, d) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       let exchangeTokenAddress = await c?.tokenAddress();
       if (exchange === null) {
@@ -140,6 +136,7 @@ export default function Home(props) {
           setRegistry(registry);
           setExchange(exchange);
           setSwapType('tokenToEthSwap');
+          setLoadingState('loaded');
         }
         loadDefaultExchange();
         console.log('base exchange loaded');
@@ -150,8 +147,6 @@ export default function Home(props) {
         let isMenuTwoEth = b[1] === 1 ? 'yes' : 'no';
         let menuOneHasChanged =
           exchangeTokenAddress === a[0].address ? 'no' : 'yes';
-        let menuTwoHasChanged =
-          exchangeTokenAddress === b[0].address ? 'no' : 'yes';
 
         console.log('botomm exchange addgress', b[0].address);
         // if (
@@ -191,7 +186,7 @@ export default function Home(props) {
               );
               setSwapType('TokenToTokenSwap');
             } else {
-              if (e === 'TokenToTokenSwap') {
+              if (swapType === 'TokenToTokenSwap') {
                 return;
               } else {
                 setSwapType('TokenToTokenSwap');
@@ -201,18 +196,14 @@ export default function Home(props) {
           }
         } else {
           //Menu TWO SHOULD BE THE EXCHANGE
-          if (menuTwoHasChanged === 'yes') {
-            setExchange(
-              new ethers.Contract(
-                await d.getExchange(b[0].address),
-                Exchange.abi,
-                provider
-              )
-            );
-            setSwapType('EthToTokenSwap');
-          } else {
-            return;
-          }
+          setExchange(
+            new ethers.Contract(
+              await d.getExchange(b[0].address),
+              Exchange.abi,
+              provider
+            )
+          );
+          setSwapType('EthToTokenSwap');
         }
       }
       // } else if (
@@ -270,16 +261,9 @@ export default function Home(props) {
       //     return;
       //   }
       // }
-      setLoadingState('loaded');
     }
-    loadExchange(
-      exchangeCurrency,
-      toSwapCurrency,
-      exchange,
-      registry,
-      swapType
-    );
-  }, [exchangeCurrency, toSwapCurrency, exchange, registry, swapType]);
+    loadExchange(exchangeCurrency, toSwapCurrency, exchange, registry,swapType);
+  }, [exchangeCurrency, toSwapCurrency, exchange, registry,swapType]);
 
   async function callExchange(input, id) {
     // console.log('input', typeof input);

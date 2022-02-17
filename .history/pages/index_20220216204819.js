@@ -83,7 +83,6 @@ export default function Home(props) {
       }
       handleCloseSecond();
     }
-    setLoadingState('not-loaded');
   };
 
   const handleMenuItemSwitch = (prevSelected, newSelected) => {
@@ -116,9 +115,6 @@ export default function Home(props) {
   console.log('swapType', swapType);
   useEffect(() => {
     async function loadExchange(a, b, c, d, e) {
-      if(loadingState === 'loaded') {
-        return;
-      }
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       let exchangeTokenAddress = await c?.tokenAddress();
       if (exchange === null) {
@@ -140,6 +136,7 @@ export default function Home(props) {
           setRegistry(registry);
           setExchange(exchange);
           setSwapType('tokenToEthSwap');
+          setLoadingState('loaded');
         }
         loadDefaultExchange();
         console.log('base exchange loaded');
@@ -199,21 +196,17 @@ export default function Home(props) {
               }
             }
           }
-        } else {
-          //Menu TWO SHOULD BE THE EXCHANGE
-          if (menuTwoHasChanged === 'yes') {
-            setExchange(
-              new ethers.Contract(
-                await d.getExchange(b[0].address),
-                Exchange.abi,
-                provider
-              )
-            );
-            setSwapType('EthToTokenSwap');
-          } else {
-            return;
-          }
-        }
+        } else {//Menu TWO SHOULD BE THE EXCHANGE
+          if(menuTwoHasChanged === 'yes'){
+          setExchange(
+            new ethers.Contract(
+              await d.getExchange(b[0].address),
+              Exchange.abi,
+              provider
+            )
+          );
+          setSwapType('EthToTokenSwap');
+        } 
       }
       // } else if (
       //   exchangeTokenAddress === a[0].address ||
@@ -270,16 +263,9 @@ export default function Home(props) {
       //     return;
       //   }
       // }
-      setLoadingState('loaded');
     }
-    loadExchange(
-      exchangeCurrency,
-      toSwapCurrency,
-      exchange,
-      registry,
-      swapType
-    );
-  }, [exchangeCurrency, toSwapCurrency, exchange, registry, swapType]);
+    loadExchange(exchangeCurrency, toSwapCurrency, exchange, registry,swapType);
+  }, [exchangeCurrency, toSwapCurrency, exchange, registry,swapType]);
 
   async function callExchange(input, id) {
     // console.log('input', typeof input);
