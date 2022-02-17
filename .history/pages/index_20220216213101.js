@@ -229,7 +229,7 @@ export default function Home(props) {
     registry,
     swapType,
     loadingState,
-    loadingRegistry,
+    
   ]);
 
   async function callExchange(input, id) {

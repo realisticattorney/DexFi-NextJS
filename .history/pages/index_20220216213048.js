@@ -145,73 +145,75 @@ export default function Home(props) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       let exchangeTokenAddress = await c?.tokenAddress();
 
-      console.log('exchangeTokenAddress', exchangeTokenAddress);
-      let isMenuOneEth = a[1] === 1 ? 'yes' : 'no';
-      let isMenuTwoEth = b[1] === 1 ? 'yes' : 'no';
-      let menuOneHasChanged =
-        exchangeTokenAddress === a[0].address ? 'no' : 'yes';
-      let menuTwoHasChanged =
-        exchangeTokenAddress === b[0].address ? 'no' : 'yes';
+      
 
-      console.log('botomm exchange addgress', b[0].address);
-      // if (
-      //   (!menuOneShouldBeTheExchange && hasntMenuOneChanged) ||
-      //   (menuOneShouldBeTheExchange && exchangeTokenAddress === b[0].address)
-      // ) {
-      //   console.log('it has not changed');
-      //   return;
-      // }
+        console.log('exchangeTokenAddress', exchangeTokenAddress);
+        let isMenuOneEth = a[1] === 1 ? 'yes' : 'no';
+        let isMenuTwoEth = b[1] === 1 ? 'yes' : 'no';
+        let menuOneHasChanged =
+          exchangeTokenAddress === a[0].address ? 'no' : 'yes';
+        let menuTwoHasChanged =
+          exchangeTokenAddress === b[0].address ? 'no' : 'yes';
 
-      if (isMenuOneEth === 'no') {
-        //Menu one SHOULD BE THE EXCHANGE
-        console.log('Menu one SHOULD BE THE EXCHANGE');
-        if (isMenuTwoEth === 'yes') {
-          if (menuOneHasChanged === 'yes') {
-            setExchange(
-              new ethers.Contract(
-                await d.getExchange(a[0].address),
-                Exchange.abi,
-                provider
-              )
-            );
-            setSwapType('TokenToEthSwap');
-            console.log('it has changed');
-          } else {
-            setSwapType('TokenToEthSwap');
-          }
-        } else {
-          //Menu one SHOULD BE THE EXCHANGE & Menu two is not ETH
-          if (menuOneHasChanged === 'yes') {
-            setExchange(
-              new ethers.Contract(
-                await d.getExchange(a[0].address),
-                Exchange.abi,
-                provider
-              )
-            );
-            setSwapType('TokenToTokenSwap');
-          } else {
-            if (e === 'TokenToTokenSwap') {
+        console.log('botomm exchange addgress', b[0].address);
+        // if (
+        //   (!menuOneShouldBeTheExchange && hasntMenuOneChanged) ||
+        //   (menuOneShouldBeTheExchange && exchangeTokenAddress === b[0].address)
+        // ) {
+        //   console.log('it has not changed');
+        //   return;
+        // }
+
+        if (isMenuOneEth === 'no') {
+          //Menu one SHOULD BE THE EXCHANGE
+          console.log('Menu one SHOULD BE THE EXCHANGE');
+          if (isMenuTwoEth === 'yes') {
+            if (menuOneHasChanged === 'yes') {
+              setExchange(
+                new ethers.Contract(
+                  await d.getExchange(a[0].address),
+                  Exchange.abi,
+                  provider
+                )
+              );
+              setSwapType('TokenToEthSwap');
+              console.log('it has changed');
             } else {
+              setSwapType('TokenToEthSwap');
+            }
+          } else {
+            //Menu one SHOULD BE THE EXCHANGE & Menu two is not ETH
+            if (menuOneHasChanged === 'yes') {
+              setExchange(
+                new ethers.Contract(
+                  await d.getExchange(a[0].address),
+                  Exchange.abi,
+                  provider
+                )
+              );
               setSwapType('TokenToTokenSwap');
+            } else {
+              if (e === 'TokenToTokenSwap') {
+              } else {
+                setSwapType('TokenToTokenSwap');
+              }
             }
           }
-        }
-      } else {
-        //Menu TWO SHOULD BE THE EXCHANGE
-        if (menuTwoHasChanged === 'yes') {
-          setExchange(
-            new ethers.Contract(
-              await d.getExchange(b[0].address),
-              Exchange.abi,
-              provider
-            )
-          );
-          setSwapType('EthToTokenSwap');
         } else {
+          //Menu TWO SHOULD BE THE EXCHANGE
+          if (menuTwoHasChanged === 'yes') {
+            setExchange(
+              new ethers.Contract(
+                await d.getExchange(b[0].address),
+                Exchange.abi,
+                provider
+              )
+            );
+            setSwapType('EthToTokenSwap');
+          } else {
+          }
         }
-      }
-
+    
       setLoadingState('loaded');
       console.log('base exchange loaded');
     }
@@ -229,7 +231,6 @@ export default function Home(props) {
     registry,
     swapType,
     loadingState,
-    loadingRegistry,
   ]);
 
   async function callExchange(input, id) {
