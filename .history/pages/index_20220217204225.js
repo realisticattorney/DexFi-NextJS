@@ -92,42 +92,25 @@ export default function Home(props) {
     },
     [setInputToken]
   );
-
-  const handleOutputToken = useCallback(
-    (current) => {
-      setOutputToken((t) => {
-        return { prevToken: t.currentToken, currentToken: current };
-      });
-    },
-    [setOutputToken]
-  );
-
-  console.log('outputToken', outputToken);
   console.log('inputToken', inputToken);
   const [swapType, setSwapType] = useState(null); //Disable Connect Wallet/Swap button if null
 
   const handleMenuItemClick = async (event, index, menuItem) => {
     let isSwitch = false;
     if (menuItem === 1) {
-      if (index === outputToken.currentToken[1]) {
-        handleMenuItemSwitch(
-          inputToken.currentToken[1],
-          outputToken.currentToken[1]
-        );
+      if (index === outputToken[1]) {
+        handleMenuItemSwitch(inputToken[1], outputToken[1]);
         isSwitch = true;
       } else {
         handleInputToken([currencies[index], index]);
       }
       handleClose();
     } else {
-      if (index === inputToken.currentToken[1]) {
-        handleMenuItemSwitch(
-          inputToken.currentToken[1],
-          outputToken.currentToken[1]
-        );
+      if (index === inputToken[1]) {
+        handleMenuItemSwitch(inputToken[1], outputToken[1]);
         isSwitch = true;
       } else {
-        handleOutputToken([currencies[index], index]);
+        setOutputToken([currencies[index], index]);
       }
       handleCloseSecond();
     }
@@ -143,7 +126,7 @@ export default function Home(props) {
     const prevIndex = prevSelected;
     const newIndex = newSelected;
     handleInputToken([currencies[newIndex], newIndex]);
-    handleOutputToken([currencies[prevIndex], prevIndex]);
+    setOutputToken([currencies[prevIndex], prevIndex]);
     setWasSwitch(true);
     console.log(' handleMenuItemSwitch wasSwitch: ', wasSwitch);
   };
@@ -496,7 +479,7 @@ export default function Home(props) {
                 alt=""
               />
               <h1 className="ml-1 font-bold text-dexfi-violet">
-                {outputToken.currentToken[0].symbol}
+                {outputToken[0].symbol}
               </h1>
               <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />
             </button>

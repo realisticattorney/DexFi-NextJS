@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import { useState, useEffect, useReducer, useCallback } from 'react'; //hooks
+import { useState, useEffect, useReducer } from 'react'; //hooks
 import axios from 'axios'; //data fetching library
 import Web3Modal from 'web3modal'; //way to connect to user's wallet
 import Image from 'next/image';
@@ -43,24 +43,13 @@ import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import ScammCoin from '../artifacts/contracts/ScammCoin.sol/ScammCoin.json';
 import USDC from '../artifacts/contracts/USDC.sol/USDC.json';
 
-// function reducer(state, action) {
-//   switch (action.type) {
-//     case 'set_address':
-//       return { ...state, address: action.payload };
-//     case 'set_balance':
-//       return { ...state, balance: action.payload };
-//     case 'set_name':
-//       return { ...state, name: action.payload };
-//     default:
-//       return state;
-//   }
-// }
+function reducer(state, action) {}
 
 export default function Home(props) {
-  // const [exchangeFromReducer, dispatch] = useReducer(reducer, {
-  //   prevToken: null,
-  //   currentToken: [currencies[0], 0],
-  // });
+  const [exchangeFromReducer, dispatch] = useReducer(reducer, {
+    prevToken: null,
+    currentToken: [currencies[0], 0],
+  });
 
   const { currencies } = props;
 
@@ -68,14 +57,8 @@ export default function Home(props) {
   const [exchange, setExchange] = useState(null);
   const [loadingState, setLoadingState] = useState('not-loaded');
   const [loadingRegistry, setLoadingRegistry] = useState(false);
-  const [inputToken, setInputToken] = useState({
-    prevToken: null,
-    currentToken: [currencies[0], 0],
-  });
-  const [outputToken, setOutputToken] = useState({
-    prevToken: null,
-    currentToken: [currencies[1], 1],
-  });
+  const [inputToken, setInputToken] = useState([currencies[0], 0]);
+  const [outputToken, setOutputToken] = useState([currencies[1], 1]);
   const [open, setOpen] = useState(false);
   const [openSecond, setOpenSecond] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -84,50 +67,24 @@ export default function Home(props) {
   const handleCloseSecond = () => setOpenSecond(false);
   const [wasSwitch, setWasSwitch] = useState(false);
 
-  const handleInputToken = useCallback(
-    (current) => {
-      setInputToken((t) => {
-        return { prevToken: t.currentToken, currentToken: current };
-      });
-    },
-    [setInputToken]
-  );
-
-  const handleOutputToken = useCallback(
-    (current) => {
-      setOutputToken((t) => {
-        return { prevToken: t.currentToken, currentToken: current };
-      });
-    },
-    [setOutputToken]
-  );
-
-  console.log('outputToken', outputToken);
-  console.log('inputToken', inputToken);
   const [swapType, setSwapType] = useState(null); //Disable Connect Wallet/Swap button if null
 
   const handleMenuItemClick = async (event, index, menuItem) => {
     let isSwitch = false;
     if (menuItem === 1) {
-      if (index === outputToken.currentToken[1]) {
-        handleMenuItemSwitch(
-          inputToken.currentToken[1],
-          outputToken.currentToken[1]
-        );
+      if (index === outputToken[1]) {
+        handleMenuItemSwitch(inputToken[1], outputToken[1]);
         isSwitch = true;
       } else {
-        handleInputToken([currencies[index], index]);
+        setInputToken([currencies[index], index]);
       }
       handleClose();
     } else {
-      if (index === inputToken.currentToken[1]) {
-        handleMenuItemSwitch(
-          inputToken.currentToken[1],
-          outputToken.currentToken[1]
-        );
+      if (index === inputToken[1]) {
+        handleMenuItemSwitch(inputToken[1], outputToken[1]);
         isSwitch = true;
       } else {
-        handleOutputToken([currencies[index], index]);
+        setOutputToken([currencies[index], index]);
       }
       handleCloseSecond();
     }
@@ -142,8 +99,8 @@ export default function Home(props) {
     console.log('is here>');
     const prevIndex = prevSelected;
     const newIndex = newSelected;
-    handleInputToken([currencies[newIndex], newIndex]);
-    handleOutputToken([currencies[prevIndex], prevIndex]);
+    setInputToken([currencies[newIndex], newIndex]);
+    setOutputToken([currencies[prevIndex], prevIndex]);
     setWasSwitch(true);
     console.log(' handleMenuItemSwitch wasSwitch: ', wasSwitch);
   };
@@ -299,8 +256,8 @@ export default function Home(props) {
     let price = await ethers.utils.parseEther(input);
     let amount;
 
-    if (inputToken.currentToken[1] !== 1) {
-      if (outputToken.currentToken[1] === 1) {
+    if (inputToken[1] !== 1) {
+      if (outputToken[1] === 1) {
         amount =
           id === 'outlined-number-1'
             ? ethers.utils.formatEther(await exchange.getEthAmount(price))
@@ -330,7 +287,7 @@ export default function Home(props) {
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
     const getExchangeAddress = await registry.getExchange(
-      inputToken.currentToken[0].address
+      inputToken[0].address
     );
     //habria que chequear si es un ERC20 o si no hace falta aprove. pero despues si hay o no aprove hecho, esta siempre en mi control porque se aprueba que mi contrato pueda o no mandar. entonces lo que deberia hacer ahora, es
     const tokenUserConnection = new ethers.Contract(
@@ -401,14 +358,14 @@ export default function Home(props) {
           <div className="flex flex-col space-y-2 p-5">
             <button onClick={handleOpen} className="flex items-center">
               <Image
-                src={inputToken.currentToken[0].logoURI}
+                src={inputToken[0].logoURI}
                 height={24}
                 width={24}
                 quality={50}
                 alt=""
               />
               <h1 className="ml-1 font-bold text-dexfi-violet">
-                {inputToken.currentToken[0].symbol}
+                {inputToken[0].symbol}
               </h1>
               <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />
             </button>
@@ -433,8 +390,8 @@ export default function Home(props) {
                     {currencies.map((currency, index) => (
                       <MenuItem
                         key={currency.symbol}
-                        disabled={index === inputToken.currentToken[1]}
-                        selected={index === inputToken.currentToken[1]}
+                        disabled={index === inputToken[1]}
+                        selected={index === inputToken[1]}
                         onClick={(event) =>
                           handleMenuItemClick(event, index, 1)
                         }
@@ -489,14 +446,14 @@ export default function Home(props) {
           <div className="flex flex-col space-y-2 p-5">
             <button onClick={handleOpenSecond} className="flex items-center">
               <Image
-                src={outputToken.currentToken[0].logoURI}
+                src={outputToken[0].logoURI}
                 height={24}
                 width={24}
                 quality={50}
                 alt=""
               />
               <h1 className="ml-1 font-bold text-dexfi-violet">
-                {outputToken.currentToken[0].symbol}
+                {outputToken[0].symbol}
               </h1>
               <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />
             </button>

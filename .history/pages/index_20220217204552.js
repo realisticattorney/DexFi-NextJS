@@ -110,10 +110,7 @@ export default function Home(props) {
     let isSwitch = false;
     if (menuItem === 1) {
       if (index === outputToken.currentToken[1]) {
-        handleMenuItemSwitch(
-          inputToken.currentToken[1],
-          outputToken.currentToken[1]
-        );
+        handleMenuItemSwitch(inputToken.currentToken[1], outputToken.currentToken[1]);
         isSwitch = true;
       } else {
         handleInputToken([currencies[index], index]);
@@ -121,10 +118,7 @@ export default function Home(props) {
       handleClose();
     } else {
       if (index === inputToken.currentToken[1]) {
-        handleMenuItemSwitch(
-          inputToken.currentToken[1],
-          outputToken.currentToken[1]
-        );
+        handleMenuItemSwitch(inputToken.currentToken[1], outputToken.currentToken[1]);
         isSwitch = true;
       } else {
         handleOutputToken([currencies[index], index]);
