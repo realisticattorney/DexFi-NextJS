@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
+import { useState, useEffect, useReducer, useCallback } from 'react'; //hooks
 import axios from 'axios'; //data fetching library
 import Web3Modal from 'web3modal'; //way to connect to user's wallet
 import Image from 'next/image';
@@ -198,28 +198,30 @@ export default function Home(props) {
     }
     async function loadExchange(
       exchangeHandler,
+      exchange,
       registry,
       setExchangeCallback
     ) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
 
-      let exchangeTokenAddress = currentExchangeAddress.current;
+      let exchangeTokenAddress = await exchange?.tokenAddress();
       console.log('exchangeTokenAddress', exchangeTokenAddress);
       const toBeExchange = exchangeHandler();
       console.log('toBeExchange', toBeExchange);
       if (exchangeTokenAddress !== toBeExchange) {
-        currentExchangeAddress.current = toBeExchange;
         let newExchangeAddress = await registry.getExchange(toBeExchange);
-        setExchangeCallback(
+        // setExchangeCallback(newExchangeAddress);
+        setExchange(
           new ethers.Contract(newExchangeAddress, Exchange.abi, provider)
         );
       }
       setLoadingState('loaded');
       console.log('base exchange loaded');
     }
-    loadExchange(exchangeHandler, registry, setExchangeCallback);
+    loadExchange(exchangeHandler, exchange, registry, setExchangeCallback);
   }, [
     exchangeHandler,
+    exchange,
     registry,
     loadingState,
     loadingRegistry,

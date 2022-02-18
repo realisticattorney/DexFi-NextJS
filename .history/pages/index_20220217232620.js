@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
+import { useState, useEffect, useReducer, useCallback } from 'react'; //hooks
 import axios from 'axios'; //data fetching library
 import Web3Modal from 'web3modal'; //way to connect to user's wallet
 import Image from 'next/image';
@@ -76,7 +76,6 @@ export default function Home(props) {
     prevToken: null,
     currentToken: [currencies[1], 1],
   });
-  const currentExchangeAddress = useRef(null);
   const [open, setOpen] = useState(false);
   const [openSecond, setOpenSecond] = useState(false);
   const handleOpen = useCallback(() => setOpen(true), []);
@@ -181,50 +180,38 @@ export default function Home(props) {
 
     setRegistry(registry);
     setExchange(exchange);
-    currentExchangeAddress.current = scammExchangeAddress;
     setSwapType('tokenToEthSwap');
     setLoadingState('loaded');
     setLoadingRegistry(true);
   }, []);
 
   //
-  const setExchangeCallback = useCallback((exchange) => {
-    setExchange(exchange);
-  }, []);
-
+  const 
+  //
+  //
+  //
+  //
+  //
   useEffect(() => {
     if (loadingState === 'loaded' || loadingRegistry === false) {
       return;
     }
-    async function loadExchange(
-      exchangeHandler,
-      registry,
-      setExchangeCallback
-    ) {
+    async function loadExchange(exchangeHandler, exchange, registry) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
 
-      let exchangeTokenAddress = currentExchangeAddress.current;
+      let exchangeTokenAddress = await exchange?.tokenAddress();
       console.log('exchangeTokenAddress', exchangeTokenAddress);
       const toBeExchange = exchangeHandler();
       console.log('toBeExchange', toBeExchange);
       if (exchangeTokenAddress !== toBeExchange) {
-        currentExchangeAddress.current = toBeExchange;
         let newExchangeAddress = await registry.getExchange(toBeExchange);
-        setExchangeCallback(
-          new ethers.Contract(newExchangeAddress, Exchange.abi, provider)
-        );
+        setExchange(new ethers.Contract(Exchange.abi, provider));
       }
       setLoadingState('loaded');
       console.log('base exchange loaded');
     }
-    loadExchange(exchangeHandler, registry, setExchangeCallback);
-  }, [
-    exchangeHandler,
-    registry,
-    loadingState,
-    loadingRegistry,
-    setExchangeCallback,
-  ]);
+    loadExchange(exchangeHandler, exchange, registry);
+  }, [exchangeHandler, exchange, registry, loadingState, loadingRegistry]);
   console.log('exchange', exchange);
   //
   //
