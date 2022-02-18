@@ -272,16 +272,15 @@ export default function Home(props) {
 
     if (swapType === 'EthToTokenSwap') {
       let transaction = await exchangeUserConnection.ethToTokenSwap(
-        ethers.utils.parseEther((inputTwo * 0.98).toString()),
-        {
-          value: ethers.utils.parseEther(inputOne),
-        }
+        ethers.utils.parseEther(allowanceAmount.toString()),
+        ethers.utils.parseEther((inputTwo * 0.98).toString())
       );
       console.log('transaction', transaction);
       console.log('transaction done!');
       return;
     }
 
+    
     const wasApproved = await tokenUserConnection.approve(
       currentExchangeAddress,
       ethers.utils.parseEther(inputOne)
@@ -308,7 +307,6 @@ export default function Home(props) {
       console.log('not enough allowance');
       return;
     }
-
     if (swapType === 'TokenToEthSwap') {
       let transaction = await exchangeUserConnection.tokenToEthSwap(
         ethers.utils.parseEther(allowanceAmount.toString()),
@@ -318,8 +316,7 @@ export default function Home(props) {
     } else {
       let transaction = await exchangeUserConnection.tokenToTokenSwap(
         ethers.utils.parseEther(allowanceAmount.toString()),
-        ethers.utils.parseEther((inputTwo * 0.98).toString()),
-        outputToken.currentToken[0].address
+        ethers.utils.parseEther((inputTwo * 0.98).toString())
       );
       console.log('transaction', transaction);
     }

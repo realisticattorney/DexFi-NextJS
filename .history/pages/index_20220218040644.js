@@ -319,7 +319,7 @@ export default function Home(props) {
       let transaction = await exchangeUserConnection.tokenToTokenSwap(
         ethers.utils.parseEther(allowanceAmount.toString()),
         ethers.utils.parseEther((inputTwo * 0.98).toString()),
-        outputToken.currentToken[0].address
+        outputToken.currentToken
       );
       console.log('transaction', transaction);
     }
