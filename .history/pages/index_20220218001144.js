@@ -66,6 +66,7 @@ export default function Home(props) {
 
   const [registry, setRegistry] = useState(null);
   const [exchange, setExchange] = useState(null);
+  const [loadingState, setLoadingState] = useState('not-loaded');
   const [loadingRegistry, setLoadingRegistry] = useState(false);
   const [inputToken, setInputToken] = useState({
     prevToken: null,
@@ -76,7 +77,7 @@ export default function Home(props) {
     currentToken: [currencies[1], 1],
   });
   const currentExchangeAddress = useRef(null);
-  const currentSwapType = useRef(null);
+  
   const [open, setOpen] = useState(false);
   const [openSecond, setOpenSecond] = useState(false);
   const handleOpen = useCallback(() => setOpen(true), []);
@@ -111,13 +112,7 @@ export default function Home(props) {
     }
   }, [inputToken, outputToken]);
 
-  const swapTypeHandler = useCallback(() => {
-    if (inputToken.currentToken[1] !== 1) {
-      return inputToken.currentToken[0].address;
-    } else {
-      return outputToken.currentToken[0].address;
-    }
-  }, [setSwapType]);
+  
 
   const handleMenuItemClick = async (event, index, menuItem) => {
     if (menuItem === 1) {
@@ -141,6 +136,7 @@ export default function Home(props) {
       }
       handleCloseSecond();
     }
+    setLoadingState('not-loaded');
   };
 
   const handleMenuItemSwitch = (prevSelected, newSelected) => {
@@ -189,6 +185,7 @@ export default function Home(props) {
     setExchange(exchange);
     currentExchangeAddress.current = scammExchangeAddress;
     setSwapType('tokenToEthSwap');
+    setLoadingState('loaded');
     setLoadingRegistry(true);
   }, []);
 
@@ -197,10 +194,8 @@ export default function Home(props) {
     setExchange(exchange);
   }, []);
 
-  console.log('render');
-
   useEffect(() => {
-    if (loadingRegistry === false) {
+    if (loadingState === 'loaded' || loadingRegistry === false) {
       return;
     }
     async function loadExchange(
@@ -218,10 +213,18 @@ export default function Home(props) {
           new ethers.Contract(newExchangeAddress, Exchange.abi, provider)
         );
       }
+      setLoadingState('loaded');
       console.log('base exchange loaded');
     }
     loadExchange(exchangeHandler, registry, setExchangeCallback);
-  }, [exchangeHandler, registry, loadingRegistry, setExchangeCallback]);
+  }, [
+    exchangeHandler,
+    registry,
+    loadingState,
+    loadingRegistry,
+    setExchangeCallback,
+  ]);
+  console.log('exchange', exchange);
 
   async function callExchange(input, id) {
     let price = await ethers.utils.parseEther(input);
@@ -449,8 +452,8 @@ export default function Home(props) {
                     {currencies.map((currency, index) => (
                       <MenuItem
                         key={currency.symbol}
-                        disabled={index === outputToken.currentToken[1]}
-                        selected={index === outputToken.currentToken[1]}
+                        disabled={index === outputToken[1]}
+                        selected={index === outputToken[1]}
                         onClick={(event) =>
                           handleMenuItemClick(event, index, 2)
                         }

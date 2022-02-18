@@ -66,6 +66,7 @@ export default function Home(props) {
 
   const [registry, setRegistry] = useState(null);
   const [exchange, setExchange] = useState(null);
+  const [loadingState, setLoadingState] = useState('not-loaded');
   const [loadingRegistry, setLoadingRegistry] = useState(false);
   const [inputToken, setInputToken] = useState({
     prevToken: null,
@@ -197,8 +198,12 @@ export default function Home(props) {
     setExchange(exchange);
   }, []);
 
-  console.log('render');
-
+  //
+  //
+  //
+  //
+  //
+  //
   useEffect(() => {
     if (loadingRegistry === false) {
       return;
@@ -221,7 +226,13 @@ export default function Home(props) {
       console.log('base exchange loaded');
     }
     loadExchange(exchangeHandler, registry, setExchangeCallback);
-  }, [exchangeHandler, registry, loadingRegistry, setExchangeCallback]);
+  }, [
+    exchangeHandler,
+    registry,
+    loadingRegistry,
+    setExchangeCallback,
+  ]);
+  console.log('exchange', exchange);
 
   async function callExchange(input, id) {
     let price = await ethers.utils.parseEther(input);
@@ -449,8 +460,8 @@ export default function Home(props) {
                     {currencies.map((currency, index) => (
                       <MenuItem
                         key={currency.symbol}
-                        disabled={index === outputToken.currentToken[1]}
-                        selected={index === outputToken.currentToken[1]}
+                        disabled={index === outputToken[1]}
+                        selected={index === outputToken[1]}
                         onClick={(event) =>
                           handleMenuItemClick(event, index, 2)
                         }

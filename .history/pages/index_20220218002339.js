@@ -66,6 +66,7 @@ export default function Home(props) {
 
   const [registry, setRegistry] = useState(null);
   const [exchange, setExchange] = useState(null);
+  const [loadingState, setLoadingState] = useState('not-loaded');
   const [loadingRegistry, setLoadingRegistry] = useState(false);
   const [inputToken, setInputToken] = useState({
     prevToken: null,
