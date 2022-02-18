@@ -17,6 +17,7 @@ import TextField from '@mui/material/TextField';
 import { useMoralis } from 'react-moralis';
 import MenuItemList from '../components/MenuItemList.js';
 
+
 const modalstyle = {
   position: 'absolute',
   top: '30%',
@@ -356,31 +357,168 @@ export default function Home(props) {
             </p>
           </div>
 
-          <MenuItemList
-            handleOpen={handleOpen}
-            handleClose={handleClose}
-            currencies={currencies}
-            token={inputToken}
-            open={open}
-            input={inputOne}
-            handleInputChange={handleInputOneChange}
-            handleMenuItemClick={handleMenuItemClick}
-            key={1}
-            menuNumber={1}
-          />
-
-          <MenuItemList
-            handleOpen={handleOpenSecond}
-            handleClose={handleCloseSecond}
-            currencies={currencies}
-            token={outputToken}
-            open={openSecond}
-            input={inputTwo}
-            handleInputChange={handleInputOneChange}
-            handleMenuItemClick={handleMenuItemClick}
-            key={2}
-            menuNumber={2}
-          />
+          <div className="flex flex-col space-y-2 p-5">
+            <button onClick={handleOpen} className="flex items-center">
+              <Image
+                src={inputToken.currentToken[0].logoURI}
+                height={24}
+                width={24}
+                quality={50}
+                alt=""
+              />
+              <h1 className="ml-1 font-bold text-dexfi-violet">
+                {inputToken.currentToken[0].symbol}
+              </h1>
+              <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />
+            </button>
+            <Modal
+              disablePortal
+              aria-labelledby="transition-modal-title"
+              aria-describedby="transition-modal-description"
+              open={open}
+              onClose={handleClose}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500,
+              }}
+            >
+              <Fade in={open}>
+                <Paper sx={modalstyle}>
+                  <MenuList>
+                    <div className="flex px-3 pb-5 text-xl font-medium text-dexfi-violet border-b mb-4">
+                      <h1>Select a Token</h1>
+                    </div>
+                    {currencies.map((currency, index) => (
+                      <MenuItem
+                        key={currency.symbol}
+                        disabled={index === inputToken.currentToken[1]}
+                        selected={index === inputToken.currentToken[1]}
+                        onClick={(event) =>
+                          handleMenuItemClick(event, index, 1)
+                        }
+                      >
+                        <Image
+                          src={currency.logoURI}
+                          height={24}
+                          width={24}
+                          quality={50}
+                          alt=""
+                        />
+                        <h1 className="ml-3">{currency.symbol}</h1>
+                      </MenuItem>
+                    ))}
+                  </MenuList>
+                </Paper>
+              </Fade>
+            </Modal>
+            <Box
+              component="form"
+              sx={{
+                '& .MuiTextField-root': {
+                  m: 0,
+                  width: '100%',
+                },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <div>
+                <TextField
+                  required
+                  id="outlined-number-1"
+                  type="number"
+                  value={inputOne === null ? '' : inputOne}
+                  placeholder="0.0"
+                  onChange={handleInputOneChange}
+                />
+              </div>
+            </Box>
+          </div>
+          {''}
+          {''}
+          {''}
+          {''}
+          {''}
+          <div className="flex flex-col space-y-2 p-5">
+            <button onClick={handleOpenSecond} className="flex items-center">
+              <Image
+                src={outputToken.currentToken[0].logoURI}
+                height={24}
+                width={24}
+                quality={50}
+                alt=""
+              />
+              <h1 className="ml-1 font-bold text-dexfi-violet">
+                {outputToken.currentToken[0].symbol}
+              </h1>
+              <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />
+            </button>
+            <Modal
+              disablePortal
+              aria-labelledby="transition-modal-title"
+              aria-describedby="transition-modal-description"
+              open={openSecond}
+              onClose={handleCloseSecond}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500,
+              }}
+            >
+              <Fade in={openSecond}>
+                <Paper sx={modalstyle}>
+                  <MenuList>
+                    <div className="flex px-3 pb-5 text-xl font-medium text-dexfi-violet border-b mb-4">
+                      <h1>Select a Token</h1>
+                    </div>
+                    {currencies.map((currency, index) => (
+                      <MenuItem
+                        key={currency.symbol}
+                        disabled={index === outputToken.currentToken[1]}
+                        selected={index === outputToken.currentToken[1]}
+                        onClick={(event) =>
+                          handleMenuItemClick(event, index, 2)
+                        }
+                      >
+                        <Image
+                          src={currency.logoURI}
+                          height={24}
+                          width={24}
+                          quality={50}
+                          alt=""
+                        />
+                        <h1 className="ml-3">{currency.symbol}</h1>
+                      </MenuItem>
+                    ))}
+                  </MenuList>
+                </Paper>
+              </Fade>
+            </Modal>
+            <Box
+              component="form"
+              sx={{
+                '& .MuiTextField-root': {
+                  m: 0,
+                  width: '100%',
+                },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <div>
+                <TextField
+                  required
+                  id="outlined-number-2"
+                  type="number"
+                  value={inputTwo === null ? '' : inputTwo}
+                  placeholder="0.0"
+                  onChange={handleInputOneChange}
+                />
+              </div>
+            </Box>
+          </div>
+          <MenuItemList handleOpen={handleOpenSecond} handleClose={handleCloseSecond} currencies={currencies}  />
           {inputOne !== null &&
             inputTwo !== null &&
             inputOne !== '0' &&

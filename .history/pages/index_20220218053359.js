@@ -17,6 +17,7 @@ import TextField from '@mui/material/TextField';
 import { useMoralis } from 'react-moralis';
 import MenuItemList from '../components/MenuItemList.js';
 
+
 const modalstyle = {
   position: 'absolute',
   top: '30%',
@@ -356,31 +357,12 @@ export default function Home(props) {
             </p>
           </div>
 
-          <MenuItemList
-            handleOpen={handleOpen}
-            handleClose={handleClose}
-            currencies={currencies}
-            token={inputToken}
-            open={open}
-            input={inputOne}
-            handleInputChange={handleInputOneChange}
-            handleMenuItemClick={handleMenuItemClick}
-            key={1}
-            menuNumber={1}
-          />
-
-          <MenuItemList
-            handleOpen={handleOpenSecond}
-            handleClose={handleCloseSecond}
-            currencies={currencies}
-            token={outputToken}
-            open={openSecond}
-            input={inputTwo}
-            handleInputChange={handleInputOneChange}
-            handleMenuItemClick={handleMenuItemClick}
-            key={2}
-            menuNumber={2}
-          />
+     
+          <MenuItemList handleOpen={handleOpen} handleClose={handleClose} currencies={currencies} token={inputToken} open={open} input={inputOne} handleInputChange={handleInputOneChange}
+          handleMenuItemClick={handleMenuItemClick} key={1} menuNumber={1} />
+         
+          <MenuItemList handleOpen={handleOpenSecond} handleClose={handleCloseSecond} currencies={currencies} token={outputToken} open={openSecond} input={inputTwo} handleInputChange={handleInputOneChange}
+          handleMenuItemClick={handleMenuItemClick} key={2} menuNumber={2} />
           {inputOne !== null &&
             inputTwo !== null &&
             inputOne !== '0' &&
