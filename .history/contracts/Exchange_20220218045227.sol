@@ -195,13 +195,14 @@ contract Exchange is ERC20 {
         );
     }
 
-    function getTokenToTokenAmount(uint256 _tokensSold, address _tokenAddress)
-        public
-        view
-        returns (uint256)
-    {
+    function getTokenToTokenAmount(
+        uint256 _tokensSold,
+        address _tokenAddress)
+         public view returns (uint256) 
+         {
         address exchangeAddress = Registry(registryAddress).getExchange(
             _tokenAddress
+            
         );
 
         require(
@@ -215,8 +216,7 @@ contract Exchange is ERC20 {
             getReserve(),
             address(this).balance
         );
-
-        uint256 amount = Exchange(exchangeAddress).getTokenAmount(ethBought);
-        return amount;
+;
+        return Exchange(exchangeAddress).getTokenAmount(ethBought);
     }
 }
