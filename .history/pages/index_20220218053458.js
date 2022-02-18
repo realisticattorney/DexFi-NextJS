@@ -5,8 +5,21 @@ import Web3Modal from 'web3modal'; //way to connect to user's wallet
 import fs from 'fs/promises';
 import path from 'path';
 import Image from 'next/image';
+
 import { useMoralis } from 'react-moralis';
 import MenuItemList from '../components/MenuItemList.js';
+
+const modalstyle = {
+  position: 'absolute',
+  top: '30%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  boxShadow: 1,
+  borderRadius: 9,
+  p: 2,
+};
 
 import {
   registryAddress,
@@ -20,7 +33,24 @@ import Registry from '../artifacts/contracts/Registry.sol/Registry.json';
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
 
+// function reducer(state, action) {
+//   switch (action.type) {
+//     case 'set_address':
+//       return { ...state, address: action.payload };
+//     case 'set_balance':
+//       return { ...state, balance: action.payload };
+//     case 'set_name':
+//       return { ...state, name: action.payload };
+//     default:
+//       return state;
+//   }
+// }
+
 export default function Home(props) {
+  // const [exchangeFromReducer, dispatch] = useReducer(reducer, {
+  //   prevToken: null,
+  //   currentToken: [currencies[0], 0],
+  // });
 
   const { currencies } = props;
 
@@ -184,7 +214,7 @@ export default function Home(props) {
   async function callExchange(input, id) {
     let price = await ethers.utils.parseEther(input);
     let amount;
-    console.log("id", id);
+
     if (inputToken.currentToken[1] !== 1) {
       if (outputToken.currentToken[1] === 1) {
         amount =
@@ -329,7 +359,6 @@ export default function Home(props) {
             handleMenuItemClick={handleMenuItemClick}
             key={1}
             menuNumber={1}
-            id={'outlined-number-1'}
           />
 
           <MenuItemList
@@ -343,7 +372,6 @@ export default function Home(props) {
             handleMenuItemClick={handleMenuItemClick}
             key={2}
             menuNumber={2}
-            id={'outlined-number-2'}
           />
           {inputOne !== null &&
             inputTwo !== null &&

@@ -21,6 +21,10 @@ import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
 
 export default function Home(props) {
+  // const [exchangeFromReducer, dispatch] = useReducer(reducer, {
+  //   prevToken: null,
+  //   currentToken: [currencies[0], 0],
+  // });
 
   const { currencies } = props;
 
@@ -184,7 +188,7 @@ export default function Home(props) {
   async function callExchange(input, id) {
     let price = await ethers.utils.parseEther(input);
     let amount;
-    console.log("id", id);
+
     if (inputToken.currentToken[1] !== 1) {
       if (outputToken.currentToken[1] === 1) {
         amount =
@@ -329,7 +333,6 @@ export default function Home(props) {
             handleMenuItemClick={handleMenuItemClick}
             key={1}
             menuNumber={1}
-            id={'outlined-number-1'}
           />
 
           <MenuItemList
@@ -343,7 +346,6 @@ export default function Home(props) {
             handleMenuItemClick={handleMenuItemClick}
             key={2}
             menuNumber={2}
-            id={'outlined-number-2'}
           />
           {inputOne !== null &&
             inputTwo !== null &&

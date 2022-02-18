@@ -21,7 +21,6 @@ import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
 
 export default function Home(props) {
-
   const { currencies } = props;
 
   const [registry, setRegistry] = useState(null);
@@ -163,7 +162,7 @@ export default function Home(props) {
     handleOutputToken([currencies[prevIndex], prevIndex]);
   };
 
-  const handleInputOneChange = (event) => {
+  const handleInputChange = (event) => {
     event.preventDefault();
     console.log('evento', event.target.value);
     console.log('evento target', event.target.id);
@@ -184,7 +183,7 @@ export default function Home(props) {
   async function callExchange(input, id) {
     let price = await ethers.utils.parseEther(input);
     let amount;
-    console.log("id", id);
+
     if (inputToken.currentToken[1] !== 1) {
       if (outputToken.currentToken[1] === 1) {
         amount =
@@ -325,11 +324,10 @@ export default function Home(props) {
             token={inputToken}
             open={open}
             input={inputOne}
-            handleInputChange={handleInputOneChange}
+            handleInputChange={handleInputChange}
             handleMenuItemClick={handleMenuItemClick}
             key={1}
             menuNumber={1}
-            id={'outlined-number-1'}
           />
 
           <MenuItemList
@@ -339,11 +337,10 @@ export default function Home(props) {
             token={outputToken}
             open={openSecond}
             input={inputTwo}
-            handleInputChange={handleInputOneChange}
+            handleInputChange={handleInputChange}
             handleMenuItemClick={handleMenuItemClick}
             key={2}
             menuNumber={2}
-            id={'outlined-number-2'}
           />
           {inputOne !== null &&
             inputTwo !== null &&

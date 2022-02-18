@@ -184,7 +184,7 @@ export default function Home(props) {
   async function callExchange(input, id) {
     let price = await ethers.utils.parseEther(input);
     let amount;
-    console.log("id", id);
+    console.log()
     if (inputToken.currentToken[1] !== 1) {
       if (outputToken.currentToken[1] === 1) {
         amount =
@@ -329,7 +329,6 @@ export default function Home(props) {
             handleMenuItemClick={handleMenuItemClick}
             key={1}
             menuNumber={1}
-            id={'outlined-number-1'}
           />
 
           <MenuItemList
@@ -343,7 +342,6 @@ export default function Home(props) {
             handleMenuItemClick={handleMenuItemClick}
             key={2}
             menuNumber={2}
-            id={'outlined-number-2'}
           />
           {inputOne !== null &&
             inputTwo !== null &&

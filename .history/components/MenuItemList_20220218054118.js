@@ -32,7 +32,6 @@ const MenuItemList = ({
   handleInputChange,
   handleMenuItemClick,
   menuNumber,
-  id
 }) => {
   return (
     <div className="flex flex-col space-y-2 p-5">

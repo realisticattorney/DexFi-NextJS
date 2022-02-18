@@ -329,7 +329,6 @@ export default function Home(props) {
             handleMenuItemClick={handleMenuItemClick}
             key={1}
             menuNumber={1}
-            id={'outlined-number-1'}
           />
 
           <MenuItemList
@@ -343,7 +342,6 @@ export default function Home(props) {
             handleMenuItemClick={handleMenuItemClick}
             key={2}
             menuNumber={2}
-            id={'outlined-number-2'}
           />
           {inputOne !== null &&
             inputTwo !== null &&
