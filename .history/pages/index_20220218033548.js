@@ -75,14 +75,14 @@ export default function Home(props) {
     currentToken: [currencies[1], 1],
   });
   const currentTokenExchangeAddress = useRef(null);
+  const currentSwapType = useRef(null);
   const [open, setOpen] = useState(false);
   const [openSecond, setOpenSecond] = useState(false);
   const handleOpen = useCallback(() => setOpen(true), []);
   const handleOpenSecond = () => setOpenSecond(true);
   const handleClose = useCallback(() => setOpen(false), []);
   const handleCloseSecond = () => setOpenSecond(false);
-  const [inputOne, setInputOne] = useState(null);
-  const [inputTwo, setInputTwo] = useState(null);
+  const [swapType, setSwapType] = useState(null); //Disable Connect Wallet/Swap button if null
 
   const handleInputToken = useCallback(
     (current) => {
@@ -110,23 +110,17 @@ export default function Home(props) {
     }
   }, [inputToken, outputToken]);
 
-  const swapTypeHandler = useCallback(() => {
-    if (inputToken.currentToken[1] !== 1) {
-      if (outputToken.currentToken[1] !== 1) {
-        return 'TokenToTokenSwap';
-      } else {
-        return 'TokenToEthSwap';
-      }
-    } else {
-      return 'EthToTokenSwap';
-    }
-  }, [inputToken, outputToken]);
+  const swapTypeHandler = useCallback(currentSwapType => {
+    
+ 
+  }, []);
 
   const setExchangeCallback = useCallback((exchange) => {
     setExchange(exchange);
   }, []);
 
   console.log('render');
+
   useEffect(() => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const registry = new ethers.Contract(
@@ -144,6 +138,8 @@ export default function Home(props) {
     setRegistry(registry);
     setExchange(exchange);
     currentTokenExchangeAddress.current = scammExchangeAddress;
+    setSwapType('tokenToEthSwap');
+    currentSwapType.current = 'tokenToEthSwap';
     setLoadingRegistry(true);
   }, []);
 
@@ -201,6 +197,9 @@ export default function Home(props) {
     handleInputToken([currencies[newIndex], newIndex]);
     handleOutputToken([currencies[prevIndex], prevIndex]);
   };
+
+  const [inputOne, setInputOne] = useState(null);
+  const [inputTwo, setInputTwo] = useState(null);
 
   const handleInputOneChange = (event) => {
     event.preventDefault();
@@ -268,57 +267,38 @@ export default function Home(props) {
       Exchange.abi,
       signer
     );
-    const swapType = swapTypeHandler();
+    const wasApproved = await tokenUserConnection.approve(
+      currentExchangeAddress,
+      ethers.utils.parseEther(inputOne)
+    );
+    console.log('not yet confirmed');
+    let waitDude = await wasApproved.wait();
+    console.log('waitdudeee', waitDude);
+    console.log('was approved?', wasApproved);
 
-    if (swapType !== 'EthToTokenSwap') {
-      const wasApproved = await tokenUserConnection.approve(
-        currentExchangeAddress,
-        ethers.utils.parseEther(inputOne)
-      );
-      console.log('not yet confirmed');
-      let waitDude = await wasApproved.wait();
-      console.log('waitdudeee', waitDude);
-      console.log('was approved?', wasApproved);
-      const allowanceAmount = ethers.utils.formatEther(
-        await tokenUserConnection.allowance(
-          await signer.getAddress(),
-          currentExchangeAddress
-        )
-      );
+    const allowanceAmount = ethers.utils.formatEther(
+      await tokenUserConnection.allowance(
+        await signer.getAddress(),
+        currentExchangeAddress
+      )
+    );
+    console.log('allowanceAmount', allowanceAmount);
 
-      console.log('allowanceAmount', allowanceAmount);
-
-      if (allowanceAmount === '0') {
-        console.log('no allowance');
-        return;
-      }
-
-      if (allowanceAmount < inputOne) {
-        console.log('not enough allowance');
-        return;
-      }
-      if (swapType === 'TokenToEthSwap') {
-        let transaction = await exchangeUserConnection.tokenToEthSwap(
-          ethers.utils.parseEther(allowanceAmount.toString()),
-          ethers.utils.parseEther((inputTwo * 0.98).toString())
-        );
-        console.log('transaction', transaction);
-      } else {
-        let transaction = await exchangeUserConnection.tokenToTokenSwap(
-          ethers.utils.parseEther(allowanceAmount.toString()),
-          ethers.utils.parseEther((inputTwo * 0.98).toString())
-        );
-        console.log('transaction', transaction);
-      }
-      console.log('transaction done!');
-      return;
+    if (allowanceAmount === '0') {
+      console.log('no allowance');
     }
 
-    let transaction = await exchangeUserConnection.tokenToEthSwap(
-      ethers.utils.parseEther(allowanceAmount.toString()),
-      ethers.utils.parseEther((inputTwo * 0.98).toString())
-    );
-    console.log('transaction', transaction);
+    // if (allowanceAmount < inputOne) {
+    //   console.log('not enough allowance');
+    // }
+
+    if (allowanceAmount >= inputOne) {
+      let transaction = await exchangeUserConnection.tokenToEthSwap(
+        ethers.utils.parseEther(allowanceAmount.toString()),
+        ethers.utils.parseEther((inputTwo * 0.98).toString())
+      );
+      console.log('transaction', transaction);
+    }
     console.log('transaction done!');
   }
 

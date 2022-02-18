@@ -304,22 +304,13 @@ export default function Home(props) {
         );
         console.log('transaction', transaction);
       } else {
-        let transaction = await exchangeUserConnection.tokenToTokenSwap(
+        let transaction = await exchangeUserConnection.tokenToEthSwap(
           ethers.utils.parseEther(allowanceAmount.toString()),
           ethers.utils.parseEther((inputTwo * 0.98).toString())
         );
-        console.log('transaction', transaction);
       }
       console.log('transaction done!');
-      return;
     }
-
-    let transaction = await exchangeUserConnection.tokenToEthSwap(
-      ethers.utils.parseEther(allowanceAmount.toString()),
-      ethers.utils.parseEther((inputTwo * 0.98).toString())
-    );
-    console.log('transaction', transaction);
-    console.log('transaction done!');
   }
 
   return (

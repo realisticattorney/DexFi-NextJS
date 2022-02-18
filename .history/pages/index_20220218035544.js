@@ -268,58 +268,43 @@ export default function Home(props) {
       Exchange.abi,
       signer
     );
-    const swapType = swapTypeHandler();
+    const swapType = swapTypeHandler()
 
-    if (swapType !== 'EthToTokenSwap') {
-      const wasApproved = await tokenUserConnection.approve(
-        currentExchangeAddress,
-        ethers.utils.parseEther(inputOne)
-      );
-      console.log('not yet confirmed');
-      let waitDude = await wasApproved.wait();
-      console.log('waitdudeee', waitDude);
-      console.log('was approved?', wasApproved);
-      const allowanceAmount = ethers.utils.formatEther(
-        await tokenUserConnection.allowance(
-          await signer.getAddress(),
-          currentExchangeAddress
-        )
-      );
-
-      console.log('allowanceAmount', allowanceAmount);
-
-      if (allowanceAmount === '0') {
-        console.log('no allowance');
-        return;
-      }
-
-      if (allowanceAmount < inputOne) {
-        console.log('not enough allowance');
-        return;
-      }
-      if (swapType === 'TokenToEthSwap') {
-        let transaction = await exchangeUserConnection.tokenToEthSwap(
-          ethers.utils.parseEther(allowanceAmount.toString()),
-          ethers.utils.parseEther((inputTwo * 0.98).toString())
-        );
-        console.log('transaction', transaction);
-      } else {
-        let transaction = await exchangeUserConnection.tokenToTokenSwap(
-          ethers.utils.parseEther(allowanceAmount.toString()),
-          ethers.utils.parseEther((inputTwo * 0.98).toString())
-        );
-        console.log('transaction', transaction);
-      }
-      console.log('transaction done!');
-      return;
-    }
-
-    let transaction = await exchangeUserConnection.tokenToEthSwap(
-      ethers.utils.parseEther(allowanceAmount.toString()),
-      ethers.utils.parseEther((inputTwo * 0.98).toString())
+    if(swapType !== 'EthToTokenSwap') {
+    const wasApproved = await tokenUserConnection.approve(
+      currentExchangeAddress,
+      ethers.utils.parseEther(inputOne)
     );
-    console.log('transaction', transaction);
-    console.log('transaction done!');
+    console.log('not yet confirmed');
+    let waitDude = await wasApproved.wait();
+    console.log('waitdudeee', waitDude);
+    console.log('was approved?', wasApproved);
+    const allowanceAmount = ethers.utils.formatEther(
+      await tokenUserConnection.allowance(
+        await signer.getAddress(),
+        currentExchangeAddress
+      )
+    );
+    
+        console.log('allowanceAmount', allowanceAmount);
+    
+        if (allowanceAmount === '0') {
+          console.log('no allowance');
+        }
+    
+        // if (allowanceAmount < inputOne) {
+        //   console.log('not enough allowance');
+        // }
+    
+        if (allowanceAmount >= inputOne) {
+          let transaction = await exchangeUserConnection.tokenToEthSwap(
+            ethers.utils.parseEther(allowanceAmount.toString()),
+            ethers.utils.parseEther((inputTwo * 0.98).toString())
+          );
+          console.log('transaction', transaction);
+        }
+        console.log('transaction done!');
+    }
   }
 
   return (

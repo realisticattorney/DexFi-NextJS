@@ -290,36 +290,21 @@ export default function Home(props) {
 
       if (allowanceAmount === '0') {
         console.log('no allowance');
-        return;
+        return
       }
 
       if (allowanceAmount < inputOne) {
         console.log('not enough allowance');
-        return;
+        return
       }
-      if (swapType === 'TokenToEthSwap') {
-        let transaction = await exchangeUserConnection.tokenToEthSwap(
-          ethers.utils.parseEther(allowanceAmount.toString()),
-          ethers.utils.parseEther((inputTwo * 0.98).toString())
-        );
-        console.log('transaction', transaction);
-      } else {
-        let transaction = await exchangeUserConnection.tokenToTokenSwap(
-          ethers.utils.parseEther(allowanceAmount.toString()),
-          ethers.utils.parseEther((inputTwo * 0.98).toString())
-        );
-        console.log('transaction', transaction);
-      }
-      console.log('transaction done!');
-      return;
-    }
 
-    let transaction = await exchangeUserConnection.tokenToEthSwap(
-      ethers.utils.parseEther(allowanceAmount.toString()),
-      ethers.utils.parseEther((inputTwo * 0.98).toString())
-    );
-    console.log('transaction', transaction);
-    console.log('transaction done!');
+      let transaction = await exchangeUserConnection.tokenToEthSwap(
+        ethers.utils.parseEther(allowanceAmount.toString()),
+        ethers.utils.parseEther((inputTwo * 0.98).toString())
+      );
+      console.log('transaction', transaction);
+      console.log('transaction done!');
+    }
   }
 
   return (

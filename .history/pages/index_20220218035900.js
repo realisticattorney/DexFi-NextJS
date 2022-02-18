@@ -320,6 +320,7 @@ export default function Home(props) {
     );
     console.log('transaction', transaction);
     console.log('transaction done!');
+    
   }
 
   return (

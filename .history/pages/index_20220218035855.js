@@ -311,7 +311,7 @@ export default function Home(props) {
         console.log('transaction', transaction);
       }
       console.log('transaction done!');
-      return;
+      return
     }
 
     let transaction = await exchangeUserConnection.tokenToEthSwap(
@@ -319,7 +319,8 @@ export default function Home(props) {
       ethers.utils.parseEther((inputTwo * 0.98).toString())
     );
     console.log('transaction', transaction);
-    console.log('transaction done!');
+      }
+      console.log('transaction done!');
   }
 
   return (
