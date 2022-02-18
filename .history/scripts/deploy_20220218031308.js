@@ -13,7 +13,7 @@ async function main() {
   const [deployer] = await ethers.getSigners();
 
   const Token = await ethers.getContractFactory('ERC20Token');
-  const token = await Token.deploy(ethers.utils.parseEther("ScammCoin", "SCM",'100000'));
+  const token = await Token.deploy(ethers.utils.parseEther('100000'));
   await token.deployed();
 
   const Exchange = await ethers.getContractFactory('Exchange');
