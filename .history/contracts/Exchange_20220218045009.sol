@@ -199,7 +199,6 @@ contract Exchange is ERC20 {
         uint256 _tokensSold,
         address _tokenAddress)
          public view returns (uint256) 
-         
          {
         address exchangeAddress = Registry(registryAddress).getExchange(
             _tokenAddress

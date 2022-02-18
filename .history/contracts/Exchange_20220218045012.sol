@@ -200,7 +200,7 @@ contract Exchange is ERC20 {
         address _tokenAddress)
          public view returns (uint256) 
          
-         {
+         {{
         address exchangeAddress = Registry(registryAddress).getExchange(
             _tokenAddress
         );

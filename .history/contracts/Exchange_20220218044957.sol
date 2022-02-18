@@ -194,13 +194,10 @@ contract Exchange is ERC20 {
             msg.sender
         );
     }
-
     function getTokenToTokenAmount(
         uint256 _tokensSold,
         address _tokenAddress)
-         public view returns (uint256) 
-         
-         {
+         public view returns (uint256) {
         address exchangeAddress = Registry(registryAddress).getExchange(
             _tokenAddress
         );

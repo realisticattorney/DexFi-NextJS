@@ -194,13 +194,11 @@ contract Exchange is ERC20 {
             msg.sender
         );
     }
-
-    function getTokenToTokenAmount(
+    function tokenToTokenSwap(
         uint256 _tokensSold,
-        address _tokenAddress)
-         public view returns (uint256) 
-         
-         {
+        uint256 _minTokensBought,
+        address _tokenAddress
+    ) public {
         address exchangeAddress = Registry(registryAddress).getExchange(
             _tokenAddress
         );
@@ -216,7 +214,15 @@ contract Exchange is ERC20 {
             getReserve(),
             address(this).balance
         );
-;
-        return Exchange(exchangeAddress).getTokenAmount(ethBought);
+
+        IERC20(tokenAddress).transferFrom(
+            msg.sender,
+            address(this),
+            _tokensSold
+        );
+        Exchange(exchangeAddress).ethToTokenTransfer{value: ethBought}(
+            _minTokensBought,
+            msg.sender
+        );
     }
 }
