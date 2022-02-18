@@ -257,7 +257,7 @@ export default function Home(props) {
     );
     //habria que chequear si es un ERC20 o si no hace falta aprove. pero despues si hay o no aprove hecho, esta siempre en mi control porque se aprueba que mi contrato pueda o no mandar. entonces lo que deberia hacer ahora, es
     const tokenUserConnection = new ethers.Contract(
-      currentTokenExchangeAddress.current,
+      currentTokenExchangeAddress,
       ERC20Token.abi,
       signer
     );

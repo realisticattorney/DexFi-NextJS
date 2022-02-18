@@ -114,7 +114,7 @@ export default function Home(props) {
   //   currentSwapType.current = currentSwapType;
   //   if()
   // }, [setSwapType]);
-
+  
   const setExchangeCallback = useCallback((exchange) => {
     setExchange(exchange);
   }, []);
@@ -252,12 +252,10 @@ export default function Home(props) {
     const connection = await web3modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
-    let currentExchangeAddress = await registry.getExchange(
-      currentTokenExchangeAddress.current
-    );
+    let currentExchangeAddress = await registry.getExchange(currentTokenExchangeAddress);
     //habria que chequear si es un ERC20 o si no hace falta aprove. pero despues si hay o no aprove hecho, esta siempre en mi control porque se aprueba que mi contrato pueda o no mandar. entonces lo que deberia hacer ahora, es
     const tokenUserConnection = new ethers.Contract(
-      currentTokenExchangeAddress.current,
+      currentTokenExchangeAddress,
       ERC20Token.abi,
       signer
     );
@@ -278,7 +276,7 @@ export default function Home(props) {
     const allowanceAmount = ethers.utils.formatEther(
       await tokenUserConnection.allowance(
         await signer.getAddress(),
-        currentExchangeAddress
+        scammExchangeAddress
       )
     );
     console.log('allowanceAmount', allowanceAmount);
