@@ -41,6 +41,8 @@ import {
 import Registry from '../artifacts/contracts/Registry.sol/Registry.json';
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
+import Usdc from '../artifacts/contracts/USDC.sol/USDC.json';
+import Etc from '../artifacts/contracts/ETC.sol/ETC.json';
 
 // function reducer(state, action) {
 //   switch (action.type) {
@@ -256,7 +258,7 @@ export default function Home(props) {
     //habria que chequear si es un ERC20 o si no hace falta aprove. pero despues si hay o no aprove hecho, esta siempre en mi control porque se aprueba que mi contrato pueda o no mandar. entonces lo que deberia hacer ahora, es
     const tokenUserConnection = new ethers.Contract(
       currentTokenExchangeAddress,
-      ERC20Token.abi,
+      ScammCoin.abi,
       signer
     );
     const exchangeUserConnection = new ethers.Contract(
