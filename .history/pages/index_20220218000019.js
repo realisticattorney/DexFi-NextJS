@@ -83,8 +83,7 @@ export default function Home(props) {
   const handleOpenSecond = () => setOpenSecond(true);
   const handleClose = useCallback(() => setOpen(false), []);
   const handleCloseSecond = () => setOpenSecond(false);
-  const [swapType, setSwapType] = useState(null); //Disable Connect Wallet/Swap button if null
-  
+
   const handleInputToken = useCallback(
     (current) => {
       setInputToken((t) => {
@@ -111,7 +110,7 @@ export default function Home(props) {
     }
   }, [inputToken, outputToken]);
 
-  
+  const [swapType, setSwapType] = useState(null); //Disable Connect Wallet/Swap button if null
 
   const handleMenuItemClick = async (event, index, menuItem) => {
     if (menuItem === 1) {

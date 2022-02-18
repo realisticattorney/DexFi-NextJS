@@ -83,8 +83,7 @@ export default function Home(props) {
   const handleOpenSecond = () => setOpenSecond(true);
   const handleClose = useCallback(() => setOpen(false), []);
   const handleCloseSecond = () => setOpenSecond(false);
-  const [swapType, setSwapType] = useState(null); //Disable Connect Wallet/Swap button if null
-  
+
   const handleInputToken = useCallback(
     (current) => {
       setInputToken((t) => {
@@ -111,7 +110,7 @@ export default function Home(props) {
     }
   }, [inputToken, outputToken]);
 
-  
+  const [swapType, setSwapType] = useState(null); //Disable Connect Wallet/Swap button if null
 
   const handleMenuItemClick = async (event, index, menuItem) => {
     if (menuItem === 1) {
@@ -204,7 +203,6 @@ export default function Home(props) {
     ) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const toBeExchange = exchangeHandler();
-
       if (currentExchangeAddress.current !== toBeExchange) {
         currentExchangeAddress.current = toBeExchange;
         let newExchangeAddress = await registry.getExchange(toBeExchange);
