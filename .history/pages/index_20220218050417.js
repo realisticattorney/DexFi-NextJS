@@ -324,7 +324,7 @@ export default function Home(props) {
       
       let minTokensAmount = ethers.utils.formatEther(
         await exchange.getTokenToTokenAmount(
-          ethers.utils.parseEther(allowanceAmount.toString()),
+          price,
           outputToken.currentToken[0].address
         )
       );

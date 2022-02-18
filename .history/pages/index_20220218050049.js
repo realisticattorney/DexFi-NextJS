@@ -321,15 +321,13 @@ export default function Home(props) {
       );
       console.log('transaction', transaction);
     } else {
-      
       let minTokensAmount = ethers.utils.formatEther(
         await exchange.getTokenToTokenAmount(
-          ethers.utils.parseEther(allowanceAmount.toString()),
+          price,
           outputToken.currentToken[0].address
         )
       );
-      console.log('minTokensAmount', minTokensAmount);
-      console.log('mintype', typeof minTokensAmount);
+      console.log()
       let transaction = await exchangeUserConnection.tokenToTokenSwap(
         ethers.utils.parseEther(allowanceAmount.toString()),
         ethers.utils.parseEther((minTokensAmount * 0.98).toString()),
