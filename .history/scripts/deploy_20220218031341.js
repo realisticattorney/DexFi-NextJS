@@ -4,7 +4,7 @@ const amountA = ethers.utils.parseEther('20000');
 const amountB = ethers.utils.parseEther('1000');
 const amountC = ethers.utils.parseEther('500');
 const amountD = ethers.utils.parseEther('250');
-const amountSupply = ethers.utils.parseEther('100000');
+
 async function main() {
   const Registry = await ethers.getContractFactory('Registry');
   const registry = await Registry.deploy(); //do not define registry as const, it won't make it outside the beforeEach function scope
@@ -13,21 +13,17 @@ async function main() {
   const [deployer] = await ethers.getSigners();
 
   const Token = await ethers.getContractFactory('ERC20Token');
-  const token = await Token.deploy('ScammCoin', 'SCM', amountSupply);
+  const token = await Token.deploy(ethers.utils.parseEther("ScammCoin", "SCM",'100000'));
   await token.deployed();
 
   const Exchange = await ethers.getContractFactory('Exchange');
 
   const TokenTwo = await ethers.getContractFactory('ERC20Token');
-  const tokenTwo = await TokenTwo.deploy('USDC Fake', 'USDC', amountSupply);
+  const tokenTwo = await TokenTwo.deploy(ethers.utils.parseEther('100000'));
   await tokenTwo.deployed();
 
-  const TokenThree = await ethers.getContractFactory('ERC20Token');
-  const tokenThree = await TokenThree.deploy(
-    'ETH Classic Fake',
-    'ETC',
-    amountSupply
-  );
+  const TokenThree = await ethers.getContractFactory('ETC');
+  const tokenThree = await TokenThree.deploy(ethers.utils.parseEther('100000'));
   await tokenThree.deployed();
 
   console.log('Deployer address:', deployer.address);
@@ -82,6 +78,8 @@ async function main() {
   );
   console.log('EthProvidedToScammExchange', ethProvided);
 
+
+
   await tokenTwo.approve(USDCExchangeContract.address, amountA);
   const allowanceAmountTwo = ethers.utils.formatEther(
     await tokenTwo.allowance(deployer.address, USDCExchangeContract.address)
@@ -92,6 +90,8 @@ async function main() {
     await provider.getBalance(USDCExchangeContract.address)
   );
   console.log('EthProvidedToUSDCExchange', ethProvidedTwo);
+
+
 
   await tokenThree.approve(ETCExchangeContract.address, amountA);
   const allowanceAmountThree = ethers.utils.formatEther(

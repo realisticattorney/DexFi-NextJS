@@ -4,7 +4,7 @@ const amountA = ethers.utils.parseEther('20000');
 const amountB = ethers.utils.parseEther('1000');
 const amountC = ethers.utils.parseEther('500');
 const amountD = ethers.utils.parseEther('250');
-const amountSupply = ethers.utils.parseEther('100000');
+
 async function main() {
   const Registry = await ethers.getContractFactory('Registry');
   const registry = await Registry.deploy(); //do not define registry as const, it won't make it outside the beforeEach function scope
@@ -13,20 +13,22 @@ async function main() {
   const [deployer] = await ethers.getSigners();
 
   const Token = await ethers.getContractFactory('ERC20Token');
-  const token = await Token.deploy('ScammCoin', 'SCM', amountSupply);
+  const token = await Token.deploy(
+    ethers.utils.parseEther('ScammCoin', 'SCM', '100000')
+  );
   await token.deployed();
 
   const Exchange = await ethers.getContractFactory('Exchange');
 
   const TokenTwo = await ethers.getContractFactory('ERC20Token');
-  const tokenTwo = await TokenTwo.deploy('USDC Fake', 'USDC', amountSupply);
+  const tokenTwo = await TokenTwo.deploy(
+    ethers.utils.parseEther('USDC', 'USDC', '100000')
+  );
   await tokenTwo.deployed();
 
   const TokenThree = await ethers.getContractFactory('ERC20Token');
   const tokenThree = await TokenThree.deploy(
-    'ETH Classic Fake',
-    'ETC',
-    amountSupply
+    ethers.utils.parseEther('ETC Classic', 'SCM', '100000')
   );
   await tokenThree.deployed();
 

@@ -13,20 +13,20 @@ async function main() {
   const [deployer] = await ethers.getSigners();
 
   const Token = await ethers.getContractFactory('ERC20Token');
-  const token = await Token.deploy('ScammCoin', 'SCM', amountSupply);
+  const token = await Token.deploy('ScammCoin', 'SCM', '100000');
   await token.deployed();
 
   const Exchange = await ethers.getContractFactory('Exchange');
 
   const TokenTwo = await ethers.getContractFactory('ERC20Token');
-  const tokenTwo = await TokenTwo.deploy('USDC Fake', 'USDC', amountSupply);
+  const tokenTwo = await TokenTwo.deploy(
+    ethers.utils.parseEther('USDC Fake', 'USDC', '100000')
+  );
   await tokenTwo.deployed();
 
   const TokenThree = await ethers.getContractFactory('ERC20Token');
   const tokenThree = await TokenThree.deploy(
-    'ETH Classic Fake',
-    'ETC',
-    amountSupply
+    ethers.utils.parseEther('Ethereum Classic Fake', 'ETC', '100000')
   );
   await tokenThree.deployed();
 

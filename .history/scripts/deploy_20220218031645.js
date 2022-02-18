@@ -24,7 +24,7 @@ async function main() {
 
   const TokenThree = await ethers.getContractFactory('ERC20Token');
   const tokenThree = await TokenThree.deploy(
-    'ETH Classic Fake',
+    'Ethereum Classic Fake',
     'ETC',
     amountSupply
   );
