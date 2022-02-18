@@ -78,10 +78,11 @@ export default function Home(props) {
   });
   const [open, setOpen] = useState(false);
   const [openSecond, setOpenSecond] = useState(false);
-  const handleOpen = useCallback(() => setOpen(true), []);
+  const handleOpen = () => setOpen(true);
   const handleOpenSecond = () => setOpenSecond(true);
-  const handleClose = useCallback(() => setOpen(false), []);
+  const handleClose = () => setOpen(false);
   const handleCloseSecond = () => setOpenSecond(false);
+  // const [wasSwitch, setWasSwitch] = useState(false);
 
   const handleInputToken = useCallback(
     (current) => {
@@ -185,6 +186,7 @@ export default function Home(props) {
     setLoadingRegistry(true);
   }, []);
 
+  console.log('swapType', swapType);
   //
   //
   //

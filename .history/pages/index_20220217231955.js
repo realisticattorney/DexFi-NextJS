@@ -80,7 +80,7 @@ export default function Home(props) {
   const [openSecond, setOpenSecond] = useState(false);
   const handleOpen = useCallback(() => setOpen(true), []);
   const handleOpenSecond = () => setOpenSecond(true);
-  const handleClose = useCallback(() => setOpen(false), []);
+  const handleClose = useCallback(() => setOpen(true), []);
   const handleCloseSecond = () => setOpenSecond(false);
 
   const handleInputToken = useCallback(

@@ -78,10 +78,11 @@ export default function Home(props) {
   });
   const [open, setOpen] = useState(false);
   const [openSecond, setOpenSecond] = useState(false);
-  const handleOpen = useCallback(() => setOpen(true), []);
+  const handleOpen = () => setOpen(true);
   const handleOpenSecond = () => setOpenSecond(true);
-  const handleClose = useCallback(() => setOpen(false), []);
+  const handleClose = () => setOpen(false);
   const handleCloseSecond = () => setOpenSecond(false);
+  // const [wasSwitch, setWasSwitch] = useState(false);
 
   const handleInputToken = useCallback(
     (current) => {
@@ -109,6 +110,8 @@ export default function Home(props) {
     }
   }, [inputToken, outputToken]);
 
+  console.log('outputToken', outputToken);
+  console.log('inputToken', inputToken);
   const [swapType, setSwapType] = useState(null); //Disable Connect Wallet/Swap button if null
 
   const handleMenuItemClick = async (event, index, menuItem) => {
@@ -185,52 +188,41 @@ export default function Home(props) {
     setLoadingRegistry(true);
   }, []);
 
-  //
-  //
-  //
-  //
-  //
-  //
-  //
+  console.log('swapType', swapType);
+
   useEffect(() => {
     if (loadingState === 'loaded' || loadingRegistry === false) {
       return;
     }
-    async function loadExchange(exchangeHandler, exchange, registry) {
+    async function loadExchange(
+      exchangeHandler,
+      exchange,
+      registry,
+      loadingState,
+      loadingRegistry
+    ) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
 
-      let exchangeTokenAddress = await exchange?.tokenAddress();
+      let exchangeTokenAddress = await registry?.tokenAddress();
       console.log('exchangeTokenAddress', exchangeTokenAddress);
-      const toBeExchange = exchangeHandler();
-      console.log('toBeExchange', toBeExchange);
-      if (exchangeTokenAddress !== toBeExchange) {
-        setExchange(
-          new ethers.Contract(
-            await registry.getExchange(toBeExchange),
-            Exchange.abi,
-            provider
-          )
-        );
-      }
+      const toBeExchange = exchangeHandler
+
+      const changeExchange = exchangeTokenAddress === toBeExchange ? true : false;
+
+      
+      
       setLoadingState('loaded');
       console.log('base exchange loaded');
     }
-    loadExchange(exchangeHandler, exchange, registry);
+    loadExchange(
+      exchangeHandler,
+      exchange,
+      registry,
+      loadingState,
+      loadingRegistry
+    );
   }, [exchangeHandler, exchange, registry, loadingState, loadingRegistry]);
-  console.log('exchange', exchange);
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
+
   async function callExchange(input, id) {
     let price = await ethers.utils.parseEther(input);
     let amount;
@@ -511,9 +503,7 @@ export default function Home(props) {
                     (inputOne / inputTwo).toString().length > 9
                       ? (inputOne / inputTwo).toString().substring(0, 10)
                       : (inputOne / inputTwo).toString()
-                  } ${inputToken.currentToken[0].symbol} per ${
-                    outputToken.currentToken[0].symbol
-                  }`}</h1>
+                  } ${inputToken[0].symbol} per ${outputToken[0].symbol}`}</h1>
                 </div>
               </div>
             )}
