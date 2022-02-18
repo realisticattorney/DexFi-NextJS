@@ -41,8 +41,8 @@ import {
 import Registry from '../artifacts/contracts/Registry.sol/Registry.json';
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import ScammCoin from '../artifacts/contracts/ScammCoin.sol/ScammCoin.json';
-import Usdc from '../artifacts/contracts/USDC.sol/USDC.json';
-import Etc from '../artifacts/contracts/ETC.sol/ETC.json';
+import USDC from '../artifacts/contracts/USDC.sol/USDC.json';
+import ETC from '../artifacts/contracts/ETC.sol/ETC.json';
 
 // function reducer(state, action) {
 //   switch (action.type) {

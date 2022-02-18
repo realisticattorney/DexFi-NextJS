@@ -41,8 +41,7 @@ import {
 import Registry from '../artifacts/contracts/Registry.sol/Registry.json';
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import ScammCoin from '../artifacts/contracts/ScammCoin.sol/ScammCoin.json';
-import Usdc from '../artifacts/contracts/USDC.sol/USDC.json';
-import Etc from '../artifacts/contracts/ETC.sol/ETC.json';
+import USDC from '../artifacts/contracts/USDC.sol/USDC.json';
 
 // function reducer(state, action) {
 //   switch (action.type) {
@@ -76,15 +75,15 @@ export default function Home(props) {
     prevToken: null,
     currentToken: [currencies[1], 1],
   });
-  const currentTokenExchangeAddress = useRef(null);
-  // const currentSwapType = useRef(null);
+  const currentExchangeAddress = useRef(null);
+  const currentSwapType = useRef(null);
   const [open, setOpen] = useState(false);
   const [openSecond, setOpenSecond] = useState(false);
   const handleOpen = useCallback(() => setOpen(true), []);
   const handleOpenSecond = () => setOpenSecond(true);
   const handleClose = useCallback(() => setOpen(false), []);
   const handleCloseSecond = () => setOpenSecond(false);
-  // const [swapType, setSwapType] = useState(null); //Disable Connect Wallet/Swap button if null
+  const [swapType, setSwapType] = useState(null); //Disable Connect Wallet/Swap button if null
 
   const handleInputToken = useCallback(
     (current) => {
@@ -112,10 +111,10 @@ export default function Home(props) {
     }
   }, [inputToken, outputToken]);
 
-  // const swapTypeHandler = useCallback(currentSwapType => {
-  //   currentSwapType.current = currentSwapType;
-  //   if()
-  // }, [setSwapType]);
+  const swapTypeHandler = useCallback(currentSwapType => {
+    currentSwapType.current = currentSwapType;
+    if()
+  }, [setSwapType]);
   
   const setExchangeCallback = useCallback((exchange) => {
     setExchange(exchange);
@@ -139,8 +138,8 @@ export default function Home(props) {
 
     setRegistry(registry);
     setExchange(exchange);
-    currentTokenExchangeAddress.current = scammExchangeAddress;
-    // setSwapType('tokenToEthSwap');
+    currentExchangeAddress.current = scammExchangeAddress;
+    setSwapType('tokenToEthSwap');
     setLoadingRegistry(true);
   }, []);
 
@@ -156,8 +155,8 @@ export default function Home(props) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const toBeExchange = exchangeHandler();
 
-      if (currentTokenExchangeAddress.current !== toBeExchange) {
-        currentTokenExchangeAddress.current = toBeExchange;
+      if (currentExchangeAddress.current !== toBeExchange) {
+        currentExchangeAddress.current = toBeExchange;
         let newExchangeAddress = await registry.getExchange(toBeExchange);
         setExchangeCallback(
           new ethers.Contract(newExchangeAddress, Exchange.abi, provider)
@@ -254,15 +253,18 @@ export default function Home(props) {
     const connection = await web3modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
-    let currentExchangeAddress = await registry.getExchange(currentTokenExchangeAddress);
+    const getExchangeAddress = await registry.getExchange(
+      inputToken.currentToken[0].address
+    );
     //habria que chequear si es un ERC20 o si no hace falta aprove. pero despues si hay o no aprove hecho, esta siempre en mi control porque se aprueba que mi contrato pueda o no mandar. entonces lo que deberia hacer ahora, es
     const tokenUserConnection = new ethers.Contract(
-      currentTokenExchangeAddress,
+      // currencies[selectedIndex].address,
+      scammcoinAddress,
       ScammCoin.abi,
       signer
     );
     const exchangeUserConnection = new ethers.Contract(
-      currentExchangeAddress,
+      scammExchangeAddress,
       Exchange.abi,
       signer
     );
