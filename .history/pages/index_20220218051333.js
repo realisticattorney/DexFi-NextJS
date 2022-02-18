@@ -34,6 +34,7 @@ import {
   scammcoinAddress,
   USDCAddress,
   ETCAddress,
+  ETCExchangeAddress,
 } from '../config.js';
 
 import Registry from '../artifacts/contracts/Registry.sol/Registry.json';
