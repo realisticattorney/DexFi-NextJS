@@ -32,9 +32,7 @@ export default function Liquidity() {
               <h1 className="text-xl font-bold">Your Liquidity</h1>
               <p className="text-sm">Remove liquidity to receive tokens back</p>
             </div>
-            <div className='w-[80px]'>
-               
-            </div>
+            <div className='w-[80px]'></div>
           </div>
         </div>
       </div>

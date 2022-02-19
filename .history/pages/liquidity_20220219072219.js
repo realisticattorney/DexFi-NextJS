@@ -22,22 +22,15 @@ export default function Liquidity() {
   console.log('web3', web3);
 
   return (
-    <div className="flex-col ">
-      <Subnav marked={'Liquidity'} />
+   <div className="flex-col ">
+   <Subnav marked={"Liquidity"} />
 
-      <div className="p-6 mx-auto w-min">
-        <div className="flex-col relative w-[436px] h-[273px] bg-white rounded-3xl border shadow-sm">
-          <div className="h-[100px] p-6 justify-between flex">
-            <div className='flex-col'>
-              <h1 className="text-xl font-bold">Your Liquidity</h1>
-              <p className="text-sm">Remove liquidity to receive tokens back</p>
-            </div>
-            <div className='w-[80px]'>
-               
-            </div>
-          </div>
+   <div className="p-6 mx-auto w-min">
+        <div className="flex-col relative py-5 w-[326px] h-[518px] bg-white rounded-3xl border shadow-sm">
+           
         </div>
-      </div>
-    </div>
+        
+   
+   </div>
   );
 }

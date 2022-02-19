@@ -27,13 +27,10 @@ export default function Liquidity() {
 
       <div className="p-6 mx-auto w-min">
         <div className="flex-col relative w-[436px] h-[273px] bg-white rounded-3xl border shadow-sm">
-          <div className="h-[100px] p-6 justify-between flex">
-            <div className='flex-col'>
+          <div className="h-[100px] p-6">
+            <div >
               <h1 className="text-xl font-bold">Your Liquidity</h1>
               <p className="text-sm">Remove liquidity to receive tokens back</p>
-            </div>
-            <div className='w-[80px]'>
-               
             </div>
           </div>
         </div>
