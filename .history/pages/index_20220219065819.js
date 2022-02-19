@@ -12,7 +12,7 @@ import ImportExportIcon from '@mui/icons-material/ImportExport';
 import { styled } from '@mui/material/styles';
 import { useWeb3 } from '../components/providers/web3';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
+
 
 import {
   scammExchangeAddress,
@@ -54,7 +54,6 @@ const Icon = styled((props) => (
 
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
-import Subnav from '../components/Subnav.js';
 
 export default function Home(props) {
   const {
@@ -68,9 +67,8 @@ export default function Home(props) {
   console.log('provider', provider);
   console.log('web3', web3);
 
-  const router = useRouter();
-
   const { currencies } = props;
+
   const [exchange, setExchange] = useState(exchange2);
   const [loadingRegistry, setLoadingRegistry] = useState(false);
   const [inputToken, setInputToken] = useState({
@@ -343,7 +341,16 @@ export default function Home(props) {
 
   return (
     <div className="flex-col ">
-      <Subnav marked={"Exchange"} />
+      <nav className="bg-white">
+        <div className="mx-auto flex w-fit space-x-4">
+          <div className="border-b-4 pt-2.5 pb-1 px-2 border-cyan-500">
+            <h1 className="text-violet-600 font-bold ">Exchange</h1>
+          </div>
+          <div className="pt-2.5 pb-1 px-2 ">
+            <h1 className="text-gray-500 font-semibold ">Liquidity</h1>
+          </div>
+        </div>
+      </nav>
       <div className="p-6 mx-auto w-min">
         <div className="flex-col relative py-5 w-[326px] h-[518px] bg-white rounded-3xl border shadow-sm">
           <div className="text-center pb-6 border-b">

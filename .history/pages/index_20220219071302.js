@@ -343,7 +343,7 @@ export default function Home(props) {
 
   return (
     <div className="flex-col ">
-      <Subnav marked={"Exchange"} />
+      <Subnav marked={"Exchange"}/>
       <div className="p-6 mx-auto w-min">
         <div className="flex-col relative py-5 w-[326px] h-[518px] bg-white rounded-3xl border shadow-sm">
           <div className="text-center pb-6 border-b">

@@ -54,7 +54,6 @@ const Icon = styled((props) => (
 
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
-import Subnav from '../components/Subnav.js';
 
 export default function Home(props) {
   const {
@@ -343,7 +342,7 @@ export default function Home(props) {
 
   return (
     <div className="flex-col ">
-      <Subnav marked={"Exchange"} />
+      <Subnav></Subnav>
       <div className="p-6 mx-auto w-min">
         <div className="flex-col relative py-5 w-[326px] h-[518px] bg-white rounded-3xl border shadow-sm">
           <div className="text-center pb-6 border-b">
