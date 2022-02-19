@@ -1,5 +1,5 @@
 const { createContext, useContext, useEffect, useState } = require('react');
-import { ethers } from 'ethers';
+
 import detectEthereumProvider from '@metamask/detect-provider';
 import Web3 from 'web3';
 
