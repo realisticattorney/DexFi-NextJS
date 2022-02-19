@@ -302,7 +302,7 @@ export default function Home(props) {
     <div className="flex-col ">
       <nav className="bg-white py-3 ">
         <div className="mx-auto flex  w-fit space-x-4">
-          <h1 className='text-dexfi-violet'>Exchange</h1>
+          <h1 className=''>Exchange</h1>
           <h1>Liquidity</h1>
         </div>
       </nav>

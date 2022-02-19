@@ -10,9 +10,14 @@ const Nav = () => {
   useEffect(() => {}, [isAuthenticated]);
 
   return (
-    <div className="flex border-b-1.5 border-gray-200 p-0 items-center">
-      <div className="p-3 pb-1.5">
-        <Image src="/bunny.svg" height={32} width={32} alt="" />
+    <div className="flex border-b border-gray-300 p-0 items-center">
+      <div className="p-3">
+        <Image
+          src="/bunny.svg"
+          height={33}
+          width={33}
+          alt=""
+        />
       </div>
       <Link href="/">
         <a className="mx-6 text-gray-500 font-semibold">Home</a>
