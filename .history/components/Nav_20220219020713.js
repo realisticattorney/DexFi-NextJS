@@ -34,7 +34,7 @@ const Nav = () => {
         <a className="mr-6 text-gray-500  font-semibold">
         <MoreHorizIcon sx={{ color: '#6B7280', fontSize: 20 }} /></a>
       </Link>
-      {/* {isAuthenticated ? (
+      {isAuthenticated ? (
         <button
           className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-sm tracking-wide bg-pink-500 rounded-full"
           onClick={logout}
@@ -52,7 +52,7 @@ const Nav = () => {
         >
           Connect Wallet
         </button>
-      )} */}
+      )}
     </div>
   );
 };

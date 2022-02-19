@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Nav from './Nav';
 import Image from 'next/image';
-import Web3Provider  from "./providers/web3"
+import { Web3Provider } from "./providers/web3"
 
 const Layout = ({ children }) => {
   return (

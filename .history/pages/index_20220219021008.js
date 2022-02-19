@@ -388,7 +388,7 @@ export default function Home(props) {
               />
             </button>
           </div>
-          { test }
+
           <MenuItemList
             handleOpen={handleOpenSecond}
             handleClose={handleCloseSecond}

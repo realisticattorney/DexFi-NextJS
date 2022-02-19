@@ -2,11 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import Nav from './Nav';
 import Image from 'next/image';
-import Web3Provider  from "./providers/web3"
+import { Web3Provider } from "./providers/web3"
 
 const Layout = ({ children }) => {
   return (
-    <Web3Provider>
+    Web3Provider
     <div className="flex flex-col min-h-screen   ">
       <Nav />
       <main className="h-full w-full flex-grow bg-dexfi-sky">
@@ -161,7 +161,6 @@ const Layout = ({ children }) => {
         </div>
       </footer>
     </div>
-    </Web3Provider>
   );
 };
 

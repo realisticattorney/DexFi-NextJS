@@ -57,9 +57,6 @@ import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
 import { display } from '@mui/system';
 
 export default function Home(props) {
-  const { test } = useWeb3()
-
-  
   const { currencies } = props;
 
   const [registry, setRegistry] = useState(null);
@@ -388,7 +385,7 @@ export default function Home(props) {
               />
             </button>
           </div>
-          { test }
+
           <MenuItemList
             handleOpen={handleOpenSecond}
             handleClose={handleCloseSecond}
