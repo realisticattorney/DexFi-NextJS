@@ -59,6 +59,7 @@ export default function Home(props) {
     registry,
     exchange2,
     web3,
+    isInitialized,
     isUserWalletConnected,
     connect,
   } = useWeb3();
@@ -67,6 +68,7 @@ export default function Home(props) {
 
   const { currencies } = props;
 
+  // const [registry, setRegistry] = useState(null);
   const [exchange, setExchange] = useState(exchange2);
   const [loadingRegistry, setLoadingRegistry] = useState(false);
   const [inputToken, setInputToken] = useState({
@@ -237,12 +239,9 @@ export default function Home(props) {
           ? ethers.utils.formatEther(await exchange.getEthAmount(price))
           : ethers.utils.formatEther(await exchange.getTokenAmount(price));
     } else {
-      amount =
-        id === 'outlined-number-1'
-          ? ethers.utils.formatEther(await exchange.getTokenAmount(price))
-          : ethers.utils.formatEther(await exchange.getEthAmount(price));
     }
 
+  
     console.log('amount', amount);
     if (id === 'outlined-number-1') {
       setInputOne(input);
@@ -388,6 +387,7 @@ export default function Home(props) {
               />
             </button>
           </div>
+          {/* { isInitialized ? "IS INIT" : "IS NOT INIT" } */}
           <MenuItemList
             handleOpen={handleOpenSecond}
             handleClose={handleCloseSecond}
@@ -508,3 +508,6 @@ export async function getStaticProps() {
     },
   };
 }
+
+//dynamic server side rendering, passing the input of every exchange to the Home component as an array of objects
+//this object will contain the exchange address, the exchange name, and the exchange logo, and the current price for each. lots of things, really, can we do that through metamask? idk. the other option is to get those things as the user demands for them, but pretty slow solution imo.

@@ -508,3 +508,6 @@ export async function getStaticProps() {
     },
   };
 }
+
+//dynamic server side rendering, passing the input of every exchange to the Home component as an array of objects
+//this object will contain the exchange address, the exchange name, and the exchange logo, and the current price for each. lots of things, really, can we do that through metamask? idk. the other option is to get those things as the user demands for them, but pretty slow solution imo.
