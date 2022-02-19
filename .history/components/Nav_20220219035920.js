@@ -5,11 +5,9 @@ import { useMoralis } from 'react-moralis';
 import { useEffect } from 'react';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useWeb3 } from '../components/providers/web3';
-import { useRouter } from 'next/router';
 
 const Nav = () => {
-  const { connect, isLoading, isWeb3Loaded } = useWeb3();
-  const router = useRouter();
+  const { connect, isLoading, isWeb3Loaded } = useWeb3()
   // const { isAuthenticated, authenticate, logout } = useMoralis();
 
   // useEffect(() => {}, [isAuthenticated]);
@@ -40,27 +38,19 @@ const Nav = () => {
           <MoreHorizIcon sx={{ color: '#6B7280', fontSize: 20 }} />
         </a>
       </Link>
-      {isLoading ? (
+      {isLoading  ? (
         <button
           className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-sm tracking-wide bg-pink-500 rounded-full"
-          disabled={true}
           onClick={connect}
         >
-          Loading...
+          Logout
         </button>
-      ) : isWeb3Loaded ? (
+      ) :  isWeb3Loaded ? (
         <button
           className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-sm tracking-wide bg-pink-500 rounded-full"
           onClick={connect}
         >
           Connect Wallet
-        </button>
-      ) : (
-        <button
-          className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-sm tracking-wide bg-pink-500 rounded-full"
-          onClick={() => router.push('https://metamask.io/download.html')}
-        >
-          Install Metamask
         </button>
       )}
     </div>
