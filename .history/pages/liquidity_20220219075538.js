@@ -63,22 +63,26 @@ export default function Liquidity() {
               </button>
             </div>
           </div>
-          <div className="h-[72px] p-6 mx-auto text-center  bg-gray-200">
-            <h1 className="font-medium text-gray-600">
-              Connect to a wallet to view your liquidity
-            </h1>
-          </div>
-          <div className="h-[100px] p-6 mx-auto text-center  ">
-            <Link href="/add">
-              <a>
-                <button className="w-full bg-pink-500 shadow-sm text-white font-bold py-3 px-12 rounded-2xl">
-                  + Add Liquidity
-                </button>
-              </a>
-            </Link>
-          </div>
+            <div className="h-[72px] p-6 mx-auto text-center  bg-gray-200">
+                  <h1 className='font-medium text-gray-600'>Connect to a wallet to view your liquidity</h1>
+            </div>
+            <div className="h-[100px] p-6 mx-auto text-center  ">
+            <button
+              className="w-full bg-pink-500 shadow-sm text-white font-bold py-3 px-12 rounded-2xl"
+               onClick={() => connect()}
+               >+ Add Liquidity</button>
+            </div>
         </div>
       </div>
     </div>
   );
 }
+
+
+<Link href="/">
+<a
+  className="w-full bg-pink-500 shadow-sm text-white font-bold py-3 px-12 rounded-2xl"
+>
+  Exchange
+</a>
+</Link>

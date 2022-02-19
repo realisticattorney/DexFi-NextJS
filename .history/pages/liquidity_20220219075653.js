@@ -69,7 +69,7 @@ export default function Liquidity() {
             </h1>
           </div>
           <div className="h-[100px] p-6 mx-auto text-center  ">
-            <Link href="/add">
+            <Link href="/">
               <a>
                 <button className="w-full bg-pink-500 shadow-sm text-white font-bold py-3 px-12 rounded-2xl">
                   + Add Liquidity

@@ -1,9 +1,3 @@
-import { ethers } from 'ethers';
-import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
-import axios from 'axios'; //data fetching library
-import Web3Modal from 'web3modal'; //way to connect to user's wallet
-import Image from 'next/image';
-import { styled } from '@mui/material/styles';
 import { useWeb3 } from '../components/providers/web3';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -11,7 +5,7 @@ import Subnav from '../components/Subnav';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 
-export default function Liquidity() {
+export default function Add() {
   const {
     provider,
     registry,

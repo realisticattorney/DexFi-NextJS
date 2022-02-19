@@ -1,9 +1,3 @@
-import { ethers } from 'ethers';
-import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
-import axios from 'axios'; //data fetching library
-import Web3Modal from 'web3modal'; //way to connect to user's wallet
-import Image from 'next/image';
-import { styled } from '@mui/material/styles';
 import { useWeb3 } from '../components/providers/web3';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -11,7 +5,7 @@ import Subnav from '../components/Subnav';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 
-export default function Liquidity() {
+export default function Add() {
   const {
     provider,
     registry,
@@ -25,14 +19,13 @@ export default function Liquidity() {
 
   return (
     <div className="flex-col ">
-      <Subnav marked={'Liquidity'} />
 
       <div className="p-6 mx-auto w-min">
         <div className="flex-col relative w-[436px] h-[273px] bg-white rounded-3xl border shadow-sm">
-          <div className="h-[100px] p-6 justify-between flex">
+          <div className="h-[100px] p-6 justify-between flex ">
             <div className="flex-col">
-              <h1 className="text-xl font-bold">Your Liquidity</h1>
-              <p className="text-sm">Remove liquidity to receive tokens back</p>
+              <h1 className="text-xl font-bold">Add Liquidity</h1>
+              <p className="text-sm">Add liquidity to receive LP tokens</p>
             </div>
             <div className="w-[80px] flex items-center justify-between">
               <button
@@ -63,11 +56,7 @@ export default function Liquidity() {
               </button>
             </div>
           </div>
-          <div className="h-[72px] p-6 mx-auto text-center  bg-gray-200">
-            <h1 className="font-medium text-gray-600">
-              Connect to a wallet to view your liquidity
-            </h1>
-          </div>
+   
           <div className="h-[100px] p-6 mx-auto text-center  ">
             <Link href="/add">
               <a>
