@@ -19,28 +19,28 @@ const Nav = () => {
         </Link>
       </div>
       <Link href="/exchange">
-        <a className="mr-6 text-gray-500 font-semibold">Trade</a>
+        <a className="mr-6 text-gray-500 font-semibold">Exchange</a>
       </Link>
       <Link href="/liquidity">
         <a className="mr-6 text-gray-500 font-semibold">Liquidity</a>
       </Link>
       {isAuthenticated ? (
         <button
-          className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-sm tracking-wide bg-pink-500 rounded-full"
+          className="ml-auto mr-6 text-gray-500 font-semibold"
           onClick={logout}
         >
           Logout
         </button>
       ) : (
         <button
-          className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-sm tracking-wide bg-pink-500 rounded-full"
+          className="ml-auto mr-6 text-gray-500 font-semibold"
           onClick={() =>
             authenticate({
               signingMessage: 'Authorize linking of your wallet',
             })
           }
         >
-          Connect Wallet
+          Login
         </button>
       )}
     </div>

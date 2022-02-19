@@ -26,14 +26,14 @@ const Nav = () => {
       </Link>
       {isAuthenticated ? (
         <button
-          className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-sm tracking-wide bg-pink-500 rounded-full"
+          className="ml-auto mr-6 text-gray-500 font-semibold"
           onClick={logout}
         >
           Logout
         </button>
       ) : (
         <button
-          className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-sm tracking-wide bg-pink-500 rounded-full"
+          className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-md tracking-wide bg-blue-400 rounded-full"
           onClick={() =>
             authenticate({
               signingMessage: 'Authorize linking of your wallet',
