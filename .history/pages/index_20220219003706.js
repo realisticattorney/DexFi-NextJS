@@ -21,23 +21,16 @@ import {
 
 const Icon = styled((props) => (
   <div {...props}>
-    <div className="n py-1.3 px-1.7 rounded-full  bg-pink-500 shadow">
-      <ImportExportIcon />
+    <div className="n">
+      <ImportExportIcon  className="h-3 w-3" />
     </div>
-    <div className="y py-1.3 px-1.7 rounded-full  bg-gray-100 shadow">
+    <div className="y">
       <ArrowDownwardIcon />
     </div>
   </div>
 ))`
   & > .y {
     display: block;
-  }
-  & > .y > * {
-    font-size: 1.3rem;
-  }
-  & > .n > * {
-    font-size: 1.3rem;
-    color: #fff;
   }
   & > .n {
     display: none;
@@ -369,18 +362,13 @@ export default function Home(props) {
             menuNumber={1}
             id={'outlined-number-1'}
           />
-          <div className="text-center">
-            <button
-              className="w-fit"
-              onClick={(event) => handleMenuItemClick(event, 1, outputToken.currentToken[1])}
-            >
-              <Icon
-                sx={{
-                  color: '#EC4899',
-                  fontSize: 16,
-                }}
-              />
-            </button>
+          <div className="py-1.3 px-1.7 rounded-full mx-auto bg-gray-100 shadow w-fit">
+            <Icon
+              sx={{
+                color: '#EC4899',
+                fontSize: 16,
+              }}
+            />
           </div>
 
           <MenuItemList

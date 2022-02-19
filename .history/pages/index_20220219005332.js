@@ -44,9 +44,11 @@ const Icon = styled((props) => (
   }
   &:hover > .y {
     display: none;
+    transition: all 1s ease;
   }
   &:hover > .n {
     display: block;
+    
   }
 `;
 
@@ -369,18 +371,13 @@ export default function Home(props) {
             menuNumber={1}
             id={'outlined-number-1'}
           />
-          <div className="text-center">
-            <button
-              className="w-fit"
-              onClick={(event) => handleMenuItemClick(event, 1, outputToken.currentToken[1])}
-            >
-              <Icon
-                sx={{
-                  color: '#EC4899',
-                  fontSize: 16,
-                }}
-              />
-            </button>
+          <div className="mx-auto  w-fit">
+            <Icon
+              sx={{
+                color: '#EC4899',
+                fontSize: 16,
+              }}
+            />
           </div>
 
           <MenuItemList

@@ -21,7 +21,7 @@ import {
 
 const Icon = styled((props) => (
   <div {...props}>
-    <div className="n py-1.3 px-1.7 rounded-full  bg-pink-500 shadow">
+    <div className="n py-1.3 px-1.7 rounded-full  bg-pink-500 shadow transition-transform hover:h-0">
       <ImportExportIcon />
     </div>
     <div className="y py-1.3 px-1.7 rounded-full  bg-gray-100 shadow">
@@ -42,14 +42,14 @@ const Icon = styled((props) => (
   & > .n {
     display: none;
   }
-  &:hover > .y {
-    display: none;
-  }
-  &:hover > .n {
-    display: block;
-  }
-`;
-
+  `;
+  
+  // &:hover > .y {
+  //   display: none;
+  // }
+  // &:hover > .n {
+  //   display: block;
+  // }
 import Registry from '../artifacts/contracts/Registry.sol/Registry.json';
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
@@ -369,18 +369,13 @@ export default function Home(props) {
             menuNumber={1}
             id={'outlined-number-1'}
           />
-          <div className="text-center">
-            <button
-              className="w-fit"
-              onClick={(event) => handleMenuItemClick(event, 1, outputToken.currentToken[1])}
-            >
-              <Icon
-                sx={{
-                  color: '#EC4899',
-                  fontSize: 16,
-                }}
-              />
-            </button>
+          <div className="mx-auto  w-fit">
+            <Icon
+              sx={{
+                color: '#EC4899',
+                fontSize: 16,
+              }}
+            />
           </div>
 
           <MenuItemList

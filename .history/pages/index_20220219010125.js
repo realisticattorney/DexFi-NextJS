@@ -369,10 +369,10 @@ export default function Home(props) {
             menuNumber={1}
             id={'outlined-number-1'}
           />
-          <div className="text-center">
+          <div className="mx-auto text-center">
             <button
-              className="w-fit"
-              onClick={(event) => handleMenuItemClick(event, 1, outputToken.currentToken[1])}
+              className="w-fit "
+              onClick={(event) => handleMenuItemClick(event, index, menuNumber)}
             >
               <Icon
                 sx={{

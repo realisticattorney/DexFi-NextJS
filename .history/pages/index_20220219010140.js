@@ -372,7 +372,7 @@ export default function Home(props) {
           <div className="text-center">
             <button
               className="w-fit"
-              onClick={(event) => handleMenuItemClick(event, 1, outputToken.currentToken[1])}
+              onClick={(event) => handleMenuItemClick(event, index, menuNumber)}
             >
               <Icon
                 sx={{
