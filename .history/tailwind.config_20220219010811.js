@@ -8,7 +8,6 @@ module.exports = {
           space_gray: '#27262C',
           sky: '#E6FDFF',
           violet: '#280D5F',
-          grayviolet: '#7A6EAA',
         },
         // deepoe_default: {
         //   black: '#302e2f',
@@ -61,7 +60,7 @@ module.exports = {
       },
       fontSize: {
         xs: ' 0.625rem',
-        xs1: '0.725rem',
+        sm
         lg2: '1.25rem',
         xl2: '2rem',
       },

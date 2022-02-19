@@ -351,7 +351,7 @@ export default function Home(props) {
             <h1 className="text-xl font-bold tracking-wide text-dexfi-violet">
               Swap
             </h1>
-            <p className="text-sm font-medium  text-dexfi-grayviolet">
+            <p className="text-sm font-medium  text-dexfi-violet">
               Trade tokens in an instant
             </p>
           </div>
@@ -372,9 +372,7 @@ export default function Home(props) {
           <div className="text-center">
             <button
               className="w-fit"
-              onClick={(event) =>
-                handleMenuItemClick(event, 1, outputToken.currentToken[1])
-              }
+              onClick={(event) => handleMenuItemClick(event, 1, outputToken.currentToken[1])}
             >
               <Icon
                 sx={{
@@ -417,10 +415,10 @@ export default function Home(props) {
             )}
           <div className="h-10">
             <div className="flex w-full justify-around">
-              <h1 className="text-xs1 font-bold text-violet-700 mr-20">
+              <h1 className="text-xs font-bold text-dexfi-violet mr-20">
                 Slippage tolerance
               </h1>
-              <h1 className="truncate text-sm font-bold text-pink-500">0.5%</h1>
+              <h1 className="truncate text-sm font-semibold ">0.5%</h1>
             </div>
           </div>
           <div className="px-4 absolute w-full bottom-4">

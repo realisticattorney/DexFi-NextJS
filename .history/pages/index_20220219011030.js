@@ -351,7 +351,7 @@ export default function Home(props) {
             <h1 className="text-xl font-bold tracking-wide text-dexfi-violet">
               Swap
             </h1>
-            <p className="text-sm font-medium  text-dexfi-grayviolet">
+            <p className="text-sm font-medium  text-">
               Trade tokens in an instant
             </p>
           </div>
@@ -372,9 +372,7 @@ export default function Home(props) {
           <div className="text-center">
             <button
               className="w-fit"
-              onClick={(event) =>
-                handleMenuItemClick(event, 1, outputToken.currentToken[1])
-              }
+              onClick={(event) => handleMenuItemClick(event, 1, outputToken.currentToken[1])}
             >
               <Icon
                 sx={{

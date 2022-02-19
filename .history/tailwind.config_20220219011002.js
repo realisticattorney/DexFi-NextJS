@@ -8,7 +8,7 @@ module.exports = {
           space_gray: '#27262C',
           sky: '#E6FDFF',
           violet: '#280D5F',
-          grayviolet: '#7A6EAA',
+          grayviolet: '#5C5C5C',
         },
         // deepoe_default: {
         //   black: '#302e2f',
