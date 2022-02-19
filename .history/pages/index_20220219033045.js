@@ -10,7 +10,7 @@ import MenuItemList from '../components/MenuItemList.js';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ImportExportIcon from '@mui/icons-material/ImportExport';
 import { styled } from '@mui/material/styles';
-import { useWeb3 } from "../components/providers/web3"
+// import { useWeb3 } from "../components/providers/web3"
 
 import {
   registryAddress,
@@ -57,8 +57,8 @@ import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
 import { display } from '@mui/system';
 
 export default function Home(props) {
-  const { web3, isInitialized } = useWeb3()
-  console.log(web3)
+  // const { web3, isInitialized } = useWeb3()
+  // console.log(web3)
 
   
   const { currencies } = props;
@@ -389,7 +389,7 @@ export default function Home(props) {
               />
             </button>
           </div>
-          {/* { isInitialized ? "IS INIT" : "IS NOT INIT" } */}
+          { isInitialized ? "IS INIT" : "IS NOT INIT" }
           <MenuItemList
             handleOpen={handleOpenSecond}
             handleClose={handleCloseSecond}

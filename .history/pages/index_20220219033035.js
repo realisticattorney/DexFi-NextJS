@@ -10,7 +10,7 @@ import MenuItemList from '../components/MenuItemList.js';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ImportExportIcon from '@mui/icons-material/ImportExport';
 import { styled } from '@mui/material/styles';
-import { useWeb3 } from "../components/providers/web3"
+// import { useWeb3 } from "../components/providers/web3"
 
 import {
   registryAddress,
@@ -389,7 +389,7 @@ export default function Home(props) {
               />
             </button>
           </div>
-          {/* { isInitialized ? "IS INIT" : "IS NOT INIT" } */}
+          { isInitialized ? "IS INIT" : "IS NOT INIT" }
           <MenuItemList
             handleOpen={handleOpenSecond}
             handleClose={handleCloseSecond}

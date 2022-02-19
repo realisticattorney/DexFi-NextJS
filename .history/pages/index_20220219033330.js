@@ -57,8 +57,8 @@ import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
 import { display } from '@mui/system';
 
 export default function Home(props) {
-  const { web3, isInitialized } = useWeb3()
-  console.log(web3)
+  // const { web3, isInitialized } = useWeb3()
+  // console.log(web3)
 
   
   const { currencies } = props;

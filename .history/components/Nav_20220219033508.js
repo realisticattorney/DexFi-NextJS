@@ -7,7 +7,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useWeb3 } from "../components/providers/web3"
 
 const Nav = () => {
-  const { connect, isWeb3Loaded } = useWeb3()
+  const { connect, isLoading, isWeb3Loaded } = useWeb3()
   // const { isAuthenticated, authenticate, logout } = useMoralis();
 
   // useEffect(() => {}, [isAuthenticated]);
