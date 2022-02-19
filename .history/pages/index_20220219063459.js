@@ -195,8 +195,6 @@ export default function Home(props) {
         );
       } else {
         handleInputToken([currencies[index], index]);
-        setInputOne(null);
-        setInputTwo(null);
       }
       handleClose();
     } else {
@@ -207,8 +205,6 @@ export default function Home(props) {
         );
       } else {
         handleOutputToken([currencies[index], index]);
-        setInputOne(null);
-        setInputTwo(null);
       }
       handleCloseSecond();
     }

@@ -57,17 +57,9 @@ import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
 import { display } from '@mui/system';
 
 export default function Home(props) {
-  const {
-    provider,
-    registry,
-    exchange2,
-    web3,
-    isInitialized,
-    isUserWalletConnected,
-    connect,
-  } = useWeb3();
-  console.log('provider', provider);
-  console.log('web3', web3);
+  const { provider, registry, exchange2, web3,isInitialized, isUserWalletConnected, connect } = useWeb3();
+  console.log("provider",provider);
+  console.log("web3",web3);
 
   const { currencies } = props;
 
@@ -178,13 +170,7 @@ export default function Home(props) {
       console.log('base exchange loaded');
     }
     loadExchange(exchangeHandler, registry, setExchangeCallback);
-  }, [
-    exchangeHandler,
-    registry,
-    provider,
-    loadingRegistry,
-    setExchangeCallback,
-  ]);
+  }, [exchangeHandler, registry, provider, loadingRegistry, setExchangeCallback]);
 
   const handleMenuItemClick = async (event, index, menuItem) => {
     if (menuItem === 1) {
@@ -195,8 +181,6 @@ export default function Home(props) {
         );
       } else {
         handleInputToken([currencies[index], index]);
-        setInputOne(null);
-        setInputTwo(null);
       }
       handleClose();
     } else {
@@ -207,21 +191,19 @@ export default function Home(props) {
         );
       } else {
         handleOutputToken([currencies[index], index]);
-        setInputOne(null);
-        setInputTwo(null);
       }
       handleCloseSecond();
     }
   };
-  console.log('registryyyyyyyy', registry);
+  console.log("registryyyyyyyy",registry)
 
   const handleMenuItemSwitch = (prevSelected, newSelected) => {
     const prevIndex = prevSelected;
     const newIndex = newSelected;
     handleInputToken([currencies[newIndex], newIndex]);
     handleOutputToken([currencies[prevIndex], prevIndex]);
-    setInputOne(inputTwo);
-    setInputTwo(inputOne);
+    setInputOne(inputTwo)
+    setInputOne(inputTwo)
   };
 
   const handleInputOneChange = (event) => {
@@ -454,7 +436,9 @@ export default function Home(props) {
             <button
               className="w-full bg-pink-500 shadow-sm text-white font-bold py-3.5 px-12 rounded-xl"
               onClick={() => {
-                isUserWalletConnected ? swap() : connect(exchange.address);
+                isUserWalletConnected
+                  ? swap()
+                  : connect(exchange.address)
               }}
               // disabled={
               //   inputOne?.replace('0.', '') > 0 || inputOne === null
@@ -464,6 +448,7 @@ export default function Home(props) {
             >
               {isUserWalletConnected ? 'Swap' : 'Connect Wallet'}
             </button>
+    
           </div>
         </div>
       </div>
