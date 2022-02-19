@@ -4,10 +4,10 @@ import Image from 'next/image';
 import { useMoralis } from 'react-moralis';
 import { useEffect } from 'react';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import { useWeb3 } from '../components/providers/web3';
+import { useWeb3 } from "../components/providers/web3"
 
 const Nav = () => {
-  const { connect, isWeb3Loaded } = useWeb3();
+  const { connect, isWeb3Loaded } = useWeb3()
   // const { isAuthenticated, authenticate, logout } = useMoralis();
 
   // useEffect(() => {}, [isAuthenticated]);
@@ -35,20 +35,23 @@ const Nav = () => {
       </Link>
       <Link href="/liquidity">
         <a className="mr-6 text-gray-500  font-semibold">
-          <MoreHorizIcon sx={{ color: '#6B7280', fontSize: 20 }} />
-        </a>
+        <MoreHorizIcon sx={{ color: '#6B7280', fontSize: 20 }} /></a>
       </Link>
-      {isWeb3Loaded ? (
+      {isAuthenticated ? (
         <button
           className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-sm tracking-wide bg-pink-500 rounded-full"
-          onClick={connect}
+          onClick={logout}
         >
           Logout
         </button>
       ) : (
         <button
           className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-sm tracking-wide bg-pink-500 rounded-full"
-          onClick={connect}
+          onClick={() =>
+            authenticate({
+              signingMessage: 'Authorize linking of your wallet',
+            })
+          }
         >
           Connect Wallet
         </button>

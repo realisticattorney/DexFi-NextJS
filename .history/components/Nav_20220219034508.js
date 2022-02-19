@@ -48,7 +48,11 @@ const Nav = () => {
       ) : (
         <button
           className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-sm tracking-wide bg-pink-500 rounded-full"
-          onClick={connect}
+          onClick={() =>
+            authenticate({
+              signingMessage: 'Authorize linking of your wallet',
+            })
+          }
         >
           Connect Wallet
         </button>
