@@ -22,10 +22,10 @@ import {
 const Icon = styled((props) => (
   <div {...props}>
     <div className="n">
-      <ImportExportIcon />
+      <ImportExportIcon className="h-5 w-5" />
     </div>
     <div className="y">
-      <ArrowDownwardIcon />
+      <ArrowDownwardIcon className="h-5 w-5" />
     </div>
   </div>
 ))`
@@ -370,7 +370,7 @@ export default function Home(props) {
               }}
             />
           </div>
-
+     
           <MenuItemList
             handleOpen={handleOpenSecond}
             handleClose={handleCloseSecond}

@@ -20,7 +20,7 @@ import {
 } from '../config.js';
 
 const Icon = styled((props) => (
-  <div {...props}>
+  <div >
     <div className="n">
       <ImportExportIcon />
     </div>

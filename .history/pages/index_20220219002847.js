@@ -8,9 +8,6 @@ import Image from 'next/image';
 import { useMoralis } from 'react-moralis';
 import MenuItemList from '../components/MenuItemList.js';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ImportExportIcon from '@mui/icons-material/ImportExport';
-import { styled } from '@mui/material/styles';
-
 import {
   registryAddress,
   scammExchangeAddress,
@@ -18,14 +15,13 @@ import {
   USDCAddress,
   ETCAddress,
 } from '../config.js';
-
 const Icon = styled((props) => (
   <div {...props}>
     <div className="n">
-      <ImportExportIcon />
+      <RemoveIcon className="h-5 w-5" />
     </div>
     <div className="y">
-      <ArrowDownwardIcon />
+      <AddIcon className="h-5 w-5" />
     </div>
   </div>
 ))`
@@ -35,13 +31,15 @@ const Icon = styled((props) => (
   & > .n {
     display: none;
   }
-  &:hover > .y {
-    display: none;
-  }
-  &:hover > .n {
+  .Mui-expanded & > .n {
     display: block;
   }
+  .Mui-expanded & > .y {
+    display: none;
+  }
 `;
+
+
 
 import Registry from '../artifacts/contracts/Registry.sol/Registry.json';
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
@@ -362,15 +360,15 @@ export default function Home(props) {
             menuNumber={1}
             id={'outlined-number-1'}
           />
-          <div className="py-1.2 px-1.7 rounded-full mx-auto bg-gray-100 shadow w-fit">
-            <Icon
+          <div className="py-1.2 px-1.7 rounded-full mx-auto bg-gray-100 shadow w-fit hover:hidden">
+            <ArrowDownwardIcon
               sx={{
                 color: '#EC4899',
                 fontSize: 22,
+                // '&:hover': { display: 'none' },
               }}
             />
           </div>
-
           <MenuItemList
             handleOpen={handleOpenSecond}
             handleClose={handleCloseSecond}

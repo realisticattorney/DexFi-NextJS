@@ -22,10 +22,10 @@ import {
 const Icon = styled((props) => (
   <div {...props}>
     <div className="n">
-      <ImportExportIcon />
+      <ImportExportIcon className="h-5 w-5" />
     </div>
     <div className="y">
-      <ArrowDownwardIcon />
+      <ArrowDownwardIcon className="h-5 w-5" />
     </div>
   </div>
 ))`
@@ -367,10 +367,19 @@ export default function Home(props) {
               sx={{
                 color: '#EC4899',
                 fontSize: 22,
+                // '&:hover': { display: 'none' },
               }}
             />
           </div>
-
+          {/* <div className="py-1.2 px-1.7 rounded-full mx-auto bg-gray-100 shadow w-fit hover:hidden">
+            <ArrowDownwardIcon
+              sx={{
+                color: '#EC4899',
+                fontSize: 22,
+                // '&:hover': { display: 'none' },
+              }}
+            />
+          </div> */}
           <MenuItemList
             handleOpen={handleOpenSecond}
             handleClose={handleCloseSecond}

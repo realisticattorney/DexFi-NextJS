@@ -8,9 +8,6 @@ import Image from 'next/image';
 import { useMoralis } from 'react-moralis';
 import MenuItemList from '../components/MenuItemList.js';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ImportExportIcon from '@mui/icons-material/ImportExport';
-import { styled } from '@mui/material/styles';
-
 import {
   registryAddress,
   scammExchangeAddress,
@@ -19,34 +16,9 @@ import {
   ETCAddress,
 } from '../config.js';
 
-const Icon = styled((props) => (
-  <div {...props}>
-    <div className="n">
-      <ImportExportIcon />
-    </div>
-    <div className="y">
-      <ArrowDownwardIcon />
-    </div>
-  </div>
-))`
-  & > .y {
-    display: block;
-  }
-  & > .n {
-    display: none;
-  }
-  &:hover > .y {
-    display: none;
-  }
-  &:hover > .n {
-    display: block;
-  }
-`;
-
 import Registry from '../artifacts/contracts/Registry.sol/Registry.json';
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
-import { display } from '@mui/system';
 
 export default function Home(props) {
   const { currencies } = props;
@@ -363,14 +335,8 @@ export default function Home(props) {
             id={'outlined-number-1'}
           />
           <div className="py-1.2 px-1.7 rounded-full mx-auto bg-gray-100 shadow w-fit">
-            <Icon
-              sx={{
-                color: '#EC4899',
-                fontSize: 22,
-              }}
-            />
+            <ArrowDownwardIcon sx={{ color: '#EC4899', fontSize: 22, ":hover" }} />
           </div>
-
           <MenuItemList
             handleOpen={handleOpenSecond}
             handleClose={handleCloseSecond}
