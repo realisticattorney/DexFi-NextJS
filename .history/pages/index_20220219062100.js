@@ -195,7 +195,6 @@ export default function Home(props) {
       handleCloseSecond();
     }
   };
-  console.log("registryyyyyyyy",registry)
 
   const handleMenuItemSwitch = (prevSelected, newSelected) => {
     const prevIndex = prevSelected;

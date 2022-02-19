@@ -39,14 +39,14 @@ export default function Web3Provider({ children }) {
         'http://localhost:8545'
       );
       if (provider) {
-        const web3 = new Web3(provider);
+        const web3 = new Web3(provider)
         const registry = new ethers.Contract(
           registryAddress,
           Registry.abi,
           provider
         );
 
-        const exchange2 = new ethers.Contract(
+        const exchange = new ethers.Contract(
           scammExchangeAddress,
           Exchange.abi,
           provider
@@ -81,25 +81,25 @@ export default function Web3Provider({ children }) {
               const provider = new ethers.providers.Web3Provider(
                 window.ethereum
               );
-              const web3 = new Web3(provider);
+              const web3 = new Web3(provider)
               if (provider) {
-                // const registry = new ethers.Contract(
-                //   registryAddress,
-                //   Registry.abi,
-                //   provider
-                // );
+                const registry = new ethers.Contract(
+                  registryAddress,
+                  Registry.abi,
+                  provider
+                );
 
-                const exchange2 = new ethers.Contract(
+                const exchange = new ethers.Contract(
                   exAddress,
                   Exchange.abi,
                   provider
                 );
-                console.log('nonononono', exchange2.address);
+                console.log("nonononono",exchange.address)
 
                 setWeb3Api({
-                  ...web3Api,
                   provider,
                   web3,
+                  registry,
                   exchange2,
                   isLoading: false,
                   providerType: 'user',

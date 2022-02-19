@@ -57,14 +57,14 @@ import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
 import { display } from '@mui/system';
 
 export default function Home(props) {
-  const { provider, registry, exchange2, web3,isInitialized, isUserWalletConnected, connect } = useWeb3();
-  console.log("provider",provider);
-  console.log("web3",web3);
+  const { provider, web3, isInitialized, isUserWalletConnected, connect } = useWeb3();
+  console.log(provider);
+  console.log(web3);
 
   const { currencies } = props;
 
-  // const [registry, setRegistry] = useState(null);
-  const [exchange, setExchange] = useState(exchange2);
+  const [registry, setRegistry] = useState(null);
+  const [exchange, setExchange] = useState(null);
   const [loadingRegistry, setLoadingRegistry] = useState(false);
   const [inputToken, setInputToken] = useState({
     prevToken: null,
@@ -128,22 +128,21 @@ export default function Home(props) {
 
   console.log('render');
   useEffect(() => {
-    // const provider = new ethers.providers.Web3Provider(window.ethereum);
-    // console.log("providoooor",provider);
-    // const registry = new ethers.Contract(
-    //   registryAddress,
-    //   Registry.abi,
-    //   provider
-    // );
+    
+    const registry = new ethers.Contract(
+      registryAddress,
+      Registry.abi,
+      provider
+    );
 
-    // const exchange = new ethers.Contract(
-    //   scammExchangeAddress,
-    //   Exchange.abi,
-    //   provider
-    // );
+    const exchange = new ethers.Contract(
+      scammExchangeAddress,
+      Exchange.abi,
+      provider
+    );
 
-    // setRegistry(registry);
-    // setExchange(exchange);
+    setRegistry(registry);
+    setExchange(exchange);
     currentTokenExchangeAddress.current = scammExchangeAddress;
     setLoadingRegistry(true);
   }, []);
@@ -157,7 +156,7 @@ export default function Home(props) {
       registry,
       setExchangeCallback
     ) {
-      // const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
       const toBeExchange = exchangeHandler();
 
       if (currentTokenExchangeAddress.current !== toBeExchange) {
@@ -170,7 +169,7 @@ export default function Home(props) {
       console.log('base exchange loaded');
     }
     loadExchange(exchangeHandler, registry, setExchangeCallback);
-  }, [exchangeHandler, registry, provider, loadingRegistry, setExchangeCallback]);
+  }, [exchangeHandler, registry, loadingRegistry, setExchangeCallback]);
 
   const handleMenuItemClick = async (event, index, menuItem) => {
     if (menuItem === 1) {
@@ -195,7 +194,6 @@ export default function Home(props) {
       handleCloseSecond();
     }
   };
-  console.log("registryyyyyyyy",registry)
 
   const handleMenuItemSwitch = (prevSelected, newSelected) => {
     const prevIndex = prevSelected;
@@ -257,10 +255,10 @@ export default function Home(props) {
   }
 
   async function swap() {
-    const web3modal = new Web3Modal();
-    const connection = await web3modal.connect();
-    const provider = new ethers.providers.Web3Provider(connection);
-    const signer = provider.getSigner();
+    // const web3modal = new Web3Modal();
+    // const connection = await web3modal.connect();
+    const provider2 = new ethers.providers.Web3Provider(connection);
+    const signer = provider2.getSigner();
     let currentExchangeAddress = await registry.getExchange(
       currentTokenExchangeAddress.current
     );

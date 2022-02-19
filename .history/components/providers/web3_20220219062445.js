@@ -97,9 +97,9 @@ export default function Web3Provider({ children }) {
                 console.log('nonononono', exchange2.address);
 
                 setWeb3Api({
-                  ...web3Api,
                   provider,
                   web3,
+                  registry,
                   exchange2,
                   isLoading: false,
                   providerType: 'user',

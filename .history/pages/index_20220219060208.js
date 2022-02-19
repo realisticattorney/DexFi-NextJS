@@ -57,15 +57,15 @@ import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
 import { display } from '@mui/system';
 
 export default function Home(props) {
-  const { provider, registry, exchange2, web3,isInitialized, isUserWalletConnected, connect } = useWeb3();
+  const { provider, registry, exchange, web3,isInitialized, isUserWalletConnected, connect } = useWeb3();
   console.log("provider",provider);
   console.log("web3",web3);
 
   const { currencies } = props;
 
-  // const [registry, setRegistry] = useState(null);
-  const [exchange, setExchange] = useState(exchange2);
-  const [loadingRegistry, setLoadingRegistry] = useState(false);
+  const [registr2, setRegistr2] = useState(null);
+  const [exchange, setExchange] = useState(null);
+  const [loadingRegistr2, setLoadingRegistr2] = useState(false);
   const [inputToken, setInputToken] = useState({
     prevToken: null,
     currentToken: [currencies[0], 0],
@@ -130,7 +130,7 @@ export default function Home(props) {
   useEffect(() => {
     // const provider = new ethers.providers.Web3Provider(window.ethereum);
     // console.log("providoooor",provider);
-    // const registry = new ethers.Contract(
+    // const registr2 = new ethers.Contract(
     //   registryAddress,
     //   Registry.abi,
     //   provider
@@ -142,8 +142,8 @@ export default function Home(props) {
     //   provider
     // );
 
-    // setRegistry(registry);
-    // setExchange(exchange);
+    setRegistry(registry);
+    setExchange(exchange);
     currentTokenExchangeAddress.current = scammExchangeAddress;
     setLoadingRegistry(true);
   }, []);
@@ -157,7 +157,7 @@ export default function Home(props) {
       registry,
       setExchangeCallback
     ) {
-      // const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
       const toBeExchange = exchangeHandler();
 
       if (currentTokenExchangeAddress.current !== toBeExchange) {
@@ -170,7 +170,7 @@ export default function Home(props) {
       console.log('base exchange loaded');
     }
     loadExchange(exchangeHandler, registry, setExchangeCallback);
-  }, [exchangeHandler, registry, provider, loadingRegistry, setExchangeCallback]);
+  }, [exchangeHandler, registry, loadingRegistry, setExchangeCallback]);
 
   const handleMenuItemClick = async (event, index, menuItem) => {
     if (menuItem === 1) {
@@ -195,7 +195,6 @@ export default function Home(props) {
       handleCloseSecond();
     }
   };
-  console.log("registryyyyyyyy",registry)
 
   const handleMenuItemSwitch = (prevSelected, newSelected) => {
     const prevIndex = prevSelected;

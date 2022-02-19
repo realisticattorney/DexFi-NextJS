@@ -64,7 +64,7 @@ export default function Home(props) {
   const { currencies } = props;
 
   // const [registry, setRegistry] = useState(null);
-  const [exchange, setExchange] = useState(exchange2);
+  const [exchange, setExchange] = useState(exchange);
   const [loadingRegistry, setLoadingRegistry] = useState(false);
   const [inputToken, setInputToken] = useState({
     prevToken: null,
@@ -157,7 +157,7 @@ export default function Home(props) {
       registry,
       setExchangeCallback
     ) {
-      // const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
       const toBeExchange = exchangeHandler();
 
       if (currentTokenExchangeAddress.current !== toBeExchange) {
@@ -170,7 +170,7 @@ export default function Home(props) {
       console.log('base exchange loaded');
     }
     loadExchange(exchangeHandler, registry, setExchangeCallback);
-  }, [exchangeHandler, registry, provider, loadingRegistry, setExchangeCallback]);
+  }, [exchangeHandler, registry, loadingRegistry, setExchangeCallback]);
 
   const handleMenuItemClick = async (event, index, menuItem) => {
     if (menuItem === 1) {
@@ -195,7 +195,6 @@ export default function Home(props) {
       handleCloseSecond();
     }
   };
-  console.log("registryyyyyyyy",registry)
 
   const handleMenuItemSwitch = (prevSelected, newSelected) => {
     const prevIndex = prevSelected;
