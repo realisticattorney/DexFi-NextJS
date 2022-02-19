@@ -63,14 +63,8 @@ export default function Liquidity() {
               </button>
             </div>
           </div>
-            <div className="h-[72px] p-6 mx-auto text-center  bg-gray-200">
-                  <h1 className='font-medium'>Connect to a wallet to view your liquidity</h1>
-            </div>
-            <div className="h-[100px] p-6 mx-auto text-center  ">
-            <button
-              className="w-full bg-pink-500 shadow-sm text-white font-bold py-3.5 px-12 rounded-xl"
-               onClick={() => connect()}
-               >+ Add Liquidity</button>
+            <div className="h-[72px] p-6 mx-auto text-center flex bg-gray-200">
+
             </div>
         </div>
       </div>
