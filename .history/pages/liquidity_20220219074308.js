@@ -36,27 +36,27 @@ export default function Liquidity() {
             </div>
             <div className="w-[80px] flex items-center justify-between">
               <button
-                className="text-gray-600"
+                className="w-[40px]  "
                 onClick={(event) =>
                   handleMenuItemClick(event, 1, outputToken.currentToken[1])
                 }
               >
                 <SettingsIcon
                   sx={{
-                    color: '#7c6484',
+                    color: '#EC4899',
                     fontSize: 25,
                   }}
                 />
               </button>
               <button
-                className=""
+                className="w-[40px]"
                 onClick={(event) =>
                   handleMenuItemClick(event, 1, outputToken.currentToken[1])
                 }
               >
                 <SettingsBackupRestoreIcon
                   sx={{
-                    color: '#7c6484',
+                    color: '#EC4899',
                     fontSize: 25,
                   }}
                 />

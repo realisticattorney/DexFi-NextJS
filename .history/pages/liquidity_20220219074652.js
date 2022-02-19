@@ -43,7 +43,7 @@ export default function Liquidity() {
               >
                 <SettingsIcon
                   sx={{
-                    color: '#7c6484',
+                    color: '#817187',
                     fontSize: 25,
                   }}
                 />

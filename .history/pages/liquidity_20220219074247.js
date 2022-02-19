@@ -35,28 +35,29 @@ export default function Liquidity() {
               <p className="text-sm">Remove liquidity to receive tokens back</p>
             </div>
             <div className="w-[80px] flex items-center justify-between">
+                <button
+                  className="w-[40px] "
+                  onClick={(event) =>
+                    handleMenuItemClick(event, 1, outputToken.currentToken[1])
+                  }
+                >
+                  <SettingsIcon
+                    sx={{
+                      color: '#EC4899',
+                      fontSize: 25,
+                    }}
+                  />
+                </button>
+              </div>
               <button
-                className="text-gray-600"
-                onClick={(event) =>
-                  handleMenuItemClick(event, 1, outputToken.currentToken[1])
-                }
-              >
-                <SettingsIcon
-                  sx={{
-                    color: '#7c6484',
-                    fontSize: 25,
-                  }}
-                />
-              </button>
-              <button
-                className=""
+                className="w-fit items-center"
                 onClick={(event) =>
                   handleMenuItemClick(event, 1, outputToken.currentToken[1])
                 }
               >
                 <SettingsBackupRestoreIcon
                   sx={{
-                    color: '#7c6484',
+                    color: '#EC4899',
                     fontSize: 25,
                   }}
                 />

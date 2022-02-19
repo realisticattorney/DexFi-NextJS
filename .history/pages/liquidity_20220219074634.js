@@ -43,8 +43,8 @@ export default function Liquidity() {
               >
                 <SettingsIcon
                   sx={{
-                    color: '#7c6484',
-                    fontSize: 25,
+                    color: '#817187',
+                    fontSize: 28,
                   }}
                 />
               </button>
@@ -56,7 +56,7 @@ export default function Liquidity() {
               >
                 <SettingsBackupRestoreIcon
                   sx={{
-                    color: '#7c6484',
+                    color: '#817187',
                     fontSize: 25,
                   }}
                 />

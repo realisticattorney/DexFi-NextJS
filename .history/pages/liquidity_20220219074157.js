@@ -34,33 +34,37 @@ export default function Liquidity() {
               <h1 className="text-xl font-bold">Your Liquidity</h1>
               <p className="text-sm">Remove liquidity to receive tokens back</p>
             </div>
-            <div className="w-[80px] flex items-center justify-between">
-              <button
-                className="text-gray-600"
-                onClick={(event) =>
-                  handleMenuItemClick(event, 1, outputToken.currentToken[1])
-                }
-              >
-                <SettingsIcon
-                  sx={{
-                    color: '#7c6484',
-                    fontSize: 25,
-                  }}
-                />
-              </button>
-              <button
-                className=""
-                onClick={(event) =>
-                  handleMenuItemClick(event, 1, outputToken.currentToken[1])
-                }
-              >
-                <SettingsBackupRestoreIcon
-                  sx={{
-                    color: '#7c6484',
-                    fontSize: 25,
-                  }}
-                />
-              </button>
+            <div className="w-[80px] flex items-center ">
+              <div className="w-[40px] justify-between">
+                <button
+                  className="w-fit "
+                  onClick={(event) =>
+                    handleMenuItemClick(event, 1, outputToken.currentToken[1])
+                  }
+                >
+                  <SettingsIcon
+                    sx={{
+                      color: '#EC4899',
+                      fontSize: 25,
+                    }}
+                  />
+                </button>
+              </div>
+              <div className="w-[40px] justify-between">
+                <button
+                  className="w-fit items-center"
+                  onClick={(event) =>
+                    handleMenuItemClick(event, 1, outputToken.currentToken[1])
+                  }
+                >
+                  <SettingsBackupRestoreIcon
+                    sx={{
+                      color: '#EC4899',
+                      fontSize: 25,
+                    }}
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>
