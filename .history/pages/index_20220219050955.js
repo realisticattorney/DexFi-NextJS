@@ -10,7 +10,7 @@ import MenuItemList from '../components/MenuItemList.js';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ImportExportIcon from '@mui/icons-material/ImportExport';
 import { styled } from '@mui/material/styles';
-import { useWeb3 } from '../components/providers/web3';
+import { useWeb3 } from "../components/providers/web3"
 
 import {
   registryAddress,
@@ -57,9 +57,9 @@ import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
 import { display } from '@mui/system';
 
 export default function Home(props) {
-  const { provider, isInitialized, isUserWalletConnected, connect } = useWeb3();
-  console.log(provider);
+  const { provider, isInitialized } = useWeb3()
 
+  
   const { currencies } = props;
 
   const [registry, setRegistry] = useState(null);
@@ -428,12 +428,14 @@ export default function Home(props) {
             </div>
           </div>
           <div className="px-4 absolute w-full bottom-4">
-            <button
+            {/* <button
               className="w-full bg-pink-500 shadow-sm text-white font-bold py-3.5 px-12 rounded-xl"
               onClick={() => {
-                isUserWalletConnected
+                isAuthenticated
                   ? swap()
-                  : connect()
+                  : authenticate({
+                      signingMessage: 'Authorize linking of your wallet',
+                    });
               }}
               // disabled={
               //   inputOne?.replace('0.', '') > 0 || inputOne === null
@@ -441,9 +443,19 @@ export default function Home(props) {
               //     : false
               // }
             >
-              {isUserWalletConnected ? 'Swap' : 'Connect Wallet'}
+              {isAuthenticated ? 'Swap' : 'Connect Wallet'}
+            </button> */}
+            <button
+              className="w-full bg-pink-500 shadow-sm text-white font-bold py-3.5 px-12 rounded-xl"
+              onClick={() => swap()}
+              // disabled={
+              //   inputOne?.replace('0.', '') > 0 || inputOne === null
+              //     ? true
+              //     : false
+              // }
+            >
+              Connect Wallet
             </button>
-    
           </div>
         </div>
       </div>

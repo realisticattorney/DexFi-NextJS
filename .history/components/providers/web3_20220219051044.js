@@ -73,7 +73,6 @@ export default function Web3Provider({ children }) {
     return {
       ...web3Api,
       isWeb3Loaded: web3Api.providerType === 'default',
-      isUserWalletConnected: web3Api.providerType === 'user',
       connect: web3Api.provider
         ? async () => {
             try {

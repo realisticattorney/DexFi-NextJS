@@ -435,15 +435,25 @@ export default function Home(props) {
                   ? swap()
                   : connect()
               }}
+              disabled={
+                inputOne?.replace('0.', '') > 0 || inputOne === null
+                  ? true
+                  : false
+              }
+            >
+              {isUserWalletConnected ? 'Swap' : 'Connect Wallet'}
+            </button>
+            {/* <button
+              className="w-full bg-pink-500 shadow-sm text-white font-bold py-3.5 px-12 rounded-xl"
+              onClick={() => swap()}
               // disabled={
               //   inputOne?.replace('0.', '') > 0 || inputOne === null
               //     ? true
               //     : false
               // }
             >
-              {isUserWalletConnected ? 'Swap' : 'Connect Wallet'}
-            </button>
-    
+              Connect Wallet
+            </button> */}
           </div>
         </div>
       </div>

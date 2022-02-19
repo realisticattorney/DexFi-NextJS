@@ -8,7 +8,7 @@ import { useWeb3 } from '../components/providers/web3';
 import { useRouter } from 'next/router';
 
 const Nav = () => {
-  const { connect, isLoading, isWeb3Loaded, isUserWalletConnected } = useWeb3();
+  const { connect, isLoading, isWeb3Loaded } = useWeb3();
   const router = useRouter();
   // const { isAuthenticated, authenticate, logout } = useMoralis();
 
@@ -46,7 +46,7 @@ const Nav = () => {
           disabled={true}
           onClick={connect}
         >
-          Welcome
+          Loading...
         </button>
       ) : isWeb3Loaded ? (
         <button

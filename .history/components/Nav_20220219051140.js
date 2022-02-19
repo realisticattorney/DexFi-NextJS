@@ -46,7 +46,7 @@ const Nav = () => {
           disabled={true}
           onClick={connect}
         >
-          Welcome
+          Loading...
         </button>
       ) : isWeb3Loaded ? (
         <button
