@@ -10,7 +10,7 @@ export default function Web3Provider({children}) {
     provider: null,
     web3: null,
     contract: null,
-    isLoading: true,
+    isLoading: true
     providerType: null
   })
 
@@ -24,8 +24,7 @@ export default function Web3Provider({children}) {
           provider,
           web3,
           contract: null,
-          isLoading: false,
-          providerType: "default"
+          isLoading: false
         })
       } else {
         setWeb3Api(api => ({...api, isLoading: false}))

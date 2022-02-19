@@ -10,8 +10,7 @@ export default function Web3Provider({children}) {
     provider: null,
     web3: null,
     contract: null,
-    isLoading: true,
-    providerType: null
+    isLoading: true
   })
 
   useEffect(() => {
@@ -24,8 +23,7 @@ export default function Web3Provider({children}) {
           provider,
           web3,
           contract: null,
-          isLoading: false,
-          providerType: "default"
+          isLoading: false
         })
       } else {
         setWeb3Api(api => ({...api, isLoading: false}))

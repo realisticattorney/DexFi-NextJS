@@ -10,22 +10,20 @@ export default function Web3Provider({children}) {
     provider: null,
     web3: null,
     contract: null,
-    isLoading: true,
-    providerType: null
+    isLoading: true
   })
 
   useEffect(() => {
     const loadProvider = async () => {
 
-      const provider = new ethers.providers.getDefaultProvider("http://localhost:8545")
+      const provider = new ethers.providers.
       if (provider) {
         const web3 = new Web3(provider)
         setWeb3Api({
           provider,
           web3,
           contract: null,
-          isLoading: false,
-          providerType: "default"
+          isLoading: false
         })
       } else {
         setWeb3Api(api => ({...api, isLoading: false}))
