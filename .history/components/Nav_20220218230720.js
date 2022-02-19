@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useMoralis } from 'react-moralis';
 import { useEffect } from 'react';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+
 const Nav = () => {
   const { isAuthenticated, authenticate, logout } = useMoralis();
 
@@ -18,21 +18,20 @@ const Nav = () => {
           </a>
         </Link>
       </div>
-      <Link href="/swap">
+      <Link href="/exchange">
         <a className="mr-6 text-gray-500 font-semibold">Trade</a>
       </Link>
-      <Link href="/farms">
+      <Link href="/liquidity">
         <a className="mr-6 text-gray-500  font-semibold">Earn</a>
       </Link>
       <Link href="/liquidity">
         <a className="mr-6 text-gray-500  font-semibold">Win</a>
       </Link>
       <Link href="/liquidity">
-        <a className="mr-6 text-gray-500  font-semibold">NFT</a>
+        <a className="mr-6 text-gray-500  font-semibold">Liquidity</a>
       </Link>
       <Link href="/liquidity">
-        <a className="mr-6 text-gray-500  font-semibold">
-        <MoreHorizIcon sx={{ color: '#6B7280', fontSize: 20 }} /></a>
+        <a className="mr-6 text-gray-500  font-semibold">Liquidity</a>
       </Link>
       {isAuthenticated ? (
         <button

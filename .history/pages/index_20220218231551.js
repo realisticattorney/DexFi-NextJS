@@ -302,12 +302,10 @@ export default function Home(props) {
     <div className="flex-col ">
       <nav className="bg-white">
         <div className="mx-auto flex w-fit space-x-4">
-          <div className="border-b-4 pt-3 pb-1 px-2 border-cyan-500">
-            <h1 className="text-violet-600 font-bold ">Exchange</h1>
+          <div className='border-b-4 pt-3 pb-1 px-2 border-cyan-500'>
+            <h1 className="text-dexfi-violet font-bold ">Exchange</h1>
           </div>
-          <div className="pt-3 pb-1 px-2 ">
-            <h1 className="text-gray-500 font-semibold ">Liquidity</h1>
-          </div>
+          <h1 className="text-gray-500 font-semibold">Liquidity</h1>
         </div>
       </nav>
       <div className="p-6 mx-auto w-min">

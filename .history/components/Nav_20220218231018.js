@@ -21,7 +21,7 @@ const Nav = () => {
       <Link href="/swap">
         <a className="mr-6 text-gray-500 font-semibold">Trade</a>
       </Link>
-      <Link href="/farms">
+      <Link href="/liquidity">
         <a className="mr-6 text-gray-500  font-semibold">Earn</a>
       </Link>
       <Link href="/liquidity">

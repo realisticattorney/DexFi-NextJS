@@ -306,7 +306,7 @@ export default function Home(props) {
             <h1 className="text-violet-600 font-bold ">Exchange</h1>
           </div>
           <div className="pt-3 pb-1 px-2 ">
-            <h1 className="text-gray-500 font-semibold ">Liquidity</h1>
+            <h1 className="text-gray-500 font-semibold ">Exchange</h1>
           </div>
         </div>
       </nav>

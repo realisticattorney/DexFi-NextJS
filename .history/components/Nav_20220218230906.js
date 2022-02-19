@@ -18,10 +18,10 @@ const Nav = () => {
           </a>
         </Link>
       </div>
-      <Link href="/swap">
+      <Link href="/exchange">
         <a className="mr-6 text-gray-500 font-semibold">Trade</a>
       </Link>
-      <Link href="/farms">
+      <Link href="/liquidity">
         <a className="mr-6 text-gray-500  font-semibold">Earn</a>
       </Link>
       <Link href="/liquidity">
@@ -32,7 +32,7 @@ const Nav = () => {
       </Link>
       <Link href="/liquidity">
         <a className="mr-6 text-gray-500  font-semibold">
-        <MoreHorizIcon sx={{ color: '#6B7280', fontSize: 20 }} /></a>
+        <MoreHorizIcon sx={{ color: '#280D5F', fontSize: 20 }} /></a>
       </Link>
       {isAuthenticated ? (
         <button
