@@ -11,9 +11,6 @@ import {
   ETCAddress,
 } from '../../config.js';
 
-import Registry from '../../artifacts/contracts/Registry.sol/Registry.json';
-import Exchange from '../../artifacts/contracts/Exchange.sol/Exchange.json';
-import ERC20Token from '../../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
 
 const Web3Context = createContext(null)
 

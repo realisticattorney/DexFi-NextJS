@@ -3,25 +3,13 @@ import { ethers } from 'ethers';
 import detectEthereumProvider from "@metamask/detect-provider";
 import Web3 from "web3";
 
-import {
-  registryAddress,
-  scammExchangeAddress,
-  scammcoinAddress,
-  USDCAddress,
-  ETCAddress,
-} from '../../config.js';
-
-import Registry from '../../artifacts/contracts/Registry.sol/Registry.json';
-import Exchange from '../../artifacts/contracts/Exchange.sol/Exchange.json';
-import ERC20Token from '../../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
-
 const Web3Context = createContext(null)
 
 export default function Web3Provider({children}) {
   const [web3Api, setWeb3Api] = useState({
     provider: null,
     web3: null,
-    exchange: null,
+    contract: null,
     registry: null,
     isLoading: true,
     providerType: null
@@ -37,18 +25,13 @@ export default function Web3Provider({children}) {
           Registry.abi,
           provider
         );
-
-        const exchange = new ethers.Contract(
-          scammExchangeAddress,
-          Exchange.abi,
-          provider
-        );
+        
 
         setWeb3Api({
           provider,
           web3,
           registry,
-          exchange,
+          contract: null,
           isLoading: false,
           providerType: "default"
         })
