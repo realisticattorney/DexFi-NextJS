@@ -433,7 +433,7 @@ export default function Home(props) {
               onClick={() => {
                 isUserWalletConnected
                   ? swap()
-                  : connect(exchange.address)
+                  : connect(exchange)
               }}
               // disabled={
               //   inputOne?.replace('0.', '') > 0 || inputOne === null

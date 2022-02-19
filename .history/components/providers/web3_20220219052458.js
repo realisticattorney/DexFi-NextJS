@@ -93,7 +93,7 @@ export default function Web3Provider({ children }) {
                   Exchange.abi,
                   provider
                 );
-                console.log("nonononono",exchange.address)
+                console.log(exchange.address)
 
                 setWeb3Api({
                   provider,
