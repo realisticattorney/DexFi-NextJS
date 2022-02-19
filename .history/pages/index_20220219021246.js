@@ -389,7 +389,7 @@ export default function Home(props) {
               />
             </button>
           </div>
-          { isInitialized ? "IS INIT" : "IS NOT INIT" }
+          { test }
           <MenuItemList
             handleOpen={handleOpenSecond}
             handleClose={handleCloseSecond}
