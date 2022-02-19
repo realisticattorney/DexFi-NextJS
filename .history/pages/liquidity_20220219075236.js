@@ -64,7 +64,7 @@ export default function Liquidity() {
             </div>
           </div>
             <div className="h-[72px] p-6 mx-auto text-center  bg-gray-200">
-                  <h1 className='font-medium text-gray-600'>Connect to a wallet to view your liquidity</h1>
+                  <h1 className='font-medium'>Connect to a wallet to view your liquidity</h1>
             </div>
             <div className="h-[100px] p-6 mx-auto text-center  ">
             <button
