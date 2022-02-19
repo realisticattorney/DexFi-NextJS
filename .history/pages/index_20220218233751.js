@@ -7,7 +7,7 @@ import path from 'path';
 import Image from 'next/image';
 import { useMoralis } from 'react-moralis';
 import MenuItemList from '../components/MenuItemList.js';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+
 import {
   registryAddress,
   scammExchangeAddress,
@@ -305,7 +305,7 @@ export default function Home(props) {
           <div className="border-b-4 pt-2.5 pb-1 px-2 border-cyan-500">
             <h1 className="text-violet-600 font-bold ">Exchange</h1>
           </div>
-          <div className="pt-2.5 pb-1 px-2 ">
+          <div className="pt-3 pb-1 px-2 ">
             <h1 className="text-gray-500 font-semibold ">Liquidity</h1>
           </div>
         </div>
@@ -334,9 +334,7 @@ export default function Home(props) {
             menuNumber={1}
             id={'outlined-number-1'}
           />
-          <div className="py-1.2 px-1.7 rounded-full mx-auto bg-gray-100 shadow w-fit">
-            <ArrowDownwardIcon sx={{ color: '#EC4899', fontSize: 22 }} />
-          </div>
+
           <MenuItemList
             handleOpen={handleOpenSecond}
             handleClose={handleCloseSecond}

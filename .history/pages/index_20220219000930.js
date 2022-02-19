@@ -334,8 +334,8 @@ export default function Home(props) {
             menuNumber={1}
             id={'outlined-number-1'}
           />
-          <div className="py-1.2 px-1.7 rounded-full mx-auto bg-gray-100 shadow w-fit">
-            <ArrowDownwardIcon sx={{ color: '#EC4899', fontSize: 22 }} />
+          <div className='text-center'>
+            <ArrowDownwardIcon sx={{ color: '#6B7280', fontSize: 20,  }} />
           </div>
           <MenuItemList
             handleOpen={handleOpenSecond}
