@@ -4,25 +4,33 @@ import { useRouter } from 'next/router';
 import fs from 'fs/promises';
 import path from 'path';
 
-import { scammcoinAddress, USDCAddress, ETCAddress } from '../config.js';
+import {
+   scammcoinAddress,
+   USDCAddress,
+   ETCAddress,
+ } from '../config.js';
 import AddLiquidityPanel from '../components/AddLiquidityPanel';
-import Link from 'next/link';
 
 export default function Add(props) {
-  const { currencies } = props;
-
+   const { currencies } = props;
+ 
   return (
     <div className="flex-col ">
       <div className="p-6 mx-auto w-min">
-        <div className="flex-col relative w-[436px] h-[273px] bg-white rounded-3xl border shadow-sm">
-          <AddLiquidityPanel currencies={currencies} />
+      <div className="flex-col relative w-[436px] h-[273px] bg-white rounded-3xl border shadow-sm">
+      <AddLiquidityPanel currencies={currencies} />
 
-          <div className="px-4 absolute w-full bottom-4">
+      <div className="h-[100px] p-6 mx-auto text-center  ">
+        <Link href="/add">
+          <a>
             <button className="w-full bg-pink-500 shadow-sm text-white font-bold py-3 px-12 rounded-2xl">
               Connect Wallet
             </button>
-          </div>
-        </div>
+          </a>
+        </Link>
+      </div>
+      
+      </div>
       </div>
     </div>
   );

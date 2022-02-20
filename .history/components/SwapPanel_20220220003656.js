@@ -1,5 +1,5 @@
 import React from 'react';
-import MenuPanel from './Exchange';
+import MenuPanel from './MenuPanel';
 import Subnav from './Subnav';
 import SwapUpperSection from './SwapUpperSection';
 

@@ -18,9 +18,11 @@ export default function Add(props) {
           <AddLiquidityPanel currencies={currencies} />
 
           <div className="px-4 absolute w-full bottom-4">
-            <button className="w-full bg-pink-500 shadow-sm text-white font-bold py-3 px-12 rounded-2xl">
-              Connect Wallet
-            </button>
+              <a>
+                <button className="w-full bg-pink-500 shadow-sm text-white font-bold py-3 px-12 rounded-2xl">
+                  Connect Wallet
+                </button>
+              </a>
           </div>
         </div>
       </div>

@@ -1,31 +1,35 @@
-import { useState, useCallback } from 'react';
-import { useWeb3 } from '../components/providers/web3';
-import { useRouter } from 'next/router';
+import { ethers } from 'ethers';
+import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
+import axios from 'axios'; //data fetching library
+import Web3Modal from 'web3modal'; //way to connect to user's wallet
 import fs from 'fs/promises';
 import path from 'path';
+import Image from 'next/image';
+import { useMoralis } from 'react-moralis';
+import MenuItemList from '../components/MenuItemList.js';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ImportExportIcon from '@mui/icons-material/ImportExport';
+import { styled } from '@mui/material/styles';
+import { useWeb3 } from '../components/providers/web3';
+import MenuPanel from '../components/MenuPanel.js';
 
 import { scammcoinAddress, USDCAddress, ETCAddress } from '../config.js';
-import AddLiquidityPanel from '../components/AddLiquidityPanel';
-import Link from 'next/link';
+import SwapPanel from '../components/SwapPanel.js';
+import Subnav from '../components/Subnav.js';
 
-export default function Add(props) {
+export default function Home(props) {
   const { currencies } = props;
 
   return (
     <div className="flex-col ">
-      <div className="p-6 mx-auto w-min">
-        <div className="flex-col relative w-[436px] h-[273px] bg-white rounded-3xl border shadow-sm">
-          <AddLiquidityPanel currencies={currencies} />
-
-          <div className="px-4 absolute w-full bottom-4">
-            <button className="w-full bg-pink-500 shadow-sm text-white font-bold py-3 px-12 rounded-2xl">
-              Connect Wallet
-            </button>
-          </div>
-        </div>
+    <Subnav marked={'Exchange'} />
+    <div className="p-6 mx-auto w-min">
+      <div className="flex-col relative py-5 w-[326px] h-[518px] bg-white rounded-3xl border shadow-sm">
+        <SwapUpperSection />
+        <MenuPanel currencies={currencies} />
       </div>
     </div>
-  );
+  </div>)
 }
 
 export async function getStaticProps() {

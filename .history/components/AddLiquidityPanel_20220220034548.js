@@ -5,7 +5,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MenuItemList from '../components/MenuItemList';
 import Link from 'next/link';
 
-const AddLiquidityPanel = () => {
+const AddLiquidityPanel = ({ currencies }) => {
   return (
     <div className="h-[100px] p-6 justify-between flex border-b">
       <div className="flex items-center -mr-9">
