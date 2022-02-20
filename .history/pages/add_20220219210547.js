@@ -7,11 +7,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MenuItemList from '../components/MenuItemList';
-import fs from 'fs/promises';
-import path from 'path';
 
-export default function Add(props) {
-  const { currencies } = props;
+export default function Add({currencies}) {
   const {
     provider,
     registry,
@@ -40,7 +37,7 @@ export default function Add(props) {
     prevToken: null,
     currentToken: [currencies[1], 1],
   });
-
+  
   return (
     <div className="flex-col ">
       <div className="p-6 mx-auto w-min">

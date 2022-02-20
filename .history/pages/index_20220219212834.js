@@ -14,7 +14,7 @@ import { useWeb3 } from '../components/providers/web3';
 import { useRouter } from 'next/router';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
-import ReplayIcon from '@mui/icons-material/Replay';
+
 import {
   scammExchangeAddress,
   scammcoinAddress,
@@ -347,7 +347,7 @@ export default function Home(props) {
       <Subnav marked={'Exchange'} />
       <div className="p-6 mx-auto w-min">
         <div className="flex-col relative py-5 w-[326px] h-[518px] bg-white rounded-3xl border shadow-sm">
-          <div className="flex-col border-b pb-5">
+          <div className="flex-col border-b pb-6">
             <div className="text-center   flex">
               <h1 className="text-xl font-bold tracking-wide ml-[136px] text-dexfi-violet">
                 Swap
@@ -385,7 +385,7 @@ export default function Home(props) {
                     handleMenuItemClick(event, 1, outputToken.currentToken[1])
                   }
                 >
-                  <ReplayIcon
+                  <SettingsBackupRestoreIcon
                     sx={{
                       color: '#7c6484',
                       fontSize: 25,

@@ -14,7 +14,7 @@ import { useWeb3 } from '../components/providers/web3';
 import { useRouter } from 'next/router';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
-import ReplayIcon from '@mui/icons-material/Replay';
+
 import {
   scammExchangeAddress,
   scammcoinAddress,
@@ -347,12 +347,12 @@ export default function Home(props) {
       <Subnav marked={'Exchange'} />
       <div className="p-6 mx-auto w-min">
         <div className="flex-col relative py-5 w-[326px] h-[518px] bg-white rounded-3xl border shadow-sm">
-          <div className="flex-col border-b pb-5">
-            <div className="text-center   flex">
-              <h1 className="text-xl font-bold tracking-wide ml-[136px] text-dexfi-violet">
+          <div className="flex-col border-b">
+            <div className="text-center pb-6 justify-end  flex">
+              <h1 className="text-xl font-bold tracking-wide text-center text-dexfi-violet">
                 Swap
               </h1>
-              <div className="w-full flex items-center justify-center space-x-2">
+              <div className="w-[80px] flex items-center justify-between">
                 <button
                   className="text-gray-600"
                   onClick={(event) =>
@@ -379,23 +379,10 @@ export default function Home(props) {
                     }}
                   />
                 </button>
-                <button
-                  className=""
-                  onClick={(event) =>
-                    handleMenuItemClick(event, 1, outputToken.currentToken[1])
-                  }
-                >
-                  <ReplayIcon
-                    sx={{
-                      color: '#7c6484',
-                      fontSize: 25,
-                    }}
-                  />
-                </button>
               </div>
             </div>
             <div className="block">
-              <p className="text-sm font-medium text-center mt-1 text-dexfi-grayviolet">
+              <p className="text-sm font-medium  text-dexfi-grayviolet">
                 Trade tokens in an instant
               </p>
             </div>

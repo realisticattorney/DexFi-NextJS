@@ -1,4 +1,3 @@
-import { useState, useCallback } from 'react';
 import { useWeb3 } from '../components/providers/web3';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -7,11 +6,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MenuItemList from '../components/MenuItemList';
-import fs from 'fs/promises';
-import path from 'path';
 
-export default function Add(props) {
-  const { currencies } = props;
+export default function Add() {
   const {
     provider,
     registry,
@@ -23,23 +19,8 @@ export default function Add(props) {
   console.log('provider', provider);
   console.log('web3', web3);
 
-  const [open, setOpen] = useState(false);
-  const [openSecond, setOpenSecond] = useState(false);
-  const handleOpen = useCallback(() => setOpen(true), []);
-  const handleOpenSecond = () => setOpenSecond(true);
-  const handleClose = useCallback(() => setOpen(false), []);
-  const handleCloseSecond = () => setOpenSecond(false);
-  const [inputOne, setInputOne] = useState(null);
-  const [inputTwo, setInputTwo] = useState(null);
-  useState(false);
-  const [inputToken, setInputToken] = useState({
-    prevToken: null,
-    currentToken: [currencies[0], 0],
-  });
-  const [outputToken, setOutputToken] = useState({
-    prevToken: null,
-    currentToken: [currencies[1], 1],
-  });
+
+  
 
   return (
     <div className="flex-col ">
@@ -47,17 +28,16 @@ export default function Add(props) {
         <div className="flex-col relative w-[436px] h-[273px] bg-white rounded-3xl border shadow-sm">
           <div className="h-[100px] p-6 justify-between flex border-b">
             <div className="flex items-center -mr-9">
-              <Link href="/liquidity">
-                <a>
-                  <ArrowBackIcon
-                    sx={{
-                      color: '#7c6484',
-                      fontSize: 33,
-                      fontWeight: 'bold',
-                    }}
-                  />
-                </a>
-              </Link>
+            <Link href="/liquidity">
+              <a>
+              <ArrowBackIcon
+                sx={{
+                  color: '#7c6484',
+                  fontSize: 33,
+                  fontWeight: 'bold',
+                }}
+              /></a>
+            </Link>
             </div>
             <div className="flex-col">
               <h1 className="text-xl font-bold mb-1">Add Liquidity</h1>
@@ -123,64 +103,66 @@ export default function Add(props) {
   );
 }
 
+
 export async function getStaticProps() {
-  const filePath = path.join(
-    process.cwd(),
-    'data',
-    'ethereum',
-    'tokenlist.json'
-  );
-  const jsonCurrenciesData = await fs.readFile(filePath);
-  const allCurrenciesData = JSON.parse(jsonCurrenciesData);
-  //map over all currencies and get their symbol, logoUri, and decimals
-  //filter out the ones that symbol is BNB
-  const scammCurrency = {
-    symbol: 'SCAM',
-    logoURI: '/logo.png',
-    decimals: 18,
-    address: scammcoinAddress,
-  };
-
-  const USDCCurrency = {
-    symbol: 'USDC',
-    logoURI: '/USDClogo.png',
-    decimals: 18,
-    address: USDCAddress,
-  };
-
-  const ETCCurrency = {
-    symbol: 'ETC',
-    logoURI: '/ETClogo.png',
-    decimals: 18,
-    address: ETCAddress,
-  };
-  const selectedCurrencies = allCurrenciesData.tokens.filter(
-    ({ symbol }) =>
-      symbol === 'WETH' ||
-      symbol === 'USDT' ||
-      symbol === 'DAI' ||
-      symbol === 'MATIC' ||
-      symbol === 'UNI' ||
-      symbol === 'SUSHI' ||
-      symbol === 'BUSD' ||
-      symbol === 'AAVE' ||
-      symbol === 'SHIB'
-  );
-  const currencies = selectedCurrencies.map(
-    ({ symbol, logoURI, decimals, address }) => ({
-      symbol,
-      logoURI,
-      decimals,
-      address,
-    })
-  );
-  currencies.unshift(scammCurrency);
-  currencies.push(USDCCurrency);
-  currencies.push(ETCCurrency);
-
-  return {
-    props: {
-      currencies,
-    },
-  };
-}
+   const filePath = path.join(
+     process.cwd(),
+     'data',
+     'ethereum',
+     'tokenlist.json'
+   );
+   const jsonCurrenciesData = await fs.readFile(filePath);
+   const allCurrenciesData = JSON.parse(jsonCurrenciesData);
+   //map over all currencies and get their symbol, logoUri, and decimals
+   //filter out the ones that symbol is BNB
+   const scammCurrency = {
+     symbol: 'SCAM',
+     logoURI: '/logo.png',
+     decimals: 18,
+     address: scammcoinAddress,
+   };
+ 
+   const USDCCurrency = {
+     symbol: 'USDC',
+     logoURI: '/USDClogo.png',
+     decimals: 18,
+     address: USDCAddress,
+   };
+ 
+   const ETCCurrency = {
+     symbol: 'ETC',
+     logoURI: '/ETClogo.png',
+     decimals: 18,
+     address: ETCAddress,
+   };
+   const selectedCurrencies = allCurrenciesData.tokens.filter(
+     ({ symbol }) =>
+       symbol === 'WETH' ||
+       symbol === 'USDT' ||
+       symbol === 'DAI' ||
+       symbol === 'MATIC' ||
+       symbol === 'UNI' ||
+       symbol === 'SUSHI' ||
+       symbol === 'BUSD' ||
+       symbol === 'AAVE' ||
+       symbol === 'SHIB'
+   );
+   const currencies = selectedCurrencies.map(
+     ({ symbol, logoURI, decimals, address }) => ({
+       symbol,
+       logoURI,
+       decimals,
+       address,
+     })
+   );
+   currencies.unshift(scammCurrency);
+   currencies.push(USDCCurrency);
+   currencies.push(ETCCurrency);
+ 
+   return {
+     props: {
+       currencies,
+     },
+   };
+ }
+ 

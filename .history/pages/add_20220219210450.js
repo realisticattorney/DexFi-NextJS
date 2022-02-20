@@ -1,4 +1,3 @@
-import { useState, useCallback } from 'react';
 import { useWeb3 } from '../components/providers/web3';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -7,11 +6,9 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MenuItemList from '../components/MenuItemList';
-import fs from 'fs/promises';
-import path from 'path';
+import { useState } from 'react';
 
-export default function Add(props) {
-  const { currencies } = props;
+export default function Add() {
   const {
     provider,
     registry,
@@ -31,15 +28,6 @@ export default function Add(props) {
   const handleCloseSecond = () => setOpenSecond(false);
   const [inputOne, setInputOne] = useState(null);
   const [inputTwo, setInputTwo] = useState(null);
-  useState(false);
-  const [inputToken, setInputToken] = useState({
-    prevToken: null,
-    currentToken: [currencies[0], 0],
-  });
-  const [outputToken, setOutputToken] = useState({
-    prevToken: null,
-    currentToken: [currencies[1], 1],
-  });
 
   return (
     <div className="flex-col ">

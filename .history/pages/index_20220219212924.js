@@ -385,7 +385,7 @@ export default function Home(props) {
                     handleMenuItemClick(event, 1, outputToken.currentToken[1])
                   }
                 >
-                  <ReplayIcon
+                  ReplayIcon
                     sx={{
                       color: '#7c6484',
                       fontSize: 25,

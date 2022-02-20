@@ -12,9 +12,8 @@ import ImportExportIcon from '@mui/icons-material/ImportExport';
 import { styled } from '@mui/material/styles';
 import { useWeb3 } from '../components/providers/web3';
 import { useRouter } from 'next/router';
-import SettingsIcon from '@mui/icons-material/Settings';
-import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
-import ReplayIcon from '@mui/icons-material/Replay';
+import Link from 'next/link';
+
 import {
   scammExchangeAddress,
   scammcoinAddress,
@@ -344,62 +343,19 @@ export default function Home(props) {
 
   return (
     <div className="flex-col ">
-      <Subnav marked={'Exchange'} />
+      <Subnav marked={"Exchange"} />
       <div className="p-6 mx-auto w-min">
         <div className="flex-col relative py-5 w-[326px] h-[518px] bg-white rounded-3xl border shadow-sm">
-          <div className="flex-col border-b pb-5">
-            <div className="text-center   flex">
-              <h1 className="text-xl font-bold tracking-wide ml-[136px] text-dexfi-violet">
-                Swap
-              </h1>
-              <div className="w-full flex items-center justify-center space-x-2">
-                <button
-                  className="text-gray-600"
-                  onClick={(event) =>
-                    handleMenuItemClick(event, 1, outputToken.currentToken[1])
-                  }
-                >
-                  <SettingsIcon
-                    sx={{
-                      color: '#7c6484',
-                      fontSize: 25,
-                    }}
-                  />
-                </button>
-                <button
-                  className=""
-                  onClick={(event) =>
-                    handleMenuItemClick(event, 1, outputToken.currentToken[1])
-                  }
-                >
-                  <SettingsBackupRestoreIcon
-                    sx={{
-                      color: '#7c6484',
-                      fontSize: 25,
-                    }}
-                  />
-                </button>
-                <button
-                  className=""
-                  onClick={(event) =>
-                    handleMenuItemClick(event, 1, outputToken.currentToken[1])
-                  }
-                >
-                  <ReplayIcon
-                    sx={{
-                      color: '#7c6484',
-                      fontSize: 25,
-                    }}
-                  />
-                </button>
-              </div>
-            </div>
-            <div className="block">
-              <p className="text-sm font-medium text-center mt-1 text-dexfi-grayviolet">
-                Trade tokens in an instant
-              </p>
-            </div>
+          <div className="text-center pb-6 border-b">
+            <h1 className="text-xl font-bold tracking-wide text-dexfi-violet">
+              Swap
+            </h1>
+            <div></div>
+            <p className="text-sm font-medium  text-dexfi-grayviolet">
+              Trade tokens in an instant
+            </p>
           </div>
+
           <MenuItemList
             handleOpen={handleOpen}
             handleClose={handleClose}

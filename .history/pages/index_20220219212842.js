@@ -14,7 +14,7 @@ import { useWeb3 } from '../components/providers/web3';
 import { useRouter } from 'next/router';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
-import ReplayIcon from '@mui/icons-material/Replay';
+
 import {
   scammExchangeAddress,
   scammcoinAddress,
@@ -385,7 +385,7 @@ export default function Home(props) {
                     handleMenuItemClick(event, 1, outputToken.currentToken[1])
                   }
                 >
-                  <ReplayIcon
+                  <SettingsBackupRestoreIcon
                     sx={{
                       color: '#7c6484',
                       fontSize: 25,
