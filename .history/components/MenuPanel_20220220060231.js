@@ -267,15 +267,6 @@ const MenuPanel = ({ currencies, section }) => {
       console.log('not enough allowance');
       return;
     }
-
-    let transaction = await exchangeUserConnection.addLiquidity(
-      ethers.utils.parseEther(inputOne.toString()),
-      {
-        value: ethers.utils.parseEther(inputTwo.toString()),
-      }
-    );
-    console.log('transaction', transaction);
-    console.log('transaction done!');
   }
 
   async function swap() {

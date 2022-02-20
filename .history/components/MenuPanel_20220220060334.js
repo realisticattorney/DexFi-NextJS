@@ -268,14 +268,12 @@ const MenuPanel = ({ currencies, section }) => {
       return;
     }
 
-    let transaction = await exchangeUserConnection.addLiquidity(
-      ethers.utils.parseEther(inputOne.toString()),
+    let transaction = await exchangeUserConnection.ethToTokenSwap(
+      ethers.utils.parseEther((inputTwo * 0.98).toString()),
       {
-        value: ethers.utils.parseEther(inputTwo.toString()),
+        value: ethers.utils.parseEther(inputOne.toString()),
       }
     );
-    console.log('transaction', transaction);
-    console.log('transaction done!');
   }
 
   async function swap() {

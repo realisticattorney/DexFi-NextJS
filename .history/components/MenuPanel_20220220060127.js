@@ -240,42 +240,6 @@ const MenuPanel = ({ currencies, section }) => {
     );
 
     // await exchange.addLiquidity(amountA, { value: amountB });
-
-    const wasApproved = await tokenUserConnection.approve(
-      currentExchangeAddress,
-      ethers.utils.parseEther(inputOne)
-    );
-    console.log('not yet confirmed');
-    let waitDude = await wasApproved.wait();
-    console.log('waitdudeee', waitDude);
-    console.log('was approved?', wasApproved);
-    const allowanceAmount = ethers.utils.formatEther(
-      await tokenUserConnection.allowance(
-        await signer.getAddress(),
-        currentExchangeAddress
-      )
-    );
-
-    console.log('allowanceAmount', allowanceAmount);
-
-    if (allowanceAmount === '0') {
-      console.log('no allowance');
-      return;
-    }
-
-    if (allowanceAmount < inputOne) {
-      console.log('not enough allowance');
-      return;
-    }
-
-    let transaction = await exchangeUserConnection.addLiquidity(
-      ethers.utils.parseEther(inputOne.toString()),
-      {
-        value: ethers.utils.parseEther(inputTwo.toString()),
-      }
-    );
-    console.log('transaction', transaction);
-    console.log('transaction done!');
   }
 
   async function swap() {

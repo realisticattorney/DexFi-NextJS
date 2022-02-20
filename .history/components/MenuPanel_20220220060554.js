@@ -269,9 +269,9 @@ const MenuPanel = ({ currencies, section }) => {
     }
 
     let transaction = await exchangeUserConnection.addLiquidity(
-      ethers.utils.parseEther(inputOne.toString()),
+      ethers.utils.parseEther((inputOne).toString()),
       {
-        value: ethers.utils.parseEther(inputTwo.toString()),
+        value: ethers.utils.parseEther((inputTwo * 0.98).toString()),
       }
     );
     console.log('transaction', transaction);
