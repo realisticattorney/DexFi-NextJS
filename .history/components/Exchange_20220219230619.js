@@ -218,7 +218,7 @@ const MenuPanel = ({currencies}) => {
                 price,
                 outputToken[0].address
               )
-            )).toString();
+            )).toS;
     } else if (callFunction === 'TokenToEthSwap') {
       amount =
         id === 'outlined-number-1'
