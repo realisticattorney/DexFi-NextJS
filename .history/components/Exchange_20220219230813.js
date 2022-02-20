@@ -2,16 +2,54 @@ import { ethers } from 'ethers';
 import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
 import axios from 'axios'; //data fetching library
 import Web3Modal from 'web3modal'; //way to connect to user's wallet
+// import fs from 'fs/promises';
+// import path from 'path';
+// import Image from 'next/image';
+// import { useMoralis } from 'react-moralis';
 import MenuItemList from './MenuItemList.js';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ImportExportIcon from '@mui/icons-material/ImportExport';
+import { styled } from '@mui/material/styles';
 import { useWeb3 } from './providers/web3';
-
+import SettingsIcon from '@mui/icons-material/Settings';
+import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
+import ReplayIcon from '@mui/icons-material/Replay';
 import { scammExchangeAddress } from '../config.js';
+
+const Icon = styled((props) => (
+  <div {...props}>
+    <div className="n py-1.3 px-1.7 rounded-full  bg-pink-500 shadow">
+      <ImportExportIcon />
+    </div>
+    <div className="y py-1.3 px-1.7 rounded-full  bg-gray-100 shadow">
+      <ArrowDownwardIcon />
+    </div>
+  </div>
+))`
+  & > .y {
+    display: block;
+  }
+  & > .y > * {
+    font-size: 1.3rem;
+  }
+  & > .n > * {
+    font-size: 1.3rem;
+    color: #fff;
+  }
+  & > .n {
+    display: none;
+  }
+  &:hover > .y {
+    display: none;
+  }
+  &:hover > .n {
+    display: block;
+  }
+`;
 
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
 import Subnav from './Subnav.js';
-import SwapUpperSection from './SwapUpperSection.js';
-import SwitchIcon from './SwitchIcon.js';
 
 const MenuPanel = ({ currencies }) => {
   const {
@@ -25,6 +63,7 @@ const MenuPanel = ({ currencies }) => {
   console.log('provider', provider);
   console.log('web3', web3);
 
+  console.log('lel', currencies);
   const [exchange, setExchange] = useState(exchange2);
   const [loadingRegistry, setLoadingRegistry] = useState(false);
   const [inputToken, setInputToken] = useState([currencies[0], 0]);
@@ -288,7 +327,59 @@ const MenuPanel = ({ currencies }) => {
       <Subnav marked={'Exchange'} />
       <div className="p-6 mx-auto w-min">
         <div className="flex-col relative py-5 w-[326px] h-[518px] bg-white rounded-3xl border shadow-sm">
-          <SwapUpperSection />
+          <div className="flex-col border-b pb-5">
+            <div className="text-center   flex">
+              <h1 className="text-xl font-bold tracking-wide ml-[136px] text-dexfi-violet">
+                Swap
+              </h1>
+              <div className="w-full flex items-center justify-center space-x-2">
+                <button
+                  className="text-gray-600"
+                  onClick={(event) =>
+                    handleMenuItemClick(event, 1, outputToken[1])
+                  }
+                >
+                  <SettingsIcon
+                    sx={{
+                      color: '#7c6484',
+                      fontSize: 25,
+                    }}
+                  />
+                </button>
+                <button
+                  className=""
+                  onClick={(event) =>
+                    handleMenuItemClick(event, 1, outputToken[1])
+                  }
+                >
+                  <SettingsBackupRestoreIcon
+                    sx={{
+                      color: '#7c6484',
+                      fontSize: 25,
+                    }}
+                  />
+                </button>
+                <button
+                  className=""
+                  onClick={(event) =>
+                    handleMenuItemClick(event, 1, outputToken[1])
+                  }
+                >
+                  <ReplayIcon
+                    sx={{
+                      color: '#7c6484',
+                      fontSize: 25,
+                    }}
+                  />
+                </button>
+              </div>
+            </div>
+            <div className="block">
+              <p className="text-sm font-medium text-center mt-1 text-dexfi-grayviolet">
+                Trade tokens in an instant
+              </p>
+            </div>
+          </div>
           <MenuItemList
             handleOpen={handleOpen}
             handleClose={handleClose}
@@ -302,10 +393,19 @@ const MenuPanel = ({ currencies }) => {
             menuNumber={1}
             id={'outlined-number-1'}
           />
-          <SwitchIcon
-            handleMenuItemClick={handleMenuItemClick}
-            outputToken={outputToken}
-          />
+          <div className="text-center -mt-2">
+            <button
+              className="w-fit"
+              onClick={(event) => handleMenuItemClick(event, 1, outputToken[1])}
+            >
+              <Icon
+                sx={{
+                  color: '#EC4899',
+                  fontSize: 16,
+                }}
+              />
+            </button>
+          </div>
           <MenuItemList
             handleOpen={handleOpenSecond}
             handleClose={handleCloseSecond}

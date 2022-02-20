@@ -11,6 +11,7 @@ import fs from 'fs/promises';
 import path from 'path';
 
 import {
+   scammExchangeAddress,
    scammcoinAddress,
    USDCAddress,
    ETCAddress,
@@ -44,9 +45,9 @@ export default function Add(props) {
             <div className="w-[80px] flex items-center justify-between">
               <button
                 className="text-gray-600"
-               //  onClick={(event) =>
-                  // handleMenuItemClick(event, 1, outputToken.currentToken[1])
-               //  }
+                onClick={(event) =>
+                  handleMenuItemClick(event, 1, outputToken.currentToken[1])
+                }
               >
                 <SettingsIcon
                   sx={{
@@ -57,9 +58,9 @@ export default function Add(props) {
               </button>
               <button
                 className=""
-               //  onClick={(event) =>
-                  // handleMenuItemClick(event, 1, outputToken.currentToken[1])
-               //  }
+                onClick={(event) =>
+                  handleMenuItemClick(event, 1, outputToken.currentToken[1])
+                }
               >
                 <SettingsBackupRestoreIcon
                   sx={{
@@ -72,6 +73,19 @@ export default function Add(props) {
           </div>
           {/*  */}
           {/*  */}
+          <MenuItemList
+            handleOpen={handleOpen}
+            handleClose={handleClose}
+            currencies={currencies}
+            token={inputToken}
+            open={open}
+            input={inputOne}
+            handleInputChange={handleInputOneChange}
+            handleMenuItemClick={handleMenuItemClick}
+            key={1}
+            menuNumber={1}
+            id={'outlined-number-1'}
+          />
 
           <div className="h-[100px] p-6 mx-auto text-center  ">
             <Link href="/add">

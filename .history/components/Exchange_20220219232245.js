@@ -11,7 +11,6 @@ import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
 import Subnav from './Subnav.js';
 import SwapUpperSection from './SwapUpperSection.js';
-import SwitchIcon from './SwitchIcon.js';
 
 const MenuPanel = ({ currencies }) => {
   const {
@@ -288,7 +287,7 @@ const MenuPanel = ({ currencies }) => {
       <Subnav marked={'Exchange'} />
       <div className="p-6 mx-auto w-min">
         <div className="flex-col relative py-5 w-[326px] h-[518px] bg-white rounded-3xl border shadow-sm">
-          <SwapUpperSection />
+         <SwapUpperSection />
           <MenuItemList
             handleOpen={handleOpen}
             handleClose={handleClose}
@@ -302,10 +301,7 @@ const MenuPanel = ({ currencies }) => {
             menuNumber={1}
             id={'outlined-number-1'}
           />
-          <SwitchIcon
-            handleMenuItemClick={handleMenuItemClick}
-            outputToken={outputToken}
-          />
+       
           <MenuItemList
             handleOpen={handleOpenSecond}
             handleClose={handleCloseSecond}

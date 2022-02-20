@@ -72,6 +72,19 @@ export default function Add(props) {
           </div>
           {/*  */}
           {/*  */}
+          <MenuItemList
+            handleOpen={handleOpen}
+            handleClose={handleClose}
+            currencies={currencies}
+            token={inputToken}
+            open={open}
+            input={inputOne}
+            handleInputChange={handleInputOneChange}
+            handleMenuItemClick={handleMenuItemClick}
+            key={1}
+            menuNumber={1}
+            id={'outlined-number-1'}
+          />
 
           <div className="h-[100px] p-6 mx-auto text-center  ">
             <Link href="/add">
