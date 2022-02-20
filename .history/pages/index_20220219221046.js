@@ -86,13 +86,19 @@ export default function Home(props) {
   const [inputOne, setInputOne] = useState(null);
   const [inputTwo, setInputTwo] = useState(null);
 
-  const handleInputToken = useCallback((current) => {
-    setInputToken([current[0], current[1]]);
-  }, []);
+  const handleInputToken = useCallback(
+    (current) => {
+      setInputToken([current[0], current[1]]);
+    },
+    []
+  );
 
-  const handleOutputToken = useCallback((current) => {
-    setOutputToken([current[0], current[1]]);
-  }, []);
+  const handleOutputToken = useCallback(
+    (current) => {
+      setOutputToken([current[0], current[1]]);
+    },
+    [setOutputToken]
+  );
 
   const exchangeHandler = useCallback(() => {
     if (inputToken[1] !== 1) {
@@ -208,21 +214,9 @@ export default function Home(props) {
     console.log('id', id);
     let callFunction = swapTypeHandler();
     if (callFunction === 'TokenToTokenSwap') {
-      amount =
-        id === 'outlined-number-1'
-          ? ethers.utils.formatEther(
-              await exchange.getTokenToTokenAmount(
-                price,
-                outputToken[0].address
-              )
-            )
-          : (input * input) /
-            ethers.utils.formatEther(
-              await exchange.getTokenToTokenAmount(
-                price,
-                outputToken[0].address
-              )
-            );
+      amount = ethers.utils.formatEther(
+        await exchange.getTokenToTokenAmount(price, outputToken[0].address)
+      );
     } else if (callFunction === 'TokenToEthSwap') {
       amount =
         id === 'outlined-number-1'

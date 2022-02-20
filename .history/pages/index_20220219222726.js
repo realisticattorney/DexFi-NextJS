@@ -216,12 +216,8 @@ export default function Home(props) {
                 outputToken[0].address
               )
             )
-          : (input * input) /
-            ethers.utils.formatEther(
-              await exchange.getTokenToTokenAmount(
-                price,
-                outputToken[0].address
-              )
+          : input / ethers.utils.formatEther(
+              await exchange.getTokenToTokenAmount(price, outputToken[0].address)
             );
     } else if (callFunction === 'TokenToEthSwap') {
       amount =

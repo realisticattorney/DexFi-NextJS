@@ -208,21 +208,11 @@ export default function Home(props) {
     console.log('id', id);
     let callFunction = swapTypeHandler();
     if (callFunction === 'TokenToTokenSwap') {
-      amount =
-        id === 'outlined-number-1'
-          ? ethers.utils.formatEther(
-              await exchange.getTokenToTokenAmount(
-                price,
-                outputToken[0].address
-              )
-            )
-          : (input * input) /
-            ethers.utils.formatEther(
-              await exchange.getTokenToTokenAmount(
-                price,
-                outputToken[0].address
-              )
-            );
+      amount = id === 'outlined-number-1'
+      ? ethers.utils.formatEther(
+        await exchange.getTokenToTokenAmount(price, outputToken[0].address) :
+        
+      );
     } else if (callFunction === 'TokenToEthSwap') {
       amount =
         id === 'outlined-number-1'

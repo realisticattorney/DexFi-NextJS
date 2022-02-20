@@ -74,8 +74,14 @@ export default function Home(props) {
   const { currencies } = props;
   const [exchange, setExchange] = useState(exchange2);
   const [loadingRegistry, setLoadingRegistry] = useState(false);
-  const [inputToken, setInputToken] = useState([currencies[0], 0]);
-  const [outputToken, setOutputToken] = useState([currencies[1], 1]);
+  const [inputToken, setInputToken] = useState({
+    prevToken: null,
+    currentToken: [currencies[0], 0],
+  });
+  const [outputToken, setOutputToken] = useState({
+    prevToken: null,
+    currentToken: [currencies[1], 1],
+  });
   const currentTokenExchangeAddress = useRef(null);
   const [open, setOpen] = useState(false);
   const [openSecond, setOpenSecond] = useState(false);
@@ -86,25 +92,35 @@ export default function Home(props) {
   const [inputOne, setInputOne] = useState(null);
   const [inputTwo, setInputTwo] = useState(null);
 
-  const handleInputToken = useCallback((current) => {
-    setInputToken([current[0], current[1]]);
-  }, []);
+  const handleInputToken = useCallback(
+    (current) => {
+      setInputToken((t) => {
+        return { prevToken: t.currentToken, currentToken: current };
+      });
+    },
+    [setInputToken]
+  );
 
-  const handleOutputToken = useCallback((current) => {
-    setOutputToken([current[0], current[1]]);
-  }, []);
+  const handleOutputToken = useCallback(
+    (current) => {
+      setOutputToken((t) => {
+        return { prevToken: t.currentToken, currentToken: current };
+      });
+    },
+    [setOutputToken]
+  );
 
   const exchangeHandler = useCallback(() => {
-    if (inputToken[1] !== 1) {
-      return inputToken[0].address;
+    if (inputToken.currentToken[1] !== 1) {
+      return inputToken.currentToken[0].address;
     } else {
-      return outputToken[0].address;
+      return outputToken.currentToken[0].address;
     }
   }, [inputToken, outputToken]);
 
   const swapTypeHandler = useCallback(() => {
-    if (inputToken[1] !== 1) {
-      if (outputToken[1] !== 1) {
+    if (inputToken.currentToken[1] !== 1) {
+      if (outputToken.currentToken[1] !== 1) {
         return 'TokenToTokenSwap';
       } else {
         return 'TokenToEthSwap';
@@ -155,8 +171,11 @@ export default function Home(props) {
 
   const handleMenuItemClick = async (event, index, menuItem) => {
     if (menuItem === 1) {
-      if (index === outputToken[1]) {
-        handleMenuItemSwitch(inputToken[1], outputToken[1]);
+      if (index === outputToken.currentToken[1]) {
+        handleMenuItemSwitch(
+          inputToken.currentToken[1],
+          outputToken.currentToken[1]
+        );
       } else {
         handleInputToken([currencies[index], index]);
         setInputOne(null);
@@ -164,8 +183,11 @@ export default function Home(props) {
       }
       handleClose();
     } else {
-      if (index === inputToken[1]) {
-        handleMenuItemSwitch(inputToken[1], outputToken[1]);
+      if (index === inputToken.currentToken[1]) {
+        handleMenuItemSwitch(
+          inputToken.currentToken[1],
+          outputToken.currentToken[1]
+        );
       } else {
         handleOutputToken([currencies[index], index]);
         setInputOne(null);
@@ -208,21 +230,12 @@ export default function Home(props) {
     console.log('id', id);
     let callFunction = swapTypeHandler();
     if (callFunction === 'TokenToTokenSwap') {
-      amount =
-        id === 'outlined-number-1'
-          ? ethers.utils.formatEther(
-              await exchange.getTokenToTokenAmount(
-                price,
-                outputToken[0].address
-              )
-            )
-          : (input * input) /
-            ethers.utils.formatEther(
-              await exchange.getTokenToTokenAmount(
-                price,
-                outputToken[0].address
-              )
-            );
+      amount = ethers.utils.formatEther(
+        await exchange.getTokenToTokenAmount(
+          price,
+          outputToken.currentToken[0].address
+        )
+      );
     } else if (callFunction === 'TokenToEthSwap') {
       amount =
         id === 'outlined-number-1'
@@ -314,7 +327,7 @@ export default function Home(props) {
       let minTokensAmount = ethers.utils.formatEther(
         await exchange.getTokenToTokenAmount(
           ethers.utils.parseEther(allowanceAmount.toString()),
-          outputToken[0].address
+          outputToken.currentToken[0].address
         )
       );
       console.log('minTokensAmount', minTokensAmount);
@@ -322,7 +335,7 @@ export default function Home(props) {
       let transaction = await exchangeUserConnection.tokenToTokenSwap(
         ethers.utils.parseEther(allowanceAmount.toString()),
         ethers.utils.parseEther((minTokensAmount * 0.98).toString()),
-        outputToken[0].address
+        outputToken.currentToken[0].address
       );
       console.log('transaction', transaction);
     }
@@ -343,7 +356,7 @@ export default function Home(props) {
                 <button
                   className="text-gray-600"
                   onClick={(event) =>
-                    handleMenuItemClick(event, 1, outputToken[1])
+                    handleMenuItemClick(event, 1, outputToken.currentToken[1])
                   }
                 >
                   <SettingsIcon
@@ -356,7 +369,7 @@ export default function Home(props) {
                 <button
                   className=""
                   onClick={(event) =>
-                    handleMenuItemClick(event, 1, outputToken[1])
+                    handleMenuItemClick(event, 1, outputToken.currentToken[1])
                   }
                 >
                   <SettingsBackupRestoreIcon
@@ -369,7 +382,7 @@ export default function Home(props) {
                 <button
                   className=""
                   onClick={(event) =>
-                    handleMenuItemClick(event, 1, outputToken[1])
+                    handleMenuItemClick(event, 1, outputToken.currentToken[1])
                   }
                 >
                   <ReplayIcon
@@ -403,7 +416,9 @@ export default function Home(props) {
           <div className="text-center -mt-2">
             <button
               className="w-fit"
-              onClick={(event) => handleMenuItemClick(event, 1, outputToken[1])}
+              onClick={(event) =>
+                handleMenuItemClick(event, 1, outputToken.currentToken[1])
+              }
             >
               <Icon
                 sx={{
@@ -437,7 +452,9 @@ export default function Home(props) {
                     (inputOne / inputTwo).toString().length > 9
                       ? (inputOne / inputTwo).toString().substring(0, 10)
                       : (inputOne / inputTwo).toString()
-                  } ${inputToken[0].symbol} per ${outputToken[0].symbol}`}</h1>
+                  } ${inputToken.currentToken[0].symbol} per ${
+                    outputToken.currentToken[0].symbol
+                  }`}</h1>
                 </div>
               </div>
             )}
@@ -455,6 +472,11 @@ export default function Home(props) {
               onClick={() => {
                 isUserWalletConnected ? swap() : connect(exchange.address);
               }}
+              // disabled={
+              //   inputOne?.replace('0.', '') > 0 || inputOne === null
+              //     ? true
+              //     : false
+              // }
             >
               {isUserWalletConnected ? 'Swap' : 'Connect Wallet'}
             </button>
