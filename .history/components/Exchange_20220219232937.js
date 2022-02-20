@@ -319,7 +319,10 @@ const MenuPanel = ({ currencies }) => {
             menuNumber={2}
             id={'outlined-number-2'}
           />
-          {inputOne > 0 && (
+          {inputOne !== null &&
+            inputTwo !== null &&
+            inputOne !== '0' &&
+            inputTwo !== '0' && (
               <div className="h-8">
                 <div className="flex w-full justify-around">
                   <h1 className="text-xs font-bold text-dexfi-violet">Price</h1>
