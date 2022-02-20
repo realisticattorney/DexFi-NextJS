@@ -285,7 +285,7 @@ const MenuPanel = ({ currencies }) => {
 
   return (
     <>
-      
+      <SwapUpperSection />
       <MenuItemList
         handleOpen={handleOpen}
         handleClose={handleClose}

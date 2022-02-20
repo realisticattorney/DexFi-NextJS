@@ -17,7 +17,7 @@ export default function Add(props) {
   return (
     <div className="flex-col ">
       <div className="p-6 mx-auto w-min">
-      <AddLiquidityPanel currencies={currencies} />
+      <AddLiquidityPanel />
       </div>
     </div>
   );

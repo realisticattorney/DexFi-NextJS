@@ -1,26 +1,29 @@
-import { useState, useCallback } from 'react';
-import { useWeb3 } from '../components/providers/web3';
-import { useRouter } from 'next/router';
+import { ethers } from 'ethers';
+import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
+import axios from 'axios'; //data fetching library
+import Web3Modal from 'web3modal'; //way to connect to user's wallet
 import fs from 'fs/promises';
 import path from 'path';
+import Image from 'next/image';
+import { useMoralis } from 'react-moralis';
+import MenuItemList from '../components/MenuItemList.js';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ImportExportIcon from '@mui/icons-material/ImportExport';
+import { styled } from '@mui/material/styles';
+import { useWeb3 } from '../components/providers/web3';
+import MenuPanel from '../components/Exchange.js';
 
 import {
-   scammcoinAddress,
-   USDCAddress,
-   ETCAddress,
- } from '../config.js';
-import AddLiquidityPanel from '../components/AddLiquidityPanel';
+  scammcoinAddress,
+  USDCAddress,
+  ETCAddress,
+} from '../config.js';
+import SwapPanel from '../components/SwapPanel.js';
 
-export default function Add(props) {
-   const { currencies } = props;
- 
-  return (
-    <div className="flex-col ">
-      <div className="p-6 mx-auto w-min">
-      <AddLiquidityPanel currencies={currencies} />
-      </div>
-    </div>
-  );
+export default function Home(props) {
+  const { currencies } = props;
+
+  return <SwapPanel currencies={currencies} />;
 }
 
 export async function getStaticProps() {

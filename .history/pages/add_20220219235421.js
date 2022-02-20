@@ -1,6 +1,12 @@
 import { useState, useCallback } from 'react';
 import { useWeb3 } from '../components/providers/web3';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+import Subnav from '../components/Subnav';
+import SettingsIcon from '@mui/icons-material/Settings';
+import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import MenuItemList from '../components/MenuItemList';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -17,7 +23,7 @@ export default function Add(props) {
   return (
     <div className="flex-col ">
       <div className="p-6 mx-auto w-min">
-      <AddLiquidityPanel currencies={currencies} />
+      <AddLiquidityPanel />
       </div>
     </div>
   );

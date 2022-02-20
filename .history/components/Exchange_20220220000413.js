@@ -284,69 +284,69 @@ const MenuPanel = ({ currencies }) => {
   }
 
   return (
-    <>
-      
-      <MenuItemList
-        handleOpen={handleOpen}
-        handleClose={handleClose}
-        currencies={currencies}
-        token={inputToken}
-        open={open}
-        input={inputOne}
-        handleInputChange={handleInputOneChange}
-        handleMenuItemClick={handleMenuItemClick}
-        key={1}
-        menuNumber={1}
-        id={'outlined-number-1'}
-      />
-      <SwitchIcon
-        handleMenuItemClick={handleMenuItemClick}
-        outputToken={outputToken}
-      />
-      <MenuItemList
-        handleOpen={handleOpenSecond}
-        handleClose={handleCloseSecond}
-        currencies={currencies}
-        token={outputToken}
-        open={openSecond}
-        input={inputTwo}
-        handleInputChange={handleInputOneChange}
-        handleMenuItemClick={handleMenuItemClick}
-        key={2}
-        menuNumber={2}
-        id={'outlined-number-2'}
-      />
-      {inputOne > 0 && (
-        <div className="h-8">
-          <div className="flex w-full justify-around">
-            <h1 className="text-xs font-bold text-dexfi-violet">Price</h1>
-            <h1 className="truncate text-sm">{`${
-              (inputOne / inputTwo).toString().length > 9
-                ? (inputOne / inputTwo).toString().substring(0, 10)
-                : (inputOne / inputTwo).toString()
-            } ${inputToken[0].symbol} per ${outputToken[0].symbol}`}</h1>
+   <></>
+          <SwapUpperSection />
+          <MenuItemList
+            handleOpen={handleOpen}
+            handleClose={handleClose}
+            currencies={currencies}
+            token={inputToken}
+            open={open}
+            input={inputOne}
+            handleInputChange={handleInputOneChange}
+            handleMenuItemClick={handleMenuItemClick}
+            key={1}
+            menuNumber={1}
+            id={'outlined-number-1'}
+          />
+          <SwitchIcon
+            handleMenuItemClick={handleMenuItemClick}
+            outputToken={outputToken}
+          />
+          <MenuItemList
+            handleOpen={handleOpenSecond}
+            handleClose={handleCloseSecond}
+            currencies={currencies}
+            token={outputToken}
+            open={openSecond}
+            input={inputTwo}
+            handleInputChange={handleInputOneChange}
+            handleMenuItemClick={handleMenuItemClick}
+            key={2}
+            menuNumber={2}
+            id={'outlined-number-2'}
+          />
+          {inputOne > 0 && (
+              <div className="h-8">
+                <div className="flex w-full justify-around">
+                  <h1 className="text-xs font-bold text-dexfi-violet">Price</h1>
+                  <h1 className="truncate text-sm">{`${
+                    (inputOne / inputTwo).toString().length > 9
+                      ? (inputOne / inputTwo).toString().substring(0, 10)
+                      : (inputOne / inputTwo).toString()
+                  } ${inputToken[0].symbol} per ${outputToken[0].symbol}`}</h1>
+                </div>
+              </div>
+            )}
+          <div className="h-10">
+            <div className="flex w-full justify-around">
+              <h1 className="text-xs1 font-bold text-violet-700 mr-20">
+                Slippage tolerance
+              </h1>
+              <h1 className="truncate text-sm font-bold text-pink-500">0.5%</h1>
+            </div>
           </div>
-        </div>
-      )}
-      <div className="h-10">
-        <div className="flex w-full justify-around">
-          <h1 className="text-xs1 font-bold text-violet-700 mr-20">
-            Slippage tolerance
-          </h1>
-          <h1 className="truncate text-sm font-bold text-pink-500">0.5%</h1>
-        </div>
-      </div>
-      <div className="px-4 absolute w-full bottom-4">
-        <button
-          className="w-full bg-pink-500 shadow-sm text-white font-bold py-3.5 px-12 rounded-xl"
-          onClick={() => {
-            isUserWalletConnected ? swap() : connect(exchange.address);
-          }}
-        >
-          {isUserWalletConnected ? 'Swap' : 'Connect Wallet'}
-        </button>
-      </div>
-    </>
+          <div className="px-4 absolute w-full bottom-4">
+            <button
+              className="w-full bg-pink-500 shadow-sm text-white font-bold py-3.5 px-12 rounded-xl"
+              onClick={() => {
+                isUserWalletConnected ? swap() : connect(exchange.address);
+              }}
+            >
+              {isUserWalletConnected ? 'Swap' : 'Connect Wallet'}
+            </button>
+          </div>
+
   );
 };
 
