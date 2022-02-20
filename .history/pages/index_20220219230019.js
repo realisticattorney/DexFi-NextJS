@@ -20,6 +20,7 @@ import {
   ETCAddress,
 } from '../config.js';
 
+
 export default function Home(props) {
   const { currencies } = props;
 

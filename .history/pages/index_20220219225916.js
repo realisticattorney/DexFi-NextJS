@@ -11,8 +11,9 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ImportExportIcon from '@mui/icons-material/ImportExport';
 import { styled } from '@mui/material/styles';
 import { useWeb3 } from '../components/providers/web3';
-import MenuPanel from '../components/Exchange.js';
-
+import SettingsIcon from '@mui/icons-material/Settings';
+import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
+import ReplayIcon from '@mui/icons-material/Replay';
 import {
   scammExchangeAddress,
   scammcoinAddress,
@@ -20,10 +21,62 @@ import {
   ETCAddress,
 } from '../config.js';
 
+const Icon = styled((props) => (
+  <div {...props}>
+    <div className="n py-1.3 px-1.7 rounded-full  bg-pink-500 shadow">
+      <ImportExportIcon />
+    </div>
+    <div className="y py-1.3 px-1.7 rounded-full  bg-gray-100 shadow">
+      <ArrowDownwardIcon />
+    </div>
+  </div>
+))`
+  & > .y {
+    display: block;
+  }
+  & > .y > * {
+    font-size: 1.3rem;
+  }
+  & > .n > * {
+    font-size: 1.3rem;
+    color: #fff;
+  }
+  & > .n {
+    display: none;
+  }
+  &:hover > .y {
+    display: none;
+  }
+  &:hover > .n {
+    display: block;
+  }
+`;
+
+import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
+import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
+import Subnav from '../components/Subnav.js';
+import MenuPanel from '../components/Exchange.js';
+
 export default function Home(props) {
+  // const {
+  //   provider,
+  //   registry,
+  //   exchange2,
+  //   web3,
+  //   isUserWalletConnected,
+  //   connect,
+  // } = useWeb3();
+  // console.log('provider', provider);
+  // console.log('web3', web3);
+
+
   const { currencies } = props;
 
-  return <MenuPanel currencies={currencies} />;
+
+  return (
+  
+    <MenuPanel currencies={currencies} />
+  );
 }
 
 export async function getStaticProps() {
