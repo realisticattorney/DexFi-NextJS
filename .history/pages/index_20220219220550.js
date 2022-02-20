@@ -88,14 +88,18 @@ export default function Home(props) {
 
   const handleInputToken = useCallback(
     (current) => {
-      setInputToken([current[0], current[1]]);
+      setInputToken(() => {
+        return [current[0], current[1]];
+      });
     },
     [setInputToken]
   );
 
   const handleOutputToken = useCallback(
     (current) => {
-      setOutputToken([current[0], current[1]]);
+      setOutputToken(() => {
+        return [current[0], current[1]];
+      });
     },
     [setOutputToken]
   );
@@ -162,7 +166,10 @@ export default function Home(props) {
   const handleMenuItemClick = async (event, index, menuItem) => {
     if (menuItem === 1) {
       if (index === outputToken[1]) {
-        handleMenuItemSwitch(inputToken[1], outputToken[1]);
+        handleMenuItemSwitch(
+          inputToken[1],
+          outputToken[1]
+        );
       } else {
         handleInputToken([currencies[index], index]);
         setInputOne(null);
@@ -171,7 +178,10 @@ export default function Home(props) {
       handleClose();
     } else {
       if (index === inputToken[1]) {
-        handleMenuItemSwitch(inputToken[1], outputToken[1]);
+        handleMenuItemSwitch(
+          inputToken[1],
+          outputToken[1]
+        );
       } else {
         handleOutputToken([currencies[index], index]);
         setInputOne(null);
@@ -215,7 +225,10 @@ export default function Home(props) {
     let callFunction = swapTypeHandler();
     if (callFunction === 'TokenToTokenSwap') {
       amount = ethers.utils.formatEther(
-        await exchange.getTokenToTokenAmount(price, outputToken[0].address)
+        await exchange.getTokenToTokenAmount(
+          price,
+          outputToken[0].address
+        )
       );
     } else if (callFunction === 'TokenToEthSwap') {
       amount =
@@ -397,7 +410,9 @@ export default function Home(props) {
           <div className="text-center -mt-2">
             <button
               className="w-fit"
-              onClick={(event) => handleMenuItemClick(event, 1, outputToken[1])}
+              onClick={(event) =>
+                handleMenuItemClick(event, 1, outputToken[1])
+              }
             >
               <Icon
                 sx={{
@@ -431,7 +446,9 @@ export default function Home(props) {
                     (inputOne / inputTwo).toString().length > 9
                       ? (inputOne / inputTwo).toString().substring(0, 10)
                       : (inputOne / inputTwo).toString()
-                  } ${inputToken[0].symbol} per ${outputToken[0].symbol}`}</h1>
+                  } ${inputToken[0].symbol} per ${
+                    outputToken[0].symbol
+                  }`}</h1>
                 </div>
               </div>
             )}
@@ -449,6 +466,11 @@ export default function Home(props) {
               onClick={() => {
                 isUserWalletConnected ? swap() : connect(exchange.address);
               }}
+              // disabled={
+              //   inputOne?.replace('0.', '') > 0 || inputOne === null
+              //     ? true
+              //     : false
+              // }
             >
               {isUserWalletConnected ? 'Swap' : 'Connect Wallet'}
             </button>

@@ -88,14 +88,18 @@ export default function Home(props) {
 
   const handleInputToken = useCallback(
     (current) => {
-      setInputToken([current[0], current[1]]);
+      setInputToken(() => {
+        return [current[0], current[1]];
+      });
     },
     [setInputToken]
   );
 
   const handleOutputToken = useCallback(
     (current) => {
-      setOutputToken([current[0], current[1]]);
+      setOutputToken(() => {
+        return [current[0], current[1]];
+      });
     },
     [setOutputToken]
   );
@@ -449,6 +453,7 @@ export default function Home(props) {
               onClick={() => {
                 isUserWalletConnected ? swap() : connect(exchange.address);
               }}
+         
             >
               {isUserWalletConnected ? 'Swap' : 'Connect Wallet'}
             </button>

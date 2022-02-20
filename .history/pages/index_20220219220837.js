@@ -88,7 +88,9 @@ export default function Home(props) {
 
   const handleInputToken = useCallback(
     (current) => {
-      setInputToken([current[0], current[1]]);
+      setInputToken(
+      [current[0], current[1]];
+      );
     },
     [setInputToken]
   );
