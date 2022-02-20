@@ -26,7 +26,7 @@ export default function Home(props) {
       <div className="p-6 mx-auto w-min">
         <div className="flex-col relative py-5 w-[326px] h-[518px] bg-white rounded-3xl border shadow-sm">
           <SwapUpperSection />
-          <MenuPanel currencies={currencies} section={'swap'} />
+          <MenuPanel currencies={currencies} section={"add"}/>
         </div>
       </div>
     </div>

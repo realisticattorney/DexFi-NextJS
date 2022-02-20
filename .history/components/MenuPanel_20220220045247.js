@@ -194,7 +194,7 @@ const MenuPanel = ({ currencies, section }) => {
     }
   }
 
-  async function add() {
+  async function swap() {
     const web3modal = new Web3Modal();
     const connection = await web3modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
@@ -212,7 +212,6 @@ const MenuPanel = ({ currencies, section }) => {
       Exchange.abi,
       signer
     );
-  }
 
   async function swap() {
     const web3modal = new Web3Modal();
@@ -311,7 +310,6 @@ const MenuPanel = ({ currencies, section }) => {
         handleMenuItemClick={handleMenuItemClick}
         key={1}
         menuNumber={1}
-        section={section}
         id={'outlined-number-1'}
       />
       {section === "swap" ? (
@@ -333,7 +331,6 @@ const MenuPanel = ({ currencies, section }) => {
         handleMenuItemClick={handleMenuItemClick}
         key={2}
         menuNumber={2}
-        section={section}
         id={'outlined-number-2'}
       />
       <PriceEstimator
@@ -347,7 +344,7 @@ const MenuPanel = ({ currencies, section }) => {
         <button
           className="w-full bg-pink-500 shadow-sm text-white font-bold py-3 px-12 rounded-xl"
           onClick={() => {
-            isUserWalletConnected ? section === "swap" ? swap() : add() : connect(exchange.address);
+            isUserWalletConnected ? section === "swap" ? swap() : swap() : connect(exchange.address);
           }}
         >
           {isUserWalletConnected ? section === "swap" ? "Swap" : "Add Liquidity" : 'Connect Wallet'}

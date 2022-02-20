@@ -37,8 +37,7 @@ const MenuItemList = ({
 }) => {
   const modalIsDisabled =
     id === 'outlined-number-2' && section === 'add' ? 'yes' : 'no';
-  const ethIsDisabled =
-    id === 'outlined-number-1' && section === 'add' ? 'yes' : 'no';
+  const ethIsDisabled = id === 'outlined-number-1' && section === 'add' ? 'yes' : 'no';
   return (
     <div className="flex flex-col space-y-2 p-5">
       <button
@@ -79,7 +78,7 @@ const MenuItemList = ({
                 <MenuItem
                   key={currency.symbol}
                   disabled={
-                    ethIsDisabled === 'yes'
+                    modalIsDisabled === 'yes'
                       ? index === token[1] || index === 1
                       : index === token[1]
                   }

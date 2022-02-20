@@ -311,7 +311,6 @@ const MenuPanel = ({ currencies, section }) => {
         handleMenuItemClick={handleMenuItemClick}
         key={1}
         menuNumber={1}
-        section={section}
         id={'outlined-number-1'}
       />
       {section === "swap" ? (
@@ -333,7 +332,7 @@ const MenuPanel = ({ currencies, section }) => {
         handleMenuItemClick={handleMenuItemClick}
         key={2}
         menuNumber={2}
-        section={section}
+        section={}
         id={'outlined-number-2'}
       />
       <PriceEstimator

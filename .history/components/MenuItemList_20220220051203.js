@@ -36,17 +36,12 @@ const MenuItemList = ({
   section,
 }) => {
   const modalIsDisabled =
-    id === 'outlined-number-2' && section === 'add' ? 'yes' : 'no';
-  const ethIsDisabled =
-    id === 'outlined-number-1' && section === 'add' ? 'yes' : 'no';
+    id === 'outlined-number-2' && section === 'add' ? true : false;
   return (
     <div className="flex flex-col space-y-2 p-5">
-      <button
-        onClick={() => {
-          modalIsDisabled === 'yes' ? '' : handleOpen();
-        }}
-        className="flex items-center"
-      >
+      <button onClick={() => {
+            modalIsDisabled ? swap() : handleOpen
+          }} className="flex items-center">
         <Image
           src={token[0].logoURI}
           height={24}
@@ -78,11 +73,7 @@ const MenuItemList = ({
               {currencies.map((currency, index) => (
                 <MenuItem
                   key={currency.symbol}
-                  disabled={
-                    ethIsDisabled === 'yes'
-                      ? index === token[1] || index === 1
-                      : index === token[1]
-                  }
+                  disabled={index === token[1]}
                   selected={index === token[1]}
                   onClick={(event) =>
                     handleMenuItemClick(event, index, menuNumber)

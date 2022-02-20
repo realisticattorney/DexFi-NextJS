@@ -37,8 +37,6 @@ const MenuItemList = ({
 }) => {
   const modalIsDisabled =
     id === 'outlined-number-2' && section === 'add' ? 'yes' : 'no';
-  const ethIsDisabled =
-    id === 'outlined-number-1' && section === 'add' ? 'yes' : 'no';
   return (
     <div className="flex flex-col space-y-2 p-5">
       <button
@@ -78,11 +76,7 @@ const MenuItemList = ({
               {currencies.map((currency, index) => (
                 <MenuItem
                   key={currency.symbol}
-                  disabled={
-                    ethIsDisabled === 'yes'
-                      ? index === token[1] || index === 1
-                      : index === token[1]
-                  }
+                  disabled={isM index === token[1]}
                   selected={index === token[1]}
                   onClick={(event) =>
                     handleMenuItemClick(event, index, menuNumber)
