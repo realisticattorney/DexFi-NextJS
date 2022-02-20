@@ -155,25 +155,9 @@ const MenuPanel = ({ currencies, section }) => {
   };
 
   async function callBondingCurve(input, id) {
-    const exchangeEthBalance = ethers.utils.formatEther(
-      await provider.getBalance(exchange.address)
-    );
-    console.log('duuude', exchangeEthBalance);
-    const getReserve = ethers.utils.formatEther(await exchange.getReserve());
-    console.log('duuude2', getReserve);
-    let amount;
-    amount =
-      id === 'outlined-number-1'
-        ? (exchangeEthBalance * input) / getReserve
-        : (getReserve * input) / exchangeEthBalance;
-    console.log('amount', amount);
-    if (id === 'outlined-number-1') {
-      setInputOne(input);
-      setInputTwo(amount);
-    } else {
-      setInputTwo(input);
-      setInputOne(amount);
-    }
+    const totalSupply = ethers.utils.formatEther(await exchange.totalSupply());
+    console.log("duuude",totalSupply)
+    const getReserve = ethers.utils.formatEther(await exchange.get(());
     // if totalSupply() === 0, one value shouldnt affect the other (set only the id input)
     //else, getReserve() / provider.balanceof(exchange) set id === 2 ? input there, input *  getReserve() / provider.balanceof(exchange and the other input getReserve() / provider.balanceof(exchange) / input. otherwise the opposite
   }

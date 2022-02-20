@@ -8,7 +8,6 @@ import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
 import SwitchIcon from './SwitchIcon.js';
 import PriceEstimator from './PriceEstimator.js';
-import _ from 'lodash';
 
 const MenuPanel = ({ currencies, section }) => {
   const {
@@ -19,6 +18,7 @@ const MenuPanel = ({ currencies, section }) => {
     isUserWalletConnected,
     connect,
   } = useWeb3();
+
 
   const [exchange, setExchange] = useState(exchange2);
   const [loadingRegistry, setLoadingRegistry] = useState(false);
@@ -137,11 +137,11 @@ const MenuPanel = ({ currencies, section }) => {
     console.log('evento', event.target.value);
     console.log('evento target', event.target.id);
     if (event.target.value > 0) {
-      if (section === 'swap') {
-        callExchange(event.target.value, event.target.id);
-      } else {
-        callBondingCurve(event.target.value, event.target.id);
-      }
+      if(section === "swap") {
+      callExchange(event.target.value, event.target.id); 
+    } else {
+      
+    }
     } else if (event.target.value === '') {
       setInputOne(null);
       setInputTwo(null);
@@ -153,30 +153,6 @@ const MenuPanel = ({ currencies, section }) => {
       setInputTwo(event.target.value);
     }
   };
-
-  async function callBondingCurve(input, id) {
-    const exchangeEthBalance = ethers.utils.formatEther(
-      await provider.getBalance(exchange.address)
-    );
-    console.log('duuude', exchangeEthBalance);
-    const getReserve = ethers.utils.formatEther(await exchange.getReserve());
-    console.log('duuude2', getReserve);
-    let amount;
-    amount =
-      id === 'outlined-number-1'
-        ? (exchangeEthBalance * input) / getReserve
-        : (getReserve * input) / exchangeEthBalance;
-    console.log('amount', amount);
-    if (id === 'outlined-number-1') {
-      setInputOne(input);
-      setInputTwo(amount);
-    } else {
-      setInputTwo(input);
-      setInputOne(amount);
-    }
-    // if totalSupply() === 0, one value shouldnt affect the other (set only the id input)
-    //else, getReserve() / provider.balanceof(exchange) set id === 2 ? input there, input *  getReserve() / provider.balanceof(exchange and the other input getReserve() / provider.balanceof(exchange) / input. otherwise the opposite
-  }
 
   async function callExchange(input, id) {
     let price = await ethers.utils.parseEther(input);
@@ -342,13 +318,13 @@ const MenuPanel = ({ currencies, section }) => {
         section={section}
         id={'outlined-number-1'}
       />
-      {section === 'swap' ? (
-        <SwitchIcon
-          handleMenuItemClick={handleMenuItemClick}
-          outputToken={outputToken}
-        />
+      {section === "swap" ? (
+      <SwitchIcon
+        handleMenuItemClick={handleMenuItemClick}
+        outputToken={outputToken}
+      />
       ) : (
-        <h1 className="text-center font-bold text-lg text-violet-700">+</h1>
+        <h1 className='text-center font-bold text-lg text-violet-700'>+</h1>
       )}
       <MenuItemList
         handleOpen={handleOpenSecond}
@@ -370,23 +346,15 @@ const MenuPanel = ({ currencies, section }) => {
         inputToken={inputToken}
         outputToken={outputToken}
       />
-
+     
       <div className="px-4 absolute w-full bottom-4">
         <button
           className="w-full bg-pink-500 shadow-sm text-white font-bold py-3 px-12 rounded-xl"
           onClick={() => {
-            isUserWalletConnected
-              ? section === 'swap'
-                ? swap()
-                : add()
-              : connect(exchange.address);
+            isUserWalletConnected ? section === "swap" ? swap() : add() : connect(exchange.address);
           }}
         >
-          {isUserWalletConnected
-            ? section === 'swap'
-              ? 'Swap'
-              : 'Add Liquidity'
-            : 'Connect Wallet'}
+          {isUserWalletConnected ? section === "swap" ? "Swap" : "Add Liquidity" : 'Connect Wallet'}
         </button>
       </div>
     </>

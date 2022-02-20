@@ -156,7 +156,7 @@ const MenuPanel = ({ currencies, section }) => {
 
   async function callBondingCurve(input, id) {
     const exchangeEthBalance = ethers.utils.formatEther(
-      await provider.getBalance(exchange.address)
+      await provider.balance(exchange.address)
     );
     console.log('duuude', exchangeEthBalance);
     const getReserve = ethers.utils.formatEther(await exchange.getReserve());
@@ -165,7 +165,7 @@ const MenuPanel = ({ currencies, section }) => {
     amount =
       id === 'outlined-number-1'
         ? (exchangeEthBalance * input) / getReserve
-        : (getReserve * input) / exchangeEthBalance;
+        : getReserve * input;
     console.log('amount', amount);
     if (id === 'outlined-number-1') {
       setInputOne(input);
