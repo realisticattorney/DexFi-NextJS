@@ -165,15 +165,7 @@ const MenuPanel = ({ currencies, section }) => {
     if (id === 'add-liquidity' && input === null) {
       return [getReserve, exchangeEthBalance, 0];
     } else if (id === 'add-liquidity') {
-      let intoNumb = parseInt(exchangeEthBalance)
-      console.log("nuuuuuum", intoNumb)
-      let inpot = parseInt(input)
-      return [
-        getReserve,
-        exchangeEthBalance,
-        ((inpot) / (inpot + intoNumb) * 100),
-      ];
-    }
+   
 
     let amount;
     amount =

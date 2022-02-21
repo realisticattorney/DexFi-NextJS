@@ -65,25 +65,15 @@ const PriceEstimator = ({
             {inputOne > 0 && (
               <div className="flex font-medium text-violet-900 space-x-6">
                 <div className="text-center">
-                  <h1 className="truncate">
-                    {(poolNumbers[0] / poolNumbers[1])
-                      .toString()
-                      .substring(0, 8)}
-                  </h1>
+                <h1 className="truncate">{(poolNumbers[0] / poolNumbers[1]).toString().substring(0,8)}</h1>
                   <h1 className="text-sm">{`${inputToken[0].symbol} per ${outputToken[0].symbol}`}</h1>
                 </div>
                 <div className="text-center">
-                  <h1 className="truncate">
-                    {(poolNumbers[1] / poolNumbers[0])
-                      .toString()
-                      .substring(0, 8)}
-                  </h1>
+                  <h1 className="truncate">{(poolNumbers[1] / poolNumbers[0]).toString().substring(0,8)}</h1>
                   <h1 className="text-sm">{`${outputToken[0].symbol} per ${inputToken[0].symbol}`}</h1>
                 </div>
                 <div className="text-center">
-                  <h1 className="truncate">
-                    {poolNumbers[2].toFixed(2).toString()}%
-                  </h1>
+                  <h1 className="truncate">{poolNumbers[2].toFixed(2).toString()}%</h1>
                   <h1 className="text-sm">Share of Pool</h1>
                 </div>
               </div>

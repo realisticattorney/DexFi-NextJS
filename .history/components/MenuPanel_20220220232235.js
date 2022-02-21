@@ -154,6 +154,8 @@ const MenuPanel = ({ currencies, section }) => {
     }
   };
 
+  const bondingCurveHandler = useCallback(()
+
   async function callBondingCurve(input, id) {
     const exchangeEthBalance = ethers.utils.formatEther(
       await provider.getBalance(exchange.address)
@@ -163,16 +165,7 @@ const MenuPanel = ({ currencies, section }) => {
     console.log('duuude2', getReserve);
     console.log('inppooooot', input);
     if (id === 'add-liquidity' && input === null) {
-      return [getReserve, exchangeEthBalance, 0];
-    } else if (id === 'add-liquidity') {
-      let intoNumb = parseInt(exchangeEthBalance)
-      console.log("nuuuuuum", intoNumb)
-      let inpot = parseInt(input)
-      return [
-        getReserve,
-        exchangeEthBalance,
-        ((inpot) / (inpot + intoNumb) * 100),
-      ];
+      return [getReserve, exchangeEthBalance];
     }
 
     let amount;

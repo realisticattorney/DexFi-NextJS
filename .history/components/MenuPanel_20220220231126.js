@@ -163,11 +163,11 @@ const MenuPanel = ({ currencies, section }) => {
     console.log('duuude2', getReserve);
     console.log('inppooooot', input);
     if (id === 'add-liquidity' && input === null) {
+      let inpot = parseInt(input)
       return [getReserve, exchangeEthBalance, 0];
     } else if (id === 'add-liquidity') {
       let intoNumb = parseInt(exchangeEthBalance)
       console.log("nuuuuuum", intoNumb)
-      let inpot = parseInt(input)
       return [
         getReserve,
         exchangeEthBalance,

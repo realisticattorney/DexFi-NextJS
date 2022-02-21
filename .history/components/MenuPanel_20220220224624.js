@@ -162,16 +162,14 @@ const MenuPanel = ({ currencies, section }) => {
     const getReserve = ethers.utils.formatEther(await exchange.getReserve());
     console.log('duuude2', getReserve);
     console.log('inppooooot', input);
-    if (id === 'add-liquidity' && input === null) {
+    if (id === 'add-liquidity' && input < 0) {
       return [getReserve, exchangeEthBalance, 0];
     } else if (id === 'add-liquidity') {
-      let intoNumb = parseInt(exchangeEthBalance)
-      console.log("nuuuuuum", intoNumb)
-      let inpot = parseInt(input)
       return [
         getReserve,
         exchangeEthBalance,
-        ((inpot) / (inpot + intoNumb) * 100),
+        (input * (10 ** exchangeEthBalance.length - 3)) /
+          (input + exchangeEthBalance),
       ];
     }
 
