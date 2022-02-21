@@ -216,7 +216,11 @@ const MenuPanel = ({ currencies, section }) => {
       amount =
         id === 'outlined-number-1'
           ? ethers.utils.formatEther(await exchange.getEthAmount(price))
-          : ethers.utils.formatEther(await exchange.getTokenAmount(price));
+          : ethers.utils.formatEther(
+              await exchange.getTokenAmount(
+                (price * 1.010101).toString().substring(0, 17)
+              )
+            );
     } else {
       amount =
         id === 'outlined-number-1'

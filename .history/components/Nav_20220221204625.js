@@ -10,6 +10,15 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
+const modalstyle = {
+  width: 400,
+  bgcolor: 'background.white',
+  boxShadow: 1,
+  borderRadius: 9,
+  p: 2,
+};
+
+
 const Nav = () => {
   const { connect, isLoading, isWeb3Loaded, isUserWalletConnected } = useWeb3();
   const router = useRouter();
@@ -24,6 +33,8 @@ const Nav = () => {
       setAnchorEl(event.currentTarget);
     }
   }
+
+
 
   function handleClose() {
     setAnchorEl(null);
@@ -48,15 +59,11 @@ const Nav = () => {
         </Button>
         <Menu
           id="simple-menu"
+          sx={modalstyle}
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
           onClose={handleClose}
           MenuListProps={{ onMouseLeave: handleClose }}
-          sx={{
-            '& .MuiBackdrop-root': {
-              backgroundColor: 'transparent',
-            },
-          }}
         >
           <MenuItem onClick={handleClose}>Profile</MenuItem>
           <MenuItem onClick={handleClose}>My account</MenuItem>

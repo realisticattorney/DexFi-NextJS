@@ -9,6 +9,8 @@ import { useRouter } from 'next/router';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+const theme = createMuiTheme({});
 
 const Nav = () => {
   const { connect, isLoading, isWeb3Loaded, isUserWalletConnected } = useWeb3();
@@ -18,16 +20,42 @@ const Nav = () => {
   // useEffect(() => {}, [isAuthenticated]);
 
   const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useState(false);
 
-  function handleClick(event) {
-    if (anchorEl !== event.currentTarget) {
-      setAnchorEl(event.currentTarget);
+  const handleOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+    setOpen(true);
+  };
+
+  const handleClose = (e) => {
+    if (e.currentTarget.localName !== 'ul') {
+      const menu = document.getElementById('simple-menu').children[2];
+      const menuBoundary = {
+        left: menu.offsetLeft,
+        top: e.currentTarget.offsetTop + e.currentTarget.offsetHeight,
+        right: menu.offsetLeft + menu.offsetHeight,
+        bottom: menu.offsetTop + menu.offsetHeight,
+      };
+      if (
+        e.clientX >= menuBoundary.left &&
+        e.clientX <= menuBoundary.right &&
+        e.clientY <= menuBoundary.bottom &&
+        e.clientY >= menuBoundary.top
+      ) {
+        return;
+      }
     }
-  }
 
-  function handleClose() {
-    setAnchorEl(null);
-  }
+    setOpen(false);
+  };
+
+  theme.props = {
+    MuiList: {
+      onMouseLeave: (e) => {
+        handleClose(e);
+      },
+    },
+  };
   return (
     <div className="flex border-b-1.5 border-gray-200 p-0 items-center">
       <div className="p-3 pb-1.3 mr-8">
@@ -38,30 +66,35 @@ const Nav = () => {
         </Link>
       </div>
       <div>
+      <ThemeProvider theme={theme}>
         <Button
-          aria-owns={anchorEl ? 'simple-menu' : undefined}
+          id="menubutton1"
+          aria-owns={open ? "simple-menu" : null}
           aria-haspopup="true"
-          onClick={handleClick}
-          onMouseOver={handleClick}
+          onMouseOver={handleOpen}
+          onMouseLeave={handleClose}
+          style={{ zIndex: 1301 }}
         >
           Open Menu
         </Button>
         <Menu
           id="simple-menu"
           anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-          MenuListProps={{ onMouseLeave: handleClose }}
-          sx={{
-            '& .MuiBackdrop-root': {
-              backgroundColor: 'transparent',
-            },
+          open={open}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "center"
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "center"
           }}
         >
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
-          <MenuItem onClick={handleClose}>My account</MenuItem>
-          <MenuItem onClick={handleClose}>Logout</MenuItem>
+          Menu
+          <br />
+          Items
         </Menu>
+      </ThemeProvider>
       </div>
       <Link href="/swap">
         <a className="mr-6 text-gray-500 font-semibold">Trade</a>

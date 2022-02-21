@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useMoralis } from 'react-moralis';
@@ -6,9 +6,9 @@ import { useEffect } from 'react';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useWeb3 } from '../components/providers/web3';
 import { useRouter } from 'next/router';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import Button from "@material-ui/core/Button";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const Nav = () => {
   const { connect, isLoading, isWeb3Loaded, isUserWalletConnected } = useWeb3();
@@ -17,17 +17,6 @@ const Nav = () => {
 
   // useEffect(() => {}, [isAuthenticated]);
 
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  function handleClick(event) {
-    if (anchorEl !== event.currentTarget) {
-      setAnchorEl(event.currentTarget);
-    }
-  }
-
-  function handleClose() {
-    setAnchorEl(null);
-  }
   return (
     <div className="flex border-b-1.5 border-gray-200 p-0 items-center">
       <div className="p-3 pb-1.3 mr-8">
@@ -38,31 +27,26 @@ const Nav = () => {
         </Link>
       </div>
       <div>
-        <Button
-          aria-owns={anchorEl ? 'simple-menu' : undefined}
-          aria-haspopup="true"
-          onClick={handleClick}
-          onMouseOver={handleClick}
-        >
-          Open Menu
-        </Button>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-          MenuListProps={{ onMouseLeave: handleClose }}
-          sx={{
-            '& .MuiBackdrop-root': {
-              backgroundColor: 'transparent',
-            },
-          }}
-        >
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
-          <MenuItem onClick={handleClose}>My account</MenuItem>
-          <MenuItem onClick={handleClose}>Logout</MenuItem>
-        </Menu>
-      </div>
+      <Button
+        aria-owns={anchorEl ? "simple-menu" : undefined}
+        aria-haspopup="true"
+        onClick={handleClick}
+        onMouseOver={handleClick}
+      >
+        Open Menu
+      </Button>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        MenuListProps={{ onMouseLeave: handleClose }}
+      >
+        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={handleClose}>Logout</MenuItem>
+      </Menu>
+    </div>
       <Link href="/swap">
         <a className="mr-6 text-gray-500 font-semibold">Trade</a>
       </Link>

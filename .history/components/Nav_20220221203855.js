@@ -7,8 +7,8 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useWeb3 } from '../components/providers/web3';
 import { useRouter } from 'next/router';
 import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Button';
+import MenuItem from '@mui/material/Button';
 
 const Nav = () => {
   const { connect, isLoading, isWeb3Loaded, isUserWalletConnected } = useWeb3();
@@ -52,11 +52,6 @@ const Nav = () => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
           MenuListProps={{ onMouseLeave: handleClose }}
-          sx={{
-            '& .MuiBackdrop-root': {
-              backgroundColor: 'transparent',
-            },
-          }}
         >
           <MenuItem onClick={handleClose}>Profile</MenuItem>
           <MenuItem onClick={handleClose}>My account</MenuItem>

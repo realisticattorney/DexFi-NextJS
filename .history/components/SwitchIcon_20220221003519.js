@@ -33,15 +33,17 @@ const Icon = styled((props) => (
   }
 `;
 
-const SwitchIcon = ({ handleMenuItemClick, outputToken, callExchange }) => {
-  const eventHandler = (event) => {
-    handleMenuItemClick(event, 1, outputToken[1]);
-    callExchange();
-  };
+const SwitchIcon = ({handleMenuItemClick, outputToken}) => {
 
+  const 
+  
+  
   return (
     <div className="text-center -mt-2">
-      <button className="w-fit" onClick={(event) => eventHandler(event)}>
+      <button
+        className="w-fit"
+        onClick={(event) => handleMenuItemClick(event, 1, outputToken[1])}
+      >
         <Icon
           sx={{
             color: '#EC4899',

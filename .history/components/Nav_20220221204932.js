@@ -9,6 +9,8 @@ import { useRouter } from 'next/router';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+const theme = createMuiTheme({});
 
 const Nav = () => {
   const { connect, isLoading, isWeb3Loaded, isUserWalletConnected } = useWeb3();
@@ -18,16 +20,42 @@ const Nav = () => {
   // useEffect(() => {}, [isAuthenticated]);
 
   const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useState(false);
 
-  function handleClick(event) {
-    if (anchorEl !== event.currentTarget) {
-      setAnchorEl(event.currentTarget);
+  const handleOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+    setOpen(true);
+  };
+
+  const handleClose = (e) => {
+    if (e.currentTarget.localName !== 'ul') {
+      const menu = document.getElementById('simple-menu').children[2];
+      const menuBoundary = {
+        left: menu.offsetLeft,
+        top: e.currentTarget.offsetTop + e.currentTarget.offsetHeight,
+        right: menu.offsetLeft + menu.offsetHeight,
+        bottom: menu.offsetTop + menu.offsetHeight,
+      };
+      if (
+        e.clientX >= menuBoundary.left &&
+        e.clientX <= menuBoundary.right &&
+        e.clientY <= menuBoundary.bottom &&
+        e.clientY >= menuBoundary.top
+      ) {
+        return;
+      }
     }
-  }
 
-  function handleClose() {
-    setAnchorEl(null);
-  }
+    setOpen(false);
+  };
+
+  theme.props = {
+    MuiList: {
+      onMouseLeave: (e) => {
+        handleClose(e);
+      },
+    },
+  };
   return (
     <div className="flex border-b-1.5 border-gray-200 p-0 items-center">
       <div className="p-3 pb-1.3 mr-8">
@@ -48,15 +76,18 @@ const Nav = () => {
         </Button>
         <Menu
           id="simple-menu"
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
           onClose={handleClose}
           MenuListProps={{ onMouseLeave: handleClose }}
-          sx={{
-            '& .MuiBackdrop-root': {
-              backgroundColor: 'transparent',
-            },
-          }}
         >
           <MenuItem onClick={handleClose}>Profile</MenuItem>
           <MenuItem onClick={handleClose}>My account</MenuItem>

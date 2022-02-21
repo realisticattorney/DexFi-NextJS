@@ -9,6 +9,20 @@ import { useRouter } from 'next/router';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { Paper } from '@mui/material';
+
+const modalstyle = {
+  position: 'absolute',
+  top: '30%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  boxShadow: 1,
+  borderRadius: 9,
+  p: 2,
+};
+
 
 const Nav = () => {
   const { connect, isLoading, isWeb3Loaded, isUserWalletConnected } = useWeb3();
@@ -24,6 +38,8 @@ const Nav = () => {
       setAnchorEl(event.currentTarget);
     }
   }
+
+
 
   function handleClose() {
     setAnchorEl(null);
@@ -46,22 +62,19 @@ const Nav = () => {
         >
           Open Menu
         </Button>
+        <Paper sx={modalstyle}>
         <Menu
           id="simple-menu"
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
           onClose={handleClose}
           MenuListProps={{ onMouseLeave: handleClose }}
-          sx={{
-            '& .MuiBackdrop-root': {
-              backgroundColor: 'transparent',
-            },
-          }}
         >
           <MenuItem onClick={handleClose}>Profile</MenuItem>
           <MenuItem onClick={handleClose}>My account</MenuItem>
           <MenuItem onClick={handleClose}>Logout</MenuItem>
         </Menu>
+        </Paper>
       </div>
       <Link href="/swap">
         <a className="mr-6 text-gray-500 font-semibold">Trade</a>

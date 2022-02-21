@@ -36,7 +36,7 @@ const Icon = styled((props) => (
 const SwitchIcon = ({ handleMenuItemClick, outputToken, callExchange }) => {
   const eventHandler = (event) => {
     handleMenuItemClick(event, 1, outputToken[1]);
-    callExchange();
+    callExchange(1, outputToken[1]);
   };
 
   return (

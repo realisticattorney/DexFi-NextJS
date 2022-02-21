@@ -33,7 +33,7 @@ const Icon = styled((props) => (
   }
 `;
 
-const SwitchIcon = ({ handleMenuItemClick, outputToken, callExchange }) => {
+const SwitchIcon = ({ handleMenuItemClick, outputToken }) => {
   const eventHandler = (event) => {
     handleMenuItemClick(event, 1, outputToken[1]);
     callExchange();

@@ -25,6 +25,8 @@ const Nav = () => {
     }
   }
 
+
+
   function handleClose() {
     setAnchorEl(null);
   }
@@ -53,10 +55,10 @@ const Nav = () => {
           onClose={handleClose}
           MenuListProps={{ onMouseLeave: handleClose }}
           sx={{
-            '& .MuiBackdrop-root': {
-              backgroundColor: 'transparent',
-            },
-          }}
+          '& .MuiBackdrop-root': {
+            backgroundColor: rgba(40, 13, 95, 0.0);
+          },
+        }}
         >
           <MenuItem onClick={handleClose}>Profile</MenuItem>
           <MenuItem onClick={handleClose}>My account</MenuItem>
