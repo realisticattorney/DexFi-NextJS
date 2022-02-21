@@ -1,6 +1,4 @@
-import React, { useEffect, useRef } from 'react';
-import { ethers } from 'ethers';
-import { useWeb3 } from './providers/web3';
+import React from 'react';
 
 const PriceEstimator = ({
   inputOne,
@@ -8,23 +6,7 @@ const PriceEstimator = ({
   inputToken,
   outputToken,
   section,
-  exchange,
-  callBondingCurve,
 }) => {
-  const { provider } = useWeb3();
-  const poolNumbers = useRef(null);
-
-  useEffect(() => {
-    async function loadLiquidity() {
-      const PoolShare = await callBondingCurve(
-        'initial',
-        poolNumbers?.current?.[3]
-      );
-      poolNumbers.current = PoolShare
-    }
-    loadLiquidity();
-  }, [callBondingCurve]);
-
   if (section === 'swap') {
     return (
       <>
@@ -52,12 +34,12 @@ const PriceEstimator = ({
     );
   } else {
     return (
-      <div className="p-6 pt-0">
-        <div className="h-[136px] rounded-lg w-full shadow-sm  flex-col">
-          <h1 className="text-sm p-4  font-semibold text-dexfi-violet">
+      <div className='p-6 pt-0'>
+        <div className="h-[136px] rounded-lg w-full shadow  flex-col">
+          <h1 className="text-sm  font-semibold text-dexfi-violet">
             Prices and pool share
           </h1>
-          <div className="flex p-4 rounded-lg shadow-sm justify-around">
+          <div className="flex justify-around">
             <h1 className="truncate text-sm">{`${
               (inputOne / inputTwo).toString().length > 9
                 ? (inputOne / inputTwo).toString().substring(0, 10)

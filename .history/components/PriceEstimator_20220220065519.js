@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from 'react';
-import { ethers } from 'ethers';
+import React, { useEffect } from 'react';
 import { useWeb3 } from './providers/web3';
 
 const PriceEstimator = ({
@@ -8,22 +7,27 @@ const PriceEstimator = ({
   inputToken,
   outputToken,
   section,
-  exchange,
-  callBondingCurve,
+  exchangeHandler,
 }) => {
   const { provider } = useWeb3();
-  const poolNumbers = useRef(null);
 
   useEffect(() => {
     async function loadLiquidity() {
-      const PoolShare = await callBondingCurve(
-        'initial',
-        poolNumbers?.current?.[3]
+      const 
+      const exchangeEthBalance = ethers.utils.formatEther(
+        await provider.getBalance(exchange.address)
       );
-      poolNumbers.current = PoolShare
+      console.log('duuude', exchangeEthBalance);
+      const getReserve = ethers.utils.formatEther(await exchange.getReserve());
+      console.log('duuude2', getReserve);
+      let amount;
+      amount =
+        id === 'outlined-number-1'
+          ? (exchangeEthBalance * input) / getReserve
+          : (getReserve * input) / exchangeEthBalance;
     }
     loadLiquidity();
-  }, [callBondingCurve]);
+  }, []);
 
   if (section === 'swap') {
     return (

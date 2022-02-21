@@ -12,15 +12,13 @@ const PriceEstimator = ({
   callBondingCurve,
 }) => {
   const { provider } = useWeb3();
-  const poolNumbers = useRef(null);
+  const poolNumbers = useRef(null)
 
   useEffect(() => {
     async function loadLiquidity() {
-      const PoolShare = await callBondingCurve(
-        'initial',
-        poolNumbers?.current?.[3]
-      );
-      poolNumbers.current = PoolShare
+    if()
+     const PoolShare = await callBondingCurve("initial","add-liquidity")
+
     }
     loadLiquidity();
   }, [callBondingCurve]);

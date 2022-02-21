@@ -1,6 +1,4 @@
-import React, { useEffect, useRef } from 'react';
-import { ethers } from 'ethers';
-import { useWeb3 } from './providers/web3';
+import React, { useEffect } from 'react';
 
 const PriceEstimator = ({
   inputOne,
@@ -9,21 +7,10 @@ const PriceEstimator = ({
   outputToken,
   section,
   exchange,
-  callBondingCurve,
 }) => {
-  const { provider } = useWeb3();
-  const poolNumbers = useRef(null);
 
-  useEffect(() => {
-    async function loadLiquidity() {
-      const PoolShare = await callBondingCurve(
-        'initial',
-        poolNumbers?.current?.[3]
-      );
-      poolNumbers.current = PoolShare
-    }
-    loadLiquidity();
-  }, [callBondingCurve]);
+  useEffect(() => { }
+
 
   if (section === 'swap') {
     return (

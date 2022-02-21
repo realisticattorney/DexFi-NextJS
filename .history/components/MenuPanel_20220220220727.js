@@ -162,11 +162,10 @@ const MenuPanel = ({ currencies, section }) => {
     const getReserve = ethers.utils.formatEther(await exchange.getReserve());
     console.log('duuude2', getReserve);
 
-    if (id === 'add-liquidity' && input === null) {
-      return [getReserve, exchangeEthBalance, 0];
-    } else if (id === 'add-liquidity') {
-      return [getReserve, exchangeEthBalance, exchangeEthBalance / input];
-    }
+    if(id === "add-liquidity" && input === "initial") {
+      return [getReserve, exchangeEthBalance, 0]
+    } else if ()
+
 
     let amount;
     amount =

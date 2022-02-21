@@ -20,7 +20,7 @@ const PriceEstimator = ({
         'initial',
         poolNumbers?.current?.[3]
       );
-      poolNumbers.current = PoolShare
+      poolNumbers.current
     }
     loadLiquidity();
   }, [callBondingCurve]);

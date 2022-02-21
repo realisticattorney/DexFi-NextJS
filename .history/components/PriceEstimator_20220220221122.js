@@ -16,11 +16,7 @@ const PriceEstimator = ({
 
   useEffect(() => {
     async function loadLiquidity() {
-      const PoolShare = await callBondingCurve(
-        'initial',
-        poolNumbers?.current?.[3]
-      );
-      poolNumbers.current = PoolShare
+      const PoolShare = await callBondingCurve('initial', poolNumbers.current);
     }
     loadLiquidity();
   }, [callBondingCurve]);

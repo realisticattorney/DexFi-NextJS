@@ -161,13 +161,6 @@ const MenuPanel = ({ currencies, section }) => {
     console.log('duuude', exchangeEthBalance);
     const getReserve = ethers.utils.formatEther(await exchange.getReserve());
     console.log('duuude2', getReserve);
-
-    if (id === 'add-liquidity' && input === null) {
-      return [getReserve, exchangeEthBalance, 0];
-    } else if (id === 'add-liquidity') {
-      return [getReserve, exchangeEthBalance, exchangeEthBalance / input];
-    }
-
     let amount;
     amount =
       id === 'outlined-number-1'
@@ -410,9 +403,6 @@ const MenuPanel = ({ currencies, section }) => {
         inputTwo={inputTwo}
         inputToken={inputToken}
         outputToken={outputToken}
-        section={section}
-        exchange={exchange}
-        callBondingCurve={callBondingCurve}
       />
 
       <div className="px-4 absolute w-full bottom-4">

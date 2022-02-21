@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { ethers } from 'ethers';
 import { useWeb3 } from './providers/web3';
 
@@ -12,18 +12,13 @@ const PriceEstimator = ({
   callBondingCurve,
 }) => {
   const { provider } = useWeb3();
-  const poolNumbers = useRef(null);
 
   useEffect(() => {
     async function loadLiquidity() {
-      const PoolShare = await callBondingCurve(
-        'initial',
-        poolNumbers?.current?.[3]
-      );
-      poolNumbers.current = PoolShare
+     const  = await callBondingCurve(1,"add-liquidity")
     }
     loadLiquidity();
-  }, [callBondingCurve]);
+  }, [provider, exchange]);
 
   if (section === 'swap') {
     return (
