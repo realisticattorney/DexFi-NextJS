@@ -61,7 +61,7 @@ const PriceEstimator = ({
           <h1 className="text-sm p-4  font-semibold text-dexfi-violet">
             Prices and pool share
           </h1>
-          <div className="flex p-4 rounded-lg  justify-around">
+          <div className="flex p-4 rounded-lg shadow-sm justify-around">
             {inputOne > 0 && (
               <div className="flex font-medium text-violet-900 space-x-6">
                 <div className="text-center">
