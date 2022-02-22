@@ -14,7 +14,9 @@ const ModalMenu = () => {
           <Link href="/swap">
             <a className="mx-3 text-gray-500 font-semibold">Trade</a>
           </Link>
-          <ul className="absolute left-0 top-0 mt-10 p-2 w-[280px] rounded-2xl border shadow-sm bg-white z-10 hidden group-hover:block">
+           <div className="h-[20px]"></div>
+          <ul className="absolute left-0 top-0 mt-10 p-2 w-[280px] rounded-lg shadow-lg bg-white z-10 hidden group-hover:block">
+         
             <li className="p-1 whitespace-no-wrap rounded-full text-sm md:text-base text-gray-600 hover:text-gray-800 hover:bg-gray-100">
               <a
                 className="px-2 py-1"

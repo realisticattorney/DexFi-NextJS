@@ -24,7 +24,7 @@ const Nav = () => {
           </a>
         </Link>
       </div>
-      <div className='relative'>
+      <div >
         <ProfileMenu />
       </div>
       <Link href="/swap">
