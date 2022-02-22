@@ -1,0 +1,36 @@
+/* ./styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.MuiBackdrop-root {
+  background-color: rgba(40, 13, 95, 0.6);
+}
+
+svg path {
+  stroke-width: 1.2;
+  /* color: #302e2f; */
+}
+
+.svg-stroke {
+  stroke-width: 3;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.appBackground {
+  background: linear-gradient(
+    139.73deg,
+    rgb(229, 253, 255) 0%,
+    rgb(243, 239, 255) 100%
+  );
+}
+
+.heroBackground {
+  background: linear-gradient(139.73deg, #e6fdff 0%, #f3efff 100%);
+  z
+}
