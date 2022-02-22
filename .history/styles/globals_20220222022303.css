@@ -7,6 +7,12 @@
   background-color: rgba(40, 13, 95, 0.6);
 }
 
+.MuiInputBase-input,
+.MuiOutlinedInput-input {
+  display: 'flex';
+  flex-direction: 'row-reverse';
+  border-radius: 4;
+}
 svg path {
   stroke-width: 1.2;
   /* color: #302e2f; */
@@ -15,9 +21,6 @@ svg path {
 .svg-stroke {
   stroke-width: 3;
 }
-
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.MuiFormControl-root > * {
+  border: none;
 }

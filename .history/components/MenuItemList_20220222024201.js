@@ -109,12 +109,9 @@ const MenuItemList = ({
             m: 0,
             width: '100%',
           },
-
-          '& .MuiInputBase-input': {
+          '& .MuiOutlinedInput-root': {
             backgroundColor: '#F5F5F5',
-            borderRadius: 3,
-            height: 48,
-            textIndent: 16,
+            borderRadius: 4,
           },
         }}
         noValidate
@@ -122,16 +119,12 @@ const MenuItemList = ({
       >
         <div>
           <TextField
-            variant="standard"
             required
             id={id}
             type="number"
             value={input === null ? '' : input}
             placeholder="0.0"
             onChange={handleInputChange}
-            InputProps={{
-              disableUnderline: true, // <== added this
-            }}
           />
         </div>
       </Box>

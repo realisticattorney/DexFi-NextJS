@@ -110,11 +110,35 @@ const MenuItemList = ({
             width: '100%',
           },
 
+          '& label.Mui-focused': {
+            color: '#fff',
+          },
+          // focused color for input with variant='standard'
+          '& .MuiInput-underline:after': {
+            borderBottomColor: '#fff',
+          },
+          // focused color for input with variant='filled'
+          '& .MuiFilledInput-underline:after': {
+            borderBottomColor: '#fff',
+          },
+          // focused color for input with variant='outlined'
+          '& .MuiOutlinedInput-root': {
+            '&.Mui-focused fieldset': {
+              borderColor: '#fff',
+            },
+          },
+
           '& .MuiInputBase-input': {
             backgroundColor: '#F5F5F5',
             borderRadius: 3,
             height: 48,
-            textIndent: 16,
+            textIndent: 3,
+            border: '6px solid #fff',
+          },
+          '& .MuiBox-root': {
+            backgroundColor: '#F5F5F5',
+            borderRadius: 3,
+            border: '3px solid #E5E5E5',
           },
         }}
         noValidate
@@ -130,6 +154,7 @@ const MenuItemList = ({
             placeholder="0.0"
             onChange={handleInputChange}
             InputProps={{
+              // <== adjusted this
               disableUnderline: true, // <== added this
             }}
           />

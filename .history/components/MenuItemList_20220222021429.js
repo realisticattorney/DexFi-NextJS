@@ -109,29 +109,22 @@ const MenuItemList = ({
             m: 0,
             width: '100%',
           },
-
-          '& .MuiInputBase-input': {
-            backgroundColor: '#F5F5F5',
-            borderRadius: 3,
-            height: 48,
-            textIndent: 16,
-          },
         }}
         noValidate
         autoComplete="off"
       >
         <div>
           <TextField
-            variant="standard"
             required
             id={id}
             type="number"
+            sx={{
+              backgroundColor: '#F5F5F5',
+              
+            }}
             value={input === null ? '' : input}
             placeholder="0.0"
             onChange={handleInputChange}
-            InputProps={{
-              disableUnderline: true, // <== added this
-            }}
           />
         </div>
       </Box>

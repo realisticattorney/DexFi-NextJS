@@ -122,6 +122,7 @@ const MenuItemList = ({
       >
         <div>
           <TextField
+            className={classes.textfieldClass}
             variant="standard"
             required
             id={id}

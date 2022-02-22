@@ -108,30 +108,37 @@ const MenuItemList = ({
           '& .MuiTextField-root': {
             m: 0,
             width: '100%',
+            borderStyle: 'none',
           },
-
-          '& .MuiInputBase-input': {
+          '& .MuiOutlinedInput-root': {
+            border: 'none',
             backgroundColor: '#F5F5F5',
-            borderRadius: 3,
-            height: 48,
-            textIndent: 16,
+            width: '100%',
+            borderRadius: 4,
+            '&:focus': {
+              border: 'none',
+            }
           },
+          border: 'none',
+          borderRadius: 4,
         }}
         noValidate
         autoComplete="off"
       >
         <div>
           <TextField
-            variant="standard"
             required
             id={id}
             type="number"
+            sx={{
+              backgroundColor: '#F5F5F5',
+              borderRadius: 9,
+              border: '1px solid #E0E0E0',
+              flexDirection: 'row-reverse',
+            }}
             value={input === null ? '' : input}
             placeholder="0.0"
             onChange={handleInputChange}
-            InputProps={{
-              disableUnderline: true, // <== added this
-            }}
           />
         </div>
       </Box>
