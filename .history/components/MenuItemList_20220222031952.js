@@ -131,6 +131,9 @@ const MenuItemList = ({
             onChange={handleInputChange}
             InputProps={{
               disableUnderline: true, // <== added this
+              placeholder: {
+                fontSize: '2.5rem',
+              },
               inputProps: {
                 style: {
                   textAlign: 'right',

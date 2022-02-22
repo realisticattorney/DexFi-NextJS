@@ -10,7 +10,7 @@ module.exports = {
           violet: '#280D5F',
           grayviolet: '#7A6EAA',
           other_gray: '#B8ADD2',
-          lila: '#EEEAF4',
+          lila: "#EEEAF4"
         },
         // deepoe_default: {
         //   black: '#302e2f',

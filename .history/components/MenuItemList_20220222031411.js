@@ -111,10 +111,10 @@ const MenuItemList = ({
           },
 
           '& .MuiInputBase-input': {
-            backgroundColor: '#EEEAF4',
+            backgroundColor: '#F5F5F5',
             borderRadius: 3,
             height: 48,
-            textIndent: 0,
+            textIndent: 16,
           },
         }}
         noValidate
@@ -131,13 +131,7 @@ const MenuItemList = ({
             onChange={handleInputChange}
             InputProps={{
               disableUnderline: true, // <== added this
-              inputProps: {
-                style: {
-                  textAlign: 'right',
-                  fontSize: '1rem',
-                  paddingRight: '1rem',
-                },
-              },
+              style: { textAlign: 'center' },
             }}
           />
         </div>

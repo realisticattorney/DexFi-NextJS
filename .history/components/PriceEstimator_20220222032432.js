@@ -35,7 +35,7 @@ const PriceEstimator = ({
         {inputOne > 0 && (
           <div className="h-8">
             <div className="flex w-full justify-around">
-              <h1 className="text-xs1 font-bold text-violet-700 ml-1.5">Price</h1>
+              <h1 className="text-xs1 font-bold text-violet-700 ml-1.7">Price</h1>
               <h1 className="truncate text-sm mr-1 font-medium text-gray-700">{`${
                 (inputOne / inputTwo).toString().length > 9
                   ? (inputOne / inputTwo).toString().substring(0, 10)

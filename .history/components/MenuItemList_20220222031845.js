@@ -132,11 +132,7 @@ const MenuItemList = ({
             InputProps={{
               disableUnderline: true, // <== added this
               inputProps: {
-                style: {
-                  textAlign: 'right',
-                  fontSize: '1rem',
-                  paddingRight: '1rem',
-                },
+                style: { textAlign: 'right', fontSize: '1rem', paddingRight: '1rem', place },
               },
             }}
           />

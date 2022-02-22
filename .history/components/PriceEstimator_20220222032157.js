@@ -35,8 +35,8 @@ const PriceEstimator = ({
         {inputOne > 0 && (
           <div className="h-8">
             <div className="flex w-full justify-around">
-              <h1 className="text-xs1 font-bold text-violet-700 ml-1.5">Price</h1>
-              <h1 className="truncate text-sm mr-1 font-medium text-gray-700">{`${
+              <h1 className="text-xs1 font-bold text-violet-700">Price</h1>
+              <h1 className="truncate text-sm">{`${
                 (inputOne / inputTwo).toString().length > 9
                   ? (inputOne / inputTwo).toString().substring(0, 10)
                   : (inputOne / inputTwo).toString()
@@ -46,7 +46,7 @@ const PriceEstimator = ({
         )}
         <div className="h-10">
           <div className="flex w-full justify-around">
-            <h1 className="text-xs1 font-bold text-violet-700 mr-16">
+            <h1 className="text-xs1 font-bold text-violet-700 mr-20">
               Slippage tolerance
             </h1>
             <h1 className="truncate text-sm font-bold text-pink-500">0.5%</h1>
