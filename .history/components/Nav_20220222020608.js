@@ -17,7 +17,7 @@ const Nav = () => {
 
   return (
     <div className="flex border-b-1.5 border-gray-200 p-0 items-center">
-      <div className="p-3 pb-1.3 flex mr-2.5">
+      <div className="p-3 pb-1.3 flex">
         <Link href="/">
           <a>
             <Image src="/bunny.svg" height={32} width={32} alt="" />

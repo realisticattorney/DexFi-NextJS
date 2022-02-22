@@ -99,16 +99,9 @@ const Footer = () => {
 
            
         </div>
-        <div className='flex justify-between pt-9 pb-4'>
+        <div className='flex justify-between py-5'>
         <div>
            
-        </div>
-        <div className='items-center flex'>
-        <button
-          className=" text-white font-bold py-1 px-4 shadow-sm tracking-wide bg-pink-500 rounded-full"
-        >
-          Buy SCAM -{">"}
-        </button>
         </div>
       </div>
     </footer>

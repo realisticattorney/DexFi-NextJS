@@ -99,7 +99,7 @@ const Footer = () => {
 
            
         </div>
-        <div className='flex justify-between pt-9 pb-4'>
+        <div className='flex justify-between pt-9 pb-3'>
         <div>
            
         </div>
