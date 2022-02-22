@@ -34,7 +34,6 @@ input[type='number']::-webkit-outer-spin-button {
   background: linear-gradient(180deg, #ffffff 22%, #d7caec 100%);
 }
 
-#secondary {
-  --tw-text-opacity: 1;
-  color: rgb(236 72 153 / var(--tw-text-opacity)) !important;
+.secondary {
+  
 }

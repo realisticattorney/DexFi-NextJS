@@ -7,7 +7,7 @@ const flyingAnim = () => keyframes`
     transform: translate(0,  0px);
   }
   50% {
-    transform: translate(-15px, -15px);
+    transform: translate(-15px, -9px);
   }
   to {
     transform: translate(0, 0px);
