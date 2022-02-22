@@ -24,7 +24,7 @@ const Nav = () => {
           </a>
         </Link>
       </div>
-      <div className="relative">
+      <div className='relative'>
         <ProfileMenu />
       </div>
 

@@ -35,7 +35,7 @@ const ModalMenu = () => {
           <Link href="/farms">
             <a className="mx-3 text-gray-500 font-semibold">Earn</a>
           </Link>
-          <ul className="absolute left-0 top-0 mt-10 py-1 w-[280px] rounded-2xl border shadow-sm bg-white z-10 hidden group-hover:block">
+          <ul className="absolute left-0 top-0 mt-10  w-[280px] rounded-2xl border shadow-sm bg-white z-10 hidden group-hover:block">
             <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
               <Link href="/farms">
                 <a className="mx-3 text-gray-500 font-semibold">Farms</a>
@@ -84,7 +84,7 @@ const ModalMenu = () => {
           <Link href="/farms">
             <a className="mx-3 text-gray-500 font-semibold">NFT</a>
           </Link>
-          <ul className="absolute left-0 top-0 mt-10 py-1  w-[280px] rounded-2xl border shadow-sm bg-white z-10 hidden group-hover:block">
+          <ul className="absolute left-0 top-0 mt-10  w-[280px] rounded-2xl border shadow-sm bg-white z-10 hidden group-hover:block">
             <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
               <Link href="/farms">
                 <a className="mx-3 text-gray-500 font-semibold">Overview</a>
