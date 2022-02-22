@@ -51,48 +51,14 @@ const Footer = () => {
           <p className="text-xl font-bold ml-2 tracking-wide">BunnySwap</p>
         </div>
       </div>
-
-      <div className="flex space-x-6 items-center px-6 pt-10 pb-6 w-full border-b border-gray-700">
-        <div className="rounded-full shadow">
-          <TwitterIcon
-            sx={{
-              color: '#B8ADD2',
-              fontSize: 24,
-            }}
-          />
-        </div>
-        <div className="px-0.5 rounded-full bg-dexfi-other_gray shadow">
+      <div className="flex space-x-3">
+        <div className="px-0.7 rounded-full bg-dexfi-other_gray shadow">
           <TelegramIcon
             sx={{
               color: '#27262C',
               fontSize: 20,
               paddingBottom: '0.2rem',
-              paddingRight: '0.1rem',
-            }}
-          />
-        </div>
-        <div className="px-0.5 rounded-full bg-dexfi-other_gray shadow">
-          <RedditIcon
-            sx={{
-              color: '#27262C',
-              fontSize: 20,
-              paddingBottom: '0.2rem',
-            }}
-          />
-        </div>
-        <div className="rounded-full shadow">
-          <InstagramIcon
-            sx={{
-              color: '#B8ADD2',
-              fontSize: 24,
-            }}
-          />
-        </div>
-        <div className="rounded-full shadow">
-          <GitHubIcon
-            sx={{
-              color: '#B8ADD2',
-              fontSize: 24,
+              paddingRight: '0.2rem',
             }}
           />
         </div>

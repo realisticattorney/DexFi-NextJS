@@ -8,8 +8,7 @@ module.exports = {
           space_gray: '#27262C',
           sky: '#E6FDFF',
           violet: '#280D5F',
-          grayviolet: '#7A6EAA',
-          other_gray: '#B8ADD2',
+          grayviolet: '#7A6EAA',#B8ADD2
         },
         // deepoe_default: {
         //   black: '#302e2f',
@@ -47,7 +46,6 @@ module.exports = {
         0.9: ' 0.23rem',
         0.8: ' 0.21rem',
         0.7: ' 0.19rem',
-        0.5: ' 0.15rem',
         0.1: ' 0.04rem',
         2.7: ' 0.7rem',
       },

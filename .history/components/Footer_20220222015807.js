@@ -52,7 +52,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="flex space-x-6 items-center px-6 pt-10 pb-6 w-full border-b border-gray-700">
+      <div className="flex space-x-6 items-center ">
         <div className="rounded-full shadow">
           <TwitterIcon
             sx={{
