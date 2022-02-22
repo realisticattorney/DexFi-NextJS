@@ -4,8 +4,11 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 const ModalMenu = () => {
   return (
     <div className="inline-flex" id="main_menu">
-      <ul className="flex flex-wrap" id="menu_nav">
-        <li className="relative  px-1 py-2.5 group hover:bg-gray-100 cursor-pointer rounded-2xl mb-0">
+      <ul className="flex flex-wrap    text-sm md:text-base" id="menu_nav">
+        <li
+          className="relative  px-1 py-2.5 group hover:bg-gray-100 cursor-pointer rounded-2xl mb-0"
+          id="button_admin"
+        >
           <Link href="/swap">
             <a className="mx-3 text-gray-500 font-semibold">Trade</a>
           </Link>
@@ -22,7 +25,10 @@ const ModalMenu = () => {
             </li>
           </ul>
         </li>
-        <li className="relative  px-1 py-2.5 group hover:bg-gray-100 cursor-pointer rounded-2xl mb-0">
+        <li
+          className="relative  px-1 py-2.5 group hover:bg-gray-100 cursor-pointer rounded-2xl mb-0"
+          id="button_admin"
+        >
           <Link href="/farms">
             <a className="mx-3 text-gray-500 font-semibold">Earn</a>
           </Link>
@@ -39,7 +45,10 @@ const ModalMenu = () => {
             </li>
           </ul>
         </li>
-        <li className="relative  px-1 py-2.5 group hover:bg-gray-100 cursor-pointer rounded-2xl mb-0">
+        <li
+          className="relative  px-1 py-2.5 group hover:bg-gray-100 cursor-pointer rounded-2xl mb-0"
+          id="button_admin"
+        >
           <Link href="/farms">
             <a className="mx-3 text-gray-500 font-semibold">Win</a>
           </Link>
@@ -65,7 +74,10 @@ const ModalMenu = () => {
             </li>
           </ul>
         </li>
-        <li className="relative  px-1 py-2.5 group hover:bg-gray-100 cursor-pointer rounded-2xl mb-0">
+        <li
+          className="relative  px-1 py-2.5 group hover:bg-gray-100 cursor-pointer rounded-2xl mb-0"
+          id="button_admin"
+        >
           <Link href="/farms">
             <a className="mx-3 text-gray-500 font-semibold">NFT</a>
           </Link>
@@ -87,7 +99,10 @@ const ModalMenu = () => {
             </li>
           </ul>
         </li>
-        <li className="relative  px-1 py-2.5 group hover:bg-gray-100 cursor-pointer rounded-2xl mb-0">
+        <li
+          className="relative  px-1 py-2.5 group hover:bg-gray-100 cursor-pointer rounded-2xl mb-0"
+          id="button_admin"
+        >
           <Link href="/liquidity">
             <a className="mx-3 text-gray-500  font-semibold">
               <MoreHorizIcon sx={{ color: '#6B7280', fontSize: 20 }} />
