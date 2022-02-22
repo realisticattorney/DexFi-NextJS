@@ -54,7 +54,7 @@ const MenuItemList = ({
           quality={50}
           alt=""
         />
-        <h1 className="ml-2 font-bold text-dexfi-violet">
+        <h1 className="ml-1.7 font-bold text-dexfi-violet">
           {token[0].symbol}
         </h1>
         <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />

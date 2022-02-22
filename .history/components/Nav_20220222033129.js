@@ -31,7 +31,7 @@ const Nav = () => {
 
       {isUserWalletConnected ? (
         <button
-          className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-slate-400 shadow-sm tracking-wide bg-pink-500 rounded-full"
+          className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-slate-500 shadow- tracking-wide bg-pink-500 rounded-full"
           disabled={true}
           onClick={connect}
         >
@@ -39,14 +39,14 @@ const Nav = () => {
         </button>
       ) : isWeb3Loaded ? (
         <button
-          className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-slate-400 shadow-sm tracking-wide bg-pink-500 rounded-full"
+          className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-slate-500 shadow- tracking-wide bg-pink-500 rounded-full"
           onClick={connect}
         >
           Connect Wallet
         </button>
       ) : (
         <button
-          className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-slate-400 shadow-sm tracking-wide bg-pink-500 rounded-full"
+          className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-slate-500 shadow- tracking-wide bg-pink-500 rounded-full"
           onClick={() => router.push('https://metamask.io/download.html')}
         >
           Install Metamask

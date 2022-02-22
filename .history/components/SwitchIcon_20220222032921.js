@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 
 const Icon = styled((props) => (
   <div {...props}>
-    <div className="n py-1.1 px-1.7 rounded-full  bg-pink-500 shadow-slate-500 shadow-sm">
+    <div className="n py-1.1 px-1.7 rounded-full  bg-pink-500 shadow">
       <ImportExportIcon />
     </div>
     <div className="y py-1.1 px-1.7 rounded-full  bg-gray-100 shadow-slate-500 shadow-sm">

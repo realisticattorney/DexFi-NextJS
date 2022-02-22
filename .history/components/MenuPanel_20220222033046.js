@@ -425,7 +425,7 @@ const MenuPanel = ({ currencies, section }) => {
 
       <div className="px-4 absolute w-full bottom-4">
         <button
-          className="w-full bg-pink-500  text-white font-bold py-3 px-12 rounded-xl shadow-slate-500 shadow-sm"
+          className="w-full bg-pink-500   text-white font-bold py-3 px-12 rounded-xl shadow-slate-500 shadow-sm"
           onClick={() => {
             isUserWalletConnected
               ? section === 'swap'
