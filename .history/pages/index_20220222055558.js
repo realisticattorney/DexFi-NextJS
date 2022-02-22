@@ -99,11 +99,11 @@ const Home = () => {
                   gradientUnits="userSpaceOnUse"
                 >
                   <stop stopColor="#7645D9"></stop>
-                  <stop offset="1" stopColor="#5121B1"></stop>
+                  <stop offset="1" stop-color="#5121B1"></stop>
                 </linearGradient>
               </defs>
             </svg>
-            <h1 className="mt-5 text-4xl text-center w-[311px] font-bold tracking-wide text-dexfi-violet">
+            <h1 className="text-4xl text-center w-[311px] font-bold tracking-wide text-dexfi-violet">
               Used by millions.
             </h1>
             <h1 className="text-4xl text-center w-[380px] font-bold tracking-wide text-dexfi-violet">
@@ -118,7 +118,7 @@ const Home = () => {
               And those users are now entrusting the platform with over $12
               billion in funds.
             </h2>
-            <h2 className=" mb-8 text-center w-[580px] font-bold text-dexfi-violet text-opacity-75">
+            <h2 className=" mb-8 text-center w-[580px] font-bold text-dexfi-violet text-opacity-80">
               Will you join them?
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-3 px-5 gap-5 mb-10">

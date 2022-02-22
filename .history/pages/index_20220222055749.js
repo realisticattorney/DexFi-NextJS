@@ -118,7 +118,7 @@ const Home = () => {
               And those users are now entrusting the platform with over $12
               billion in funds.
             </h2>
-            <h2 className=" mb-8 text-center w-[580px] font-bold text-dexfi-violet text-opacity-75">
+            <h2 className=" mb-8 text-center w-[580px] font-bold text-dexfi-violet text-opacity-70">
               Will you join them?
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-3 px-5 gap-5 mb-10">
