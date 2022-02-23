@@ -91,30 +91,40 @@ const Nav = () => {
               />
             </div>
             <ul className="absolute right-0 top-0 mt-8 py-1  w-[280px] rounded-2xl border shadow-sm bg-white z-10 hidden group-hover:block">
-              <button className="px-2 w-full whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100"
-              onClick={() => {handleOpenWallet()}}>
-                <a className="text-sm mx-3 text-violet-700 font-bold">Wallet</a>
-              </button>
               <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
-                <a className="text-sm mx-3 text-dexfi-grayviolet font-semibold">
-                  Recent Transactions
-                </a>
+                <Link href="/farms">
+                  <a className="mx-3 text-gray-500 font-semibold">Wallet</a>
+                </Link>
               </li>
-
+              <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
+                <Link href="/pools">
+                  <a className="mx-3 text-gray-500 font-semibold">Recent Transactions</a>
+                </Link>
+              </li>
+          
               <li className="whitespace-no-wrap flex items-center text-gray-600 hover:text-gray-800  border-t">
-                <a className="pl-5 text-sm  text-dexfi-grayviolet h-[48px] mt-1 flex hover:bg-gray-100 w-full items-center font-semibold">
-                  Your NFTs
-                </a>
+                <Link href="/pools">
+                  <a className="pl-5 text-gray-500 h-[48px] mt-1 flex hover:bg-gray-100 w-full items-center font-semibold">
+                    Leaderboard
+                  </a>
+                </Link>
               </li>
               <li className="whitespace-no-wrap flex items-center text-gray-600 hover:text-gray-800  border-b">
-                <a className="pl-5 text-sm  text-dexfi-grayviolet h-[48px] mb-1 flex hover:bg-gray-100 w-full items-center font-semibold">
-                  Make a Profile
-                </a>
+                <Link href="/pools">
+                  <a className="pl-5 text-gray-500 h-[48px] mb-1 flex hover:bg-gray-100 w-full items-center font-semibold">
+                    Leaderboard
+                  </a>
+                </Link>
+              </li>
+              <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100 mt-1">
+                <Link href="/pools">
+                  <a className="mx-3 text-gray-500 font-semibold">Blog</a>
+                </Link>
               </li>
               <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
-                <a className="text-sm mx-3  text-violet-700 font-bold">
-                  Disconnect
-                </a>
+                <Link href="/pools">
+                  <a className="mx-3 text-gray-500 font-semibold">Docs</a>
+                </Link>
               </li>
             </ul>
           </button>

@@ -91,8 +91,7 @@ const Nav = () => {
               />
             </div>
             <ul className="absolute right-0 top-0 mt-8 py-1  w-[280px] rounded-2xl border shadow-sm bg-white z-10 hidden group-hover:block">
-              <button className="px-2 w-full whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100"
-              onClick={() => {handleOpenWallet()}}>
+              <button className="px-2 w-full whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
                 <a className="text-sm mx-3 text-violet-700 font-bold">Wallet</a>
               </button>
               <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">

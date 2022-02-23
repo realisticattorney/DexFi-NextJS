@@ -64,79 +64,87 @@ const Nav = () => {
 
       {isUserWalletConnected ? (
         <>
-          <button
-            className="ml-auto mr-4 text-violet-900 font-bold py-0.8 px-6 shadow-slate-400 shadow-sm tracking-wide bg-gray-100 rounded-full relative  group hover:opacity-80 cursor-pointer"
-            disabled={true}
-          >
-            <AccountBalanceWalletIcon
+
+        <button
+          className="ml-auto mr-4 text-violet-900 font-bold py-0.8 px-6 shadow-slate-400 shadow-sm tracking-wide bg-gray-100 rounded-full relative  group hover:opacity-80 cursor-pointer"
+          disabled={true}
+        >
+          <AccountBalanceWalletIcon
+            sx={{
+              color: '#7c6484',
+              fontSize: 38,
+              position: 'absolute',
+              border: '2px solid #1FC7D4',
+              padding: '4px',
+              borderRadius: '50%',
+              left: '-20px',
+              backgroundColor: '#fff',
+              top: '-2px',
+              color: '#1FC7D4',
+            }}
+          />
+          <div>
+            Welcome
+            <KeyboardArrowDownIcon
               sx={{
-                color: '#7c6484',
-                fontSize: 38,
-                position: 'absolute',
-                border: '2px solid #1FC7D4',
-                padding: '4px',
-                borderRadius: '50%',
-                left: '-20px',
-                backgroundColor: '#fff',
-                top: '-2px',
-                color: '#1FC7D4',
+                marginRight: '-18px',
               }}
             />
-            <div>
-              Welcome
-              <KeyboardArrowDownIcon
-                sx={{
-                  marginRight: '-18px',
-                }}
-              />
-            </div>
-            <ul className="absolute right-0 top-0 mt-8 py-1  w-[280px] rounded-2xl border shadow-sm bg-white z-10 hidden group-hover:block">
-              <button className="px-2 w-full whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100"
-              onClick={() => {handleOpenWallet()}}>
-                <a className="text-sm mx-3 text-violet-700 font-bold">Wallet</a>
-              </button>
-              <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
-                <a className="text-sm mx-3 text-dexfi-grayviolet font-semibold">
-                  Recent Transactions
+          </div>
+          <ul className="absolute right-0 top-0 mt-8 py-1  w-[280px] rounded-2xl border shadow-sm bg-white z-10 hidden group-hover:block">
+          <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
+              <Link href="/farms">
+                <a className="mx-3 text-gray-500 font-semibold">Info</a>
+              </Link>
+            </li>
+            <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
+              <Link href="/pools">
+                <a className="mx-3 text-gray-500 font-semibold">IFO</a>
+              </Link>
+            </li>
+            <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100 mb-1">
+              <Link href="/pools">
+                <a className="mx-3 text-gray-500 font-semibold">Voting</a>
+              </Link>
+            </li>
+            <li className="whitespace-no-wrap flex items-center text-gray-600 hover:text-gray-800 border-b border-t">
+              <Link href="/pools">
+                <a className="pl-5 text-gray-500 h-[48px] my-1 flex hover:bg-gray-100 w-full items-center font-semibold">
+                  Leaderboard
                 </a>
-              </li>
-
-              <li className="whitespace-no-wrap flex items-center text-gray-600 hover:text-gray-800  border-t">
-                <a className="pl-5 text-sm  text-dexfi-grayviolet h-[48px] mt-1 flex hover:bg-gray-100 w-full items-center font-semibold">
-                  Your NFTs
-                </a>
-              </li>
-              <li className="whitespace-no-wrap flex items-center text-gray-600 hover:text-gray-800  border-b">
-                <a className="pl-5 text-sm  text-dexfi-grayviolet h-[48px] mb-1 flex hover:bg-gray-100 w-full items-center font-semibold">
-                  Make a Profile
-                </a>
-              </li>
-              <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
-                <a className="text-sm mx-3  text-violet-700 font-bold">
-                  Disconnect
-                </a>
-              </li>
-            </ul>
-          </button>
-          <Modal
-            disablePortal
-            aria-labelledby="transition-modal-title"
-            aria-describedby="transition-modal-description"
-            open={openWallet}
-            onClose={handleCloseWallet}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-              timeout: 500,
-            }}
-          >
-            <Fade in={openWallet}>
-              <Paper sx={modalstyle}>
-                <MenuList>
-                  <div className="flex px-3 pb-5 text-xl font-medium text-dexfi-violet border-b mb-4">
-                    <h1>Select a Token</h1>
-                  </div>
-                  {/* {currencies.map((currency, index) => (
+              </Link>
+            </li>
+            <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100 mt-1">
+              <Link href="/pools">
+                <a className="mx-3 text-gray-500 font-semibold">Blog</a>
+              </Link>
+            </li>
+            <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
+              <Link href="/pools">
+                <a className="mx-3 text-gray-500 font-semibold">Docs</a>
+              </Link>
+            </li>
+          </ul>
+        </button>
+        <Modal
+        disablePortal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={openWallet}
+        onClose={handleCloseWallet}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={openWallet}>
+          <Paper sx={modalstyle}>
+            <MenuList>
+              <div className="flex px-3 pb-5 text-xl font-medium text-dexfi-violet border-b mb-4">
+                <h1>Select a Token</h1>
+              </div>
+              {/* {currencies.map((currency, index) => (
                 <MenuItem
                   key={currency.symbol}
                   disabled={
@@ -159,10 +167,10 @@ const Nav = () => {
                   <h1 className="ml-3">{currency.symbol}</h1>
                 </MenuItem>
               ))} */}
-                </MenuList>
-              </Paper>
-            </Fade>
-          </Modal>
+            </MenuList>
+          </Paper>
+        </Fade>
+      </Modal>
         </>
       ) : isWeb3Loaded ? (
         <button
