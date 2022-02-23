@@ -39,7 +39,7 @@ const Settings = () => {
         onClick={() => {
           handleOpenSettings();
         }}
-        className=" active:translate-y-0.1 active:shadow-none active:opacity-90 hover:opacity-75 transition-opacity duration-150"
+        className=" active:translate-y-0.1 active:shadow-none active:opacity-90 hover:opacity-75 transition-opacity duration-100"
       >
         <SettingsIcon
           sx={{
@@ -102,13 +102,13 @@ const Settings = () => {
                     </h2>
                   </div>
                   <div className="flex justify-between mt-4 pb-6 border-b border-gray-200">
-                    <button className="shadow-sm text-white py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
+                    <button className="shadow-sm text-white py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-200 active:translate-y-0.1 active:shadow-none active:opacity-90">
                       Standard{' (5)'}
                     </button>
-                    <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
+                    <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-200 active:translate-y-0.1 active:shadow-none active:opacity-90">
                       Fast{' (6)'}
                     </button>
-                    <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
+                    <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-200 active:translate-y-0.1 active:shadow-none active:opacity-90">
                       Instant{' (7)'}
                     </button>
                   </div>
@@ -123,16 +123,16 @@ const Settings = () => {
                     </h2>
                   </div>
                   <div className="flex justify-between my-4">
-                    <button className="shadow-sm text-white py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
+                    <button className="shadow-sm text-white py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-200 active:translate-y-0.1 active:shadow-none active:opacity-90">
                       0.1%
                     </button>
-                    <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
+                    <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-200 active:translate-y-0.1 active:shadow-none active:opacity-90">
                       0.5%
                     </button>
-                    <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
+                    <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-200 active:translate-y-0.1 active:shadow-none active:opacity-90">
                       1.0%
                     </button>
-                    <button className="shadow-sm text-dexfi-grayviolet py-0.5 px-4 bg-gray-200 border-dexfi-grayviolet border rounded-3xl font-medium hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
+                    <button className="shadow-sm text-dexfi-grayviolet py-0.5 px-4 bg-gray-200 border-dexfi-grayviolet border rounded-3xl font-medium hover:opacity-75 transition-opacity duration-200 active:translate-y-0.1 active:shadow-none active:opacity-90">
                       0.50
                     </button>
                     <p className="mr-10 text-dexfi-cyan font-bold">%</p>
