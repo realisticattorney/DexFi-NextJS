@@ -91,7 +91,7 @@ const Nav = () => {
               }}
             />
           </div>
-          <ul className="absolute right-0 top-0 mt-8 py-1  w-[280px] rounded-2xl border shadow-sm bg-white z-10 hidden group-hover:block">
+          <ul className="absolute right-0 top-0 mt-9 py-1  w-[280px] rounded-2xl border shadow-sm bg-white z-10 hidden group-hover:block">
               <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
                 <p
                   className={`${

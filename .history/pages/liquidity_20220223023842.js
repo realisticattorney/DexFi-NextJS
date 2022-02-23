@@ -125,7 +125,7 @@ export default function Liquidity(props) {
                     {currency.symbol}
                   </h1>
                 </div>
-                <p className="ml-3 font-bold text-violet-900">
+                <p className="ml-3 font-bold text-violet-800">
                   ${currency.userLPTokens}
                 </p>
               </div>

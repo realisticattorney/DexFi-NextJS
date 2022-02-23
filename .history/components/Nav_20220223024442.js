@@ -37,7 +37,7 @@ const Nav = () => {
 
   const [openWallet, setOpenWallet] = useState(false);
   const handleOpenWallet = useCallback(() => setOpenWallet(true), []);
-  const handleCloseWallet = useCallback(() => setOpenWallet(false), []);
+  const WalletWallet = useCallback(() => setOpenWallet(false), []);
 
   useEffect(() => {
     if (router === pathname) {
@@ -91,8 +91,9 @@ const Nav = () => {
               }}
             />
           </div>
-          <ul className="absolute right-0 top-0 mt-8 py-1  w-[280px] rounded-2xl border shadow-sm bg-white z-10 hidden group-hover:block">
-              <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
+          <ul className="absolute right-0 top-0 mt-9 py-1  w-[280px] rounded-2xl border shadow-sm bg-white z-10 hidden group-hover:block">
+            <Link href="/swap">
+              <a className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
                 <p
                   className={`${
                     pathname === '/swap'
@@ -102,8 +103,10 @@ const Nav = () => {
                 >
                   Exchange
                 </p>
-              </li>
-              <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
+              </a>
+            </Link>
+            <Link href="/liquidity">
+              <a className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
                 <p
                   className={`${
                     pathname === '/liquidity'
@@ -113,7 +116,8 @@ const Nav = () => {
                 >
                   Wallet
                 </p>
-              </li>
+              </a>
+            </Link>
           </ul>
         </button>
         <Modal
@@ -134,7 +138,7 @@ const Nav = () => {
               <div className="flex px-3 pb-5 text-xl font-medium text-dexfi-violet border-b mb-4">
                 <h1>Select a Token</h1>
               </div>
-              {/* {currencies.map((currency, index) => (
+              {currencies.map((currency, index) => (
                 <MenuItem
                   key={currency.symbol}
                   disabled={
@@ -156,7 +160,7 @@ const Nav = () => {
                   />
                   <h1 className="ml-3">{currency.symbol}</h1>
                 </MenuItem>
-              ))} */}
+              ))}
             </MenuList>
           </Paper>
         </Fade>

@@ -8,36 +8,12 @@ import ModalMenu from './ModalMenu.js';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import Backdrop from '@mui/material/Backdrop';
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-import MenuItem from '@mui/material/MenuItem';
-import Paper from '@mui/material/Paper';
-import MenuList from '@mui/material/MenuList';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-
-const modalstyle = {
-  position: 'absolute',
-  top: '30%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  boxShadow: 1,
-  borderRadius: 9,
-  p: 2,
-};
 
 const Nav = () => {
   const { connect, isLoading, isWeb3Loaded, isUserWalletConnected, exchange2 } =
     useWeb3();
   let router = useRouter();
   const [pathname, setPathname] = useState(router.pathname);
-
-  const [openWallet, setOpenWallet] = useState(false);
-  const handleOpenWallet = useCallback(() => setOpenWallet(true), []);
-  const handleCloseWallet = useCallback(() => setOpenWallet(false), []);
 
   useEffect(() => {
     if (router === pathname) {
@@ -63,8 +39,6 @@ const Nav = () => {
       </div>
 
       {isUserWalletConnected ? (
-        <>
-
         <button
           className="ml-auto mr-4 text-violet-900 font-bold py-0.8 px-6 shadow-slate-400 shadow-sm tracking-wide bg-gray-100 rounded-full relative  group hover:opacity-80 cursor-pointer"
           disabled={true}
@@ -91,8 +65,9 @@ const Nav = () => {
               }}
             />
           </div>
-          <ul className="absolute right-0 top-0 mt-8 py-1  w-[280px] rounded-2xl border shadow-sm bg-white z-10 hidden group-hover:block">
-              <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
+          <ul className="absolute left-0 top-0 mt-10 py-1  w-[280px] rounded-2xl border shadow-sm bg-white z-10 hidden group-hover:block">
+            <Link href="/swap">
+              <a className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
                 <p
                   className={`${
                     pathname === '/swap'
@@ -102,66 +77,10 @@ const Nav = () => {
                 >
                   Exchange
                 </p>
-              </li>
-              <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
-                <p
-                  className={`${
-                    pathname === '/liquidity'
-                      ? 'text-violet-700 font-bold'
-                      : 'text-gray-500 font-semibold'
-                  } mx-3  `}
-                >
-                  Wallet
-                </p>
-              </li>
+              </a>
+            </Link>
           </ul>
         </button>
-        <Modal
-        disablePortal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={openWallet}
-        onClose={handleCloseWallet}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={openWallet}>
-          <Paper sx={modalstyle}>
-            <MenuList>
-              <div className="flex px-3 pb-5 text-xl font-medium text-dexfi-violet border-b mb-4">
-                <h1>Select a Token</h1>
-              </div>
-              {/* {currencies.map((currency, index) => (
-                <MenuItem
-                  key={currency.symbol}
-                  disabled={
-                    ethIsDisabled === 'yes'
-                      ? index === token[1] || index === 1
-                      : index === token[1]
-                  }
-                  selected={index === token[1]}
-                  onClick={(event) =>
-                    handleMenuItemClick(event, index, menuNumber)
-                  }
-                >
-                  <Image
-                    src={currency.logoURI}
-                    height={24}
-                    width={24}
-                    quality={50}
-                    alt=""
-                  />
-                  <h1 className="ml-3">{currency.symbol}</h1>
-                </MenuItem>
-              ))} */}
-            </MenuList>
-          </Paper>
-        </Fade>
-      </Modal>
-        </>
       ) : isWeb3Loaded ? (
         <button
           className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-slate-400 shadow-sm tracking-wide bg-pink-500 rounded-full"
