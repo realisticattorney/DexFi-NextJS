@@ -57,7 +57,6 @@ export default function Liquidity(props) {
           provider
         );
         const userLPTokens = await connectToAbi.balanceOf(account);
-        
         return {
           ...currency,
           userLPTokens,

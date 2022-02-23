@@ -47,25 +47,24 @@ export default function Liquidity(props) {
           console.log(error);
         });
         const [account] = await providerAccounts.eth.getAccounts();
-
-        let mappedExchangeAddress = await registry.getExchange(
-          currency.address
-        );
-        let connectToAbi = new ethers.Contract(
-          mappedExchangeAddress,
-          Exchange.abi,
-          provider
-        );
-        const userLPTokens = await connectToAbi.balanceOf(account);
         
-        return {
-          ...currency,
-          userLPTokens,
-        };
+        // let mappedExchangeAddress = await registry.getExchange(
+        //   currency.address
+        // );
+        // let connectToAbi = new ethers.Contract(
+        //   mappedExchangeAddress,
+        //   Exchange.abi,
+        //   provider
+        // );
+        // const lp = await connectToAbi.balanceOf(provider.address);
+        // return {
+        //   ...currency,
+        //   lp,
+        // };
       });
-      Promise.all(promises).then((lps) => {
-        setUserLps(lps);
-      });
+      // Promise.all(promises).then((lps) => {
+      //   setUserLps(lps);
+      // });
     }
   }, [isUserWalletConnected, currencies, provider, registry]);
 

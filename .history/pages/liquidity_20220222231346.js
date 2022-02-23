@@ -40,32 +40,29 @@ export default function Liquidity(props) {
   useEffect(() => {
     if (isUserWalletConnected) {
       const promises = currencies.map(async (currency) => {
-        ethereum.enable();
-        const providerAccounts = new Web3(window.ethereum);
-        window.ethereum.enable().catch((error) => {
-          // User denied account access
-          console.log(error);
+        const providerWallet = await provider.getAccounts({
+          method: 'eth_requestAccounts',
         });
-        const [account] = await providerAccounts.eth.getAccounts();
+        const accounts = 
 
-        let mappedExchangeAddress = await registry.getExchange(
-          currency.address
-        );
-        let connectToAbi = new ethers.Contract(
-          mappedExchangeAddress,
-          Exchange.abi,
-          provider
-        );
-        const userLPTokens = await connectToAbi.balanceOf(account);
-        
-        return {
-          ...currency,
-          userLPTokens,
-        };
+        console.log('providerWallet', providerWallet);
+        // let mappedExchangeAddress = await registry.getExchange(
+        //   currency.address
+        // );
+        // let connectToAbi = new ethers.Contract(
+        //   mappedExchangeAddress,
+        //   Exchange.abi,
+        //   provider
+        // );
+        // const lp = await connectToAbi.balanceOf(provider.address);
+        // return {
+        //   ...currency,
+        //   lp,
+        // };
       });
-      Promise.all(promises).then((lps) => {
-        setUserLps(lps);
-      });
+      // Promise.all(promises).then((lps) => {
+      //   setUserLps(lps);
+      // });
     }
   }, [isUserWalletConnected, currencies, provider, registry]);
 

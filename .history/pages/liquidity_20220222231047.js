@@ -5,7 +5,6 @@ import Web3Modal from 'web3modal'; //way to connect to user's wallet
 import Image from 'next/image';
 import { styled } from '@mui/material/styles';
 import { useWeb3 } from '../components/providers/web3';
-import Web3 from 'web3';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Subnav from '../components/Subnav';
@@ -40,32 +39,25 @@ export default function Liquidity(props) {
   useEffect(() => {
     if (isUserWalletConnected) {
       const promises = currencies.map(async (currency) => {
-        ethereum.enable();
-        const providerAccounts = new Web3(window.ethereum);
-        window.ethereum.enable().catch((error) => {
-          // User denied account access
-          console.log(error);
-        });
-        const [account] = await providerAccounts.eth.getAccounts();
-
-        let mappedExchangeAddress = await registry.getExchange(
-          currency.address
-        );
-        let connectToAbi = new ethers.Contract(
-          mappedExchangeAddress,
-          Exchange.abi,
-          provider
-        );
-        const userLPTokens = await connectToAbi.balanceOf(account);
-        
-        return {
-          ...currency,
-          userLPTokens,
-        };
+        const providerWallet = provider.request({method: "eth_requestAccounts"})
+        console.log('providerWallet', providerWallet);
+        // let mappedExchangeAddress = await registry.getExchange(
+        //   currency.address
+        // );
+        // let connectToAbi = new ethers.Contract(
+        //   mappedExchangeAddress,
+        //   Exchange.abi,
+        //   provider
+        // );
+        // const lp = await connectToAbi.balanceOf(provider.address);
+        // return {
+        //   ...currency,
+        //   lp,
+        // };
       });
-      Promise.all(promises).then((lps) => {
-        setUserLps(lps);
-      });
+      // Promise.all(promises).then((lps) => {
+      //   setUserLps(lps);
+      // });
     }
   }, [isUserWalletConnected, currencies, provider, registry]);
 

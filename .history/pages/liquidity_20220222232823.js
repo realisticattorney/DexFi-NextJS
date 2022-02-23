@@ -56,11 +56,10 @@ export default function Liquidity(props) {
           Exchange.abi,
           provider
         );
-        const userLPTokens = await connectToAbi.balanceOf(account);
-        
+        const userLPs = await connectToAbi.balanceOf(account);
         return {
           ...currency,
-          userLPTokens,
+          userLPs,
         };
       });
       Promise.all(promises).then((lps) => {

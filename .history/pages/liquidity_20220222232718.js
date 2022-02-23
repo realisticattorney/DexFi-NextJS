@@ -47,7 +47,7 @@ export default function Liquidity(props) {
           console.log(error);
         });
         const [account] = await providerAccounts.eth.getAccounts();
-
+        
         let mappedExchangeAddress = await registry.getExchange(
           currency.address
         );
@@ -56,11 +56,10 @@ export default function Liquidity(props) {
           Exchange.abi,
           provider
         );
-        const userLPTokens = await connectToAbi.balanceOf(account);
-        
+        const lp = await connectToAbi.balanceOf(provider.address);
         return {
           ...currency,
-          userLPTokens,
+          lp,
         };
       });
       Promise.all(promises).then((lps) => {

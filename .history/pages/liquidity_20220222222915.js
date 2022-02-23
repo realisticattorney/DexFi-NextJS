@@ -5,21 +5,11 @@ import Web3Modal from 'web3modal'; //way to connect to user's wallet
 import Image from 'next/image';
 import { styled } from '@mui/material/styles';
 import { useWeb3 } from '../components/providers/web3';
-import Web3 from 'web3';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Subnav from '../components/Subnav';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
-
-import {
-  registryAddress,
-  scammExchangeAddress,
-  scammcoinAddress,
-  USDCAddress,
-  ETCAddress,
-} from '../config.js';
-import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 
 export default function Liquidity(props) {
   const {
@@ -35,39 +25,16 @@ export default function Liquidity(props) {
   const { currencies } = props;
 
   const [userLps, setUserLps] = useState([]);
-  console.log('userLps', userLps);
+
 
   useEffect(() => {
     if (isUserWalletConnected) {
-      const promises = currencies.map(async (currency) => {
-        ethereum.enable();
-        const providerAccounts = new Web3(window.ethereum);
-        window.ethereum.enable().catch((error) => {
-          // User denied account access
-          console.log(error);
-        });
-        const [account] = await providerAccounts.eth.getAccounts();
-
-        let mappedExchangeAddress = await registry.getExchange(
-          currency.address
-        );
-        let connectToAbi = new ethers.Contract(
-          mappedExchangeAddress,
-          Exchange.abi,
-          provider
-        );
-        const userLPTokens = await connectToAbi.balanceOf(account);
+      //connect to registry mapping through currencies and push getTotalSupply() for each
         
-        return {
-          ...currency,
-          userLPTokens,
-        };
-      });
-      Promise.all(promises).then((lps) => {
-        setUserLps(lps);
-      });
     }
-  }, [isUserWalletConnected, currencies, provider, registry]);
+  }, [isUserWalletConnected]);
+
+
 
   return (
     <div className="flex-col ">
