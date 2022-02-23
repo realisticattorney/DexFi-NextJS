@@ -23,7 +23,7 @@ const Nav = () => {
 
   return (
     <div className="flex border-b-1.5 border-gray-200 p-0 items-center">
-      <div className="p-3 flex mr-2.5">
+      <div className="p-3 pb-1.3 flex mr-2.5">
         <Link href="/">
           <a className="flex">
             <Image src="/bunny.svg" height={32} width={32} alt="" />
@@ -39,21 +39,19 @@ const Nav = () => {
 
       {isUserWalletConnected ? (
         <button
-          className="ml-auto mr-6 text-violet-900 font-bold py-1 px-6 shadow-slate-400 shadow-sm tracking-wide bg-gray-100 rounded-full relative"
+          className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-slate-400 shadow-sm tracking-wide bg-pink-500 rounded-full"
           disabled={true}
+          // onClick={connect}
         >
           <AccountBalanceWalletIcon
             sx={{
               color: '#7c6484',
-              fontSize: 38,
-              position: 'absolute',
-              border: '2px solid #1FC7D4',
-              padding: '4px',
-              borderRadius: '50%',
-              left: '-20px',
-              backgroundColor: '#fff',
-              top: '-2px',
-              color: '#1FC7D4',
+              fontSize: 35,
+              position: "absolute",
+              border: "1px solid #7c6484",
+              padding: "3px",
+              borderRadius: "50%",
+              marginRight: "10px"
             }}
           />
           Welcome

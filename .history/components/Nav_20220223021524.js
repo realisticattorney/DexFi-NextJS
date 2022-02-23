@@ -23,7 +23,7 @@ const Nav = () => {
 
   return (
     <div className="flex border-b-1.5 border-gray-200 p-0 items-center">
-      <div className="p-3 flex mr-2.5">
+      <div className="p-3 pb-1.3 flex mr-2.5">
         <Link href="/">
           <a className="flex">
             <Image src="/bunny.svg" height={32} width={32} alt="" />
@@ -41,6 +41,7 @@ const Nav = () => {
         <button
           className="ml-auto mr-6 text-violet-900 font-bold py-1 px-6 shadow-slate-400 shadow-sm tracking-wide bg-gray-100 rounded-full relative"
           disabled={true}
+          // onClick={connect}
         >
           <AccountBalanceWalletIcon
             sx={{
