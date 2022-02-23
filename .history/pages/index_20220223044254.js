@@ -57,11 +57,9 @@ const Home = () => {
               </button>
             )}
             <Link href="/swap">
-              <a>
-                <button className="w-[132px] border-pink-500 border-2 font-bold py-2.5 px-5 rounded-xl shadow-sm text-pink-500 hover:opacity-75 transition-opacity duration-300 active:translate-y-0.1 active:shadow-none active:opacity-90">
-                  Trade Now
-                </button>
-              </a>
+              <button className="w-[132px] border-pink-500 border-2 font-bold py-2.5 px-5 rounded-xl shadow-sm text-pink-500 hover:opacity-75 transition-opacity duration-300 active:translate-y-0.1 active:shadow-none active:opacity-90">
+                Trade Now
+              </button>
             </Link>
           </div>
         </div>

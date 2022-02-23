@@ -96,17 +96,19 @@ const Footer = () => {
             }}
           />
         </div>
-      </div>
-      <div className="flex justify-between pt-9 pb-4">
-        <div></div>
-        <div className="items-center flex">
-          <Link href="/swap">
-            <a>
-              <button className=" text-white font-bold py-1 px-4 shadow-sm tracking-wide bg-pink-500 rounded-full hover:opacity-75 transition-opacity duration-200 active:translate-y-0.1 active:shadow-none active:opacity-90">
-                Buy SCAM -{'>'}
-              </button>
-            </a>
-          </Link>
+
+           
+        </div>
+        <div className='flex justify-between pt-9 pb-4'>
+        <div>
+           
+        </div>
+        <div className='items-center flex'>
+        <button
+          className=" text-white font-bold py-1 px-4 shadow-sm tracking-wide bg-pink-500 rounded-full hover:opacity-75 transition-opacity duration-200"
+        >
+          Buy SCAM -{">"}
+        </button>
         </div>
       </div>
     </footer>

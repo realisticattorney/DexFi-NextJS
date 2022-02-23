@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import React, { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useWeb3 } from '../components/providers/web3';
@@ -22,17 +21,23 @@ const BunnyWrapper = styled.div`
 `;
 
 const Home = () => {
-  const { connect, isUserWalletConnected, provider, exchange2 } = useWeb3();
+  const {
+    connect,
+    isUserWalletConnected,
+    provider,
+    exchange2,
+  } = useWeb3();
 
   console.log('exchange2', exchange2);
   console.log('provider', provider);
-  const defualtExchange = useRef(null);
+  const defualtExchange = useRef(null)
 
   useEffect(() => {
     if (exchange2) {
       defualtExchange.current = exchange2;
     }
   }, [exchange2]);
+  
 
   return (
     <div>
@@ -56,13 +61,10 @@ const Home = () => {
                 Connect Wallet
               </button>
             )}
-            <Link href="/swap">
-              <a>
-                <button className="w-[132px] border-pink-500 border-2 font-bold py-2.5 px-5 rounded-xl shadow-sm text-pink-500 hover:opacity-75 transition-opacity duration-300 active:translate-y-0.1 active:shadow-none active:opacity-90">
-                  Trade Now
-                </button>
-              </a>
-            </Link>
+            <Link href="/">
+            <button className="w-[132px] border-pink-500 border-2 font-bold py-2.5 px-5 rounded-xl shadow-sm text-pink-500 hover:opacity-75 transition-opacity duration-300 active:translate-y-0.1 active:shadow-none active:opacity-90">
+              Trade Now
+            </button>
           </div>
         </div>
         <BunnyWrapper className="col-span-1 relative row-span-1 z-0">
