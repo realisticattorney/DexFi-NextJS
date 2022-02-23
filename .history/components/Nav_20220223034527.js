@@ -148,7 +148,7 @@ const Nav = () => {
                     <h1 className="p-5">Your Wallet</h1>
                   </div>
                   <div className="w-full p-7 border-gray-200 border-b  bg-gray-50"></div>
-                  <div className="w-full p-6 bg-white rounded-br-3xl rounded-bl-3xl">
+                  <div className="w-full p-6 bg-white">
                     <div className="flex flex-col">
                       <h2 className="text-violet-700 font-semibold text-sm mb-2.5">
                         Your Address
@@ -186,7 +186,7 @@ const Nav = () => {
                         </h2>
                         <h2 className="text-dexfi-violet font-medium">0.000</h2>
                       </div>
-                      <div className="flex my-6 justify-end font-bold text-cyan-500">
+                      <div className="flex my-5 justify-end font-bold text-cyan-500">
                         View on BscScan
                         <ExitToAppIcon
                           sx={{
@@ -195,7 +195,7 @@ const Nav = () => {
                         />
                       </div>
                       <button
-                        className="w-full border-cyan-500 border-2  text-cyan-500 font-bold py-3 px-12 rounded-2xl "
+                        className="w-full border-cyan-400 border-2  text-white font-bold py-3 px-12 rounded-xl "
                         onClick={() => {}}
                       >
                         Disconnect Wallet

@@ -144,11 +144,11 @@ const Nav = () => {
                     padding: '0',
                   }}
                 >
-                  <div className="flex  text-xl font-bold text-dexfi-violet appBackground border-b-2  rounded-tl-3xl border-gray-200 rounded-tr-3xl">
+                  <div className="flex  text-xl font-bold text-dexfi-violet appBackground border-b-2  rounded-tl-3xl border-gray-200 rounded-3xl">
                     <h1 className="p-5">Your Wallet</h1>
                   </div>
                   <div className="w-full p-7 border-gray-200 border-b  bg-gray-50"></div>
-                  <div className="w-full p-6 bg-white rounded-br-3xl rounded-bl-3xl">
+                  <div className="w-full p-6 bg-white">
                     <div className="flex flex-col">
                       <h2 className="text-violet-700 font-semibold text-sm mb-2.5">
                         Your Address
