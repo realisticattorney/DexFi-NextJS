@@ -31,9 +31,9 @@ const ModalMenu = ({ pathname }) => {
                 </p>
             </a>
               </Link>
+            <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
               <Link href="/liquidity">
-            <a className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
-                <p
+                <a
                   className={`${
                     pathname === '/liquidity'
                       ? 'text-violet-700 font-bold'
@@ -41,9 +41,9 @@ const ModalMenu = ({ pathname }) => {
                   } mx-3  `}
                 >
                   Liquidity
-                </p>
-            </a>
+                </a>
               </Link>
+            </li>
           </ul>
         </li>
         <li className="relative  px-1 py-2.5 group hover:bg-gray-100 cursor-pointer rounded-2xl mb-0">

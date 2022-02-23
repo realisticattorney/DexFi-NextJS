@@ -42,8 +42,8 @@ const ModalMenu = ({ pathname }) => {
                 >
                   Liquidity
                 </p>
-            </a>
               </Link>
+            </a>
           </ul>
         </li>
         <li className="relative  px-1 py-2.5 group hover:bg-gray-100 cursor-pointer rounded-2xl mb-0">
