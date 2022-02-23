@@ -137,6 +137,7 @@ const Settings = () => {
                     </button>
                     <p className="mr-10 text-dexfi-cyan font-bold">%</p>
                   </div>
+                  
                 </div>
               </div>
             </MenuList>

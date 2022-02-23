@@ -14,11 +14,11 @@ const Footer = () => {
         <div className="inline-flex col-span-1 row-span-1 ">
           <ul className="flex-col space-y-1.7 ">
             <li className="text-violet-500 font-bold">ABOUT</li>
-            <li className="hover:underline cursor-pointer">Contact</li>
-            <li className="hover:underline cursor-pointer">Brand</li>
-            <li className="hover:underline cursor-pointer">Blog</li>
-            <li className="hover:underline cursor-pointer">Community</li>
-            <li className="hover:underline cursor-pointer">SCAM Token</li>
+            <li>Instagram</li>
+            <li>Pinterest</li>
+            <li>Facebook</li>
+            <li>Tik Tok</li>
+            <li>Twitter</li>
             <li className="tracking-tighter">--</li>
             <li className="text-yellow-500">Online Store</li>
           </ul>
@@ -26,19 +26,21 @@ const Footer = () => {
         <div className="inline-flex col-span-1 row-span-1 ">
           <ul className="flex-col space-y-1.7 ">
             <li className="text-violet-500 font-bold">HELP</li>
-            <li className="hover:underline cursor-pointer">Customer Support</li>
-            <li className="hover:underline cursor-pointer">Troubleshooting</li>
-            <li className="hover:underline cursor-pointer">Guides</li>
+            <li>Instagram</li>
+            <li>Troubleshooting</li>
+            <li>Guides</li>
+            <li>Tik Tok</li>
+            <li>Twitter</li>
           </ul>
         </div>
         <div className="inline-flex col-span-1 row-span-1 ">
           <ul className="flex-col space-y-1.7 ">
             <li className="text-violet-500 font-bold">DEVELOPERS</li>
-            <li className="hover:underline cursor-pointer">Github</li>
-            <li className="hover:underline cursor-pointer">Documentation</li>
-            <li className="hover:underline cursor-pointer">Bug Bounty</li>
-            <li className="hover:underline cursor-pointer">Audits</li>
-            <li className="hover:underline cursor-pointer">Careers</li>
+            <li>Github</li>
+            <li>Documentation</li>
+            <li>Bug Bounty</li>
+            <li>Audits</li>
+            <li>Careers</li>
           </ul>
         </div>
 

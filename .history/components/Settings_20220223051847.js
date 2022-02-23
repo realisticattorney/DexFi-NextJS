@@ -86,9 +86,9 @@ const Settings = () => {
                 </div>
               </div>
               <div className="w-full p-6 bg-white rounded-br-3xl rounded-bl-3xl">
-                <div className="flex flex-col mb-6">
-                  <h2 className="text-violet-700 font-bold text-xs mb-0 text-left">
-                    GLOBAL
+                <div className="flex flex-col">
+                  <h2 className="text-violet-700 font-semibold text-sm mb-0 text-left">
+                    Global
                   </h2>
                   <div className="flex justify-between">
                     <h2 className="text-dexfi-grayviolet font-medium my-5">
@@ -98,44 +98,9 @@ const Settings = () => {
                   </div>
                   <div className="flex justify-between">
                     <h2 className="text-dexfi-grayviolet font-medium">
-                      Default Transaction Speed {'(GWEI)'}
+Default Transaction Speed (G)
                     </h2>
-                  </div>
-                  <div className="flex justify-between mt-4 pb-6 border-b border-gray-200">
-                    <button className="shadow-sm text-white py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-200 active:translate-y-0.1 active:shadow-none active:opacity-90">
-                      Standard{' (5)'}
-                    </button>
-                    <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-200 active:translate-y-0.1 active:shadow-none active:opacity-90">
-                      Fast{' (6)'}
-                    </button>
-                    <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-200 active:translate-y-0.1 active:shadow-none active:opacity-90">
-                      Instant{' (7)'}
-                    </button>
-                  </div>
-                </div>
-                <div className="flex flex-col">
-                  <h2 className="text-violet-700 font-bold text-xs mb-5 text-left">
-                    SWAPS AND LIQUIDITY
-                  </h2>
-                  <div className="flex justify-between">
-                    <h2 className="text-dexfi-grayviolet font-medium">
-                      Default Transaction Speed {'(GWEI)'}
-                    </h2>
-                  </div>
-                  <div className="flex justify-between my-4">
-                    <button className="shadow-sm text-white py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-200 active:translate-y-0.1 active:shadow-none active:opacity-90">
-                      0.1%
-                    </button>
-                    <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-200 active:translate-y-0.1 active:shadow-none active:opacity-90">
-                      0.5%
-                    </button>
-                    <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-200 active:translate-y-0.1 active:shadow-none active:opacity-90">
-                      1.0%
-                    </button>
-                    <button className="shadow-sm text-dexfi-grayviolet py-0.5 px-4 bg-gray-200 border-dexfi-grayviolet border rounded-3xl font-medium hover:opacity-75 transition-opacity duration-200 active:translate-y-0.1 active:shadow-none active:opacity-90">
-                      0.50
-                    </button>
-                    <p className="mr-10 text-dexfi-cyan font-bold">%</p>
+                    <h2 className="text-dexfi-violet font-medium">0.000</h2>
                   </div>
                 </div>
               </div>

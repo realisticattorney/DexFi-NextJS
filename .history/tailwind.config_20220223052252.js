@@ -12,7 +12,7 @@ module.exports = {
           other_gray: '#B8ADD2',
           lila: '#EEEAF4',
           moon: '#7645D9',
-          cyan: '#1FC7D4',
+          
         },
         // deepoe_default: {
         //   black: '#302e2f',

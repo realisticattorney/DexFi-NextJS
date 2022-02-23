@@ -137,6 +137,12 @@ const Settings = () => {
                     </button>
                     <p className="mr-10 text-dexfi-cyan font-bold">%</p>
                   </div>
+                  <div className="flex justify-between items-center">
+                    <h2 className="text-dexfi-grayviolet font-medium my-3">
+                      Dark mode
+                    </h2>
+                    <h2 className="text-dexfi-violet font-medium">0.0</h2>
+                  </div>
                 </div>
               </div>
             </MenuList>
