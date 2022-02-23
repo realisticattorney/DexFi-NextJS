@@ -73,7 +73,7 @@ const Home = () => {
             src="/bunnyHome.png"
             layout="fill"
             alt="lol"
-            priority={true}
+            
             objectFit="contain"
           />
         </BunnyWrapper>

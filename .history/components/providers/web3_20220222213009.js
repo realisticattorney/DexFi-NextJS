@@ -69,7 +69,7 @@ export default function Web3Provider({ children }) {
     loadProvider();
   }, []);
 //sc-bdvvtL cVocBF col-span-1 relative row-span-1
-//sc-egiyK laPDlW col-span-1 relative row-span-1
+
   const _web3Api = useMemo(() => {
     return {
       ...web3Api,
