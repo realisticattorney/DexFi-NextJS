@@ -36,7 +36,7 @@ const Nav = () => {
         <button
           className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-slate-400 shadow-sm tracking-wide bg-pink-500 rounded-full"
           disabled={true}
-          // onClick={connect}
+          onClick={connect}
         >
           Welcome
         </button>
