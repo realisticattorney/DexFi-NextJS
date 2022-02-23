@@ -56,7 +56,7 @@ const Home = () => {
                 onClick={() => {
                   connect(defualtExchange.current.address);
                 }}
-                className="w-[166px] bg-pink-500 active:translate-y-0.1 active:shadow-none active:opacity-90  text-white font-bold py-2.5 px-5 hover:opacity-75 transition-opacity duration-300 rounded-xl shadow-slate-500 shadow-sm "
+                className="w-[166px] bg-pink-500 active:translate-y-0.1 active:shadow-none   text-white font-bold py-2.5 px-5 hover:opacity-75 transition-opacity duration-300 rounded-xl shadow-slate-500 shadow-sm "
               >
                 Connect Wallet
               </button>
