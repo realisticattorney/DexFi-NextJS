@@ -27,12 +27,15 @@ export default function Liquidity(props) {
     isUserWalletConnected,
     connect,
   } = useWeb3();
+  console.log('provider', provider);
+  console.log('web3', web3);
   const { currencies } = props;
 
   const [userLps, setUserLps] = useState([]);
+  console.log('userLps', userLps);
 
   useEffect(() => {
-    if (isUserWalletConnected && userLps.length === 0) {
+    if (isUserWalletConnected) {
       const promises = currencies.map(async (currency) => {
         ethereum.enable();
         const providerAccounts = new Web3(window.ethereum);
@@ -107,27 +110,18 @@ export default function Liquidity(props) {
           </div>
           {isUserWalletConnected && userLps.length > 0 ? (
             userLps.map((currency, index) => (
-              <div
-                key={index}
-                className={`flex px-5 py-3 justify-between ${
-                  index % 2 === 0 ? 'bg-gray-200' : ''
-                }`}
-              >
-                <div className="flex">
-                  <Image
-                    src={currency.logoURI}
-                    height={24}
-                    width={24}
-                    quality={50}
-                    alt=""
-                  />
-                  <h1 className="ml-2 font-semibold text-dexfi-violet">
-                    {currency.symbol}
-                  </h1>
+              <div key={index} className="flex px-5 mb-4 justify-between">
+              <div className='flex'>
+                <Image
+                  src={currency.logoURI}
+                  height={24}
+                  width={24}
+                  quality={50}
+                  alt=""
+                />
+                <h1 className="ml-2 font-semibold text-v">{currency.symbol}</h1>
                 </div>
-                <p className="ml-3 font-bold text-violet-800">
-                  ${currency.userLPTokens}
-                </p>
+                <p className="ml-3">{currency.userLPTokens}</p>
               </div>
             ))
           ) : (

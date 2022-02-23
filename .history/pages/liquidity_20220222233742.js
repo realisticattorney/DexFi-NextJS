@@ -16,7 +16,6 @@ import {
   ETCAddress,
 } from '../config.js';
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
-import Image from 'next/image';
 
 export default function Liquidity(props) {
   const {
@@ -27,12 +26,15 @@ export default function Liquidity(props) {
     isUserWalletConnected,
     connect,
   } = useWeb3();
+  console.log('provider', provider);
+  console.log('web3', web3);
   const { currencies } = props;
 
   const [userLps, setUserLps] = useState([]);
+  console.log('userLps', userLps);
 
   useEffect(() => {
-    if (isUserWalletConnected && userLps.length === 0) {
+    if (isUserWalletConnected) {
       const promises = currencies.map(async (currency) => {
         ethereum.enable();
         const providerAccounts = new Web3(window.ethereum);
@@ -70,7 +72,7 @@ export default function Liquidity(props) {
       <Subnav marked={'Liquidity'} />
 
       <div className="p-6 mx-auto w-min">
-        <div className="flex-col relative w-[436px] min-h-[273px] bg-white rounded-3xl border shadow-sm">
+        <div className="flex-col relative w-[436px] h-[273px] bg-white rounded-3xl border shadow-sm">
           <div className="h-[100px] p-6 justify-between flex">
             <div className="flex-col">
               <h1 className="text-xl font-bold">Your Liquidity</h1>
@@ -106,30 +108,9 @@ export default function Liquidity(props) {
             </div>
           </div>
           {isUserWalletConnected && userLps.length > 0 ? (
-            userLps.map((currency, index) => (
-              <div
-                key={index}
-                className={`flex px-5 py-3 justify-between ${
-                  index % 2 === 0 ? 'bg-gray-200' : ''
-                }`}
-              >
-                <div className="flex">
-                  <Image
-                    src={currency.logoURI}
-                    height={24}
-                    width={24}
-                    quality={50}
-                    alt=""
-                  />
-                  <h1 className="ml-2 font-semibold text-dexfi-violet">
-                    {currency.symbol}
-                  </h1>
-                </div>
-                <p className="ml-3 font-bold text-violet-800">
-                  ${currency.userLPTokens}
-                </p>
-              </div>
-            ))
+            {userLPs.map((currency, index) => (
+<div></div>
+            ))}
           ) : (
             <div className="h-[72px] p-6 mx-auto text-center  bg-gray-200">
               <h1 className="font-medium text-gray-600">

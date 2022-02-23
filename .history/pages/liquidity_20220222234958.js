@@ -27,12 +27,14 @@ export default function Liquidity(props) {
     isUserWalletConnected,
     connect,
   } = useWeb3();
+  console.log('provider', provider);
+  console.log('web3', web3);
   const { currencies } = props;
 
   const [userLps, setUserLps] = useState([]);
 
   useEffect(() => {
-    if (isUserWalletConnected && userLps.length === 0) {
+    if (isUserWalletConnected && userLps.lenght === 0) {
       const promises = currencies.map(async (currency) => {
         ethereum.enable();
         const providerAccounts = new Web3(window.ethereum);
