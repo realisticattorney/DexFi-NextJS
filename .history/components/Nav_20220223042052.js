@@ -120,7 +120,7 @@ const Nav = () => {
                 <h2 className="text-sm mx-3  text-violet-700 font-bold">
                   Disconnect
                 </h2>
-                <LogoutIcon
+                <ExitToAppIcon
                   sx={{
                     marginLeft: '4px',
                     color: '#7645D9',

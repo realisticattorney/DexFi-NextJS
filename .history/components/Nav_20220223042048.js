@@ -6,6 +6,7 @@ import { useWeb3 } from '../components/providers/web3';
 import { useRouter } from 'next/router';
 import ModalMenu from './ModalMenu.js';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import WarningIcon from '@mui/icons-material/Warning';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import CloseIcon from '@mui/icons-material/Close';
@@ -14,6 +15,7 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
+import MenuItem from '@mui/material/MenuItem';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 
@@ -120,7 +122,7 @@ const Nav = () => {
                 <h2 className="text-sm mx-3  text-violet-700 font-bold">
                   Disconnect
                 </h2>
-                <LogoutIcon
+                <ExitToAppIcon
                   sx={{
                     marginLeft: '4px',
                     color: '#7645D9',
