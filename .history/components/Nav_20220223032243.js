@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 import ModalMenu from './ModalMenu.js';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
-import WarningIcon from '@mui/icons-material/Warning';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
@@ -151,25 +150,17 @@ const Nav = () => {
                       <h2 className="text-violet-700 font-semibold text-sm mb-2.5">
                         Your Address
                       </h2>
-                      <h2 className="bg-gray-100 p-2 rounded-2xl text-dexfi-violet font-bold text-lg text-center ">
+                      <h2 className="bg-gray-100 p-2 rounded-2xl text-dexfi-violet font-bold text-lg text-center">
                         0xf389aaabsdb423f2l3490dd0BBB9S
                       </h2>
-                      <div className="p-4 my-5 bg-orange-50 border border-orange-300 rounded-xl">
+                      <div className="p-3 bg-orange-100 border border-orange-300 rounded-xl">
                         <div className="flex">
-                          <WarningIcon
+                          <KeyboardArrowDownIcon
                             sx={{
-                              fontSize: 24,
-                              color: '#FFB237',
+                              marginRight: '',
                             }}
                           />
-                          <div className="ml-3">
-                            <h1 className="text-dexfi-violet font-bold">
-                              SCAM Balance Low
-                            </h1>
-                            <h1 className="text-dexfi-violet font-medium">
-                              Your need SCAM for transaction fees.
-                            </h1>
-                          </div>
+                          <h1 className="text-dexfi-violet font-bold text-lg">SCAM Balance Low</h1>
                         </div>
                       </div>
                     </div>

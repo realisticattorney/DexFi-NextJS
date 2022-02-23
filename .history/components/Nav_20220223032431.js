@@ -151,25 +151,20 @@ const Nav = () => {
                       <h2 className="text-violet-700 font-semibold text-sm mb-2.5">
                         Your Address
                       </h2>
-                      <h2 className="bg-gray-100 p-2 rounded-2xl text-dexfi-violet font-bold text-lg text-center ">
+                      <h2 className="bg-gray-100 p-2 rounded-2xl text-dexfi-violet font-bold text-lg text-center">
                         0xf389aaabsdb423f2l3490dd0BBB9S
                       </h2>
-                      <div className="p-4 my-5 bg-orange-50 border border-orange-300 rounded-xl">
+                      <div className="p-4 bg-orange-100 border border-orange-300 rounded-xl">
                         <div className="flex">
                           <WarningIcon
                             sx={{
-                              fontSize: 24,
+                              fontSize: 25,
                               color: '#FFB237',
                             }}
                           />
-                          <div className="ml-3">
-                            <h1 className="text-dexfi-violet font-bold">
-                              SCAM Balance Low
-                            </h1>
-                            <h1 className="text-dexfi-violet font-medium">
-                              Your need SCAM for transaction fees.
-                            </h1>
-                          </div>
+                          <h1 className="text-dexfi-violet font-bold">
+                            SCAM Balance Low
+                          </h1>
                         </div>
                       </div>
                     </div>

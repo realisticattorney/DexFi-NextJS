@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 import ModalMenu from './ModalMenu.js';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
-import WarningIcon from '@mui/icons-material/Warning';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
@@ -26,7 +25,7 @@ const modalstyle = {
   width: 400,
   bgcolor: 'background.paper',
   boxShadow: 1,
-  borderRadius: 6,
+  borderRadius: 9,
   p: 0,
 };
 
@@ -92,12 +91,8 @@ const Nav = () => {
               />
             </div>
             <ul className="absolute right-0 top-0 mt-8 py-1  w-[280px] rounded-2xl border shadow-sm bg-white z-10 hidden group-hover:block">
-              <button
-                className="px-2 w-full whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100"
-                onClick={() => {
-                  handleOpenWallet();
-                }}
-              >
+              <button className="px-2 w-full whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100"
+              onClick={() => {handleOpenWallet()}}>
                 <a className="text-sm mx-3 text-violet-700 font-bold">Wallet</a>
               </button>
               <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
@@ -137,42 +132,11 @@ const Nav = () => {
           >
             <Fade in={openWallet}>
               <Paper sx={modalstyle}>
-                <MenuList
-                  sx={{
-                    padding: '0',
-                  }}
-                >
-                  <div className="flex  text-xl font-bold text-dexfi-violet appBackground border-b-2  rounded-tl-3xl border-gray-200 rounded-tr-3xl">
+                <MenuList sx={{
+                  padding: '0',
+                }}>
+                  <div className="flex  text-xl font-medium text-dexfi-violet appBackground border-b mb-4 rounded-tl-lg rounded-tr-3xl">
                     <h1 className="p-5">Your Wallet</h1>
-                  </div>
-                  <div className="w-full p-7 border-gray-200 border-b  bg-gray-50"></div>
-                  <div className="w-full p-6 bg-white">
-                    <div className="flex flex-col">
-                      <h2 className="text-violet-700 font-semibold text-sm mb-2.5">
-                        Your Address
-                      </h2>
-                      <h2 className="bg-gray-100 p-2 rounded-2xl text-dexfi-violet font-bold text-lg text-center ">
-                        0xf389aaabsdb423f2l3490dd0BBB9S
-                      </h2>
-                      <div className="p-4 my-5 bg-orange-50 border border-orange-300 rounded-xl">
-                        <div className="flex">
-                          <WarningIcon
-                            sx={{
-                              fontSize: 24,
-                              color: '#FFB237',
-                            }}
-                          />
-                          <div className="ml-3">
-                            <h1 className="text-dexfi-violet font-bold">
-                              SCAM Balance Low
-                            </h1>
-                            <h1 className="text-dexfi-violet font-medium">
-                              Your need SCAM for transaction fees.
-                            </h1>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                   {/* {currencies.map((currency, index) => (
                 <MenuItem

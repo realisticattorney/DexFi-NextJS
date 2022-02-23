@@ -147,14 +147,14 @@ const Nav = () => {
                   </div>
                   <div className="w-full p-7 border-gray-200 border-b  bg-gray-50"></div>
                   <div className="w-full p-6 bg-white">
-                    <div className="flex flex-col">
+                    <div className="flex flex-col space-y-3">
                       <h2 className="text-violet-700 font-semibold text-sm mb-2.5">
                         Your Address
                       </h2>
                       <h2 className="bg-gray-100 p-2 rounded-2xl text-dexfi-violet font-bold text-lg text-center ">
                         0xf389aaabsdb423f2l3490dd0BBB9S
                       </h2>
-                      <div className="p-4 my-5 bg-orange-50 border border-orange-300 rounded-xl">
+                      <div className="p-4  bg-orange-50 border border-orange-300 rounded-xl">
                         <div className="flex">
                           <WarningIcon
                             sx={{
