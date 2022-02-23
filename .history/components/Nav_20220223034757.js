@@ -9,7 +9,6 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import WarningIcon from '@mui/icons-material/Warning';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import CloseIcon from '@mui/icons-material/Close';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import Backdrop from '@mui/material/Backdrop';
@@ -146,21 +145,7 @@ const Nav = () => {
                   }}
                 >
                   <div className="flex  text-xl font-bold text-dexfi-violet appBackground border-b-2  rounded-tl-3xl border-gray-200 rounded-tr-3xl">
-                    <div className="p-6 flex justify-between w-full">
-                      <h1 className="">Your Wallet</h1>{' '}
-                      <button
-                        className="hover:opacity-60 transition-opacity duration-300 cursor-pointer"
-                        onClick={() => {
-                          handleCloseWallet();
-                        }}
-                      >
-                        <CloseIcon
-                          sx={{
-                            marginLeft: '4px',
-                          }}
-                        />
-                      </button>
-                    </div>
+                    <h1 className="p-5">Your Wallet</h1>
                   </div>
                   <div className="w-full p-7 border-gray-200 border-b  bg-gray-50"></div>
                   <div className="w-full p-6 bg-white rounded-br-3xl rounded-bl-3xl">
@@ -210,13 +195,36 @@ const Nav = () => {
                         />
                       </div>
                       <button
-                        className="w-full border-cyan-500 border-2  text-cyan-500 font-bold py-3 px-12 rounded-2xl hover:opacity-75 transition-opacity duration-300"
+                        className="w-full border-cyan-500 border-2  text-cyan-500 font-bold py-3 px-12 rounded-2xl hover:op"
                         onClick={() => {}}
                       >
                         Disconnect Wallet
                       </button>
                     </div>
                   </div>
+                  {/* {currencies.map((currency, index) => (
+                <MenuItem
+                  key={currency.symbol}
+                  disabled={
+                    ethIsDisabled === 'yes'
+                      ? index === token[1] || index === 1
+                      : index === token[1]
+                  }
+                  selected={index === token[1]}
+                  onClick={(event) =>
+                    handleMenuItemClick(event, index, menuNumber)
+                  }
+                >
+                  <Image
+                    src={currency.logoURI}
+                    height={24}
+                    width={24}
+                    quality={50}
+                    alt=""
+                  />
+                  <h1 className="ml-3">{currency.symbol}</h1>
+                </MenuItem>
+              ))} */}
                 </MenuList>
               </Paper>
             </Fade>

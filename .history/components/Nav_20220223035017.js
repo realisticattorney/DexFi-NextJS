@@ -148,18 +148,11 @@ const Nav = () => {
                   <div className="flex  text-xl font-bold text-dexfi-violet appBackground border-b-2  rounded-tl-3xl border-gray-200 rounded-tr-3xl">
                     <div className="p-6 flex justify-between w-full">
                       <h1 className="">Your Wallet</h1>{' '}
-                      <button
-                        className="hover:opacity-60 transition-opacity duration-300 cursor-pointer"
-                        onClick={() => {
-                          handleCloseWallet();
+                      <CloseIcon
+                        sx={{
+                          marginLeft: '4px',
                         }}
-                      >
-                        <CloseIcon
-                          sx={{
-                            marginLeft: '4px',
-                          }}
-                        />
-                      </button>
+                      />
                     </div>
                   </div>
                   <div className="w-full p-7 border-gray-200 border-b  bg-gray-50"></div>
