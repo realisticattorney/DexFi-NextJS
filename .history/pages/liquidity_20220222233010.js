@@ -2,7 +2,6 @@ import { ethers } from 'ethers';
 import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
 import { useWeb3 } from '../components/providers/web3';
 import Web3 from 'web3';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Subnav from '../components/Subnav';
 import SettingsIcon from '@mui/icons-material/Settings';

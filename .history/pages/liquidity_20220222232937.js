@@ -1,5 +1,9 @@
 import { ethers } from 'ethers';
 import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
+import axios from 'axios'; //data fetching library
+import Web3Modal from 'web3modal'; //way to connect to user's wallet
+import Image from 'next/image';
+import { styled } from '@mui/material/styles';
 import { useWeb3 } from '../components/providers/web3';
 import Web3 from 'web3';
 import { useRouter } from 'next/router';
@@ -52,9 +56,7 @@ export default function Liquidity(props) {
           Exchange.abi,
           provider
         );
-        const userLPTokens = ethers.utils.formatEther(
-          await connectToAbi.balanceOf(account)
-        );
+        const userLPTokens = ethers.utils.formatEther(await connectToAbi.balanceOf(account);
 
         return {
           ...currency,
