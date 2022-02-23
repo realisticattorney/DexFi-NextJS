@@ -66,7 +66,7 @@ const Home = () => {
             </button>
           </div>
         </div>
-        <BunnyWrapper className="col-span-1 relative row-span-1 z-0">
+        <BunnyWrapper className="col-span-1 relative row-span-1 z-10">
           <Image
             src="/bunnyHome.png"
             layout="fill"

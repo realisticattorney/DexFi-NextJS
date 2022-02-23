@@ -119,16 +119,14 @@ const Nav = () => {
                   Make a Profile
                 </a>
               </li>
-              <button className="px-2 white w-full space-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-br-lg rounded-bl-lg justify-between">
+              <button className="px-2 white w-full space-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-br-lg rounded-bl-lg j">
                 <h2 className="text-sm mx-3  text-violet-700 font-bold">
                   Disconnect
-                </h2>
                 <ExitToAppIcon
-                  sx={{
-                    marginLeft: '4px',
-                    color: '#7645D9',
-                  }}
-                />
+                          sx={{
+                            marginLeft: '4px',
+                          }}
+                        /></h2>  
               </button>
             </ul>
           </button>

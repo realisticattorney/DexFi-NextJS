@@ -69,7 +69,7 @@ const Nav = () => {
       {isUserWalletConnected ? (
         <>
           <button
-            className="ml-auto mr-4 text-violet-900 font-bold py-0.8 px-6 shadow-slate-400 shadow-sm tracking-wide bg-gray-100 rounded-full relative z-40 group hover:opacity-90 cursor-pointer"
+            className="ml-auto mr-4 text-violet-900 font-bold py-0.8 px-6 shadow-slate-400 shadow-sm tracking-wide bg-gray-100 rounded-full relative z-40 group hover:opacity-80 cursor-pointer"
             disabled={true}
           >
             <AccountBalanceWalletIcon
@@ -119,17 +119,11 @@ const Nav = () => {
                   Make a Profile
                 </a>
               </li>
-              <button className="px-2 white w-full space-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-br-lg rounded-bl-lg justify-between">
-                <h2 className="text-sm mx-3  text-violet-700 font-bold">
+              <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
+                <a className="text-sm mx-3  text-violet-700 font-bold">
                   Disconnect
-                </h2>
-                <ExitToAppIcon
-                  sx={{
-                    marginLeft: '4px',
-                    color: '#7645D9',
-                  }}
-                />
-              </button>
+                </a>
+              </li>
             </ul>
           </button>
           <Modal
