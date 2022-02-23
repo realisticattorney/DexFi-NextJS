@@ -62,13 +62,13 @@ const Nav = () => {
       <div className="relative">
         <ModalMenu pathname={pathname} />
       </div>
-      <div className="ml-auto mr-3">
+      <div className="ml-auto mr-2">
         <Settings />
       </div>
       {isUserWalletConnected ? (
         <>
           <button
-            className="ml-5 mr-4 text-violet-900 font-bold py-0.8 px-6 shadow-slate-400 shadow-sm tracking-wide bg-gray-100 rounded-full relative z-40 group hover:opacity-90 cursor-pointer"
+            className="ml-6 mr-4 text-violet-900 font-bold py-0.8 px-6 shadow-slate-400 shadow-sm tracking-wide bg-gray-100 rounded-full relative z-40 group hover:opacity-90 cursor-pointer"
             disabled={true}
           >
             <AccountBalanceWalletIcon

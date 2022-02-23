@@ -18,6 +18,7 @@ import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 import Settings from './Settings';
 
+
 const modalstyle = {
   position: 'absolute',
   top: '30%',
@@ -62,13 +63,11 @@ const Nav = () => {
       <div className="relative">
         <ModalMenu pathname={pathname} />
       </div>
-      <div className="ml-auto mr-3">
-        <Settings />
-      </div>
+      
       {isUserWalletConnected ? (
         <>
           <button
-            className="ml-5 mr-4 text-violet-900 font-bold py-0.8 px-6 shadow-slate-400 shadow-sm tracking-wide bg-gray-100 rounded-full relative z-40 group hover:opacity-90 cursor-pointer"
+            className="ml-auto mr-4 text-violet-900 font-bold py-0.8 px-6 shadow-slate-400 shadow-sm tracking-wide bg-gray-100 rounded-full relative z-40 group hover:opacity-90 cursor-pointer"
             disabled={true}
           >
             <AccountBalanceWalletIcon
@@ -229,7 +228,7 @@ const Nav = () => {
         </>
       ) : isWeb3Loaded ? (
         <button
-          className=" mr-6 text-white font-bold py-1 px-4 shadow-slate-400 shadow-sm tracking-wide bg-pink-500 rounded-full active:translate-y-0.1 active:shadow-none active:opacity-90 hover:opacity-75 transition-opacity duration-200"
+          className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-slate-400 shadow-sm tracking-wide bg-pink-500 rounded-full active:translate-y-0.1 active:shadow-none active:opacity-90 hover:opacity-75 transition-opacity duration-200"
           onClick={() => {
             connect(exchange2.address);
           }}
@@ -238,7 +237,7 @@ const Nav = () => {
         </button>
       ) : (
         <button
-          className=" mr-6 text-white font-bold py-1 px-4 shadow-slate-400 shadow-sm tracking-wide bg-pink-500 rounded-full active:translate-y-0.1 active:shadow-none active:opacity-90 hover:opacity-75 transition-opacity duration-200"
+          className="ml-auto mr-6 text-white font-bold py-1 px-4 shadow-slate-400 shadow-sm tracking-wide bg-pink-500 rounded-full active:translate-y-0.1 active:shadow-none active:opacity-90 hover:opacity-75 transition-opacity duration-200"
           onClick={() => router.push('https://metamask.io/download.html')}
         >
           Install Metamask
