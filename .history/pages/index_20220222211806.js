@@ -56,7 +56,7 @@ const Home = () => {
             {!isUserWalletConnected && (
               <button
                 onClick={() => {
-                  connect(defualtExchange.current.address);
+                  connect();
                 }}
                 className="w-[166px] bg-pink-500  text-white font-bold py-2.5 px-5 hover:opacity-75 transition-opacity duration-300 rounded-xl shadow-slate-500 shadow-sm"
               >

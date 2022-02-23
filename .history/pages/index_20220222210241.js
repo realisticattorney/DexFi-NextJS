@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useWeb3 } from '../components/providers/web3';
 
@@ -21,26 +21,7 @@ const BunnyWrapper = styled.div`
 `;
 
 const Home = () => {
-  const {
-    connect,
-    isLoading,
-    isWeb3Loaded,
-    isUserWalletConnected,
-    provider,
-    exchange2,
-  } = useWeb3();
-
-  console.log('exchange2', exchange2);
-  console.log('provider', provider);
-  const defualtExchange = useRef(null)
-
-  useEffect(() => {
-    if (exchange2) {
-      defualtExchange.current = exchange2;
-    }
-  }, [exchange2]);
-  
-
+  const { connect, isLoading, isWeb3Loaded, isUserWalletConnected, web3api } = useWeb3();
   return (
     <div>
       <div className="w-full grid grid-cols-2 grid-rows-1 max-w-[1200px] mx-auto mt-24">
@@ -55,9 +36,7 @@ const Home = () => {
           <div className="space-x-2">
             {!isUserWalletConnected && (
               <button
-                onClick={() => {
-                  connect(defualtExchange.current.address);
-                }}
+                onClick={connect(exchange2.address)}
                 className="w-[166px] bg-pink-500  text-white font-bold py-2.5 px-5 hover:opacity-75 transition-opacity duration-300 rounded-xl shadow-slate-500 shadow-sm"
               >
                 Connect Wallet

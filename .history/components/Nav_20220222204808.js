@@ -21,7 +21,7 @@ const Nav = () => {
         <Link href="/">
           <a className='flex'>
             <Image src="/bunny.svg" height={32} width={32} alt="" />
-            <p className="text-xl font-bold ml-2 tracking-tight hidden lg:flex">
+            <p className="text-xl font-bold ml-2 tracking-tighter hidden lg:flex">
               BunnySwap
             </p>
           </a>

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useWeb3 } from '../components/providers/web3';
 
@@ -30,15 +30,11 @@ const Home = () => {
     exchange2,
   } = useWeb3();
 
-  console.log('exchange2', exchange2);
+  console.log('exchange2', exchange2.address);
   console.log('provider', provider);
   const defualtExchange = useRef(null)
 
-  useEffect(() => {
-    if (exchange2) {
-      defualtExchange.current = exchange2;
-    }
-  }, [exchange2]);
+  
   
 
   return (
@@ -56,7 +52,7 @@ const Home = () => {
             {!isUserWalletConnected && (
               <button
                 onClick={() => {
-                  connect(defualtExchange.current.address);
+                  connect(exchange2.address);
                 }}
                 className="w-[166px] bg-pink-500  text-white font-bold py-2.5 px-5 hover:opacity-75 transition-opacity duration-300 rounded-xl shadow-slate-500 shadow-sm"
               >

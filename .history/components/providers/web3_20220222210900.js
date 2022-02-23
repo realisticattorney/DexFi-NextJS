@@ -83,6 +83,7 @@ export default function Web3Provider({ children }) {
               );
               const web3 = new Web3(provider);
               if (provider) {
+            
                 const exchange2 = new ethers.Contract(
                   exAddress,
                   Exchange.abi,

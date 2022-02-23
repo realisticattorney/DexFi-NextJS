@@ -75,7 +75,7 @@ export default function Web3Provider({ children }) {
       isWeb3Loaded: web3Api.providerType === 'default',
       isUserWalletConnected: web3Api.providerType === 'user',
       connect: web3Api.provider
-        ? async (exAddress = scammExchangeAddress) => {
+        ? async (exAddress = s) => {
             try {
               // await web3Api.provider.request({method: "eth_requestAccounts"})
               const provider = new ethers.providers.Web3Provider(
@@ -83,6 +83,7 @@ export default function Web3Provider({ children }) {
               );
               const web3 = new Web3(provider);
               if (provider) {
+            
                 const exchange2 = new ethers.Contract(
                   exAddress,
                   Exchange.abi,
