@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
-const ModalMenu = ({ pathname }) => {
+const ModalMenu = ({ pathname, setPathname }) => {
   return (
     <div className="inline-flex" id="main_menu">
       <ul className="flex flex-wrap" id="menu_nav">
-        <li className="relative  px-1 py-2.5 group hover:bg-gray-100 cursor-pointer rounded-2xl mb-0">
+        <button className="relative  px-1 py-2.5 group hover:bg-gray-100 cursor-pointer rounded-2xl mb-0" onClick={() => {setPathname("/swap")}}>
           <Link href="/swap">
             <a
               className={`${
@@ -18,7 +18,8 @@ const ModalMenu = ({ pathname }) => {
             </a>
           </Link>
           <ul className="absolute left-0 top-0 mt-10 py-1  w-[280px] rounded-2xl border shadow-sm bg-white z-10 hidden group-hover:block">
-            <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
+            <button className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100"
+            onClick={() => {setPathname("/swap")}}>>
               <Link href="/swap">
                 <a
                   className={`${
@@ -30,8 +31,8 @@ const ModalMenu = ({ pathname }) => {
                   Exchange
                 </a>
               </Link>
-            </li>
-            <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
+            </button>
+            <button className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
               <Link href="/liquidity">
                 <a
                   className={`${
@@ -43,9 +44,9 @@ const ModalMenu = ({ pathname }) => {
                   Liquidity
                 </a>
               </Link>
-            </li>
+            </button>
           </ul>
-        </li>
+        </button>
         <li className="relative  px-1 py-2.5 group hover:bg-gray-100 cursor-pointer rounded-2xl mb-0">
           <Link href="/farms">
             <a className="mx-3 text-gray-500 font-semibold">Earn</a>

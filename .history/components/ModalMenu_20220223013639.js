@@ -5,7 +5,7 @@ const ModalMenu = ({ pathname }) => {
   return (
     <div className="inline-flex" id="main_menu">
       <ul className="flex flex-wrap" id="menu_nav">
-        <li className="relative  px-1 py-2.5 group hover:bg-gray-100 cursor-pointer rounded-2xl mb-0">
+        <button className="relative  px-1 py-2.5 group hover:bg-gray-100 cursor-pointer rounded-2xl mb-0" onClick={() => {setPath}}>
           <Link href="/swap">
             <a
               className={`${
@@ -45,7 +45,7 @@ const ModalMenu = ({ pathname }) => {
               </Link>
             </li>
           </ul>
-        </li>
+        </button>
         <li className="relative  px-1 py-2.5 group hover:bg-gray-100 cursor-pointer rounded-2xl mb-0">
           <Link href="/farms">
             <a className="mx-3 text-gray-500 font-semibold">Earn</a>

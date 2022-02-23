@@ -16,8 +16,8 @@ const Nav = () => {
     if (router === pathname) {
       return;
     }
-    setPathname(router.pathname);
-  }, [router, pathname, setPathname]);
+    
+  }, [router]);
 
   return (
     <div className="flex border-b-1.5 border-gray-200 p-0 items-center">
@@ -32,7 +32,7 @@ const Nav = () => {
         </Link>
       </div>
       <div className="relative">
-        <ModalMenu pathname={pathname} />
+        <ModalMenu pathname={pathname} pathnameHandler={pathnameHandler} />
       </div>
 
       {isUserWalletConnected ? (

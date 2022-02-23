@@ -1,23 +1,14 @@
-import { useState, useCallback, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useMoralis } from 'react-moralis';
 import { useWeb3 } from '../components/providers/web3';
 import { useRouter } from 'next/router';
-import ModalMenu from './ModalMenu.js';
+import ProfileMenu from './ModalMenu.js';
 
 const Nav = () => {
   const { connect, isLoading, isWeb3Loaded, isUserWalletConnected, exchange2 } =
     useWeb3();
-  let router = useRouter();
-  const [pathname, setPathname] = useState(router.pathname);
-
-  useEffect(() => {
-    if (router === pathname) {
-      return;
-    }
-    setPathname(router.pathname);
-  }, [router, pathname, setPathname]);
+  const router = useRouter();
 
   return (
     <div className="flex border-b-1.5 border-gray-200 p-0 items-center">
@@ -32,7 +23,7 @@ const Nav = () => {
         </Link>
       </div>
       <div className="relative">
-        <ModalMenu pathname={pathname} />
+        <ProfileMenu />
       </div>
 
       {isUserWalletConnected ? (

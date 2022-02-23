@@ -9,7 +9,7 @@ const ModalMenu = ({ pathname }) => {
           <Link href="/swap">
             <a
               className={`${
-                pathname === '/swap' || pathname === '/liquidity'
+                pathname === '/swap'
                   ? 'text-violet-700 font-bold'
                   : 'text-gray-500 font-semibold'
               } mx-3  `}
@@ -22,7 +22,7 @@ const ModalMenu = ({ pathname }) => {
               <Link href="/swap">
                 <a
                   className={`${
-                    pathname === '/swap'
+                    pathname === '/liquidity'
                       ? 'text-violet-700 font-bold'
                       : 'text-gray-500 font-semibold'
                   } mx-3  `}
@@ -35,7 +35,7 @@ const ModalMenu = ({ pathname }) => {
               <Link href="/liquidity">
                 <a
                   className={`${
-                    pathname === '/liquidity'
+                    pathname === '/swap'
                       ? 'text-violet-700 font-bold'
                       : 'text-gray-500 font-semibold'
                   } mx-3  `}

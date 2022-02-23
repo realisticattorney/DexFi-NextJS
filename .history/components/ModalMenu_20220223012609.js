@@ -1,47 +1,23 @@
 import Link from 'next/link';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
-const ModalMenu = ({ pathname }) => {
+const ModalMenu = ({pathname}) => {
   return (
     <div className="inline-flex" id="main_menu">
       <ul className="flex flex-wrap" id="menu_nav">
         <li className="relative  px-1 py-2.5 group hover:bg-gray-100 cursor-pointer rounded-2xl mb-0">
           <Link href="/swap">
-            <a
-              className={`${
-                pathname === '/swap' || pathname === '/liquidity'
-                  ? 'text-violet-700 font-bold'
-                  : 'text-gray-500 font-semibold'
-              } mx-3  `}
-            >
-              Trade
-            </a>
+            <a className={`${}mx-3 text-gray-500 font-semibold`}>Trade</a>
           </Link>
           <ul className="absolute left-0 top-0 mt-10 py-1  w-[280px] rounded-2xl border shadow-sm bg-white z-10 hidden group-hover:block">
             <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
               <Link href="/swap">
-                <a
-                  className={`${
-                    pathname === '/swap'
-                      ? 'text-violet-700 font-bold'
-                      : 'text-gray-500 font-semibold'
-                  } mx-3  `}
-                >
-                  Exchange
-                </a>
+                <a className={`${}mx-3 text-gray-500 font-semibold`}>Exchange</a>
               </Link>
             </li>
             <li className="px-2 whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100">
               <Link href="/liquidity">
-                <a
-                  className={`${
-                    pathname === '/liquidity'
-                      ? 'text-violet-700 font-bold'
-                      : 'text-gray-500 font-semibold'
-                  } mx-3  `}
-                >
-                  Liquidity
-                </a>
+                <a className={`${}mx-3 text-gray-500 font-semibold`}>Liquidity</a>
               </Link>
             </li>
           </ul>

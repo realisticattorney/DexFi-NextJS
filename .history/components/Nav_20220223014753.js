@@ -32,7 +32,7 @@ const Nav = () => {
         </Link>
       </div>
       <div className="relative">
-        <ModalMenu pathname={pathname} />
+        <ModalMenu pathname={pathname} pathnameHandler={pathnameHandler} />
       </div>
 
       {isUserWalletConnected ? (

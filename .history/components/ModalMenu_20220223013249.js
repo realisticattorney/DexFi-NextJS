@@ -1,7 +1,12 @@
 import Link from 'next/link';
+import { useState } from 'react';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { useRouter } from 'next/router';
 
-const ModalMenu = ({ pathname }) => {
+const ModalMenu = () => {
+  const router = useRouter();
+  const [pathname, setPathname] = useState(router);
+
   return (
     <div className="inline-flex" id="main_menu">
       <ul className="flex flex-wrap" id="menu_nav">
@@ -9,7 +14,8 @@ const ModalMenu = ({ pathname }) => {
           <Link href="/swap">
             <a
               className={`${
-                pathname === '/swap' || pathname === '/liquidity'
+                pathname.pathname === '/swap' ||
+                pathname.pathname === '/liquidity'
                   ? 'text-violet-700 font-bold'
                   : 'text-gray-500 font-semibold'
               } mx-3  `}
@@ -22,7 +28,7 @@ const ModalMenu = ({ pathname }) => {
               <Link href="/swap">
                 <a
                   className={`${
-                    pathname === '/swap'
+                    pathname.pathname === '/swap'
                       ? 'text-violet-700 font-bold'
                       : 'text-gray-500 font-semibold'
                   } mx-3  `}
@@ -35,7 +41,7 @@ const ModalMenu = ({ pathname }) => {
               <Link href="/liquidity">
                 <a
                   className={`${
-                    pathname === '/liquidity'
+                    pathname.pathname === '/liquidity'
                       ? 'text-violet-700 font-bold'
                       : 'text-gray-500 font-semibold'
                   } mx-3  `}

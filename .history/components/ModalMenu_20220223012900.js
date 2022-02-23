@@ -9,7 +9,7 @@ const ModalMenu = ({ pathname }) => {
           <Link href="/swap">
             <a
               className={`${
-                pathname === '/swap' || pathname === '/liquidity'
+                pathname === '/swap' || pathname === '/swap'
                   ? 'text-violet-700 font-bold'
                   : 'text-gray-500 font-semibold'
               } mx-3  `}

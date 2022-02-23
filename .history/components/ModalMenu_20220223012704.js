@@ -9,10 +9,8 @@ const ModalMenu = ({ pathname }) => {
           <Link href="/swap">
             <a
               className={`${
-                pathname === '/swap' || pathname === '/liquidity'
-                  ? 'text-violet-700 font-bold'
-                  : 'text-gray-500 font-semibold'
-              } mx-3  `}
+                pathname === '/swap' ? 'text-violet-700' : 'text-gray-500'
+              }mx-3  font-semibold`}
             >
               Trade
             </a>
@@ -22,10 +20,8 @@ const ModalMenu = ({ pathname }) => {
               <Link href="/swap">
                 <a
                   className={`${
-                    pathname === '/swap'
-                      ? 'text-violet-700 font-bold'
-                      : 'text-gray-500 font-semibold'
-                  } mx-3  `}
+                    pathname === '/swap' ? 'text-violet-700' : 'text-gray-500'
+                  }mx-3  font-semibold`}
                 >
                   Exchange
                 </a>
@@ -35,10 +31,8 @@ const ModalMenu = ({ pathname }) => {
               <Link href="/liquidity">
                 <a
                   className={`${
-                    pathname === '/liquidity'
-                      ? 'text-violet-700 font-bold'
-                      : 'text-gray-500 font-semibold'
-                  } mx-3  `}
+                    pathname === '/swap' ? 'text-violet-700' : 'text-gray-500'
+                  }mx-3  font-semibold`}
                 >
                   Liquidity
                 </a>

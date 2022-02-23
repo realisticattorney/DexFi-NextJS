@@ -1,7 +1,11 @@
 import Link from 'next/link';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { useRouter } from 'next/router';
 
-const ModalMenu = ({ pathname }) => {
+const ModalMenu = () => {
+  const router = useRouter();
+  const [pathname, setPathname] = useState(router.pathname)
+
   return (
     <div className="inline-flex" id="main_menu">
       <ul className="flex flex-wrap" id="menu_nav">

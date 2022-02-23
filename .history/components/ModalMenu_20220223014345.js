@@ -2,6 +2,7 @@ import Link from 'next/link';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 const ModalMenu = ({ pathname }) => {
+  
   return (
     <div className="inline-flex" id="main_menu">
       <ul className="flex flex-wrap" id="menu_nav">
