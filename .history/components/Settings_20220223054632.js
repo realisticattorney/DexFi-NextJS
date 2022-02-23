@@ -39,7 +39,7 @@ const Settings = () => {
         onClick={() => {
           handleOpenSettings();
         }}
-        className=" active:translate-y-0.1 active:shadow-none active:opacity-90 hover:opacity-75 transition-opacity duration-200"
+        className=" active:translate-y-0.1 active:shadow-none active:opacity-90"
       >
         <SettingsIcon
           sx={{
