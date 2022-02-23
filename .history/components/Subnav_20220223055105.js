@@ -22,7 +22,7 @@ const Subnav = ({ marked }) => {
           </Link>
         </div>
         <div
-          className={`pt-2.5 pb-1 px-2 hover:bg-gray-100 ${
+          className={`pt-2.5 pb-1 px-2 ${
             marked === 'Liquidity' ? 'border-b-4 border-cyan-500' : ''
           }`}
         >

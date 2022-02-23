@@ -8,6 +8,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 
 import {
+  registryAddress,
+  scammExchangeAddress,
   scammcoinAddress,
   USDCAddress,
   ETCAddress,

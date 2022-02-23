@@ -1,13 +1,19 @@
+import Image from 'next/image';
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
+import MenuItem from '@mui/material/MenuItem';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
 import SettingsIcon from '@mui/icons-material/Settings';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import WarningIcon from '@mui/icons-material/Warning';
 import CloseIcon from '@mui/icons-material/Close';
+import LogoutIcon from '@mui/icons-material/Logout';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const modalstyle = {
   position: 'absolute',

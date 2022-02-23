@@ -1,3 +1,4 @@
+import React from 'react';
 import Nav from './Nav';
 import Web3Provider  from "./providers/web3"
 import Footer from './Footer';

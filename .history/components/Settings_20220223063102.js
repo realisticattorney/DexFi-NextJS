@@ -3,6 +3,7 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useState, useEffect, useRef, useCallback } from 'react'; //hooks

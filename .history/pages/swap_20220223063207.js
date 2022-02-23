@@ -1,20 +1,28 @@
+import { ethers } from 'ethers';
+import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
+import Web3Modal from 'web3modal'; //way to connect to user's wallet
+import { useMoralis } from 'react-moralis';
 import fs from 'fs/promises';
 import path from 'path';
-
+import Image from 'next/image';
+import MenuPanel from '../components/MenuPanel.js';
 import { scammcoinAddress, USDCAddress, ETCAddress } from '../config.js';
-import AddUpperSection from '../components/AddUpperSection';
-import Link from 'next/link';
-import MenuPanel from '../components/MenuPanel';
+import Subnav from '../components/Subnav.js';
+import SwapUpperSection from '../components/SwapUpperSection.js';
 
-export default function Add(props) {
+export default function Swap(props) {
   const { currencies } = props;
 
   return (
     <div className="flex-col ">
-      <div className="p-6 mx-auto w-min">
-        <div className="flex-col relative w-[436px] h-[626px] bg-white rounded-3xl border shadow-sm">
-          <AddUpperSection />
-          <MenuPanel currencies={currencies} section={"add"} />
+      <Subnav marked={'Exchange'} />
+      <div className="p-6 mx-auto w-min h-screen -mb-[100px]">
+        <div className="flex-col relative py-5 w-[326px] h-[518px] bg-white rounded-3xl border shadow-sm shadow-slate-300">
+          <SwapUpperSection />
+          <MenuPanel currencies={currencies} section={'swap'} />
+        </div>
+        <div className="absolute bottom-0 right-10 -mb-1">
+          <Image src="/help.png" width={191} height={130} alt="lol" />
         </div>
       </div>
     </div>
