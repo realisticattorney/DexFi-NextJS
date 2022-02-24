@@ -2,9 +2,7 @@ import { ethers } from 'ethers';
 import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
 import { useWeb3 } from '../components/providers/web3';
 import Web3 from 'web3';
-import fs from 'fs/promises';
 import Link from 'next/link';
-import path from 'path';
 import Subnav from '../components/Subnav';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
@@ -12,22 +10,16 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
-import { scammcoinAddress, USDCAddress, ETCAddress } from '../config.js';
+import {
+  scammcoinAddress,
+  USDCAddress,
+  ETCAddress,
+} from '../config.js';
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import Image from 'next/image';
 import Settings from '../components/Settings';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles({
-  hideBorder: {
-    '&.MuiAccordion-root': {
-      boxShadow: 'none',
-      borderRadius: 9,
-    },
-  },
-});
 
 export default function Liquidity(props) {
   const {
@@ -38,9 +30,8 @@ export default function Liquidity(props) {
     isUserWalletConnected,
     connect,
   } = useWeb3();
-  const { currencies, backedCurrency } = props;
+  const { currencies } = props;
 
-  const classes = useStyles();
   const [userLps, setUserLps] = useState([]);
 
   useEffect(() => {
@@ -89,7 +80,7 @@ export default function Liquidity(props) {
               <p className="text-sm">Remove liquidity to receive tokens back</p>
             </div>
             <div className="w-[80px] flex items-center justify-between">
-              <Settings />
+            <Settings />
               <button
                 className=""
                 onClick={(event) =>
@@ -105,67 +96,38 @@ export default function Liquidity(props) {
               </button>
             </div>
           </div>
-          <div className="bg-gray-100 py-4 px-6">
-            {isUserWalletConnected && userLps.length > 0 ? (
-              userLps.map((currency, index) => (
-                <div key={index} className=" py-2 justify-between ">
-                  <Accordion className={classes.hideBorder}>
-                    <AccordionSummary
-                      className={classes.hideBorder}
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
-                      sx={{
-                        boxShadow: 0,
-                      }}
-                    >
-                      <div className="flex flex-col">
-                        <div className="flex space-x-1">
-                          <div>
-                            <Image
-                              src={currency.logoURI}
-                              height={24}
-                              width={24}
-                              quality={50}
-                              alt=""
-                            />
-                          </div>
-                          <div>
-                            <Image
-                              src={backedCurrency[0].logoURI}
-                              height={24}
-                              width={24}
-                              quality={50}
-                              alt=""
-                            />
-                          </div>
-                          <h1 className="ml-2 font-bold text-dexfi-violet">
-                            {currency.symbol}/{backedCurrency[0].symbol}
-                          </h1>
-                        </div>
-                        <p className="font-medium text-sm text-dexfi-grayviolet">
-                          {currency.userLPTokens}
-                        </p>
-                      </div>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Suspendisse malesuada lacus ex, sit amet blandit leo
-                        lobortis eget.
-                      </Typography>
-                    </AccordionDetails>
-                  </Accordion>
+          {isUserWalletConnected && userLps.length > 0 ? (
+            userLps.map((currency, index) => (
+              <div
+                key={index}
+                className={`flex px-5 py-3 justify-between ${
+                  index % 2 === 0 ? 'bg-gray-100' : ''
+                }`}
+              >
+                <div className="flex">
+                  {/* <Image
+                    src={currency.logoURI}
+                    height={24}
+                    width={24}
+                    quality={50}
+                    alt=""
+                  />
+                  <h1 className="ml-2 font-semibold text-dexfi-violet">
+                    {currency.symbol}
+                  </h1>
                 </div>
-              ))
-            ) : (
-              <div className="h-[72px] p-6 mx-auto text-center  bg-gray-200">
-                <h1 className="font-medium text-gray-600">
-                  Connect to a wallet to view your liquidity
-                </h1>
+                <p className="ml-3 font-bold text-violet-900">
+                  ${currency.userLPTokens}
+                </p> */}
               </div>
-            )}
-          </div>
+            ))
+          ) : (
+            <div className="h-[72px] p-6 mx-auto text-center  bg-gray-200">
+              <h1 className="font-medium text-gray-600">
+                Connect to a wallet to view your liquidity
+              </h1>
+            </div>
+          )}
           <div className="h-[100px] p-6 mx-auto text-center  ">
             <Link href="/add">
               <a>
@@ -182,16 +144,16 @@ export default function Liquidity(props) {
 }
 
 export async function getStaticProps() {
-  const filePath = path.join(
-    process.cwd(),
-    'data',
-    'ethereum',
-    'tokenlist.json'
-  );
-  const jsonCurrenciesData = await fs.readFile(filePath);
-  const allCurrenciesData = JSON.parse(jsonCurrenciesData);
-  // map over all currencies and get their symbol, logoUri, and decimals
-  // filter out the ones that symbol is BNB
+  // const filePath = path.join(
+  //   process.cwd(),
+  //   'data',
+  //   'ethereum',
+  //   'tokenlist.json'
+  // );
+  // const jsonCurrenciesData = await fs.readFile(filePath);
+  // const allCurrenciesData = JSON.parse(jsonCurrenciesData);
+  //map over all currencies and get their symbol, logoUri, and decimals
+  //filter out the ones that symbol is BNB
   const scammCurrency = {
     symbol: 'SCAM',
     logoURI: '/logo.png',
@@ -212,17 +174,26 @@ export async function getStaticProps() {
     decimals: 18,
     address: ETCAddress,
   };
-  const selectedCurrencies = allCurrenciesData.tokens.filter(
-    ({ symbol }) => symbol === 'WETH'
-  );
-  const backedCurrency = selectedCurrencies.map(
-    ({ symbol, logoURI, decimals, address }) => ({
-      symbol,
-      logoURI,
-      decimals,
-      address,
-    })
-  );
+  // const selectedCurrencies = allCurrenciesData.tokens.filter(
+  //   ({ symbol }) =>
+  //     symbol === 'WETH' ||
+  //     symbol === 'USDT' ||
+  //     symbol === 'DAI' ||
+  //     symbol === 'MATIC' ||
+  //     symbol === 'UNI' ||
+  //     symbol === 'SUSHI' ||
+  //     symbol === 'BUSD' ||
+  //     symbol === 'AAVE' ||
+  //     symbol === 'SHIB'
+  // );
+  // const currencies = selectedCurrencies.map(
+  //   ({ symbol, logoURI, decimals, address }) => ({
+  //     symbol,
+  //     logoURI,
+  //     decimals,
+  //     address,
+  //   })
+  // );
   const currencies = [scammCurrency, USDCCurrency, ETCCurrency];
   // currencies.unshift(scammCurrency);
   // currencies.push(USDCCurrency);
@@ -231,24 +202,6 @@ export async function getStaticProps() {
   return {
     props: {
       currencies,
-      backedCurrency,
     },
   };
-}
-
-{
-  /* <Image
-                    src={currency.logoURI}
-                    height={24}
-                    width={24}
-                    quality={50}
-                    alt=""
-                  />
-                  <h1 className="ml-2 font-semibold text-dexfi-violet">
-                    {currency.symbol}
-                  </h1>
-                </div>
-                <p className="ml-3 font-bold text-violet-900">
-                  ${currency.userLPTokens}
-                </p> */
 }

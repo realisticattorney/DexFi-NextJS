@@ -18,16 +18,6 @@ import { scammcoinAddress, USDCAddress, ETCAddress } from '../config.js';
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import Image from 'next/image';
 import Settings from '../components/Settings';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles({
-  hideBorder: {
-    '&.MuiAccordion-root': {
-      boxShadow: 'none',
-      borderRadius: 9,
-    },
-  },
-});
 
 export default function Liquidity(props) {
   const {
@@ -40,7 +30,6 @@ export default function Liquidity(props) {
   } = useWeb3();
   const { currencies, backedCurrency } = props;
 
-  const classes = useStyles();
   const [userLps, setUserLps] = useState([]);
 
   useEffect(() => {
@@ -109,14 +98,13 @@ export default function Liquidity(props) {
             {isUserWalletConnected && userLps.length > 0 ? (
               userLps.map((currency, index) => (
                 <div key={index} className=" py-2 justify-between ">
-                  <Accordion className={classes.hideBorder}>
+                  <Accordion>
                     <AccordionSummary
-                      className={classes.hideBorder}
                       expandIcon={<ExpandMoreIcon />}
                       aria-controls="panel1a-content"
                       id="panel1a-header"
                       sx={{
-                        boxShadow: 0,
+                        boxShadow: "none"
                       }}
                     >
                       <div className="flex flex-col">

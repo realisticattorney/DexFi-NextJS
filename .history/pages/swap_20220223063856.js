@@ -12,7 +12,7 @@ export default function Swap(props) {
   return (
     <div className="flex-col ">
       <Subnav marked={'Exchange'} />
-      <div className="p-6 mx-auto w-min h-screen -mb-[102px]">
+      <div className="p-6 mx-auto w-min h-screen -mb-[10px]">
         <div className="flex-col relative py-5 w-[326px] h-[518px] bg-white rounded-3xl border shadow-sm shadow-slate-300">
           <SwapUpperSection />
           <MenuPanel currencies={currencies} section={'swap'} />

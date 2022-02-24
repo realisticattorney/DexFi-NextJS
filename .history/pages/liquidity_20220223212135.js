@@ -22,9 +22,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   hideBorder: {
-    '&.MuiAccordion-root': {
-      boxShadow: 'none',
-      borderRadius: 9,
+    '&.MuiExpansionPanel-root:before': {
+      display: 'none',
     },
   },
 });
@@ -109,7 +108,7 @@ export default function Liquidity(props) {
             {isUserWalletConnected && userLps.length > 0 ? (
               userLps.map((currency, index) => (
                 <div key={index} className=" py-2 justify-between ">
-                  <Accordion className={classes.hideBorder}>
+                  <Accordion>
                     <AccordionSummary
                       className={classes.hideBorder}
                       expandIcon={<ExpandMoreIcon />}

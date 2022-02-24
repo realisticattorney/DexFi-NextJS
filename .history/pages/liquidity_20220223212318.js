@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   hideBorder: {
     '&.MuiAccordion-root': {
       boxShadow: 'none',
-      borderRadius: 9,
+      borderRadius: 6,
     },
   },
 });

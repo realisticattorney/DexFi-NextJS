@@ -18,16 +18,6 @@ import { scammcoinAddress, USDCAddress, ETCAddress } from '../config.js';
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import Image from 'next/image';
 import Settings from '../components/Settings';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles({
-  hideBorder: {
-    '&.MuiAccordion-root': {
-      boxShadow: 'none',
-      borderRadius: 9,
-    },
-  },
-});
 
 export default function Liquidity(props) {
   const {
@@ -40,7 +30,6 @@ export default function Liquidity(props) {
   } = useWeb3();
   const { currencies, backedCurrency } = props;
 
-  const classes = useStyles();
   const [userLps, setUserLps] = useState([]);
 
   useEffect(() => {
@@ -105,67 +94,63 @@ export default function Liquidity(props) {
               </button>
             </div>
           </div>
-          <div className="bg-gray-100 py-4 px-6">
-            {isUserWalletConnected && userLps.length > 0 ? (
-              userLps.map((currency, index) => (
-                <div key={index} className=" py-2 justify-between ">
-                  <Accordion className={classes.hideBorder}>
-                    <AccordionSummary
-                      className={classes.hideBorder}
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
-                      sx={{
-                        boxShadow: 0,
-                      }}
-                    >
-                      <div className="flex flex-col">
-                        <div className="flex space-x-1">
-                          <div>
-                            <Image
-                              src={currency.logoURI}
-                              height={24}
-                              width={24}
-                              quality={50}
-                              alt=""
-                            />
-                          </div>
-                          <div>
-                            <Image
-                              src={backedCurrency[0].logoURI}
-                              height={24}
-                              width={24}
-                              quality={50}
-                              alt=""
-                            />
-                          </div>
-                          <h1 className="ml-2 font-bold text-dexfi-violet">
-                            {currency.symbol}/{backedCurrency[0].symbol}
-                          </h1>
-                        </div>
-                        <p className="font-medium text-sm text-dexfi-grayviolet">
-                          {currency.userLPTokens}
-                        </p>
+          <div className='bg-gray-100 py-4 px-2'>
+          {isUserWalletConnected && userLps.length > 0 ? (
+            userLps.map((currency, index) => (
+              <div
+                key={index}
+                className="px-5 py-2 justify-between "
+              >
+                <Accordion>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <div className="flex flex-col">
+                      <div className="flex">
+                        <Image
+                          src={currency.logoURI}
+                          height={24}
+                          width={24}
+                          quality={50}
+                          alt=""
+                          className='mr-4'
+                        />
+                        <Image
+                          src={backedCurrency[0].logoURI}
+                          height={24}
+                          width={24}
+                          quality={50}
+                          alt=""
+                        />
+                        <h1 className="ml-2 font-semibold text-dexfi-violet">
+                          {currency.symbol} {backedCurrency[0].symbol}
+                        </h1>
                       </div>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Suspendisse malesuada lacus ex, sit amet blandit leo
-                        lobortis eget.
-                      </Typography>
-                    </AccordionDetails>
-                  </Accordion>
-                </div>
-              ))
-            ) : (
-              <div className="h-[72px] p-6 mx-auto text-center  bg-gray-200">
-                <h1 className="font-medium text-gray-600">
-                  Connect to a wallet to view your liquidity
-                </h1>
+                      <p className="font-bold text-sm text-violet-900">
+                        {currency.userLPTokens}
+                      </p>
+                    </div>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Suspendisse malesuada lacus ex, sit amet blandit leo
+                      lobortis eget.
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
               </div>
-            )}
-          </div>
+            ))
+            
+          ) : (
+            <div className="h-[72px] p-6 mx-auto text-center  bg-gray-200">
+              <h1 className="font-medium text-gray-600">
+                Connect to a wallet to view your liquidity
+              </h1>
+            </div>
+          )}</div>
           <div className="h-[100px] p-6 mx-auto text-center  ">
             <Link href="/add">
               <a>

@@ -23,8 +23,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
   hideBorder: {
     '&.MuiAccordion-root': {
-      boxShadow: 'none',
-      borderRadius: 9,
+      boxShadow
     },
   },
 });
