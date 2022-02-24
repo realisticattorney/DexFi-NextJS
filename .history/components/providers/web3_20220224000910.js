@@ -72,12 +72,12 @@ export default function Web3Provider({ children }) {
   //sc-bdvvtL cVocBF col-span-1 relative row-span-1
   //sc-egiyK laPDlW col-span-1 relative row-span-1
   const _web3Api = useMemo(() => {
-    // const {web3, provider } = web3Api;
+    const {web3, pr}
     return {
       ...web3Api,
       isWeb3Loaded: web3Api.providerType === 'default',
       isUserWalletConnected: web3Api.providerType === 'user',
-      getHooks: () => setupHooks(web3Api.web3),
+      hooks: setupHooks(web3Api.web3),
       connect: web3Api.provider
         ? async (exAddress = scammExchangeAddress) => {
             try {

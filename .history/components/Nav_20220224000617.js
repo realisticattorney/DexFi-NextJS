@@ -40,7 +40,7 @@ const Nav = () => {
   const handleOpenWallet = useCallback(() => setOpenWallet(true), []);
   const handleCloseWallet = useCallback(() => setOpenWallet(false), []);
 
-  const { account } = hooks.useAccount();
+  const { account } = useAccount()
 
   console.log('account', account);
   useEffect(() => {

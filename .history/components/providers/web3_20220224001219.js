@@ -77,6 +77,7 @@ export default function Web3Provider({ children }) {
       ...web3Api,
       isWeb3Loaded: web3Api.providerType === 'default',
       isUserWalletConnected: web3Api.providerType === 'user',
+      hooks: setupHooks(web3Api.web3),
       getHooks: () => setupHooks(web3Api.web3),
       connect: web3Api.provider
         ? async (exAddress = scammExchangeAddress) => {
