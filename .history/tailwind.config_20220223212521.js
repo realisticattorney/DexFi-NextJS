@@ -13,7 +13,7 @@ module.exports = {
           lila: '#EEEAF4',
           moon: '#7645D9',
           cyan: '#1FC7D4',
-          backgroundgray: '#EEEEEE',
+          backgroundgray: '#F5F5F5',
         },
         // deepoe_default: {
         //   black: '#302e2f',

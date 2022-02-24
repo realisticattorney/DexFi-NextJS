@@ -192,10 +192,10 @@ export default function Liquidity(props) {
                             {'<'}0.01%
                           </p>
                         </div>
-                        <button className="w-full hover:opacity-75 transition-opacity duration-150 mt-2.5 text-sm  bg-pink-500 shadow-sm text-white font-bold py-2.5 px-12 rounded-xl active:translate-y-0.1 active:shadow-none active:opacity-90">
+                        <button className="w-full hover:opacity-75 transition-opacity duration-150 mt-2  bg-pink-500 shadow-sm text-white font-bold py-2.5 px-12 rounded-2xl active:translate-y-0.1 active:shadow-none active:opacity-90">
                           Remove
                         </button>
-                        <button className="w-full hover:opacity-75 transition-opacity duration-150 mt-5 text-sm  text-pink-500 font-bold rounded-2xl active:translate-y-0.1 active:shadow-none active:opacity-90">
+                        <button className="w-full hover:opacity-75 transition-opacity duration-150 mt-5   text-pink-500 font-bold rounded-2xl active:translate-y-0.1 active:shadow-none active:opacity-90">
                           + Add liquidity instead
                         </button>
                       </div>

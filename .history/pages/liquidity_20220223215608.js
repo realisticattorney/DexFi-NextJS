@@ -150,12 +150,12 @@ export default function Liquidity(props) {
                     </AccordionSummary>
                     <AccordionDetails>
                       <div className="flex flex-col py-1">
-                        <div className="flex justify-between mb-1.5">
+                        <div className="flex justify-between mb-1">
                           <div className="flex">
                             <Image
                               src={currency.logoURI}
-                              height={20}
-                              width={20}
+                              height={24}
+                              width={24}
                               quality={50}
                               alt=""
                             />
@@ -163,7 +163,7 @@ export default function Liquidity(props) {
                               Pooled {currency.symbol}
                             </h1>
                           </div>
-                          <p className="font-medium text-sm text-dexfi-grayviolet">
+                          <p className="font-medium text-xs1 text-dexfi-grayviolet">
                             {currency.userLPTokens}
                           </p>
                         </div>
@@ -171,8 +171,8 @@ export default function Liquidity(props) {
                           <div className="flex">
                             <Image
                               src={backedCurrency[0].logoURI}
-                              height={20}
-                              width={20}
+                              height={24}
+                              width={24}
                               quality={50}
                               alt=""
                             />
@@ -180,24 +180,10 @@ export default function Liquidity(props) {
                               Pooled {backedCurrency[0].symbol}
                             </h1>
                           </div>
-                          <p className="font-medium text-sm text-dexfi-grayviolet">
+                          <p className="font-medium text-xs1 text-dexfi-grayviolet">
                             {currency.userLPTokens}
                           </p>
                         </div>
-                        <div className="flex justify-between mt-1.5">
-                          <h1 className="font-medium text-sm text-dexfi-grayviolet">
-                            Share of pool
-                          </h1>
-                          <p className="font-medium text-sm text-dexfi-grayviolet">
-                            {'<'}0.01%
-                          </p>
-                        </div>
-                        <button className="w-full hover:opacity-75 transition-opacity duration-150 mt-2.5 text-sm  bg-pink-500 shadow-sm text-white font-bold py-2.5 px-12 rounded-xl active:translate-y-0.1 active:shadow-none active:opacity-90">
-                          Remove
-                        </button>
-                        <button className="w-full hover:opacity-75 transition-opacity duration-150 mt-5 text-sm  text-pink-500 font-bold rounded-2xl active:translate-y-0.1 active:shadow-none active:opacity-90">
-                          + Add liquidity instead
-                        </button>
                       </div>
                     </AccordionDetails>
                   </Accordion>

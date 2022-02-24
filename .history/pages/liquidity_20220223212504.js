@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   hideBorder: {
     '&.MuiAccordion-root': {
       boxShadow: 'none',
-      borderRadius: 6,
+      borderRadius: 9,
     },
   },
 });
@@ -105,7 +105,7 @@ export default function Liquidity(props) {
               </button>
             </div>
           </div>
-          <div className="bg-dexfi-backgroundgray py-4 px-6">
+          <div className="bg-gray-200 py-4 px-6">
             {isUserWalletConnected && userLps.length > 0 ? (
               userLps.map((currency, index) => (
                 <div key={index} className=" py-2 justify-between ">
@@ -119,7 +119,7 @@ export default function Liquidity(props) {
                         boxShadow: 0,
                       }}
                     >
-                      <div className="flex flex-col py-1">
+                      <div className="flex flex-col">
                         <div className="flex space-x-1">
                           <div>
                             <Image
@@ -143,62 +143,17 @@ export default function Liquidity(props) {
                             {currency.symbol}/{backedCurrency[0].symbol}
                           </h1>
                         </div>
-                        <p className="font-medium text-xs1 text-dexfi-grayviolet">
+                        <p className="font-medium text-sm text-dexfi-grayviolet">
                           {currency.userLPTokens}
                         </p>
                       </div>
                     </AccordionSummary>
                     <AccordionDetails>
-                      <div className="flex flex-col py-1">
-                        <div className="flex justify-between mb-1.5">
-                          <div className="flex">
-                            <Image
-                              src={currency.logoURI}
-                              height={20}
-                              width={20}
-                              quality={50}
-                              alt=""
-                            />
-                            <h1 className="ml-2 font-medium text-sm text-dexfi-grayviolet">
-                              Pooled {currency.symbol}
-                            </h1>
-                          </div>
-                          <p className="font-medium text-sm text-dexfi-grayviolet">
-                            {currency.userLPTokens}
-                          </p>
-                        </div>
-                        <div className="flex justify-between">
-                          <div className="flex">
-                            <Image
-                              src={backedCurrency[0].logoURI}
-                              height={20}
-                              width={20}
-                              quality={50}
-                              alt=""
-                            />
-                            <h1 className="ml-2 font-medium text-sm text-dexfi-grayviolet">
-                              Pooled {backedCurrency[0].symbol}
-                            </h1>
-                          </div>
-                          <p className="font-medium text-sm text-dexfi-grayviolet">
-                            {currency.userLPTokens}
-                          </p>
-                        </div>
-                        <div className="flex justify-between mt-1.5">
-                          <h1 className="font-medium text-sm text-dexfi-grayviolet">
-                            Share of pool
-                          </h1>
-                          <p className="font-medium text-sm text-dexfi-grayviolet">
-                            {'<'}0.01%
-                          </p>
-                        </div>
-                        <button className="w-full hover:opacity-75 transition-opacity duration-150 mt-2.5 text-sm  bg-pink-500 shadow-sm text-white font-bold py-2.5 px-12 rounded-xl active:translate-y-0.1 active:shadow-none active:opacity-90">
-                          Remove
-                        </button>
-                        <button className="w-full hover:opacity-75 transition-opacity duration-150 mt-5 text-sm  text-pink-500 font-bold rounded-2xl active:translate-y-0.1 active:shadow-none active:opacity-90">
-                          + Add liquidity instead
-                        </button>
-                      </div>
+                      <Typography>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Suspendisse malesuada lacus ex, sit amet blandit leo
+                        lobortis eget.
+                      </Typography>
                     </AccordionDetails>
                   </Accordion>
                 </div>
