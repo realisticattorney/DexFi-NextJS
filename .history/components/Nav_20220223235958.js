@@ -46,9 +46,8 @@ const Nav = () => {
   const handleOpenWallet = useCallback(() => setOpenWallet(true), []);
   const handleCloseWallet = useCallback(() => setOpenWallet(false), []);
 
-  const { account } = useAccount(web3)();
+  const _useAccount = useAccount(web3)()
 
-  console.log('account', account);
   useEffect(() => {
     if (router === pathname) {
       return;

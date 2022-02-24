@@ -48,7 +48,7 @@ const Nav = () => {
 
   const { account } = useAccount(web3)();
 
-  console.log('account', account);
+  console.log(account)
   useEffect(() => {
     if (router === pathname) {
       return;

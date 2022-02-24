@@ -2,7 +2,6 @@ import { useState, useCallback, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useWeb3 } from '../components/providers/web3';
-import { useAccount } from '../components/providers/hooks/useAccount';
 import { useRouter } from 'next/router';
 import ModalMenu from './ModalMenu.js';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
@@ -31,14 +30,8 @@ const modalstyle = {
 };
 
 const Nav = () => {
-  const {
-    connect,
-    isLoading,
-    isWeb3Loaded,
-    isUserWalletConnected,
-    exchange2,
-    web3,
-  } = useWeb3();
+  const { connect, isLoading, isWeb3Loaded, isUserWalletConnected, exchange2 } =
+    useWeb3();
   let router = useRouter();
   const [pathname, setPathname] = useState(router.pathname);
 
@@ -46,9 +39,8 @@ const Nav = () => {
   const handleOpenWallet = useCallback(() => setOpenWallet(true), []);
   const handleCloseWallet = useCallback(() => setOpenWallet(false), []);
 
-  const { account } = useAccount(web3)();
+  const
 
-  console.log('account', account);
   useEffect(() => {
     if (router === pathname) {
       return;
