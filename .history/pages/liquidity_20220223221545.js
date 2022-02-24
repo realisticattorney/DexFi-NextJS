@@ -210,21 +210,23 @@ export default function Liquidity(props) {
                 </h1>
               </div>
             )}
-            <div className='h-[80px] flex flex-col text-center p-4'>
-            <p className='text-sm font-medium text-dexfi-grayviolet'>Don{"'"}t see a pool you joined?</p>
-            <Link href="/swap">
-              <a>
-                <button className="w-fit mt-1.5 border-pink-500 border-2 font-bold py-0.5 px-4 rounded-3xl shadow-sm text-sm text-pink-500 hover:opacity-75 transition-opacity duration-300 active:translate-y-0.1 active:shadow-none active:opacity-90">
-                  Find other LP tokens
-                </button>
-              </a>
-            </Link>
+            <div className="h-[80px] flex flex-col text-center p-4">
+              <p className="text-sm font-medium text-dexfi-grayviolet">
+                Don{"'"}t see a pool you joined?
+              </p>
+              <Link href="/swap">
+                <a>
+                  <button className="w-fit mt-1.5 border-pink-500 border-2 font-bold py-0.5 px-4 rounded-3xl shadow-sm text-sm text-pink-500 hover:opacity-75 transition-opacity duration-300 active:translate-y-0.1 active:shadow-none active:opacity-90">
+                    Find other LP tokens
+                  </button>
+                </a>
+              </Link>
             </div>
           </div>
-          <div className="h-[100px] py-3 px-6 mx-auto text-center ">
+          <div className="h-[100px] py-3 px-6  flex items-center  ">
             <Link href="/add">
               <a>
-                <button className="w-full hover:opacity-75 mt-3.5 transition-opacity duration-150  bg-pink-500 shadow-sm text-white font-bold py-3 px-12 rounded-2xl active:translate-y-0.1 active:shadow-none active:opacity-90">
+                <button className="w-full hover:opacity-75  flex flex-grow transition-opacity duration-150  bg-pink-500 shadow-sm text-white font-bold py-3 px-12 rounded-2xl active:translate-y-0.1 active:shadow-none active:opacity-90">
                   + Add Liquidity
                 </button>
               </a>

@@ -83,7 +83,7 @@ export default function Liquidity(props) {
 
       <div className="p-6 mx-auto w-min">
         <div className="flex-col relative w-[436px] min-h-[273px] bg-white rounded-3xl border shadow-sm">
-          <div className="h-[100px] p-6 justify-between flex">
+          <div className="h-[100px] p-5 justify-between flex">
             <div className="flex-col">
               <h1 className="text-xl font-bold">Your Liquidity</h1>
               <p className="text-sm">Remove liquidity to receive tokens back</p>
@@ -221,10 +221,10 @@ export default function Liquidity(props) {
             </Link>
             </div>
           </div>
-          <div className="h-[100px] py-3 px-6 mx-auto text-center ">
+          <div className="h-[100px] py-5 px-6 mx-auto text-center  ">
             <Link href="/add">
               <a>
-                <button className="w-full hover:opacity-75 mt-3.5 transition-opacity duration-150  bg-pink-500 shadow-sm text-white font-bold py-3 px-12 rounded-2xl active:translate-y-0.1 active:shadow-none active:opacity-90">
+                <button className="w-full hover:opacity-75 transition-opacity duration-150  bg-pink-500 shadow-sm text-white font-bold py-3 px-12 rounded-2xl active:translate-y-0.1 active:shadow-none active:opacity-90">
                   + Add Liquidity
                 </button>
               </a>

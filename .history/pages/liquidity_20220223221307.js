@@ -224,7 +224,7 @@ export default function Liquidity(props) {
           <div className="h-[100px] py-3 px-6 mx-auto text-center ">
             <Link href="/add">
               <a>
-                <button className="w-full hover:opacity-75 mt-3.5 transition-opacity duration-150  bg-pink-500 shadow-sm text-white font-bold py-3 px-12 rounded-2xl active:translate-y-0.1 active:shadow-none active:opacity-90">
+                <button className="w-full hover:opacity-75 transition-opacity duration-150  bg-pink-500 shadow-sm text-white font-bold py-3 px-12 rounded-2xl active:translate-y-0.1 active:shadow-none active:opacity-90">
                   + Add Liquidity
                 </button>
               </a>
