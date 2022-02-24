@@ -123,8 +123,3 @@ export function useWeb3() {
   return useContext(Web3Context);
 }
 
-export function useHooks(cb) {
-  const { getHooks } = useWeb3();
-  const hooks = getHooks();
-  return cb(hooks);
-}

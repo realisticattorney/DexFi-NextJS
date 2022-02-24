@@ -126,5 +126,5 @@ export function useWeb3() {
 export function useHooks(cb) {
   const { getHooks } = useWeb3();
   const hooks = getHooks();
-  return cb(hooks);
+  return 
 }
