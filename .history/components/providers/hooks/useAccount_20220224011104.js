@@ -13,13 +13,13 @@ export const handler = (web3) => () => {
         // User denied account access
         console.log(error);
       });
-      const [account] = await providerAccounts.eth.getAccounts();
+      const [account] = await web.eth.getAccounts();
 
       setAccount(account);
     };
 
-    getAccount();
-  }, []);
+    web3 && getAccount();
+  }, [web3]);
 
   useEffect(() => {
     window.ethereum &&

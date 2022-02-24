@@ -1,3 +1,4 @@
+import Web3Api from 'moralis/types/generated/web3Api';
 import { useEffect, useState } from 'react';
 import Web3 from 'web3';
 export const handler = (web3) => () => {
@@ -13,13 +14,13 @@ export const handler = (web3) => () => {
         // User denied account access
         console.log(error);
       });
-      const [account] = await providerAccounts.eth.getAccounts();
+      const [account] = await Web3Api.web3.eth.getAccounts();
 
       setAccount(account);
     };
 
-    getAccount();
-  }, []);
+    web3 && getAccount();
+  }, [web3]);
 
   useEffect(() => {
     window.ethereum &&

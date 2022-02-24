@@ -18,15 +18,11 @@ export const handler = (web3) => () => {
       setAccount(account);
     };
 
-    getAccount();
-  }, []);
+    web3 && getAccount();
+  }, [web3]);
 
-  useEffect(() => {
-    window.ethereum &&
-      window.ethereum.on('accountsChanged', (accounts) => {
-        setAccount(accounts[0] ?? null);
-      });
-  }, []);
+  
+
 
   return { account };
 };

@@ -18,8 +18,8 @@ export const handler = (web3) => () => {
       setAccount(account);
     };
 
-    getAccount();
-  }, []);
+    web3 && getAccount();
+  }, [web3]);
 
   useEffect(() => {
     window.ethereum &&

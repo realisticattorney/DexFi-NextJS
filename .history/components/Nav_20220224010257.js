@@ -176,7 +176,7 @@ const Nav = () => {
                         Your Address
                       </h2>
                       <h2 className="bg-gray-100 py-2 rounded-2xl text-dexfi-violet font-bold text-center ">
-                      <div className='truncate px-4'>{account}</div>
+                        0xf389aaabsdb423f2l3490dd0BBB9SdfsF7
                       </h2>
                       <div className="p-4 my-6 bg-orange-50 border border-orange-300 rounded-xl">
                         <div className="flex">

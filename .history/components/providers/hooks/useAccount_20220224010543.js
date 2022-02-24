@@ -6,10 +6,8 @@ export const handler = (web3) => () => {
   useEffect(() => {
     const getAccount = async () => {
       const providerAccounts = new Web3(window.ethereum);
-      if (!window.ethereum) {
-        return;
-      }
-      window.ethereum?.enable().catch((error) => {
+      if()
+      window.ethereum.enable().catch((error) => {
         // User denied account access
         console.log(error);
       });
@@ -18,15 +16,8 @@ export const handler = (web3) => () => {
       setAccount(account);
     };
 
-    getAccount();
-  }, []);
-
-  useEffect(() => {
-    window.ethereum &&
-      window.ethereum.on('accountsChanged', (accounts) => {
-        setAccount(accounts[0] ?? null);
-      });
-  }, []);
+    web3 && getAccount();
+  }, [web3]);
 
   return { account };
 };

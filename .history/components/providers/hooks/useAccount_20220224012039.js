@@ -18,7 +18,7 @@ export const handler = (web3) => () => {
       setAccount(account);
     };
 
-    getAccount();
+    web3 && getAccount();
   }, []);
 
   useEffect(() => {
