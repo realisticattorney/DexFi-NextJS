@@ -210,7 +210,7 @@ export default function Liquidity(props) {
                 </h1>
               </div>
             )}
-            <div className='h-[80px] flex flex-col text-center p-4'>
+            <div className='h-[80px] flex flex-col text-center p-2'>
             <p className='text-sm font-medium text-dexfi-grayviolet'>Don{"'"}t see a pool you joined?</p>
             <Link href="/swap">
               <a>

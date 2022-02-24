@@ -210,12 +210,12 @@ export default function Liquidity(props) {
                 </h1>
               </div>
             )}
-            <div className='h-[80px] flex flex-col text-center p-4'>
+            <div className='h-[80px] flex flex-col text-center p-3'>
             <p className='text-sm font-medium text-dexfi-grayviolet'>Don{"'"}t see a pool you joined?</p>
             <Link href="/swap">
               <a>
-                <button className="w-fit mt-1.5 border-pink-500 border-2 font-bold py-0.5 px-4 rounded-3xl shadow-sm text-sm text-pink-500 hover:opacity-75 transition-opacity duration-300 active:translate-y-0.1 active:shadow-none active:opacity-90">
-                  Find other LP tokens
+                <button className="w-fit border-pink-500 border-2 font-bold py-2.5 px-5 rounded-xl shadow-sm text-pink-500 hover:opacity-75 transition-opacity duration-300 active:translate-y-0.1 active:shadow-none active:opacity-90">
+                  Trade Now
                 </button>
               </a>
             </Link>

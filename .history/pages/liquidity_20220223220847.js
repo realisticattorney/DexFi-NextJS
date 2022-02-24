@@ -105,7 +105,7 @@ export default function Liquidity(props) {
               </button>
             </div>
           </div>
-          <div className="bg-dexfi-backgroundgray py-4 px-6">
+          <div className="bg-dexfi-backgroundgray pt-4 px-6">
             {isUserWalletConnected && userLps.length > 0 ? (
               userLps.map((currency, index) => (
                 <div key={index} className=" py-2 justify-between ">
@@ -210,7 +210,7 @@ export default function Liquidity(props) {
                 </h1>
               </div>
             )}
-            <div className='h-[80px] flex flex-col text-center p-4'>
+            <div className='h-[80px] flex flex-col text-center p-2'>
             <p className='text-sm font-medium text-dexfi-grayviolet'>Don{"'"}t see a pool you joined?</p>
             <Link href="/swap">
               <a>
