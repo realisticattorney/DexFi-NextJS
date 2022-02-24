@@ -31,7 +31,8 @@ const modalstyle = {
 };
 
 const Nav = () => {
-  const { connect, isWeb3Loaded, isUserWalletConnected, exchange2 } = useWeb3();
+  const { connect, isWeb3Loaded, isUserWalletConnected, exchange2 } =
+    useWeb3();
   let router = useRouter();
   const [pathname, setPathname] = useState(router.pathname);
 
@@ -39,7 +40,7 @@ const Nav = () => {
   const handleOpenWallet = useCallback(() => setOpenWallet(true), []);
   const handleCloseWallet = useCallback(() => setOpenWallet(false), []);
 
-  const { account } = useAccount();
+  const { account } = hooks.useAccount();
 
   console.log('account', account);
   useEffect(() => {

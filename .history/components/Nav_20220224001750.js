@@ -17,7 +17,7 @@ import Fade from '@mui/material/Fade';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 import Settings from './Settings';
-
+import { useAccount } from '../components/providers/hooks/useAccount';
 const modalstyle = {
   position: 'absolute',
   top: '30%',
