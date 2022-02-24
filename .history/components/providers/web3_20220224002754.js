@@ -73,6 +73,7 @@ export default function Web3Provider({ children }) {
   //sc-egiyK laPDlW col-span-1 relative row-span-1
   const _web3Api = useMemo(() => {
     // const {web3, provider } = web3Api;
+    const { web3 } = web3Api;
     return {
       ...web3Api,
       isWeb3Loaded: web3Api.providerType === 'default',
@@ -124,6 +125,6 @@ export function useWeb3() {
 }
 
 export function useHooks(cb) {
-  const { getHooks } = useWeb3()
-  return cb(getHooks())
+  const { getHooks } = useWeb3();
+  return cb(getHooks());
 }

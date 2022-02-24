@@ -87,7 +87,7 @@ const Nav = () => {
                 color: '#1FC7D4',
               }}
             />
-            <div className='flex max-w-[100px]'>
+            <div className='flex max-w'>
               <div className='truncate'>{account}</div>
               <KeyboardArrowDownIcon
                 sx={{

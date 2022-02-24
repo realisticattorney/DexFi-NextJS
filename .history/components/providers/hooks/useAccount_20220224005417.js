@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import Web3 from 'web3';
+
 export const handler = (web3) => () => {
   const [account, setAccount] = useState(null);
 
   useEffect(() => {
     const getAccount = async () => {
+      ethereum.enable();
       const providerAccounts = new Web3(window.ethereum);
       window.ethereum.enable().catch((error) => {
         // User denied account access
@@ -12,7 +13,7 @@ export const handler = (web3) => () => {
       });
       const [account] = await providerAccounts.eth.getAccounts();
 
-      setAccount(account);
+      setAccount(accounts[0]);
     };
 
     web3 && getAccount();

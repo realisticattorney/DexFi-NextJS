@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { handler as createUseAccount } from './useAccount';
 
 export const setupHooks = (web3) => {

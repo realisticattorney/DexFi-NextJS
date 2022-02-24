@@ -73,11 +73,12 @@ export default function Web3Provider({ children }) {
   //sc-egiyK laPDlW col-span-1 relative row-span-1
   const _web3Api = useMemo(() => {
     // const {web3, provider } = web3Api;
+    let { web3 } = web3Api;
     return {
       ...web3Api,
       isWeb3Loaded: web3Api.providerType === 'default',
       isUserWalletConnected: web3Api.providerType === 'user',
-      getHooks: () => setupHooks(web3Api.web3),
+      getHooks: () => setupHooks(web3),
       connect: web3Api.provider
         ? async (exAddress = scammExchangeAddress) => {
             try {
@@ -85,7 +86,7 @@ export default function Web3Provider({ children }) {
               const provider = new ethers.providers.Web3Provider(
                 window.ethereum
               );
-              const web3 = new Web3(provider);
+              web3 = new Web3(provider);
               if (provider) {
                 const exchange2 = new ethers.Contract(
                   exAddress,
@@ -124,6 +125,6 @@ export function useWeb3() {
 }
 
 export function useHooks(cb) {
-  const { getHooks } = useWeb3()
-  return cb(getHooks())
+  const { getHooks } = useWeb3();
+  return cb(getHooks());
 }

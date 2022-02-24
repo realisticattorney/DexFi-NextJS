@@ -74,6 +74,7 @@ export default function Web3Provider({ children }) {
   const _web3Api = useMemo(() => {
     // const {web3, provider } = web3Api;
     return {
+      const { web3 } = web3Api;
       ...web3Api,
       isWeb3Loaded: web3Api.providerType === 'default',
       isUserWalletConnected: web3Api.providerType === 'user',
@@ -124,6 +125,6 @@ export function useWeb3() {
 }
 
 export function useHooks(cb) {
-  const { getHooks } = useWeb3()
-  return cb(getHooks())
+  const { getHooks } = useWeb3();
+  return cb(getHooks());
 }
