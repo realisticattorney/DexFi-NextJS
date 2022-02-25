@@ -216,10 +216,10 @@ const RemovePanel = ({ address, currency }) => {
           </p>
         </div>
       </div>
-      <h1 className="text-xs text-dexfi-grayviolet font-bold mt-2">
-        PRICES
+      <h1 className="text-xs text-dexfi-grayviolet font-bold mt-4">
+        YOU WILL RECEIVE
       </h1>
-      <div className="mt-2 bg-gray-100 w-full p-4 border border-slate-200 rounded-2xl">
+      <div className="my-4 bg-gray-100 w-full p-4 border border-slate-200 rounded-2xl">
         <div className="flex justify-between">
           <div className="flex">
             <Image

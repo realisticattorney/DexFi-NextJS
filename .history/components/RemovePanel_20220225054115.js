@@ -10,7 +10,6 @@ import MuiInput from '@mui/material/Input';
 import VolumeUp from '@mui/icons-material/VolumeUp';
 import { styled } from '@mui/material/styles';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import Image from 'next/image';
 
 const Input = styled(MuiInput)`
   width: 42px;
@@ -93,11 +92,11 @@ const RemovePanel = ({ address, currency }) => {
 
   return (
     <div className="flex flex-col p-6">
-      <div className="flex justify-between mx-2">
+      <div className="flex justify-between">
         <h2 className="text-dexfi-grayviolet text-sm font-medium">Amount</h2>
         <h2 className="font-bold text-sm text-dexfi-cyan">Detailed</h2>
       </div>
-      <div className="border my-4 p-4 rounded-2xl ">
+      <div className="border my-5 p-4 rounded-2xl ">
         <Box sx={{ width: 'full' }}>
           <h1 className="text-3xl font-extrabold text-dexfi-violet mb-4">
             {userLpsToRemove}%
@@ -118,7 +117,7 @@ const RemovePanel = ({ address, currency }) => {
             </Grid>
           </Grid>
         </Box>
-        <div className="flex justify-between mt-4 mx-5">
+        <div className="flex justify-between my-4 mx-5">
           <button
             className={`shadow-sm py-0.5 px-4    rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90 ${
               userLpsToRemove === 25
@@ -173,88 +172,10 @@ const RemovePanel = ({ address, currency }) => {
         <ArrowDownwardIcon
           sx={{
             color: '#7A6EAA',
-            fontSize: '22px',
           }}
         />
       </div>
-      <h1 className="text-xs text-dexfi-grayviolet font-bold mt-2">
-        YOU WILL RECEIVE
-      </h1>
-      <div className="my-2 bg-gray-100 w-full p-4 border border-slate-200 rounded-2xl">
-        <div className="flex justify-between">
-          <div className="flex">
-            <Image
-              src={currency.logoURI}
-              height={20}
-              width={20}
-              quality={50}
-              alt=""
-            />
-            <h1 className="ml-2 font-medium text-sm text-dexfi-grayviolet">
-              {currency.symbol}
-            </h1>
-          </div>
-          <p className="font-medium text-sm text-dexfi-grayviolet">
-            {currency.userLPTokens}
-          </p>
-        </div>
-        <div className="flex justify-between mt-2.5">
-          <div className="flex">
-            <Image
-              src={currency.logoURI}
-              height={20}
-              width={20}
-              quality={50}
-              alt=""
-            />
-            <h1 className="ml-2 font-medium text-sm text-dexfi-grayviolet">
-              {currency.symbol}
-            </h1>
-          </div>
-          <p className="font-medium text-sm text-dexfi-grayviolet">
-            {currency.userLPTokens}
-          </p>
-        </div>
-      </div>
-      <h1 className="text-xs text-dexfi-grayviolet font-bold mt-2">
-        PRICES
-      </h1>
-      <div className="mt-2 bg-gray-100 w-full p-4 border border-slate-200 rounded-2xl">
-        <div className="flex justify-between">
-          <div className="flex">
-            <Image
-              src={currency.logoURI}
-              height={20}
-              width={20}
-              quality={50}
-              alt=""
-            />
-            <h1 className="ml-2 font-medium text-sm text-dexfi-grayviolet">
-              {currency.symbol}
-            </h1>
-          </div>
-          <p className="font-medium text-sm text-dexfi-grayviolet">
-            {currency.userLPTokens}
-          </p>
-        </div>
-        <div className="flex justify-between mt-2.5">
-          <div className="flex">
-            <Image
-              src={currency.logoURI}
-              height={20}
-              width={20}
-              quality={50}
-              alt=""
-            />
-            <h1 className="ml-2 font-medium text-sm text-dexfi-grayviolet">
-              {currency.symbol}
-            </h1>
-          </div>
-          <p className="font-medium text-sm text-dexfi-grayviolet">
-            {currency.userLPTokens}
-          </p>
-        </div>
-      </div>
+      <h1 className="text-sm ">YOU WILL RECEIVE</h1>
     </div>
   );
 };
