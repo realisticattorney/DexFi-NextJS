@@ -1,8 +1,17 @@
 import { useEffect, useState } from 'react';
 import Web3 from 'web3';
+import useSWR from 'swr';
 
 export const handler = (web3) => () => {
-  const [account, setAccount] = useState(null);
+  //   const [account, setAccount] = useState(null);
+
+  const swrResponse = useSWR(() => {
+    web3 ? 'web3/accounts',
+      async () => {
+        const accounts = await web3.eth.getAccounts();
+        return accounts[0];
+      };
+  });
 
   useEffect(() => {
     const getAccount = async () => {
@@ -20,7 +29,7 @@ export const handler = (web3) => () => {
     };
 
     getAccount();
-  }, []);
+  }, [web3]);
 
   useEffect(() => {
     window.ethereum &&

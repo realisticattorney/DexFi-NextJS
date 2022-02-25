@@ -43,7 +43,6 @@ export default function Liquidity(props) {
   const classes = useStyles();
   const [userLps, setUserLps] = useState([]);
   const { account } = useAccount();
-
   useEffect(() => {
     if (isUserWalletConnected && userLps.length === 0) {
       const promises = currencies.map(async (currency) => {
@@ -193,12 +192,12 @@ export default function Liquidity(props) {
                             {'<'}0.01%
                           </p>
                         </div>
-                        <Link href={`/remove/${account}/${currency.symbol}/`}>
+                        <Link href={`/remove/${account/}`}>
                         <a className="w-full text-center cursor-pointer  hover:opacity-75 transition-opacity duration-150 mt-2.5 text-sm  bg-pink-500 shadow-sm text-white font-bold py-2.5 px-12 rounded-xl active:translate-y-0.1 active:shadow-none active:opacity-90">
                           Remove
                         </a>
                         </Link>
-                        <Link href="/add">
+                        <Link href="/liquidity">
                         <a className="w-full text-center cursor-pointer hover:opacity-75 transition-opacity duration-150 mt-5 text-sm  text-pink-500 font-bold rounded-2xl active:translate-y-0.1 active:shadow-none active:opacity-90">
                           + Add liquidity instead
                         </a>

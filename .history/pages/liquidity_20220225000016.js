@@ -198,7 +198,7 @@ export default function Liquidity(props) {
                           Remove
                         </a>
                         </Link>
-                        <Link href="/add">
+                        <Link href="/liquidity">
                         <a className="w-full text-center cursor-pointer hover:opacity-75 transition-opacity duration-150 mt-5 text-sm  text-pink-500 font-bold rounded-2xl active:translate-y-0.1 active:shadow-none active:opacity-90">
                           + Add liquidity instead
                         </a>

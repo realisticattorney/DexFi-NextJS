@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Web3 from 'web3';
-
+import useSWR
 export const handler = (web3) => () => {
   const [account, setAccount] = useState(null);
 
