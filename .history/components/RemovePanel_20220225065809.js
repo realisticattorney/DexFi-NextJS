@@ -1,6 +1,6 @@
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import { ethers } from 'ethers';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
 import { useWeb3 } from '../components/providers/web3';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';

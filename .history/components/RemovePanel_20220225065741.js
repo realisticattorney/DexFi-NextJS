@@ -1,12 +1,18 @@
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import { ethers } from 'ethers';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
 import { useWeb3 } from '../components/providers/web3';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Grid from '@mui/material/Grid';
+import MuiInput from '@mui/material/Input';
+import { styled } from '@mui/material/styles';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import Image from 'next/image';
+
+const Input = styled(MuiInput)`
+  width: 42px;
+`;
 
 const RemovePanel = ({ address, currency, backCurrency }) => {
   const { provider, registry } = useWeb3();
@@ -79,6 +85,7 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
 
   const returnsEstimator = useCallback(
     (userLpsToRemove) => {
+      console.log('lolololalalala', userLpsToRemove);
       let lps = (userLps * userLpsToRemove) / 100;
       const ethWithdrawn = (exchangeBalance * lps) / tokenSupply;
       const tokenWithdrawn = (tokenReserve * lps) / tokenSupply;
