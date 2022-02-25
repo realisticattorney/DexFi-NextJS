@@ -3,8 +3,8 @@ import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
 import { useWeb3 } from '../components/providers/web3';
 import Web3 from 'web3';
 import fs from 'fs/promises';
-import path from 'path';
 import Link from 'next/link';
+import path from 'path';
 import Subnav from '../components/Subnav';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
@@ -193,7 +193,7 @@ export default function Liquidity(props) {
                             {'<'}0.01%
                           </p>
                         </div>
-                        <Link href={`/remove/${account}_${currency.symbol}/`}>
+                        <Link href={`/remove/${account}${currency.symbol}/`}>
                         <a className="w-full text-center cursor-pointer  hover:opacity-75 transition-opacity duration-150 mt-2.5 text-sm  bg-pink-500 shadow-sm text-white font-bold py-2.5 px-12 rounded-xl active:translate-y-0.1 active:shadow-none active:opacity-90">
                           Remove
                         </a>

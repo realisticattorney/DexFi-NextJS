@@ -1,9 +1,6 @@
 import { ethers } from 'ethers';
 import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
 import { useWeb3 } from '../../components/providers/web3';
-import fs from 'fs/promises';
-import path from 'path';
-
 
 const Remove = ({address, token}) => {
   const {
@@ -20,7 +17,7 @@ const Remove = ({address, token}) => {
 
    useEffect(() => { 
 
-
+    
    }, [address, token]);
 
    

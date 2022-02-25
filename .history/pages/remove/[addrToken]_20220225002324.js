@@ -1,30 +1,10 @@
 import { ethers } from 'ethers';
 import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
-import { useWeb3 } from '../../components/providers/web3';
-import fs from 'fs/promises';
-import path from 'path';
-
+import { useWeb3 } from '../components/providers/web3';
 
 const Remove = ({address, token}) => {
-  const {
-    provider,
-    registry,
-    exchange2,
-    web3,
-    isUserWalletConnected,
-    connect,
-  } = useWeb3();
-  
    console.log('address', address);
    console.log('token', token);
-
-   useEffect(() => { 
-
-
-   }, [address, token]);
-
-   
-   
   return (
     <div>
       <h1>Remove</h1>

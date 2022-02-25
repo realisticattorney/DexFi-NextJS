@@ -190,7 +190,7 @@ const MenuPanel = ({ currencies, section }) => {
     }
   }
 
-  async function callExchange(input, id) {
+  async function callExchange(input, id) {Z
     let price = await ethers.utils.parseEther(input);
     let amount;
     let callFunction = swapTypeHandler();
