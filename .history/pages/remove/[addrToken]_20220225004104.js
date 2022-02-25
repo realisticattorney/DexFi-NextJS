@@ -5,7 +5,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import { scammcoinAddress, USDCAddress, ETCAddress } from '../../config.js';
 
-const Remove = ({ address, currency }) => {
+const Remove = ({ address, formattedCurrency,token }) => {
   const {
     provider,
     registry,
@@ -16,8 +16,9 @@ const Remove = ({ address, currency }) => {
   } = useWeb3();
 
   console.log('address', address);
-  console.log('currency', currency);
-  useEffect(() => {}, [address, currency]);
+  console.log('formattedCurrency', formattedCurrency);
+  console.log('token', token);
+  useEffect(() => {}, [address, formattedCurrency]);
 
   return (
     <div>
@@ -53,36 +54,36 @@ export async function getServerSideProps(context) {
     address: ETCAddress,
   };
 
-  const currencies = [scammCurrency, USDCCurrency, ETCCurrency];
 
-  const currency = currencies.find(({ symbol }) => symbol === token);
 
+  
   return {
     props: {
       address,
-      currency,
+      token,
+      formattedCurrency,
     },
   };
 }
 
-// const filePath = path.join(
-//   process.cwd(),
-//   'data',
-//   'ethereum',
-//   'tokenlist.json'
-// );
-// const jsonCurrenciesData = await fs.readFile(filePath);
-// const allCurrenciesData = JSON.parse(jsonCurrenciesData);
+  // const filePath = path.join(
+  //   process.cwd(),
+  //   'data',
+  //   'ethereum',
+  //   'tokenlist.json'
+  // );
+  // const jsonCurrenciesData = await fs.readFile(filePath);
+  // const allCurrenciesData = JSON.parse(jsonCurrenciesData);
 
-// const selectedCurrency = allCurrenciesData.tokens.filter(
-//   ({ symbol }) => symbol === "WETH"
-// );
+  // const selectedCurrency = allCurrenciesData.tokens.filter(
+  //   ({ symbol }) => symbol === "WETH"
+  // );
 
-// const formattedCurrency = selectedCurrency.map(
-//   ({ symbol, logoURI, decimals, address }) => ({
-//     symbol,
-//     logoURI,
-//     decimals,
-//     address,
-//   })
-// );
+  // const formattedCurrency = selectedCurrency.map(
+  //   ({ symbol, logoURI, decimals, address }) => ({
+  //     symbol,
+  //     logoURI,
+  //     decimals,
+  //     address,
+  //   })
+  // );
