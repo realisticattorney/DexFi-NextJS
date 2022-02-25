@@ -232,13 +232,13 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
           </h1>
           <p className="font-medium text-sm text-dexfi-grayviolet">
           {exchangeBalance / tokenReserve} 
-            {" "}{backCurrency.symbol}
+            {backCurrency.symbol}
           </p>
         </div>
         <div className="flex justify-between mt-1">
           <h1 className="font-medium text-sm text-dexfi-grayviolet">1 WETH</h1>
           <p className="font-medium text-sm text-dexfi-grayviolet">
-            {tokenReserve / exchangeBalance}{" "}
+            {exchangeBalance / tokenReserve}
             {currency.symbol}
           </p>
         </div>
