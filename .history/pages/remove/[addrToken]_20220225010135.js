@@ -1,21 +1,24 @@
+
 import fs from 'fs/promises';
 import path from 'path';
 import { scammcoinAddress, USDCAddress, ETCAddress } from '../../config.js';
 import RemoveUpperSection from '../../components/RemoveUpperSection';
-import RemovePanel from '../../components/RemovePanel';
+
 const Remove = ({ address, currency }) => {
+
+
   console.log('address', address);
   console.log('currency', currency);
+  
 
   return (
     <div className="flex-col ">
-      <div className="p-6 mx-auto w-min">
-        <div className="flex-col relative w-[436px] h-[626px] bg-white rounded-3xl border shadow-sm">
-          <RemoveUpperSection currency={currency} />
-          <RemovePanel address={address} currency={currency} />
-        </div>
+    <div className="p-6 mx-auto w-min">
+      <div className="flex-col relative w-[436px] h-[626px] bg-white rounded-3xl border shadow-sm">
+        <RemoveUpperSection currency={currency} />
       </div>
     </div>
+  </div>
   );
 };
 

@@ -2,12 +2,15 @@ import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import { ethers } from 'ethers';
 import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
 import { useWeb3 } from '../components/providers/web3';
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
 
 const RemovePanel = ({ address, currency }) => {
-  const { provider, registry, web3, isUserWalletConnected, connect } =
-    useWeb3();
+  const {
+    provider,
+    registry,
+    web3,
+    isUserWalletConnected,
+    connect,
+  } = useWeb3();
 
   const [userLps, setUserLps] = useState(0);
   const [userLpsToRemove, setUserLpsToRemove] = useState(0);
@@ -15,22 +18,6 @@ const RemovePanel = ({ address, currency }) => {
   const [exchangeBalance, setExchangeBalance] = useState(0);
   const [tokenReserve, setTokenReserve] = useState(0);
   const [tokenSupply, setTokenSupply] = useState(0);
-
-  const handleSliderChange = (event, newValue) => {
-    setUserLps(newValue);
-  };
-
-  const handleInputChange = (event) => {
-    setUserLps(event.target.value === '' ? '' : Number(event.target.value));
-  };
-
-  const handleBlur = () => {
-    if (value < 0) {
-      setValue(0);
-    } else if (value > 100) {
-      setValue(100);
-    }
-  };
 
   console.log('RemovePanel', address, currency);
   console.log('userLps', userLps);
@@ -72,7 +59,7 @@ const RemovePanel = ({ address, currency }) => {
     };
 
     loadExchange();
-  }, [address, currency.address, provider, registry, tokenSupply]);
+  }, [address, currency.address, provider, registry]);
 
   const returnsEstimator = useCallback(
     async (lps, exchangeBalance, totalSupply, getReserve) => {
@@ -85,25 +72,10 @@ const RemovePanel = ({ address, currency }) => {
   );
 
   return (
-    <div className="flex flex-col p-6">
+    <div className="flex flex-col p">
       <div className="flex justify-between">
         <h2>Amount</h2>
         <h2>Detailed</h2>
-      </div>
-      <div>
-        <Box width={300}>
-          <Slider
-            size="small"
-            defaultValue={70}
-            aria-label="Small"
-            valueLabelDisplay="auto"
-          />
-          <Slider
-            defaultValue={50}
-            aria-label="Default"
-            valueLabelDisplay="auto"
-          />
-        </Box>
       </div>
     </div>
   );

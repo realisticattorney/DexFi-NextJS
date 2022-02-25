@@ -1,13 +1,18 @@
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
+import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
 import { ethers } from 'ethers';
 import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
-import { useWeb3 } from '../components/providers/web3';
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
+import { useWeb3 } from '../../components/providers/web3';
 
 const RemovePanel = ({ address, currency }) => {
-  const { provider, registry, web3, isUserWalletConnected, connect } =
-    useWeb3();
+  const {
+    provider,
+    registry,
+    //  exchange2,
+    web3,
+    isUserWalletConnected,
+    connect,
+  } = useWeb3();
 
   const [userLps, setUserLps] = useState(0);
   const [userLpsToRemove, setUserLpsToRemove] = useState(0);
@@ -16,32 +21,12 @@ const RemovePanel = ({ address, currency }) => {
   const [tokenReserve, setTokenReserve] = useState(0);
   const [tokenSupply, setTokenSupply] = useState(0);
 
-  const handleSliderChange = (event, newValue) => {
-    setUserLps(newValue);
-  };
-
-  const handleInputChange = (event) => {
-    setUserLps(event.target.value === '' ? '' : Number(event.target.value));
-  };
-
-  const handleBlur = () => {
-    if (value < 0) {
-      setValue(0);
-    } else if (value > 100) {
-      setValue(100);
-    }
-  };
-
   console.log('RemovePanel', address, currency);
-  console.log('userLps', userLps);
-  console.log('userLpsToRemove', userLpsToRemove);
-  console.log('exchange', exchange);
-  console.log('exchangeBalance', exchangeBalance);
-  console.log('tokenReserve', tokenReserve);
-  console.log('tokenSupply', tokenSupply);
+  console.log("userLps", userLps);
+  
 
   useEffect(() => {
-    if (tokenSupply > 0) {
+    if (totalSupply > 0) {
       return;
     }
     const loadExchange = async () => {
@@ -51,7 +36,7 @@ const RemovePanel = ({ address, currency }) => {
         Exchange.abi,
         provider
       );
-      console.log('KEKEKEKEKEKEKEKEKEK');
+
       const userLPTokens = ethers.utils.formatEther(
         await exchange.balanceOf(address)
       );
@@ -72,7 +57,7 @@ const RemovePanel = ({ address, currency }) => {
     };
 
     loadExchange();
-  }, [address, currency.address, provider, registry, tokenSupply]);
+  }, [address, currency.address, provider, registry]);
 
   const returnsEstimator = useCallback(
     async (lps, exchangeBalance, totalSupply, getReserve) => {
@@ -85,28 +70,21 @@ const RemovePanel = ({ address, currency }) => {
   );
 
   return (
-    <div className="flex flex-col p-6">
+    <div className="flex flex-col">
       <div className="flex justify-between">
         <h2>Amount</h2>
         <h2>Detailed</h2>
       </div>
-      <div>
-        <Box width={300}>
-          <Slider
-            size="small"
-            defaultValue={70}
-            aria-label="Small"
-            valueLabelDisplay="auto"
-          />
-          <Slider
-            defaultValue={50}
-            aria-label="Default"
-            valueLabelDisplay="auto"
-          />
-        </Box>
-      </div>
+
+      
     </div>
   );
 };
 
 export default RemovePanel;
+// returnsEstimator(
+//    userLPTokens,
+//    exchangeBalance,
+//    totalSupply,
+//    getReserve
+//  );

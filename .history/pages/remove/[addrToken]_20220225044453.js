@@ -12,7 +12,7 @@ const Remove = ({ address, currency }) => {
       <div className="p-6 mx-auto w-min">
         <div className="flex-col relative w-[436px] h-[626px] bg-white rounded-3xl border shadow-sm">
           <RemoveUpperSection currency={currency} />
-          <RemovePanel address={address} currency={currency} />
+          <RemovePanel address={} currency={currency} />
         </div>
       </div>
     </div>
