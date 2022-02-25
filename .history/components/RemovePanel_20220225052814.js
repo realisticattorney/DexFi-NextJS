@@ -39,6 +39,14 @@ const RemovePanel = ({ address, currency }) => {
     }
   };
 
+  const handleBlur = () => {
+    if (userLpsToRemove < 0) {
+      setValue(0);
+    } else if (userLpsToRemove > 100) {
+      setValue(100);
+    }
+  };
+
   console.log('RemovePanel', address, currency);
   console.log('userLps', userLps);
   console.log('userLpsToRemove', userLpsToRemove);
@@ -81,13 +89,15 @@ const RemovePanel = ({ address, currency }) => {
     loadExchange();
   }, [address, currency.address, provider, registry, tokenSupply]);
 
-  const returnsEstimator = useCallback(() => {
-    let lps = (userLps * userLpsToRemove) / 100;
-    const ethWithdrawn = (exchangeBalance * lps) / tokenSupply;
-    const tokenWithdrawn = (tokenReserve * lps) / tokenSupply;
+  const returnsEstimator = useCallback(
+    async (lps, exchangeBalance, totalSupply, getReserve) => {
+      const ethWithdrawn = (exchangeBalance * lps) / totalSupply;
+      const tokenWithdrawn = (getReserve * lps) / totalSupply;
 
-    return [ethWithdrawn, tokenWithdrawn];
-  }, [userLps, userLpsToRemove, exchangeBalance, tokenSupply, tokenReserve]);
+      return [ethWithdrawn, tokenWithdrawn];
+    },
+    []
+  );
 
   return (
     <div className="flex flex-col p-6">
@@ -110,7 +120,7 @@ const RemovePanel = ({ address, currency }) => {
                 aria-labelledby="input-slider"
                 sx={{
                   color: '#1FC7D4',
-                  height: '9px',
+                  height: '8px',
                 }}
               />
             </Grid>
@@ -165,6 +175,9 @@ const RemovePanel = ({ address, currency }) => {
           >
             Max
           </button>
+          {/* <button className="shadow-sm text-dexfi-grayviolet py-0.5 px-4 bg-gray-200 border-dexfi-grayviolet border rounded-3xl font-medium hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90`}>
+            0.50
+          </button> */}
         </div>
       </div>
     </div>

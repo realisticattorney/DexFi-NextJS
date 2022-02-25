@@ -84,7 +84,7 @@ const RemovePanel = ({ address, currency }) => {
   const returnsEstimator = useCallback(() => {
     let lps = (userLps * userLpsToRemove) / 100;
     const ethWithdrawn = (exchangeBalance * lps) / tokenSupply;
-    const tokenWithdrawn = (tokenReserve * lps) / tokenSupply;
+    const tokenWithdrawn = (getReserve * lps) / tokenSupply;
 
     return [ethWithdrawn, tokenWithdrawn];
   }, [userLps, userLpsToRemove, exchangeBalance, tokenSupply, tokenReserve]);

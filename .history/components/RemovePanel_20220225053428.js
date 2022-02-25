@@ -81,13 +81,16 @@ const RemovePanel = ({ address, currency }) => {
     loadExchange();
   }, [address, currency.address, provider, registry, tokenSupply]);
 
-  const returnsEstimator = useCallback(() => {
-    let lps = (userLps * userLpsToRemove) / 100;
-    const ethWithdrawn = (exchangeBalance * lps) / tokenSupply;
-    const tokenWithdrawn = (tokenReserve * lps) / tokenSupply;
+  const returnsEstimator = useCallback(
+    (lps, exchangeBalance, totalSupply, getReserve) => {
+      let lps = userLps 
+      const ethWithdrawn = (exchangeBalance * lps) / totalSupply;
+      const tokenWithdrawn = (getReserve * lps) / totalSupply;
 
-    return [ethWithdrawn, tokenWithdrawn];
-  }, [userLps, userLpsToRemove, exchangeBalance, tokenSupply, tokenReserve]);
+      return [ethWithdrawn, tokenWithdrawn];
+    },
+    [userLps, userLpsToRemove, exchangeBalance, tokenSupply, tokenReserve]
+  );
 
   return (
     <div className="flex flex-col p-6">

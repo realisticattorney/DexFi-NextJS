@@ -30,12 +30,17 @@ const RemovePanel = ({ address, currency }) => {
   };
 
   const handleInputChange = (event) => {
-    if (event.target?.value) {
-      setUserLpsToRemove(
-        event.target.value === '' ? 0 : Number(event.target.value)
-      );
-    } else {
-      setUserLpsToRemove(event);
+     
+    setUserLpsToRemove(
+      event.target.value === '' ? '' : Number(event.target.value)
+    );
+  };
+
+  const handleBlur = () => {
+    if (userLpsToRemove < 0) {
+      setValue(0);
+    } else if (userLpsToRemove > 100) {
+      setValue(100);
     }
   };
 
@@ -81,13 +86,15 @@ const RemovePanel = ({ address, currency }) => {
     loadExchange();
   }, [address, currency.address, provider, registry, tokenSupply]);
 
-  const returnsEstimator = useCallback(() => {
-    let lps = (userLps * userLpsToRemove) / 100;
-    const ethWithdrawn = (exchangeBalance * lps) / tokenSupply;
-    const tokenWithdrawn = (tokenReserve * lps) / tokenSupply;
+  const returnsEstimator = useCallback(
+    async (lps, exchangeBalance, totalSupply, getReserve) => {
+      const ethWithdrawn = (exchangeBalance * lps) / totalSupply;
+      const tokenWithdrawn = (getReserve * lps) / totalSupply;
 
-    return [ethWithdrawn, tokenWithdrawn];
-  }, [userLps, userLpsToRemove, exchangeBalance, tokenSupply, tokenReserve]);
+      return [ethWithdrawn, tokenWithdrawn];
+    },
+    []
+  );
 
   return (
     <div className="flex flex-col p-6">
@@ -97,7 +104,7 @@ const RemovePanel = ({ address, currency }) => {
       </div>
       <div className="border my-5 p-4 rounded-2xl ">
         <Box sx={{ width: 'full' }}>
-          <h1 className="text-3xl font-extrabold text-dexfi-violet mb-4">
+          <h1 className="text-3xl font-extrabold text-dexfi-violet">
             {userLpsToRemove}%
           </h1>
           <Grid container spacing={2} alignItems="center">
@@ -108,63 +115,40 @@ const RemovePanel = ({ address, currency }) => {
                 }
                 onChange={handleSliderChange}
                 aria-labelledby="input-slider"
-                sx={{
-                  color: '#1FC7D4',
-                  height: '9px',
-                }}
               />
             </Grid>
           </Grid>
         </Box>
-        <div className="flex justify-between my-4 mx-5">
-          <button
-            className={`shadow-sm py-0.5 px-4    rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90 ${
-              userLpsToRemove === 25
-                ? ' text-white bg-dexfi-cyan'
-                : 'text-dexfi-cyan bg-gray-100'
-            }`}
-            onClick={() => {
-              handleInputChange(25);
-            }}
-          >
+        <div className="flex justify-between my-4">
+          <button className="shadow-sm text-white py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90"
+          onClick={(event) => {handleInputChange(userLpsToRemove)}}>
             25%
           </button>
-          <button
-            className={`shadow-sm py-0.5 px-4    rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90 ${
-              userLpsToRemove === 50
-                ? ' text-white bg-dexfi-cyan'
-                : 'text-dexfi-cyan bg-gray-100'
-            }`}
-            onClick={() => {
-              handleInputChange(50);
-            }}
-          >
+          <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
             50%
           </button>
-          <button
-            className={`shadow-sm py-0.5 px-4    rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90 ${
-              userLpsToRemove === 75
-                ? ' text-white bg-dexfi-cyan'
-                : 'text-dexfi-cyan bg-gray-100'
-            }`}
-            onClick={() => {
-              handleInputChange(75);
-            }}
-          >
+          <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
             75%
           </button>
-          <button
-            className={`shadow-sm py-0.5 px-4    rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90 ${
-              userLpsToRemove === 100
-                ? ' text-white bg-dexfi-cyan'
-                : 'text-dexfi-cyan bg-gray-100'
-            }`}
-            onClick={() => {
-              handleInputChange(100);
-            }}
-          >
+          <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
             Max
           </button>
+          {/* <button className="shadow-sm text-dexfi-grayviolet py-0.5 px-4 bg-gray-200 border-dexfi-grayviolet border rounded-3xl font-medium hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
+            0.50
+          </button> */}
+          <Input
+          value={userLpsToRemove}
+          size="small"
+          onChange={handleInputChange}
+          onBlur={handleBlur}
+          inputProps={{
+            step: 10,
+            min: 0,
+            max: 100,
+            type: 'number',
+            'aria-labelledby': 'input-slider',
+          }}
+        />
         </div>
       </div>
     </div>
