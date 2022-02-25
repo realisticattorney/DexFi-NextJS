@@ -80,7 +80,7 @@ export async function getServerSideProps(context) {
     props: {
       address,
       currency,
-      backCurrency: formattedBackedCurrency[0],
+      backCurrency: formattedBackedCurrency,
     },
   };
 }

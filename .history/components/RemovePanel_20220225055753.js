@@ -16,7 +16,7 @@ const Input = styled(MuiInput)`
   width: 42px;
 `;
 
-const RemovePanel = ({ address, currency, backCurrency }) => {
+const RemovePanel = ({ address, currency }) => {
   const { provider, registry, web3, isUserWalletConnected, connect } =
     useWeb3();
 
@@ -92,13 +92,13 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
   }, [userLps, userLpsToRemove, exchangeBalance, tokenSupply, tokenReserve]);
 
   return (
-    <div className="flex flex-col p-5">
+    <div className="flex flex-col p-6">
       <div className="flex justify-between mx-2">
         <h2 className="text-dexfi-grayviolet text-sm font-medium">Amount</h2>
         <h2 className="font-bold text-sm text-dexfi-cyan">Detailed</h2>
       </div>
       <div className="border my-4 px-4 py-3 rounded-2xl ">
-        <Box sx={{ width: 'full', marginLeft: '3px', marginRight: '5px' }}>
+        <Box sx={{ width: 'full' }}>
           <h1 className="text-4xl font-bold text-dexfi-violet mb-2.5">
             {userLpsToRemove}%
           </h1>
@@ -118,7 +118,7 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
             </Grid>
           </Grid>
         </Box>
-        <div className="flex justify-between mt-2.5 mx-2 mb-1.5">
+        <div className="flex justify-between mt-2 mx-5">
           <button
             className={`shadow-sm py-0.5 px-4    rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90 ${
               userLpsToRemove === 25
@@ -201,14 +201,14 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
         <div className="flex justify-between mt-2.5">
           <div className="flex">
             <Image
-              src={backCurrency.logoURI}
+              src={currency.logoURI}
               height={20}
               width={20}
               quality={50}
               alt=""
             />
             <h1 className="ml-2 font-medium text-sm text-dexfi-grayviolet">
-              {backCurrency.symbol}
+              {currency.symbol}
             </h1>
           </div>
           <p className="font-medium text-sm text-dexfi-grayviolet">
@@ -216,21 +216,42 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
           </p>
         </div>
       </div>
-      <h1 className="text-xs text-dexfi-grayviolet font-bold mt-2">PRICES</h1>
+      <h1 className="text-xs text-dexfi-grayviolet font-bold mt-2">
+        PRICES
+      </h1>
       <div className="mt-2 bg-gray-100 w-full p-4 border border-slate-200 rounded-2xl">
         <div className="flex justify-between">
-          <h1 className="font-medium text-sm text-dexfi-grayviolet">
-            1 {currency.symbol}
-          </h1>
-          <p className="font-medium text-sm text-dexfi-grayviolet">
-            {currency.userLPTokens}{backCurrency.symbol}
-          </p>
-        </div>
-        <div className="flex justify-between mt-1">
-          <h1 className="font-medium text-sm text-dexfi-grayviolet">1 WETH</h1>
+          <div className="flex">
+            <Image
+              src={currency.logoURI}
+              height={20}
+              width={20}
+              quality={50}
+              alt=""
+            />
+            <h1 className="ml-2 font-medium text-sm text-dexfi-grayviolet">
+              {currency.symbol}
+            </h1>
+          </div>
           <p className="font-medium text-sm text-dexfi-grayviolet">
             {currency.userLPTokens}
-            {currency.symbol}
+          </p>
+        </div>
+        <div className="flex justify-between mt-2.5">
+          <div className="flex">
+            <Image
+              src={currency.logoURI}
+              height={20}
+              width={20}
+              quality={50}
+              alt=""
+            />
+            <h1 className="ml-2 font-medium text-sm text-dexfi-grayviolet">
+              {currency.symbol}
+            </h1>
+          </div>
+          <p className="font-medium text-sm text-dexfi-grayviolet">
+            {currency.userLPTokens}
           </p>
         </div>
       </div>

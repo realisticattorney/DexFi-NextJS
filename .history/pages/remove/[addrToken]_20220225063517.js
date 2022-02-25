@@ -3,7 +3,7 @@ import path from 'path';
 import { scammcoinAddress, USDCAddress, ETCAddress } from '../../config.js';
 import RemoveUpperSection from '../../components/RemoveUpperSection';
 import RemovePanel from '../../components/RemovePanel';
-const Remove = ({ address, currency, backCurrency }) => {
+const Remove = ({ address, currency }) => {
   console.log('address', address);
   console.log('currency', currency);
 
@@ -12,11 +12,7 @@ const Remove = ({ address, currency, backCurrency }) => {
       <div className="p-6 mx-auto w-min">
         <div className="flex-col relative w-[387px] h-[626px] bg-white rounded-3xl border shadow-sm">
           <RemoveUpperSection currency={currency} />
-          <RemovePanel
-            address={address}
-            currency={currency}
-            backCurrency={backCurrency}
-          />
+          <RemovePanel address={address} currency={currency} />
         </div>
       </div>
     </div>
@@ -26,27 +22,30 @@ const Remove = ({ address, currency, backCurrency }) => {
 export default Remove;
 
 export async function getServerSideProps(context) {
-  const filePath = path.join(
-    process.cwd(),
-    'data',
-    'ethereum',
-    'tokenlist.json'
-  );
-  const jsonCurrenciesData = await fs.readFile(filePath);
-  const allCurrenciesData = JSON.parse(jsonCurrenciesData);
 
-  const selectedCurrency = allCurrenciesData.tokens.filter(
-    ({ symbol }) => symbol === 'WETH'
-  );
+// const filePath = path.join(
+//   process.cwd(),
+//   'data',
+//   'ethereum',
+//   'tokenlist.json'
+// );
+// const jsonCurrenciesData = await fs.readFile(filePath);
+// const allCurrenciesData = JSON.parse(jsonCurrenciesData);
 
-  const formattedBackedCurrency = selectedCurrency.map(
-    ({ symbol, logoURI, decimals, address }) => ({
-      symbol,
-      logoURI,
-      decimals,
-      address,
-    })
-  );
+// const selectedCurrency = allCurrenciesData.tokens.filter(
+//   ({ symbol }) => symbol === "WETH"
+// );
+
+// const formattedCurrency = selectedCurrency.map(
+//   ({ symbol, logoURI, decimals, address }) => ({
+//     symbol,
+//     logoURI,
+//     decimals,
+//     address,
+//   })
+// );
+
+
 
   const { addrToken } = context.query;
   const [address, token] = addrToken.split('_');
@@ -80,7 +79,7 @@ export async function getServerSideProps(context) {
     props: {
       address,
       currency,
-      backCurrency: formattedBackedCurrency[0],
     },
   };
 }
+

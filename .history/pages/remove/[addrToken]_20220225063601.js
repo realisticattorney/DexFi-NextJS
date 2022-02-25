@@ -12,11 +12,7 @@ const Remove = ({ address, currency, backCurrency }) => {
       <div className="p-6 mx-auto w-min">
         <div className="flex-col relative w-[387px] h-[626px] bg-white rounded-3xl border shadow-sm">
           <RemoveUpperSection currency={currency} />
-          <RemovePanel
-            address={address}
-            currency={currency}
-            backCurrency={backCurrency}
-          />
+          <RemovePanel address={address} currency={currency}  />
         </div>
       </div>
     </div>
@@ -80,7 +76,7 @@ export async function getServerSideProps(context) {
     props: {
       address,
       currency,
-      backCurrency: formattedBackedCurrency[0],
+      backCurrency: formattedBackedCurrency,
     },
   };
 }

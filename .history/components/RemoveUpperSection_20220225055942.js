@@ -3,14 +3,14 @@ import Link from 'next/link';
 
 const RemoveLiquidityPanel = ({ currency }) => {
   return (
-    <div className="h-[80px] py-3 px-4 flex border-b">
+    <div className="h-[80px] p-5 flex border-b">
       <div className="flex items-center">
         <Link href="/liquidity">
           <a>
             <ArrowBackIcon
               sx={{
                 color: '#7c6484',
-                fontSize: 28,
+                fontSize: 33,
                 fontWeight: 'bold',
               }}
             />

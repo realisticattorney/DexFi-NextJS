@@ -208,7 +208,7 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
               alt=""
             />
             <h1 className="ml-2 font-medium text-sm text-dexfi-grayviolet">
-              {backCurrency.symbol}
+              {currency.symbol}
             </h1>
           </div>
           <p className="font-medium text-sm text-dexfi-grayviolet">
@@ -223,7 +223,7 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
             1 {currency.symbol}
           </h1>
           <p className="font-medium text-sm text-dexfi-grayviolet">
-            {currency.userLPTokens}{backCurrency.symbol}
+            {currency.userLPTokens}WETH
           </p>
         </div>
         <div className="flex justify-between mt-1">

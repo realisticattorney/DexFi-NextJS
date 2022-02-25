@@ -16,7 +16,7 @@ const Input = styled(MuiInput)`
   width: 42px;
 `;
 
-const RemovePanel = ({ address, currency, backCurrency }) => {
+const RemovePanel = ({ address, currency }) => {
   const { provider, registry, web3, isUserWalletConnected, connect } =
     useWeb3();
 
@@ -201,14 +201,14 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
         <div className="flex justify-between mt-2.5">
           <div className="flex">
             <Image
-              src={backCurrency.logoURI}
+              src={currency.logoURI}
               height={20}
               width={20}
               quality={50}
               alt=""
             />
             <h1 className="ml-2 font-medium text-sm text-dexfi-grayviolet">
-              {backCurrency.symbol}
+              {currency.symbol}
             </h1>
           </div>
           <p className="font-medium text-sm text-dexfi-grayviolet">
@@ -219,14 +219,14 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
       <h1 className="text-xs text-dexfi-grayviolet font-bold mt-2">PRICES</h1>
       <div className="mt-2 bg-gray-100 w-full p-4 border border-slate-200 rounded-2xl">
         <div className="flex justify-between">
-          <h1 className="font-medium text-sm text-dexfi-grayviolet">
+          <h1 className="ml-2 font-medium text-sm text-dexfi-grayviolet">
             1 {currency.symbol}
           </h1>
           <p className="font-medium text-sm text-dexfi-grayviolet">
-            {currency.userLPTokens}{backCurrency.symbol}
+            {currency.userLPTokens}WETH
           </p>
         </div>
-        <div className="flex justify-between mt-1">
+        <div className="flex justify-between mt-1 mx-2">
           <h1 className="font-medium text-sm text-dexfi-grayviolet">1 WETH</h1>
           <p className="font-medium text-sm text-dexfi-grayviolet">
             {currency.userLPTokens}

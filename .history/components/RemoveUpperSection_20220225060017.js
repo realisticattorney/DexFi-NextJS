@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const RemoveLiquidityPanel = ({ currency }) => {
   return (
-    <div className="h-[80px] py-3 px-4 flex border-b">
+    <div className="h-[80px] py-3 px-5 flex border-b">
       <div className="flex items-center">
         <Link href="/liquidity">
           <a>
