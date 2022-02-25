@@ -30,7 +30,6 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
 
   const handleSliderChange = (event, newValue) => {
     setUserLpsToRemove(newValue);
-    returnsEstimator(newValue);
   };
 
   const handleInputChange = (event) => {
@@ -45,13 +44,13 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
     }
   };
 
-  //   console.log('RemovePanel', address, currency);
-  //   console.log('userLps', userLps);
-  //   console.log('userLpsToRemove', userLpsToRemove);
-  //   console.log('exchange', exchange);
-  //   console.log('exchangeBalance', exchangeBalance);
-  //   console.log('tokenReserve', tokenReserve);
-  //   console.log('tokenSupply', tokenSupply);
+  console.log('RemovePanel', address, currency);
+  console.log('userLps', userLps);
+  console.log('userLpsToRemove', userLpsToRemove);
+  console.log('exchange', exchange);
+  console.log('exchangeBalance', exchangeBalance);
+  console.log('tokenReserve', tokenReserve);
+  console.log('tokenSupply', tokenSupply);
 
   useEffect(() => {
     if (tokenSupply > 0) {
@@ -89,7 +88,7 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
 
   const returnsEstimator = useCallback(
     (userLpsToRemove) => {
-      console.log('lolololalalala', userLpsToRemove);
+       console.log("lolololalalala",)
       let lps = (userLps * userLpsToRemove) / 100;
       const ethWithdrawn = (exchangeBalance * lps) / tokenSupply;
       const tokenWithdrawn = (tokenReserve * lps) / tokenSupply;

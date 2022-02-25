@@ -26,11 +26,9 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
   const [exchangeBalance, setExchangeBalance] = useState(0);
   const [tokenReserve, setTokenReserve] = useState(0);
   const [tokenSupply, setTokenSupply] = useState(0);
-  const [expectedWithdrawn, setExpectedWithdrawn] = useState([0, 0]);
 
   const handleSliderChange = (event, newValue) => {
     setUserLpsToRemove(newValue);
-    returnsEstimator(newValue);
   };
 
   const handleInputChange = (event) => {
@@ -38,20 +36,18 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
       setUserLpsToRemove(
         event.target.value === '' ? 0 : Number(event.target.value)
       );
-      returnsEstimator(event.target.value);
     } else {
       setUserLpsToRemove(event);
-      returnsEstimator(event);
     }
   };
 
-  //   console.log('RemovePanel', address, currency);
-  //   console.log('userLps', userLps);
-  //   console.log('userLpsToRemove', userLpsToRemove);
-  //   console.log('exchange', exchange);
-  //   console.log('exchangeBalance', exchangeBalance);
-  //   console.log('tokenReserve', tokenReserve);
-  //   console.log('tokenSupply', tokenSupply);
+  console.log('RemovePanel', address, currency);
+  console.log('userLps', userLps);
+  console.log('userLpsToRemove', userLpsToRemove);
+  console.log('exchange', exchange);
+  console.log('exchangeBalance', exchangeBalance);
+  console.log('tokenReserve', tokenReserve);
+  console.log('tokenSupply', tokenSupply);
 
   useEffect(() => {
     if (tokenSupply > 0) {
@@ -87,17 +83,13 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
     loadExchange();
   }, [address, currency.address, provider, registry, tokenSupply]);
 
-  const returnsEstimator = useCallback(
-    (userLpsToRemove) => {
-      console.log('lolololalalala', userLpsToRemove);
-      let lps = (userLps * userLpsToRemove) / 100;
-      const ethWithdrawn = (exchangeBalance * lps) / tokenSupply;
-      const tokenWithdrawn = (tokenReserve * lps) / tokenSupply;
+  const returnsEstimator = useCallback((userLpsToRemove) => {
+    let lps = (userLps * userLpsToRemove) / 100;
+    const ethWithdrawn = (exchangeBalance * lps) / tokenSupply;
+    const tokenWithdrawn = (tokenReserve * lps) / tokenSupply;
 
-      setExpectedWithdrawn([ethWithdrawn, tokenWithdrawn]);
-    },
-    [userLps, exchangeBalance, tokenSupply, tokenReserve]
-  );
+    return [ethWithdrawn, tokenWithdrawn];
+  }, [userLps, userLpsToRemove, exchangeBalance, tokenSupply, tokenReserve]);
 
   return (
     <div className="flex flex-col p-5">
@@ -203,7 +195,7 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
             </h1>
           </div>
           <p className="font-medium text-sm text-dexfi-grayviolet">
-            {expectedWithdrawn[0]}
+            {currency.userLPTokens}
           </p>
         </div>
         <div className="flex justify-between mt-2.5">
@@ -220,7 +212,7 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
             </h1>
           </div>
           <p className="font-medium text-sm text-dexfi-grayviolet">
-            {expectedWithdrawn[1]}
+            {currency.userLPTokens}
           </p>
         </div>
       </div>
@@ -231,8 +223,7 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
             1 {currency.symbol}
           </h1>
           <p className="font-medium text-sm text-dexfi-grayviolet">
-            {currency.userLPTokens}
-            {backCurrency.symbol}
+            {currency.userLPTokens}{backCurrency.symbol}
           </p>
         </div>
         <div className="flex justify-between mt-1">
