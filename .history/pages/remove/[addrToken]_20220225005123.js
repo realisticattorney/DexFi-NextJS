@@ -4,7 +4,7 @@ import { useWeb3 } from '../../components/providers/web3';
 import fs from 'fs/promises';
 import path from 'path';
 import { scammcoinAddress, USDCAddress, ETCAddress } from '../../config.js';
-import RemoveUpperSection from '../../components/RemoveUpperSection';
+import RemoveUpperSection from '../../components/AddUpperSection';
 
 const Remove = ({ address, currency }) => {
   const {

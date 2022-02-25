@@ -4,7 +4,7 @@ import { useWeb3 } from '../../components/providers/web3';
 import fs from 'fs/promises';
 import path from 'path';
 import { scammcoinAddress, USDCAddress, ETCAddress } from '../../config.js';
-import RemoveUpperSection from '../../components/RemoveUpperSection';
+import AddUpperSection from '../../components/AddUpperSection';
 
 const Remove = ({ address, currency }) => {
   const {
@@ -24,7 +24,7 @@ const Remove = ({ address, currency }) => {
     <div className="flex-col ">
     <div className="p-6 mx-auto w-min">
       <div className="flex-col relative w-[436px] h-[626px] bg-white rounded-3xl border shadow-sm">
-        <RemoveUpperSection currency={currency} />
+        <AddUpperSection />
       </div>
     </div>
   </div>
