@@ -101,11 +101,11 @@ const RemovePanel = ({ address, currency }) => {
         <h2 className="text-dexfi-grayviolet text-sm font-medium">Amount</h2>
         <h2 className="font-bold text-sm text-dexfi-cyan">Detailed</h2>
       </div>
-      <div className="border my-5 p-4 rounded-2xl ">
+      <div className='border'>
         <Box sx={{ width: 'full' }}>
-          <h1 className="text-3xl font-extrabold text-dexfi-violet">
-            {userLpsToRemove}%
-          </h1>
+          <Typography id="input-slider" gutterBottom>
+            Volume
+          </Typography>
           <Grid container spacing={2} alignItems="center">
             <Grid item xs>
               <Slider
@@ -116,38 +116,23 @@ const RemovePanel = ({ address, currency }) => {
                 aria-labelledby="input-slider"
               />
             </Grid>
+            <Grid item>
+              <Input
+                value={userLpsToRemove}
+                size="small"
+                onChange={handleInputChange}
+                onBlur={handleBlur}
+                inputProps={{
+                  step: 10,
+                  min: 0,
+                  max: 100,
+                  type: 'number',
+                  'aria-labelledby': 'input-slider',
+                }}
+              />
+            </Grid>
           </Grid>
         </Box>
-        <div className="flex justify-between my-4">
-          <button className="shadow-sm text-white py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
-            25%
-          </button>
-          <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
-            0.5%
-          </button>
-          <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
-            1.0%
-          </button>
-          <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
-            1.0%
-          </button>
-          {/* <button className="shadow-sm text-dexfi-grayviolet py-0.5 px-4 bg-gray-200 border-dexfi-grayviolet border rounded-3xl font-medium hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
-            0.50
-          </button> */}
-          <Input
-          value={userLpsToRemove}
-          size="small"
-          onChange={handleInputChange}
-          onBlur={handleBlur}
-          inputProps={{
-            step: 10,
-            min: 0,
-            max: 100,
-            type: 'number',
-            'aria-labelledby': 'input-slider',
-          }}
-        />
-        </div>
       </div>
     </div>
   );

@@ -120,7 +120,7 @@ const RemovePanel = ({ address, currency }) => {
         </Box>
         <div className="flex justify-between my-4">
           <button className="shadow-sm text-white py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
-            25%
+            0.1%
           </button>
           <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
             0.5%
@@ -128,13 +128,10 @@ const RemovePanel = ({ address, currency }) => {
           <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
             1.0%
           </button>
-          <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
-            1.0%
-          </button>
-          {/* <button className="shadow-sm text-dexfi-grayviolet py-0.5 px-4 bg-gray-200 border-dexfi-grayviolet border rounded-3xl font-medium hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
+          <button className="shadow-sm text-dexfi-grayviolet py-0.5 px-4 bg-gray-200 border-dexfi-grayviolet border rounded-3xl font-medium hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
             0.50
-          </button> */}
-          <Input
+          </button>
+          <p className="mr-10 text-dexfi-cyan font-bold">      <Input
           value={userLpsToRemove}
           size="small"
           onChange={handleInputChange}
@@ -146,7 +143,7 @@ const RemovePanel = ({ address, currency }) => {
             type: 'number',
             'aria-labelledby': 'input-slider',
           }}
-        />
+        /></p>
         </div>
       </div>
     </div>

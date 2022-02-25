@@ -120,7 +120,7 @@ const RemovePanel = ({ address, currency }) => {
         </Box>
         <div className="flex justify-between my-4">
           <button className="shadow-sm text-white py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
-            25%
+            0.1%
           </button>
           <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
             0.5%

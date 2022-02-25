@@ -100,6 +100,7 @@ const RemovePanel = ({ address, currency }) => {
       <div className="flex justify-between">
         <h2 className="text-dexfi-grayviolet text-sm font-medium">Amount</h2>
         <h2 className="font-bold text-sm text-dexfi-cyan">Detailed</h2>
+  
       </div>
       <div className="border my-5 p-4 rounded-2xl ">
         <Box sx={{ width: 'full' }}>
@@ -120,7 +121,7 @@ const RemovePanel = ({ address, currency }) => {
         </Box>
         <div className="flex justify-between my-4">
           <button className="shadow-sm text-white py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
-            25%
+            0.1%
           </button>
           <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
             0.5%
@@ -128,25 +129,10 @@ const RemovePanel = ({ address, currency }) => {
           <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
             1.0%
           </button>
-          <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
-            1.0%
-          </button>
-          {/* <button className="shadow-sm text-dexfi-grayviolet py-0.5 px-4 bg-gray-200 border-dexfi-grayviolet border rounded-3xl font-medium hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
+          <button className="shadow-sm text-dexfi-grayviolet py-0.5 px-4 bg-gray-200 border-dexfi-grayviolet border rounded-3xl font-medium hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
             0.50
-          </button> */}
-          <Input
-          value={userLpsToRemove}
-          size="small"
-          onChange={handleInputChange}
-          onBlur={handleBlur}
-          inputProps={{
-            step: 10,
-            min: 0,
-            max: 100,
-            type: 'number',
-            'aria-labelledby': 'input-slider',
-          }}
-        />
+          </button>
+          <p className="mr-10 text-dexfi-cyan font-bold">%</p>
         </div>
       </div>
     </div>
