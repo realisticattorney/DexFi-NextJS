@@ -5,7 +5,9 @@ import { useWeb3 } from '../components/providers/web3';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import MuiInput from '@mui/material/Input';
+import VolumeUp from '@mui/icons-material/VolumeUp';
 import { styled } from '@mui/material/styles';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import Image from 'next/image';
@@ -15,7 +17,8 @@ const Input = styled(MuiInput)`
 `;
 
 const RemovePanel = ({ address, currency, backCurrency }) => {
-  const { provider, registry } = useWeb3();
+  const { provider, registry} =
+    useWeb3();
 
   const [userLps, setUserLps] = useState(0);
   const [userLpsToRemove, setUserLpsToRemove] = useState(0);
@@ -228,16 +231,20 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
             1 {currency.symbol}
           </h1>
           <p className="font-medium text-sm text-dexfi-grayviolet">
-            {exchangeBalance / tokenReserve} {backCurrency.symbol}
+          {exchangeBalance / tokenReserve} 
+            {" "}{backCurrency.symbol}
           </p>
         </div>
         <div className="flex justify-between mt-1">
           <h1 className="font-medium text-sm text-dexfi-grayviolet">1 WETH</h1>
           <p className="font-medium text-sm text-dexfi-grayviolet">
-            {tokenReserve / exchangeBalance} {currency.symbol}
+            {tokenReserve / exchangeBalance}{" "}
+            {currency.symbol}
           </p>
         </div>
       </div>
+
+
     </div>
   );
 };

@@ -5,6 +5,7 @@ import { useWeb3 } from '../components/providers/web3';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import MuiInput from '@mui/material/Input';
 import { styled } from '@mui/material/styles';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
