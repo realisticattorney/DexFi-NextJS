@@ -31,8 +31,7 @@ const modalstyle = {
 };
 
 const Nav = () => {
-  const { connect, isWeb3Loaded, isUserWalletConnected, exchangeBunny } =
-    useWeb3();
+  const { connect, isWeb3Loaded, isUserWalletConnected, exchange2 } = useWeb3();
   let router = useRouter();
   const [pathname, setPathname] = useState(router.pathname);
 
@@ -87,8 +86,8 @@ const Nav = () => {
                 color: '#1FC7D4',
               }}
             />
-            <div className="flex max-w-[100px]">
-              <div className="truncate">{account}</div>
+            <div className='flex max-w-[100px]'>
+              <div className='truncate'>{account}</div>
               <KeyboardArrowDownIcon
                 sx={{
                   marginRight: '-18px',
@@ -176,7 +175,7 @@ const Nav = () => {
                         Your Address
                       </h2>
                       <h2 className="bg-gray-100 py-2 rounded-2xl text-dexfi-violet font-bold text-center ">
-                        <div className="truncate px-4">{account}</div>
+                      <div className='truncate px-4'>{account}</div>
                       </h2>
                       <div className="p-4 my-6 bg-orange-50 border border-orange-300 rounded-xl">
                         <div className="flex">
@@ -233,7 +232,7 @@ const Nav = () => {
         <button
           className=" mr-6 text-white font-bold py-1 px-4 shadow-slate-400 shadow-sm tracking-wide bg-pink-500 rounded-full active:translate-y-0.1 active:shadow-none active:opacity-90 hover:opacity-75 transition-opacity duration-150"
           onClick={() => {
-            connect(exchangeBunny.address);
+            connect(exchange2.address);
           }}
         >
           Connect Wallet

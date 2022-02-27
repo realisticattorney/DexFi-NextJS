@@ -9,10 +9,14 @@ import { ethers } from 'ethers';
 import detectEthereumProvider from '@metamask/detect-provider';
 import Web3 from 'web3';
 
-import { registryAddress, scammExchangeAddress } from '../../config.js';
+import {
+  registryAddress,
+  scammExchangeAddress,
+} from '../../config.js';
 
 import Registry from '../../artifacts/contracts/Registry.sol/Registry.json';
 import Exchange from '../../artifacts/contracts/Exchange.sol/Exchange.json';
+import ERC20Token from '../../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
 import { setupHooks } from './hooks/setupHooks.js';
 
 const Web3Context = createContext(null);
@@ -21,7 +25,7 @@ export default function Web3Provider({ children }) {
   const [web3Api, setWeb3Api] = useState({
     provider: null,
     web3: null,
-    exchangeBunny: null,
+    exchange2: null,
     registry: null,
     isLoading: true,
     providerType: null,
@@ -40,7 +44,7 @@ export default function Web3Provider({ children }) {
           provider
         );
 
-        const exchangeBunny = new ethers.Contract(
+        const exchange2 = new ethers.Contract(
           scammExchangeAddress,
           Exchange.abi,
           provider
@@ -50,7 +54,7 @@ export default function Web3Provider({ children }) {
           provider,
           web3,
           registry,
-          exchangeBunny,
+          exchange2,
           isLoading: false,
           providerType: 'default',
         });
@@ -62,7 +66,10 @@ export default function Web3Provider({ children }) {
 
     loadProvider();
   }, []);
+  //sc-bdvvtL cVocBF col-span-1 relative row-span-1
+  //sc-egiyK laPDlW col-span-1 relative row-span-1
   const _web3Api = useMemo(() => {
+    // const {web3, provider } = web3Api;
     return {
       ...web3Api,
       isWeb3Loaded: web3Api.providerType === 'default',
@@ -71,23 +78,24 @@ export default function Web3Provider({ children }) {
       connect: web3Api.provider
         ? async (exAddress = scammExchangeAddress) => {
             try {
+              // await web3Api.provider.request({method: "eth_requestAccounts"})
               const provider = new ethers.providers.Web3Provider(
                 window.ethereum
               );
               const web3 = new Web3(provider);
               if (provider) {
-                const exchangeBunny = new ethers.Contract(
+                const exchange2 = new ethers.Contract(
                   exAddress,
                   Exchange.abi,
                   provider
                 );
-                console.log('nonononono', exchangeBunny.address);
+                console.log('nonononono', exchange2.address);
 
                 setWeb3Api({
                   ...web3Api,
                   provider,
                   web3,
-                  exchangeBunny,
+                  exchange2,
                   isLoading: false,
                   providerType: 'user',
                 });
@@ -113,6 +121,6 @@ export function useWeb3() {
 }
 
 export function useHooks(cb) {
-  const { getHooks } = useWeb3();
-  return cb(getHooks());
+  const { getHooks } = useWeb3()
+  return cb(getHooks())
 }

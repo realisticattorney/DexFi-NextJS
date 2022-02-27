@@ -3,9 +3,15 @@ module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      opacity: ['disabled'],
-      backgroundColor: ['disabled'],
-      cursor: ['disabled'],
+      opacity: [
+        "disabled"
+    ],
+    backgroundColor: [
+        "disabled"
+    ],
+    cursor: [
+        "disabled"
+    ]
       colors: {
         dexfi: {
           space_gray: '#27262C',
