@@ -183,11 +183,11 @@ const MenuPanel = ({ currencies, section }) => {
 
     let amount;
     amount =
-      id === '1'
+      id === 'outlined-number-1'
         ? (exchangeEthBalance * input) / getReserve
         : (getReserve * input) / exchangeEthBalance;
     console.log('amount', amount);
-    if (id === '1') {
+    if (id === 'outlined-number-1') {
       setInputOne(input);
       setInputTwo(amount);
     } else {
@@ -202,7 +202,7 @@ const MenuPanel = ({ currencies, section }) => {
     let callFunction = swapTypeHandler();
     if (callFunction === 'TokenToTokenSwap') {
       amount =
-        id === '1'
+        id === 'outlined-number-1'
           ? ethers.utils.formatEther(
               await exchange.getTokenToTokenAmount(
                 price,
@@ -220,18 +220,18 @@ const MenuPanel = ({ currencies, section }) => {
             ).toString();
     } else if (callFunction === 'TokenToEthSwap') {
       amount =
-        id === '1'
+        id === 'outlined-number-1'
           ? ethers.utils.formatEther(await exchange.getEthAmount(price))
           : ethers.utils.formatEther(await exchange.getTokenAmount(price));
     } else {
       amount =
-        id === '1'
+        id === 'outlined-number-1'
           ? ethers.utils.formatEther(await exchange.getTokenAmount(price))
           : ethers.utils.formatEther(await exchange.getEthAmount(price));
     }
 
     console.log('amount', amount);
-    if (id === '1') {
+    if (id === 'outlined-number-1') {
       setInputOne(input);
       setInputTwo(amount);
     } else {
@@ -313,7 +313,9 @@ const MenuPanel = ({ currencies, section }) => {
         }
       );
       console.log('transaction', transaction);
-    } else if (swapType === 'TokenToEthSwap') {
+      console.log('transaction done!');
+      return;
+    } else if (swapType === ''TokenToEthSwap'') {
       let transaction = await exchangeUserConnection.tokenToEthSwap(
         ethers.utils.parseEther(allowanceAmount.toString()),
         ethers.utils.parseEther((inputTwo * 0.98).toString())
@@ -326,6 +328,8 @@ const MenuPanel = ({ currencies, section }) => {
           outputToken[0].address
         )
       );
+      console.log('minTokensAmount', minTokensAmount);
+      console.log('mintype', typeof minTokensAmount);
       let transaction = await exchangeUserConnection.tokenToTokenSwap(
         ethers.utils.parseEther(allowanceAmount.toString()),
         ethers.utils.parseEther((minTokensAmount * 0.98).toString()),
@@ -350,7 +354,7 @@ const MenuPanel = ({ currencies, section }) => {
         key={1}
         menuNumber={1}
         section={section}
-        id={'1'}
+        id={'outlined-number-1'}
       />
       {section === 'swap' ? (
         <SwitchIcon
@@ -373,7 +377,7 @@ const MenuPanel = ({ currencies, section }) => {
         key={2}
         menuNumber={2}
         section={section}
-        id={'2'}
+        id={'outlined-number-2'}
       />
       <PriceEstimator
         inputOne={inputOne}

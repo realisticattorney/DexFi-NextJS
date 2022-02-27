@@ -373,7 +373,7 @@ const MenuPanel = ({ currencies, section }) => {
         key={2}
         menuNumber={2}
         section={section}
-        id={'2'}
+        id={'menuItemTwo'}
       />
       <PriceEstimator
         inputOne={inputOne}

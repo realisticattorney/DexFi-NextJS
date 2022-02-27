@@ -183,11 +183,11 @@ const MenuPanel = ({ currencies, section }) => {
 
     let amount;
     amount =
-      id === '1'
+      id === 'menuItemOne'
         ? (exchangeEthBalance * input) / getReserve
         : (getReserve * input) / exchangeEthBalance;
     console.log('amount', amount);
-    if (id === '1') {
+    if (id === 'menuItemOne') {
       setInputOne(input);
       setInputTwo(amount);
     } else {
@@ -202,7 +202,7 @@ const MenuPanel = ({ currencies, section }) => {
     let callFunction = swapTypeHandler();
     if (callFunction === 'TokenToTokenSwap') {
       amount =
-        id === '1'
+        id === 'menuItemOne'
           ? ethers.utils.formatEther(
               await exchange.getTokenToTokenAmount(
                 price,
@@ -220,18 +220,18 @@ const MenuPanel = ({ currencies, section }) => {
             ).toString();
     } else if (callFunction === 'TokenToEthSwap') {
       amount =
-        id === '1'
+        id === 'menuItemOne'
           ? ethers.utils.formatEther(await exchange.getEthAmount(price))
           : ethers.utils.formatEther(await exchange.getTokenAmount(price));
     } else {
       amount =
-        id === '1'
+        id === 'menuItemOne'
           ? ethers.utils.formatEther(await exchange.getTokenAmount(price))
           : ethers.utils.formatEther(await exchange.getEthAmount(price));
     }
 
     console.log('amount', amount);
-    if (id === '1') {
+    if (id === 'menuItemOne') {
       setInputOne(input);
       setInputTwo(amount);
     } else {
@@ -350,7 +350,7 @@ const MenuPanel = ({ currencies, section }) => {
         key={1}
         menuNumber={1}
         section={section}
-        id={'1'}
+        id={'menuItemOne'}
       />
       {section === 'swap' ? (
         <SwitchIcon
@@ -373,7 +373,7 @@ const MenuPanel = ({ currencies, section }) => {
         key={2}
         menuNumber={2}
         section={section}
-        id={'2'}
+        id={'menuItemTwo'}
       />
       <PriceEstimator
         inputOne={inputOne}

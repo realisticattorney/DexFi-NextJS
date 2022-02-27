@@ -37,7 +37,7 @@ const MenuItemList = ({
   const modalIsDisabled =
     id === '2' && section === 'add' ? 'yes' : 'no';
   const ethIsDisabled =
-    id === '1' && section === 'add' ? 'yes' : 'no';
+    id === 'outlined-number-1' && section === 'add' ? 'yes' : 'no';
   return (
     <div className="flex flex-col space-y-2 px-4 py-5">
       <button
