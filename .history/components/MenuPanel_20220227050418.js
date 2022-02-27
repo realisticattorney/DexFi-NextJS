@@ -392,13 +392,13 @@ const MenuPanel = ({ currencies, section }) => {
           }`}
           disabled={
             isUserWalletConnected &&
-            (inputOne <= 0 ||
-            inputTwo <= 0 
-            ||
-            inputOne === '' ||
-            inputTwo === '' ||
-            inputOne === null ||
-            inputTwo === null
+            (parseInt(inputOne) <= 0 ||
+            parseInt(inputTwo) <= 0 
+            // ||
+            // inputOne === '' ||
+            // inputTwo === '' ||
+            // inputOne === null ||
+            // inputTwo === null
             )
           }
           onClick={() => {

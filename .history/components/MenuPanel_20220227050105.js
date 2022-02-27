@@ -390,17 +390,7 @@ const MenuPanel = ({ currencies, section }) => {
           className={`w-full bg-pink-500 hover:opacity-75 transition-opacity duration-200  text-white font-bold py-3 px-12 rounded-xl shadow-slate-500 shadow-sm active:translate-y-0.1 active:shadow-none active:opacity-90 ${
             isUserWalletConnected && 'disabled:cursor-not-allowed'
           }`}
-          disabled={
-            isUserWalletConnected &&
-            (inputOne <= 0 ||
-            inputTwo <= 0 
-            ||
-            inputOne === '' ||
-            inputTwo === '' ||
-            inputOne === null ||
-            inputTwo === null
-            )
-          }
+          disabled={isUserWalletConnected && (parseInt(inputOne) <= 0 || parseInt(inputTwo) <= 0 || inputToken === '' || outputToken === '' || inputToken === null )}
           onClick={() => {
             isUserWalletConnected
               ? section === 'swap'

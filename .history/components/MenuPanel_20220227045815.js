@@ -391,15 +391,7 @@ const MenuPanel = ({ currencies, section }) => {
             isUserWalletConnected && 'disabled:cursor-not-allowed'
           }`}
           disabled={
-            isUserWalletConnected &&
-            (inputOne <= 0 ||
-            inputTwo <= 0 
-            ||
-            inputOne === '' ||
-            inputTwo === '' ||
-            inputOne === null ||
-            inputTwo === null
-            )
+            isUserWalletConnected && (parseInt(inputOne) === 0 ||))
           }
           onClick={() => {
             isUserWalletConnected

@@ -394,11 +394,11 @@ const MenuPanel = ({ currencies, section }) => {
             isUserWalletConnected &&
             (inputOne <= 0 ||
             inputTwo <= 0 
-            ||
-            inputOne === '' ||
-            inputTwo === '' ||
-            inputOne === null ||
-            inputTwo === null
+            // ||
+            // inputOne === '' ||
+            // inputTwo === '' ||
+            // inputOne === null ||
+            // inputTwo === null
             )
           }
           onClick={() => {
