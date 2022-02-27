@@ -240,6 +240,68 @@ const MenuPanel = ({ currencies, section }) => {
     }
   }
 
+
+
+
+
+
+  async function add() {
+    const web3modal = new Web3Modal();
+    const connection = await web3modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+    let currentExchangeAddress = await registry.getExchange(
+      currentTokenExchangeAddress.current
+    );
+    const tokenUserConnection = new ethers.Contract(
+      currentTokenExchangeAddress.current,
+      ERC20Token.abi,
+      signer
+    );
+    const exchangeUserConnection = new ethers.Contract(
+      currentExchangeAddress,
+      Exchange.abi,
+      signer
+    );
+
+    const wasApproved = await tokenUserConnection.approve(
+      currentExchangeAddress,
+      ethers.utils.parseEther(inputOne)
+    );
+    console.log('not yet confirmed');
+    let waitDude = await wasApproved.wait();
+    console.log('waitdudeee', waitDude);
+    console.log('was approved?', wasApproved);
+    const allowanceAmount = ethers.utils.formatEther(
+      await tokenUserConnection.allowance(
+        await signer.getAddress(),
+        currentExchangeAddress
+      )
+    );
+
+    console.log('allowanceAmount', allowanceAmount);
+
+    if (allowanceAmount === '0') {
+      console.log('no allowance');
+      return;
+    }
+
+    if (allowanceAmount < inputOne) {
+      console.log('not enough allowance');
+      return;
+    }
+
+    let transaction = await exchangeUserConnection.addLiquidity(
+      ethers.utils.parseEther(inputOne.toString()),
+      {
+        value: ethers.utils.parseEther(inputTwo.toString()),
+      }
+    );
+    console.log('transaction', transaction);
+    console.log('transaction done!');
+  }
+
+
   async function operate() {
     const web3modal = new Web3Modal();
     const connection = await web3modal.connect();
@@ -259,7 +321,7 @@ const MenuPanel = ({ currencies, section }) => {
       signer
     );
 
-    if (section === 'exchange' && swapTypeHandler() === 'EthToTokenSwap') {
+    if(section === "exchange" && swapTypeHandler() === 'EthToTokenSwap') {
       return [exchangeUserConnection];
     }
 
@@ -291,22 +353,28 @@ const MenuPanel = ({ currencies, section }) => {
     }
 
     return [exchangeUserConnection, allowanceAmount];
+    
   }
 
-  async function add() {
-    const [exchangeUserConnection] = await operate();
-
-    let transaction = await exchangeUserConnection.addLiquidity(
-      ethers.utils.parseEther(inputOne.toString()),
-      {
-        value: ethers.utils.parseEther(inputTwo.toString()),
-      }
-    );
-    console.log('transaction', transaction);
-    console.log('transaction done!');
-  }
 
   async function swap() {
+    // const web3modal = new Web3Modal();
+    // const connection = await web3modal.connect();
+    // const provider = new ethers.providers.Web3Provider(connection);
+    // const signer = provider.getSigner();
+    // let currentExchangeAddress = await registry.getExchange(
+    //   currentTokenExchangeAddress.current
+    // );
+    // const tokenUserConnection = new ethers.Contract(
+    //   currentTokenExchangeAddress.current,
+    //   ERC20Token.abi,
+    //   signer
+    // );
+    // const exchangeUserConnection = new ethers.Contract(
+    //   currentExchangeAddress,
+    //   Exchange.abi,
+    //   signer
+    // );
     const [exchangeUserConnection, allowanceAmount] = await operate();
     const swapType = swapTypeHandler();
 
@@ -319,6 +387,33 @@ const MenuPanel = ({ currencies, section }) => {
       );
       console.log('transaction', transaction);
       console.log('transaction done!');
+      return;
+    }
+
+    const wasApproved = await tokenUserConnection.approve(
+      currentExchangeAddress,
+      ethers.utils.parseEther(inputOne)
+    );
+    console.log('not yet confirmed');
+    let waitDude = await wasApproved.wait();
+    console.log('waitdudeee', waitDude);
+    console.log('was approved?', wasApproved);
+    const allowanceAmount = ethers.utils.formatEther(
+      await tokenUserConnection.allowance(
+        await signer.getAddress(),
+        currentExchangeAddress
+      )
+    );
+
+    console.log('allowanceAmount', allowanceAmount);
+
+    if (allowanceAmount === '0') {
+      console.log('no allowance');
+      return;
+    }
+
+    if (allowanceAmount < inputOne) {
+      console.log('not enough allowance');
       return;
     }
 

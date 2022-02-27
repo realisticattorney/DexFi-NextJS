@@ -293,19 +293,6 @@ const MenuPanel = ({ currencies, section }) => {
     return [exchangeUserConnection, allowanceAmount];
   }
 
-  async function add() {
-    const [exchangeUserConnection] = await operate();
-
-    let transaction = await exchangeUserConnection.addLiquidity(
-      ethers.utils.parseEther(inputOne.toString()),
-      {
-        value: ethers.utils.parseEther(inputTwo.toString()),
-      }
-    );
-    console.log('transaction', transaction);
-    console.log('transaction done!');
-  }
-
   async function swap() {
     const [exchangeUserConnection, allowanceAmount] = await operate();
     const swapType = swapTypeHandler();
