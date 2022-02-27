@@ -82,6 +82,7 @@ const MenuPanel = ({ currencies, section }) => {
           Exchange.abi,
           provider
         );
+        
         const getReserve = ethers.utils.formatEther(
           await newExchange.getReserve()
         );

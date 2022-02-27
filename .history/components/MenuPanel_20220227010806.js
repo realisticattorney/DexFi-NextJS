@@ -33,9 +33,16 @@ const MenuPanel = ({ currencies, section }) => {
   const handleCloseSecond = useCallback(() => setOpenSecond(false), []);
   const [inputOne, setInputOne] = useState(null);
   const [inputTwo, setInputTwo] = useState(null);
-  const [exchangeBalance, setExchangeBalance] = useState(0);
-  const [tokenReserve, setTokenReserve] = useState(0);
-  const [tokenSupply, setTokenSupply] = useState(0);
+
+  
+
+  const handleInputToken = useCallback((current) => {
+    setInputToken([current[0], current[1]]);
+  }, []);
+
+  const handleOutputToken = useCallback((current) => {
+    setOutputToken([current[0], current[1]]);
+  }, []);
 
   const exchangeHandler = useCallback(() => {
     if (inputToken[1] !== 1) {
@@ -61,6 +68,7 @@ const MenuPanel = ({ currencies, section }) => {
     setExchange(exchange);
   }, []);
 
+  console.log('render');
   useEffect(() => {
     currentTokenExchangeAddress.current = scammExchangeAddress;
     setLoadingRegistry(true);
@@ -77,24 +85,9 @@ const MenuPanel = ({ currencies, section }) => {
       if (currentTokenExchangeAddress.current !== toBeExchange) {
         currentTokenExchangeAddress.current = toBeExchange;
         let newExchangeAddress = await registry.getExchange(toBeExchange);
-        const newExchange = new ethers.Contract(
-          newExchangeAddress,
-          Exchange.abi,
-          provider
-        );
-        const getReserve = ethers.utils.formatEther(
-          await newExchange.getReserve()
-        );
-        const exchangeBalance = ethers.utils.formatEther(
-          await provider.getBalance(newExchange.address)
-        );
-        const totalSupply = ethers.utils.formatEther(
-          await newExchange.totalSupply()
-        );
-        setExchangeBalance(exchangeBalance);
-        setTokenReserve(getReserve);
-        setTokenSupply(totalSupply);
-        setExchangeCallback(newExchange);
+        newExchange = new ethers.Contract(newExchangeAddress, Exchange.abi, provider)
+        setExchangeCallback();
+     
       }
       console.log('base exchange loaded');
     }
@@ -113,7 +106,7 @@ const MenuPanel = ({ currencies, section }) => {
       if (index === outputToken[1]) {
         handleMenuItemSwitch(inputToken[1], outputToken[1]);
       } else {
-        setInputToken([currencies[index], index]);
+        handleInputToken([currencies[index], index]);
         setInputOne(null);
         setInputTwo(null);
       }
@@ -122,7 +115,7 @@ const MenuPanel = ({ currencies, section }) => {
       if (index === inputToken[1]) {
         handleMenuItemSwitch(inputToken[1], outputToken[1]);
       } else {
-        setOutputToken([currencies[index], index]);
+        handleOutputToken([currencies[index], index]);
         setInputOne(null);
         setInputTwo(null);
       }
@@ -133,8 +126,8 @@ const MenuPanel = ({ currencies, section }) => {
   const handleMenuItemSwitch = (prevSelected, newSelected) => {
     const prevIndex = prevSelected;
     const newIndex = newSelected;
-    setInputToken([currencies[newIndex], newIndex]);
-    setOutputToken([currencies[prevIndex], prevIndex]);
+    handleInputToken([currencies[newIndex], newIndex]);
+    handleOutputToken([currencies[prevIndex], prevIndex]);
     setInputOne(inputTwo);
     setInputTwo(inputOne);
   };

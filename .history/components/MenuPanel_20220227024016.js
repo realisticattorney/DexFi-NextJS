@@ -91,10 +91,10 @@ const MenuPanel = ({ currencies, section }) => {
         const totalSupply = ethers.utils.formatEther(
           await newExchange.totalSupply()
         );
+        setExchangeCallback(newExchange);
         setExchangeBalance(exchangeBalance);
         setTokenReserve(getReserve);
         setTokenSupply(totalSupply);
-        setExchangeCallback(newExchange);
       }
       console.log('base exchange loaded');
     }

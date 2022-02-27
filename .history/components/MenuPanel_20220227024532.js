@@ -82,18 +82,20 @@ const MenuPanel = ({ currencies, section }) => {
           Exchange.abi,
           provider
         );
-        const getReserve = ethers.utils.formatEther(
-          await newExchange.getReserve()
-        );
-        const exchangeBalance = ethers.utils.formatEther(
-          await provider.getBalance(newExchange.address)
-        );
-        const totalSupply = ethers.utils.formatEther(
-          await newExchange.totalSupply()
-        );
-        setExchangeBalance(exchangeBalance);
-        setTokenReserve(getReserve);
-        setTokenSupply(totalSupply);
+        if (sector === 'add') {
+          const getReserve = ethers.utils.formatEther(
+            await newExchange.getReserve()
+          );
+          const exchangeBalance = ethers.utils.formatEther(
+            await provider.getBalance(newExchange.address)
+          );
+          const totalSupply = ethers.utils.formatEther(
+            await newExchange.totalSupply()
+          );
+          setExchangeBalance(exchangeBalance);
+          setTokenReserve(getReserve);
+          setTokenSupply(totalSupply);
+        }
         setExchangeCallback(newExchange);
       }
       console.log('base exchange loaded');
