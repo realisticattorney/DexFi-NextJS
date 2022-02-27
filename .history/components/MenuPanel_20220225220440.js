@@ -154,7 +154,7 @@ const MenuPanel = ({ currencies, section }) => {
     }
   };
 
-  async function callBondingCurve(input, id) {
+async function callBondingCurve(input, id) {
     const exchangeEthBalance = ethers.utils.formatEther(
       await provider.getBalance(exchange.address)
     );

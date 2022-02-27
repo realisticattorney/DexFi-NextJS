@@ -7,12 +7,9 @@ import Slider from '@mui/material/Slider';
 import Grid from '@mui/material/Grid';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import Image from 'next/image';
-import Web3Modal from 'web3modal';
-import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
-import Router from 'next/router';
 
 const RemovePanel = ({ address, currency, backCurrency }) => {
-  const { provider, registry, connect, isUserWalletConnected } = useWeb3();
+  const { provider, registry } = useWeb3();
 
   const [userLps, setUserLps] = useState(0);
   const [userLpsToRemove, setUserLpsToRemove] = useState(0);
@@ -39,13 +36,14 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
     }
   };
 
-  console.log('RemovePanel', address, currency);
-  console.log('userLps', userLps);
-  console.log('userLpsToRemove', userLpsToRemove);
-  console.log('exchange', exchange);
-  console.log('exchangeBalance', exchangeBalance);
-  console.log('tokenReserve', tokenReserve);
-  console.log('tokenSupply', tokenSupply);
+  //   console.log('RemovePanel', address, currency);
+  //   console.log('userLps', userLps);
+  //   console.log('userLpsToRemove', userLpsToRemove);
+  //   console.log('exchange', exchange);
+  //   console.log('exchangeBalance', exchangeBalance);
+  //   console.log('tokenReserve', tokenReserve);
+  //   console.log('tokenSupply', tokenSupply);
+
   useEffect(() => {
     if (tokenSupply > 0) {
       return;
@@ -89,59 +87,6 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
     },
     [userLps, exchangeBalance, tokenSupply, tokenReserve]
   );
-
-  async function remove() {
-    const web3modal = new Web3Modal();
-    const connection = await web3modal.connect();
-    const provider = new ethers.providers.Web3Provider(connection);
-    const signer = provider.getSigner();
-
-    const tokenUserConnection = new ethers.Contract(
-      currency.address,
-      ERC20Token.abi,
-      signer
-    );
-    const exchangeUserConnection = new ethers.Contract(
-      exchange.address,
-      Exchange.abi,
-      signer
-    );
-
-    const wasApproved = await tokenUserConnection.approve(
-      exchange.address,
-      ethers.utils.parseEther(userLpsToRemove.toString())
-    );
-    console.log('not yet confirmed');
-    let waitDude = await wasApproved.wait();
-    console.log('waitdudeee', waitDude);
-    console.log('was approved?', wasApproved);
-    const allowanceAmount = ethers.utils.formatEther(
-      await tokenUserConnection.allowance(
-        await signer.getAddress(),
-        exchange.address
-      )
-    );
-
-    console.log('allowanceAmount', allowanceAmount);
-
-    if (allowanceAmount === '0') {
-      console.log('no allowance');
-      return;
-    }
-
-    if (allowanceAmount < userLpsToRemove.toString()) {
-      console.log('not enough allowance');
-      return;
-    }
-
-    let transaction = await exchangeUserConnection.removeLiquidity(
-      ethers.utils.parseEther(userLpsToRemove.toString())
-    );
-    console.log('transaction', transaction);
-    if (transaction.hash) {
-      Router.push('/');
-    }
-  }
 
   return (
     <div className="flex flex-col p-5">
@@ -285,13 +230,8 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
           </p>
         </div>
       </div>
-      <button
-        className="w-full hover:opacity-75 mt-3 transition-opacity duration-150  bg-dexfi-cyan shadow-sm text-white font-bold py-2 px-12 rounded-xl active:translate-y-0.1 active:shadow-none active:opacity-90"
-        onClick={() => {
-          isUserWalletConnected ? remove() : connect();
-        }}
-      >
-        Remove Liquidity
+      <button className="w-full hover:opacity-75 mt-3.5 transition-opacity duration-150  bg-pink-500 shadow-sm text-white font-bold py-2 px-12 rounded-2xl active:translate-y-0.1 active:shadow-none active:opacity-90">
+        + Add Liquidity
       </button>
     </div>
   );

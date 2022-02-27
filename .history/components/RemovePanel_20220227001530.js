@@ -9,7 +9,7 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import Image from 'next/image';
 import Web3Modal from 'web3modal';
 import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
-import Router from 'next/router';
+import Router from 'next/router'
 
 const RemovePanel = ({ address, currency, backCurrency }) => {
   const { provider, registry, connect, isUserWalletConnected } = useWeb3();
@@ -138,9 +138,8 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
       ethers.utils.parseEther(userLpsToRemove.toString())
     );
     console.log('transaction', transaction);
-    if (transaction.hash) {
+    if(transaction.hash) {
       Router.push('/');
-    }
   }
 
   return (
