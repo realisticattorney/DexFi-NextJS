@@ -130,8 +130,8 @@ const MenuPanel = ({ currencies, section }) => {
     setInputTwo(inputOne);
   };
 
-  const handleInputChange = (event) => {
-    // event.preventDefault();
+  const handleInputOneChange = (event) => {
+    event.preventDefault();
     console.log('evento', event.target.value);
     console.log('evento target', event.target.id);
     if (event.target.value > 0) {
@@ -381,7 +381,7 @@ const MenuPanel = ({ currencies, section }) => {
         token={inputToken}
         open={open}
         input={inputOne}
-        handleInputChange={handleInputChange}
+        handleInputChange={handleInputOneChange}
         handleMenuItemClick={handleMenuItemClick}
         key={1}
         menuNumber={1}
@@ -404,7 +404,7 @@ const MenuPanel = ({ currencies, section }) => {
         token={outputToken}
         open={openSecond}
         input={inputTwo}
-        handleInputChange={handleInputChange}
+        handleInputChange={handleInputOneChange}
         handleMenuItemClick={handleMenuItemClick}
         key={2}
         menuNumber={2}
