@@ -66,8 +66,8 @@ const Nav = () => {
       </div>
       <div className="ml-auto mr-3 flex">
         <Link href={`/swap`} passHref>
-          <div className="flex mx-3 space-x-1 cursor-pointer scaleFirstChild transition-transform duration-75 ">
-            <Image src="/logo.png" height={24} width={26} alt="" className="" />
+          <div className="flex mx-3 space-x-1 cursor-pointer group-hover:scale-105 transition-transform duration-75 ">
+            <Image src="/logo.png" height={24} width={26} alt="" className='' />
             <h2 className="text-dexfi-grayviolet mt-0.1 pt-0.1 font-bold">
               ${(exchangeBunny?.reserve / exchangeBunny?.balance).toFixed(3)}
             </h2>

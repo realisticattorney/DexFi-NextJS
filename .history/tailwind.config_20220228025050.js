@@ -1,6 +1,7 @@
 module.exports = {
   variants: {
-    scale: ['responsive', 'first', 'hover'],
+    scale: ['responsive', 'first', 'hover', 'focus'],
+    transform: ['responsive'],
   },
   mode: 'jit',
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],

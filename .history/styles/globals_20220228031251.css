@@ -49,5 +49,6 @@ input[type='number']::-webkit-outer-spin-button {
 
 .scaleFirstChild:hover > :not(:last-child) {
   transform: scale(1.15);
-  transition: transform 0.1s ease-in-out;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.3s;
 }
