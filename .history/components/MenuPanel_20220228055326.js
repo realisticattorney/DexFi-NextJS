@@ -390,21 +390,19 @@ const MenuPanel = ({ currencies, section }) => {
         </div>
       </div>
       <div className="flex-col mt-5 relative py-4 w-[328px] h-[95px] bg-white rounded-3xl border border-gray-50">
-        <div className="flex justify-between px-4">
+        <div className="flex justify-between px-5">
           <h2 className="text-dexfi-grayviolet font-medium text-sm">
             Minimun received
           </h2>
-          <h2 className="text-dexfi-violet font-medium text-sm">
-            {(inputTwo * 99).toFixed(4)} {outputToken[0].symbol}
-          </h2>
+          <h2 className="text-dexfi-violet font-medium text-sm">0.0</h2>
         </div>
-        <div className="flex justify-between px-4">
+        <div className="flex justify-between px-5">
           <h2 className="text-dexfi-grayviolet font-medium text-sm">
             Price Impact
           </h2>
           <h2 className="text-dexfi-violet font-medium text-sm">0.0</h2>
         </div>
-        <div className="flex justify-between px-4">
+        <div className="flex justify-between px-5">
           <h2 className="text-dexfi-grayviolet font-medium text-sm">
             Liquidity Provider Fee
           </h2>

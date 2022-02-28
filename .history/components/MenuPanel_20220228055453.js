@@ -394,9 +394,7 @@ const MenuPanel = ({ currencies, section }) => {
           <h2 className="text-dexfi-grayviolet font-medium text-sm">
             Minimun received
           </h2>
-          <h2 className="text-dexfi-violet font-medium text-sm">
-            {(inputTwo * 99).toFixed(4)} {outputToken[0].symbol}
-          </h2>
+          <h2 className="text-dexfi-violet font-medium text-sm">{(inputTwo * 99).}</h2>
         </div>
         <div className="flex justify-between px-4">
           <h2 className="text-dexfi-grayviolet font-medium text-sm">

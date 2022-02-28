@@ -4,7 +4,7 @@ import Image from 'next/image';
 import MenuPanel from '../components/MenuPanel.js';
 import { scammcoinAddress, USDCAddress, ETCAddress } from '../config.js';
 import Subnav from '../components/Subnav.js';
-
+import SwapUpperSection from '../components/SwapUpperSection.js';
 
 export default function Swap(props) {
   const { currencies } = props;
@@ -13,7 +13,10 @@ export default function Swap(props) {
     <div className="flex-col ">
       <Subnav marked={'Exchange'} />
       <div className="p-6 mx-auto w-min h-screen -mb-[102px]">
-        <MenuPanel currencies={currencies} section={'swap'} />
+        <div className="flex-col relative py-5 w-[326px] h-[518px] bg-white rounded-3xl border shadow-sm shadow-slate-300">
+
+          <MenuPanel currencies={currencies} section={'swap'} />
+        </div>
         <div className="absolute bottom-0 right-10 -mb-1">
           <Image src="/help.png" width={191} height={130} alt="lol" />
         </div>

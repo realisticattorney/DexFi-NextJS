@@ -309,109 +309,85 @@ const MenuPanel = ({ currencies, section }) => {
   }
 
   return (
-    <>
-      <div className="flex-col relative py-5 w-[328px] h-[518px] bg-white rounded-3xl border shadow-sm shadow-slate-300">
-        <SwapUpperSection />
-        <MenuItemList
-          handleOpen={handleOpen}
-          handleClose={handleClose}
-          currencies={currencies}
-          token={inputToken}
-          open={open}
-          input={inputOne}
-          handleInputChange={handleInputChange}
+    <div className="flex-col relative py-5 w-[326px] h-[518px] bg-white rounded-3xl border shadow-sm shadow-slate-300">
+      <SwapUpperSection />
+      <MenuItemList
+        handleOpen={handleOpen}
+        handleClose={handleClose}
+        currencies={currencies}
+        token={inputToken}
+        open={open}
+        input={inputOne}
+        handleInputChange={handleInputChange}
+        handleMenuItemClick={handleMenuItemClick}
+        key={1}
+        menuNumber={1}
+        section={section}
+        id={'1'}
+      />
+      {section === 'swap' ? (
+        <SwitchIcon
           handleMenuItemClick={handleMenuItemClick}
-          key={1}
-          menuNumber={1}
-          section={section}
-          id={'1'}
-        />
-        {section === 'swap' ? (
-          <SwitchIcon
-            handleMenuItemClick={handleMenuItemClick}
-            outputToken={outputToken}
-            callExchange={callExchange}
-          />
-        ) : (
-          <h1 className="text-center font-bold text-lg text-violet-700">+</h1>
-        )}
-        <MenuItemList
-          handleOpen={handleOpenSecond}
-          handleClose={handleCloseSecond}
-          currencies={currencies}
-          token={outputToken}
-          open={openSecond}
-          input={inputTwo}
-          handleInputChange={handleInputChange}
-          handleMenuItemClick={handleMenuItemClick}
-          key={2}
-          menuNumber={2}
-          section={section}
-          id={'2'}
-        />
-        <PriceEstimator
-          inputOne={inputOne}
-          inputTwo={inputTwo}
-          inputToken={inputToken}
           outputToken={outputToken}
-          section={section}
-          exchangeCurrent={exchangeCurrent}
-          shareOfPool={shareOfPool}
+          callExchange={callExchange}
         />
+      ) : (
+        <h1 className="text-center font-bold text-lg text-violet-700">+</h1>
+      )}
+      <MenuItemList
+        handleOpen={handleOpenSecond}
+        handleClose={handleCloseSecond}
+        currencies={currencies}
+        token={outputToken}
+        open={openSecond}
+        input={inputTwo}
+        handleInputChange={handleInputChange}
+        handleMenuItemClick={handleMenuItemClick}
+        key={2}
+        menuNumber={2}
+        section={section}
+        id={'2'}
+      />
+      <PriceEstimator
+        inputOne={inputOne}
+        inputTwo={inputTwo}
+        inputToken={inputToken}
+        outputToken={outputToken}
+        section={section}
+        exchangeCurrent={exchangeCurrent}
+        shareOfPool={shareOfPool}
+      />
 
-        <div className="px-4 absolute w-full bottom-4">
-          <button
-            className={`w-full bg-pink-500 hover:opacity-75 transition-opacity duration-200  text-white font-bold py-3 px-12 rounded-xl shadow-slate-500 shadow-sm active:translate-y-0.1 active:shadow-none active:opacity-90 ${
-              isUserWalletConnected && 'disabled:cursor-not-allowed'
-            }`}
-            disabled={
-              isUserWalletConnected &&
-              (inputOne <= 0 ||
-                inputTwo <= 0 ||
-                inputOne === '' ||
-                inputTwo === '' ||
-                inputOne === null ||
-                inputTwo === null)
-            }
-            onClick={() => {
-              isUserWalletConnected
-                ? section === 'swap'
-                  ? swap()
-                  : add()
-                : connect(contract.address);
-            }}
-          >
-            {isUserWalletConnected
+      <div className="px-4 absolute w-full bottom-4">
+        <button
+          className={`w-full bg-pink-500 hover:opacity-75 transition-opacity duration-200  text-white font-bold py-3 px-12 rounded-xl shadow-slate-500 shadow-sm active:translate-y-0.1 active:shadow-none active:opacity-90 ${
+            isUserWalletConnected && 'disabled:cursor-not-allowed'
+          }`}
+          disabled={
+            isUserWalletConnected &&
+            (inputOne <= 0 ||
+              inputTwo <= 0 ||
+              inputOne === '' ||
+              inputTwo === '' ||
+              inputOne === null ||
+              inputTwo === null)
+          }
+          onClick={() => {
+            isUserWalletConnected
               ? section === 'swap'
-                ? 'Swap'
-                : 'Add Liquidity'
-              : 'Connect Wallet'}
-          </button>
-        </div>
+                ? swap()
+                : add()
+              : connect(contract.address);
+          }}
+        >
+          {isUserWalletConnected
+            ? section === 'swap'
+              ? 'Swap'
+              : 'Add Liquidity'
+            : 'Connect Wallet'}
+        </button>
       </div>
-      <div className="flex-col mt-5 relative py-4 w-[328px] h-[95px] bg-white rounded-3xl border border-gray-50">
-        <div className="flex justify-between px-4">
-          <h2 className="text-dexfi-grayviolet font-medium text-sm">
-            Minimun received
-          </h2>
-          <h2 className="text-dexfi-violet font-medium text-sm">
-            {(inputTwo * 99).toFixed(4)} {outputToken[0].symbol}
-          </h2>
-        </div>
-        <div className="flex justify-between px-4">
-          <h2 className="text-dexfi-grayviolet font-medium text-sm">
-            Price Impact
-          </h2>
-          <h2 className="text-dexfi-violet font-medium text-sm">0.0</h2>
-        </div>
-        <div className="flex justify-between px-4">
-          <h2 className="text-dexfi-grayviolet font-medium text-sm">
-            Liquidity Provider Fee
-          </h2>
-          <h2 className="text-dexfi-violet font-medium text-sm">0.0</h2>
-        </div>
-      </div>
-    </>
+    </div>
   );
 };
 

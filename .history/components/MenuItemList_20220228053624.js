@@ -44,7 +44,7 @@ const MenuItemList = ({
         onClick={() => {
           modalIsDisabled === 'yes' ? '' : handleOpen();
         }}
-        className="flex items-center ml-1.3 mb-0.5"
+        className="flex items-center ml-1"
       >
         <Image
           src={token[0].logoURI}
@@ -131,7 +131,7 @@ const MenuItemList = ({
             placeholder="0.0"
             onChange={handleInputChange}
             InputProps={{
-              disableUnderline: true,
+              disableUnderline: true, // <== added this
               inputProps: {
                 style: {
                   textAlign: 'right',
