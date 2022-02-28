@@ -396,7 +396,6 @@ const MenuPanel = ({ currencies, section }) => {
         inputToken={inputToken}
         outputToken={outputToken}
         section={section}
-        balance={balance}
       />
     </>
   );

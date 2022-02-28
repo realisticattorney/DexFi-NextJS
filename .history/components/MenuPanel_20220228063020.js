@@ -232,7 +232,7 @@ const MenuPanel = ({ currencies, section }) => {
       signer
     );
 
-    if (section === 'swap' && swapTypeHandler() === 'EthToTokenSwap') {
+    if (section === 'exchange' && swapTypeHandler() === 'EthToTokenSwap') {
       return [exchangeUserConnection];
     }
 
@@ -396,7 +396,6 @@ const MenuPanel = ({ currencies, section }) => {
         inputToken={inputToken}
         outputToken={outputToken}
         section={section}
-        balance={balance}
       />
     </>
   );
