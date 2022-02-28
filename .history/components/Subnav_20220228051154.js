@@ -27,7 +27,7 @@ const Subnav = ({ marked }) => {
             marked === 'Liquidity' ? 'border-b-4 border-cyan-500' : ''
           }`}
         >
-            <p
+            <a
               className={`${
                 marked === 'Liquidity'
                   ? 'text-violet-600 font-bold'
@@ -35,7 +35,7 @@ const Subnav = ({ marked }) => {
               }`}
             >
               Liquidity
-            </p>
+            </a>
         </a>
           </Link>
       </div>

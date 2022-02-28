@@ -21,13 +21,13 @@ const Subnav = ({ marked }) => {
             </p>
         </a>
           </Link>
-          <Link href="/liquidity">
-        <a
+        <div
           className={`pt-2.5 pb-1 px-2 hover:bg-gray-100 ${
             marked === 'Liquidity' ? 'border-b-4 border-cyan-500' : ''
           }`}
         >
-            <p
+          <Link href="/liquidity">
+            <a
               className={`${
                 marked === 'Liquidity'
                   ? 'text-violet-600 font-bold'
@@ -35,9 +35,9 @@ const Subnav = ({ marked }) => {
               }`}
             >
               Liquidity
-            </p>
-        </a>
+            </a>
           </Link>
+        </div>
       </div>
     </nav>
   );
