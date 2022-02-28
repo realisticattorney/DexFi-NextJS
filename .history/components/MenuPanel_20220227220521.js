@@ -75,17 +75,13 @@ const MenuPanel = ({ currencies, section }) => {
       if (currentTokenExchangeAddress.current !== toBeExchange) {
         currentTokenExchangeAddress.current = toBeExchange;
         let newExchangeAddress = await registry.getExchange(toBeExchange);
-        const newExchange = new ethers.Contract(
-          newExchangeAddress,
-          Exchange.abi,
-          provider
-        );
+        const newExchange = new ethers.Contract(newExchangeAddress, Exchange.abi, provider)
         setExchangeCallback(newExchange);
+     
       }
       console.log('base exchange loaded');
     }
-    loadingRegistry &&
-      registry &&
+    loadingRegistry && registry &&
       loadExchange(exchangeHandler, registry, setExchangeCallback);
   }, [
     exchangeHandler,
@@ -148,6 +144,9 @@ const MenuPanel = ({ currencies, section }) => {
   };
 
   async function callBondingCurve(input, id) {
+    const getReserve = ethers.utils.formatEther(await exchange.getReserve());
+    console.log('duuude2', exchangeCurrent.reserve);
+    console.log('inppooooot', input);
     if (id === 'add-liquidity' && input === null) {
       return [exchangeCurrent.reserve, exchangeCurrent.balance, 0];
     } else if (id === 'add-liquidity') {

@@ -148,6 +148,8 @@ const MenuPanel = ({ currencies, section }) => {
   };
 
   async function callBondingCurve(input, id) {
+    console.log('duuude2', exchangeCurrent.reserve);
+    console.log('inppooooot', input);
     if (id === 'add-liquidity' && input === null) {
       return [exchangeCurrent.reserve, exchangeCurrent.balance, 0];
     } else if (id === 'add-liquidity') {

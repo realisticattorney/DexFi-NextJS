@@ -75,17 +75,13 @@ const MenuPanel = ({ currencies, section }) => {
       if (currentTokenExchangeAddress.current !== toBeExchange) {
         currentTokenExchangeAddress.current = toBeExchange;
         let newExchangeAddress = await registry.getExchange(toBeExchange);
-        const newExchange = new ethers.Contract(
-          newExchangeAddress,
-          Exchange.abi,
-          provider
-        );
+        const newExchange = new ethers.Contract(newExchangeAddress, Exchange.abi, provider)
         setExchangeCallback(newExchange);
+     
       }
       console.log('base exchange loaded');
     }
-    loadingRegistry &&
-      registry &&
+    loadingRegistry && registry &&
       loadExchange(exchangeHandler, registry, setExchangeCallback);
   }, [
     exchangeHandler,
@@ -148,14 +144,18 @@ const MenuPanel = ({ currencies, section }) => {
   };
 
   async function callBondingCurve(input, id) {
+    console.log('duuude', exchangeCurrent.balance);
+    const getReserve = ethers.utils.formatEther(await exchange.getReserve());
+    console.log('duuude2', getReserve);
+    console.log('inppooooot', input);
     if (id === 'add-liquidity' && input === null) {
-      return [exchangeCurrent.reserve, exchangeCurrent.balance, 0];
+      return [getReserve, exchangeCurrent.balance, 0];
     } else if (id === 'add-liquidity') {
       let intoNumb = parseInt(exchangeCurrent.balance);
       console.log('nuuuuuum', intoNumb);
       let inpot = parseInt(input);
       return [
-        exchangeCurrent.reserve,
+        getReserve,
         exchangeCurrent.balance,
         (inpot / (inpot + intoNumb)) * 100,
       ];
@@ -164,8 +164,8 @@ const MenuPanel = ({ currencies, section }) => {
     let amount;
     amount =
       id === '1'
-        ? (exchangeCurrent.balance * input) / exchangeCurrent.reserve
-        : (exchangeCurrent.reserve * input) / exchangeCurrent.balance;
+        ? (exchangeCurrent.balance * input) / getReserve
+        : (getReserve * input) / exchangeCurrent.balance;
     console.log('amount', amount);
     if (id === '1') {
       setInputOne(input);
