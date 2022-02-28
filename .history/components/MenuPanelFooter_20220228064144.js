@@ -6,7 +6,7 @@ const MenuPanelFooter = ({
   inputToken,
   outputToken,
   section,
-  balance,
+  balance
 }) => {
   if (inputOne > 0 && section === 'swap') {
     return (
@@ -47,14 +47,10 @@ const MenuPanelFooter = ({
         </div>
       </div>
     );
-  } else if (section === 'add') {
+  } else if (section === 'Liquidity') {
     return (
       <div className="flex-col mt-5 relative py-4 w-[328px] h-[95px] bg-white rounded-3xl border border-gray-50">
-        <p>
-          By adding liquidity youll earn 0.17% of all trades on this pair
-          proportional to your share of the pool. Fees are added to the pool,
-          accrue in real time and can be claimed by withdrawing your liquidity.
-        </p>
+         <p>By adding liquidity youll earn 0.17% of all trades on this pair proportional to your share of the pool. Fees are added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.</p>
       </div>
     );
   } else {

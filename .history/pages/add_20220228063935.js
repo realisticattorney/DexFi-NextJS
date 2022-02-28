@@ -10,10 +10,7 @@ export default function Add(props) {
   return (
     <div className="flex-col ">
       <div className="p-6 mx-auto w-min">
-        <div className="flex-col relative w-[436px] h-[626px] bg-white rounded-3xl border shadow-sm">
-          {/* <AddUpperSection /> */}
-          <MenuPanel currencies={currencies} section={"add"} />
-        </div>
+        <MenuPanel currencies={currencies} section={'add'} />
       </div>
     </div>
   );

@@ -10,7 +10,6 @@ import SwitchIcon from './SwitchIcon.js';
 import PriceEstimator from './PriceEstimator.js';
 import _ from 'lodash';
 import SwapUpperSection from '../components/SwapUpperSection.js';
-import AddUpperSection from '../components/AddUpperSection';
 import MenuPanelFooter from './MenuPanelFooter.js';
 const MenuPanel = ({ currencies, section }) => {
   const {
@@ -312,14 +311,8 @@ const MenuPanel = ({ currencies, section }) => {
 
   return (
     <>
-      <div
-        className={`${
-          section === 'swap'
-            ? 'py-5 w-[328px] h-[518px]'
-            : 'w-[436px] h-[626px]'
-        } flex-col relative  bg-white rounded-3xl border shadow-sm shadow-slate-300`}
-      >
-        {section === 'swap' ? <SwapUpperSection /> : <AddUpperSection />}
+      <div className={`${section === 'swap' ? "py-5 w-[328px] h-[518px]" : "w-[436px] h-[626px]" }flex-col relative  bg-white rounded-3xl border shadow-sm shadow-slate-300`}>
+        <SwapUpperSection />
         <MenuItemList
           handleOpen={handleOpen}
           handleClose={handleClose}

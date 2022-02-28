@@ -317,7 +317,7 @@ const MenuPanel = ({ currencies, section }) => {
           section === 'swap'
             ? 'py-5 w-[328px] h-[518px]'
             : 'w-[436px] h-[626px]'
-        } flex-col relative  bg-white rounded-3xl border shadow-sm shadow-slate-300`}
+        }flex-col relative  bg-white rounded-3xl border shadow-sm shadow-slate-300`}
       >
         {section === 'swap' ? <SwapUpperSection /> : <AddUpperSection />}
         <MenuItemList
