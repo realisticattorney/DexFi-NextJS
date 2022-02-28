@@ -100,7 +100,7 @@ const Footer = () => {
         <div></div>
         <div className="items-center flex">
           <Link href={`/swap`} passHref>
-            <div className="flex mx-5 space-x-2 cursor-pointer scaleFirstChild transition-transform duration-75 ">
+            <div className="flex mx-5 space-x-1 cursor-pointer scaleFirstChild transition-transform duration-75 ">
               <Image
                 src="/logo.png"
                 height={24}
@@ -108,7 +108,7 @@ const Footer = () => {
                 alt=""
                 className=""
               />
-              <h2 className="text-dexfi-other_gray mt-0.1 pt-0.1 font-bold">
+              <h2 className="text-dexfi- mt-0.1 pt-0.1 font-bold">
                 ${(exchangeBunny?.reserve / exchangeBunny?.balance).toFixed(3)}
               </h2>
             </div>

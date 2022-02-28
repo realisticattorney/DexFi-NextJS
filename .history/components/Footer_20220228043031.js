@@ -100,7 +100,7 @@ const Footer = () => {
         <div></div>
         <div className="items-center flex">
           <Link href={`/swap`} passHref>
-            <div className="flex mx-5 space-x-2 cursor-pointer scaleFirstChild transition-transform duration-75 ">
+            <div className="flex mx-5 space-x-1 cursor-pointer scaleFirstChild transition-transform duration-75 ">
               <Image
                 src="/logo.png"
                 height={24}

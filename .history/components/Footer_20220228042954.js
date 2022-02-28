@@ -100,7 +100,7 @@ const Footer = () => {
         <div></div>
         <div className="items-center flex">
           <Link href={`/swap`} passHref>
-            <div className="flex mx-5 space-x-2 cursor-pointer scaleFirstChild transition-transform duration-75 ">
+            <div className="flex mx-5 space-x-1 cursor-pointer scaleFirstChild transition-transform duration-75 ">
               <Image
                 src="/logo.png"
                 height={24}
@@ -108,14 +108,14 @@ const Footer = () => {
                 alt=""
                 className=""
               />
-              <h2 className="text-dexfi-other_gray mt-0.1 pt-0.1 font-bold">
+              <h2 className="text-dexfi-grayviolet mt-0.1 pt-0.1 font-bold">
                 ${(exchangeBunny?.reserve / exchangeBunny?.balance).toFixed(3)}
               </h2>
             </div>
           </Link>
           <Link href="/swap">
             <a>
-              <button className=" text-white font-bold py-1 px-4 shadow-sm tracking-wide bg-pink-500 rounded-full hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90 mr-6">
+              <button className=" text-white font-bold py-1 px-4 shadow-sm tracking-wide bg-pink-500 rounded-full hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
                 Buy SCAM -{'>'}
               </button>
             </a>
