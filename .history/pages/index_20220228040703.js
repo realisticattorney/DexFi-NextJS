@@ -234,32 +234,26 @@ const Home = () => {
         >
           <path d="M1660 48C1139.02 46.1887 336.256 15.2453 0 0H1660V48Z"></path>
         </svg>
-      </div>
-      <div className="w-full bg-[#FAF9FA]">
-        <div className="w-full grid bg-[#FAF9FA] grid-cols-2 grid-rows-1 max-w-[1200px] mx-auto pb-24 pt-10">
-          <div className="flex-col px-6 py-32 flex-grow">
-            <h1 className="text-4xl tracking-wide font-bold text-dexfi-violet">
-              <span className="text-dexfi-moon">Trade</span> anything. No
-              registration, no hassle.
+        <div className="w-full grid grid-cols-2 grid-rows-1 max-w-[1200px] mx-auto mt-24">
+          <div className="flex-col px-6 py-40 flex-grow space-y-6">
+            <h1 className="text-6xl tracking-wide font-bold text-dexfi-moon">
+              The moon is made of pancakes.
             </h1>
-            <p className="font-semibold text-dexfi-grayviolet mt-6">
-              Trade any token on BNB Smart Chain in seconds, just by<br></br>{' '}
-              connecting your wallet.
+            <p className="text-xl font-bold text-dexfi-violet">
+              Trade, earn, and win crypto on the most popular decentralized
+              platform in the galaxy.
             </p>
-            <div className="mt-9">
+            <div className="space-x-2">
               <Link href="/swap">
-                <a className="w-[166px] bg-pink-500 active:translate-y-0.1 active:shadow-none active:opacity-90  text-white font-bold py-3 px-7 hover:opacity-75 transition-opacity duration-300 rounded-xl shadow-slate-400 shadow-sm ">
-                  Trade Now
-                </a>
-              </Link>
-              <Link href="/swap">
-                <a className="w-[166px] active:translate-y-0.1 active:shadow-none active:opacity-90 mx-5 text-pink-500 font-extrabold  hover:opacity-75 transition-opacity duration-300  ">
-                  Learn
+                <a>
+                  <button className="w-[166px] bg-pink-500 active:translate-y-0.1 active:shadow-none active:opacity-90  text-white font-bold py-2.5 px-5 hover:opacity-75 transition-opacity duration-300 rounded-xl shadow-slate-500 shadow-sm ">
+                    Connect Wallet
+                  </button>
                 </a>
               </Link>
             </div>
           </div>
-          <CoinWrapper className="mx-5">
+          <CoinWrapper className="">
             <Image
               src="/BNB.png"
               layout="fill"

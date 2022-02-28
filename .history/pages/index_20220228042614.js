@@ -253,7 +253,7 @@ const Home = () => {
                 </a>
               </Link>
               <Link href="/swap">
-                <a className="w-[166px] active:translate-y-0.1 active:shadow-none active:opacity-90 mx-5 text-pink-500 font-extrabold  hover:opacity-75 transition-opacity duration-300  ">
+                <a className="w-[166px] active:translate-y-0.1 active:shadow-none active:opacity-90 mx-5 text-pink-500 font-bold  hover:opacity-75 transition-opacity duration-300  ">
                   Learn
                 </a>
               </Link>

@@ -246,15 +246,10 @@ const Home = () => {
               Trade any token on BNB Smart Chain in seconds, just by<br></br>{' '}
               connecting your wallet.
             </p>
-            <div className="mt-9">
+            <div className="space-x-2 mt-9">
               <Link href="/swap">
                 <a className="w-[166px] bg-pink-500 active:translate-y-0.1 active:shadow-none active:opacity-90  text-white font-bold py-3 px-7 hover:opacity-75 transition-opacity duration-300 rounded-xl shadow-slate-400 shadow-sm ">
                   Trade Now
-                </a>
-              </Link>
-              <Link href="/swap">
-                <a className="w-[166px] active:translate-y-0.1 active:shadow-none active:opacity-90 mx-5 text-pink-500 font-extrabold  hover:opacity-75 transition-opacity duration-300  ">
-                  Learn
                 </a>
               </Link>
             </div>
