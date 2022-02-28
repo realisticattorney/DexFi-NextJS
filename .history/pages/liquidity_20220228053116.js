@@ -144,7 +144,7 @@ export default function Liquidity(props) {
                           </h1>
                         </div>
                         <p className="font-medium text-xs1 text-dexfi-grayviolet">
-                          {parseInt(currency.userLPTokens).toFixed(2)}
+                          {parseInt(currency.userLPTokens).toFixed(3)}
                         </p>
                       </div>
                     </AccordionSummary>
