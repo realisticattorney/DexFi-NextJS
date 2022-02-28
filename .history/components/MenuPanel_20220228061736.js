@@ -411,9 +411,7 @@ const MenuPanel = ({ currencies, section }) => {
               %
             </h2>
           ) : (
-            <h2 className="text-emerald-400 font-medium text-sm tracking-wide">
-              {'<'}0.01%
-            </h2>
+            <h2 className="text-emerald-400 font-medium text-sm tracking-wide">{'<'}0.01%</h2>
           )}
         </div>
         <div className="flex justify-between px-4">

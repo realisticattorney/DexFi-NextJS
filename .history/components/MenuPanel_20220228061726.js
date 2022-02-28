@@ -411,16 +411,14 @@ const MenuPanel = ({ currencies, section }) => {
               %
             </h2>
           ) : (
-            <h2 className="text-emerald-400 font-medium text-sm tracking-wide">
-              {'<'}0.01%
-            </h2>
+            <h2 className="text-emerald-400 font-medium text-sm tracking-wide">{'<'}0.01%</h2>
           )}
         </div>
         <div className="flex justify-between px-4">
           <h2 className="text-dexfi-grayviolet font-medium text-sm">
             Liquidity Provider Fee
           </h2>
-          <h2 className="text-dexfi-violet font-medium text-sm tracking-wide">
+          <h2 className="text-dexfi-violet font-medium text-sm">
             {(inputOne / 100).toFixed(3)} {inputToken[0].symbol}
           </h2>
         </div>
