@@ -13,7 +13,7 @@ import Router from 'next/router';
 
 const RemovePanel = ({ address, currency, backCurrency }) => {
   const { connect, isUserWalletConnected, exchangeCurrent } = useWeb3();
-  const { contract, balance, reserve, totalSupply } = exchangeCurrent;
+  const { contract, balance, }
   const [userLps, setUserLps] = useState(0);
   const [userLpsToRemove, setUserLpsToRemove] = useState(0);
   const [expectedWithdrawn, setExpectedWithdrawn] = useState([0, 0]);
@@ -38,23 +38,30 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
   useEffect(() => {
     const loadExchange = async () => {
       const userLPTokens = ethers.utils.formatEther(
-        await contract.balanceOf(address)
+        await exchangeCurrent.contract.balanceOf(address)
       );
       setUserLps(userLPTokens);
     };
 
-    contract && loadExchange();
-  }, [address, contract]);
+    exchangeCurrent.contract && loadExchange();
+  }, [address, exchangeCurrent.contract]);
 
   const returnsEstimator = useCallback(
     (userLpsToRemove) => {
       let lps = (userLps * userLpsToRemove) / 100;
-      const ethWithdrawn = (balance * lps) / totalSupply;
-      const tokenWithdrawn = (reserve * lps) / totalSupply;
+      const ethWithdrawn =
+        (exchangeCurrent.balance * lps) / exchangeCurrent.totalSupply;
+      const tokenWithdrawn =
+        (exchangeCurrent.reserve * lps) / exchangeCurrent.totalSupply;
 
       setExpectedWithdrawn([ethWithdrawn, tokenWithdrawn]);
     },
-    [userLps, balance, totalSupply, reserve]
+    [
+      userLps,
+      exchangeCurrent.balance,
+      exchangeCurrent.totalSupply,
+      exchangeCurrent.reserve,
+    ]
   );
 
   async function remove() {
@@ -69,13 +76,13 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
       signer
     );
     const exchangeUserConnection = new ethers.Contract(
-      contract.address,
+      exchangeCurrent.contract.address,
       Exchange.abi,
       signer
     );
 
     const wasApproved = await tokenUserConnection.approve(
-      contract.address,
+      exchangeCurrent.contract.address,
       ethers.utils.parseEther(userLpsToRemove.toString())
     );
     console.log('not yet confirmed');
@@ -85,7 +92,7 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
     const allowanceAmount = ethers.utils.formatEther(
       await tokenUserConnection.allowance(
         await signer.getAddress(),
-        contract.address
+        exchangeCurrent.contract.address
       )
     );
 
@@ -242,13 +249,15 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
             1 {currency.symbol}
           </h1>
           <p className="font-medium text-sm text-dexfi-grayviolet">
-            {balance / reserve} {backCurrency.symbol}
+            {exchangeCurrent.balance / exchangeCurrent.reserve}{' '}
+            {backCurrency.symbol}
           </p>
         </div>
         <div className="flex justify-between mt-1">
           <h1 className="font-medium text-sm text-dexfi-grayviolet">1 WETH</h1>
           <p className="font-medium text-sm text-dexfi-grayviolet">
-            {reserve / balance} {currency.symbol}
+            {exchangeCurrent.reserve / exchangeCurrent.balance}{' '}
+            {currency.symbol}
           </p>
         </div>
       </div>

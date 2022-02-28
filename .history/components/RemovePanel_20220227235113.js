@@ -49,12 +49,19 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
   const returnsEstimator = useCallback(
     (userLpsToRemove) => {
       let lps = (userLps * userLpsToRemove) / 100;
-      const ethWithdrawn = (balance * lps) / totalSupply;
-      const tokenWithdrawn = (reserve * lps) / totalSupply;
+      const ethWithdrawn =
+        (balance * lps) / totalSupply;
+      const tokenWithdrawn =
+        (reserve * lps) / totalSupply;
 
       setExpectedWithdrawn([ethWithdrawn, tokenWithdrawn]);
     },
-    [userLps, balance, totalSupply, reserve]
+    [
+      userLps,
+      balance,
+      totalSupply,
+      reserve,
+    ]
   );
 
   async function remove() {
@@ -242,13 +249,15 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
             1 {currency.symbol}
           </h1>
           <p className="font-medium text-sm text-dexfi-grayviolet">
-            {balance / reserve} {backCurrency.symbol}
+            {balance / reserve}{' '}
+            {backCurrency.symbol}
           </p>
         </div>
         <div className="flex justify-between mt-1">
           <h1 className="font-medium text-sm text-dexfi-grayviolet">1 WETH</h1>
           <p className="font-medium text-sm text-dexfi-grayviolet">
-            {reserve / balance} {currency.symbol}
+            {reserve / balance}{' '}
+            {currency.symbol}
           </p>
         </div>
       </div>
