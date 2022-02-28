@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
+
 import { scammcoinAddress, USDCAddress, ETCAddress } from '../config.js';
 import AddUpperSection from '../components/AddUpperSection';
 import MenuPanel from '../components/MenuPanel';

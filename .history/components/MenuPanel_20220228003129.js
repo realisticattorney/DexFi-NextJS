@@ -19,8 +19,8 @@ const MenuPanel = ({ currencies, section }) => {
     exchangeCurrent,
     setExchangeCurrent,
   } = useWeb3();
-  const { contract, balance, reserve, totalSupply } = exchangeCurrent ?? {};
-
+  const { contract, balance, reserve, totalSupply } = exchangeCurrent;
+  
   const [loadingRegistry, setLoadingRegistry] = useState(false);
   const [inputToken, setInputToken] = useState([currencies[0], 0]);
   const [outputToken, setOutputToken] = useState([currencies[1], 1]);
@@ -155,14 +155,16 @@ const MenuPanel = ({ currencies, section }) => {
     let inpot;
     let amount;
     amount =
-      id === '1' ? (balance * input) / reserve : (reserve * input) / balance;
+      id === '1'
+        ? (exchangeCurrent.balance * input) / exchangeCurrent.reserve
+        : (exchangeCurrent.reserve * input) / exchangeCurrent.balance;
     console.log('amount', amount);
     if (id === '1') {
-      intoNumb = parseInt(reserve);
+      intoNumb = parseInt(exchangeCurrent.reserve);
       setInputOne(input);
       setInputTwo(amount);
     } else {
-      intoNumb = parseInt(balance);
+      intoNumb = parseInt(exchangeCurrent.balance);
       setInputTwo(input);
       setInputOne(amount);
     }
@@ -178,7 +180,7 @@ const MenuPanel = ({ currencies, section }) => {
       amount =
         id === '1'
           ? ethers.utils.formatEther(
-              await contract.getTokenToTokenAmount(
+              await exchangeCurrent.contract.getTokenToTokenAmount(
                 price,
                 outputToken[0].address
               )
@@ -186,7 +188,7 @@ const MenuPanel = ({ currencies, section }) => {
           : (
               (input * input) /
               ethers.utils.formatEther(
-                await contract.getTokenToTokenAmount(
+                await exchangeCurrent.contract.getTokenToTokenAmount(
                   price,
                   outputToken[0].address
                 )
@@ -195,13 +197,21 @@ const MenuPanel = ({ currencies, section }) => {
     } else if (callFunction === 'TokenToEthSwap') {
       amount =
         id === '1'
-          ? ethers.utils.formatEther(await contract.getEthAmount(price))
-          : ethers.utils.formatEther(await contract.getTokenAmount(price));
+          ? ethers.utils.formatEther(
+              await exchangeCurrent.contract.getEthAmount(price)
+            )
+          : ethers.utils.formatEther(
+              await exchangeCurrent.contract.getTokenAmount(price)
+            );
     } else {
       amount =
         id === '1'
-          ? ethers.utils.formatEther(await contract.getTokenAmount(price))
-          : ethers.utils.formatEther(await contract.getEthAmount(price));
+          ? ethers.utils.formatEther(
+              await exchangeCurrent.contract.getTokenAmount(price)
+            )
+          : ethers.utils.formatEther(
+              await exchangeCurrent.contract.getEthAmount(price)
+            );
     }
 
     console.log('amount', amount);
@@ -294,7 +304,7 @@ const MenuPanel = ({ currencies, section }) => {
       console.log('transaction', transaction);
     } else {
       let minTokensAmount = ethers.utils.formatEther(
-        await contract.getTokenToTokenAmount(
+        await exchangeCurrent.contract.getTokenToTokenAmount(
           ethers.utils.parseEther(allowanceAmount.toString()),
           outputToken[0].address
         )
@@ -378,7 +388,7 @@ const MenuPanel = ({ currencies, section }) => {
               ? section === 'swap'
                 ? swap()
                 : add()
-              : connect(contract.address);
+              : connect(exchangeCurrent.contract.address);
           }}
         >
           {isUserWalletConnected

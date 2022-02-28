@@ -14,13 +14,15 @@ const MenuPanel = ({ currencies, section }) => {
   const {
     provider,
     registry,
+    exchangeBunny,
+    web3,
     isUserWalletConnected,
     connect,
     exchangeCurrent,
     setExchangeCurrent,
   } = useWeb3();
-  const { contract, balance, reserve, totalSupply } = exchangeCurrent ?? {};
 
+  const [exchange, setExchange] = useState(exchangeBunny);
   const [loadingRegistry, setLoadingRegistry] = useState(false);
   const [inputToken, setInputToken] = useState([currencies[0], 0]);
   const [outputToken, setOutputToken] = useState([currencies[1], 1]);
@@ -55,12 +57,9 @@ const MenuPanel = ({ currencies, section }) => {
     }
   }, [inputToken, outputToken]);
 
-  const setExchangeCallback = useCallback(
-    async (exchange) => {
-      await setExchangeCurrent(exchange);
-    },
-    [setExchangeCurrent]
-  );
+  const setExchangeCallback = useCallback(async (exchange) => {
+    setExchange(exchange);
+  }, []);
 
   useEffect(() => {
     currentTokenExchangeAddress.current = scammExchangeAddress;
@@ -155,14 +154,16 @@ const MenuPanel = ({ currencies, section }) => {
     let inpot;
     let amount;
     amount =
-      id === '1' ? (balance * input) / reserve : (reserve * input) / balance;
+      id === '1'
+        ? (exchangeCurrent.balance * input) / exchangeCurrent.reserve
+        : (exchangeCurrent.reserve * input) / exchangeCurrent.balance;
     console.log('amount', amount);
     if (id === '1') {
-      intoNumb = parseInt(reserve);
+      intoNumb = parseInt(exchangeCurrent.reserve);
       setInputOne(input);
       setInputTwo(amount);
     } else {
-      intoNumb = parseInt(balance);
+      intoNumb = parseInt(exchangeCurrent.balance);
       setInputTwo(input);
       setInputOne(amount);
     }
@@ -178,7 +179,7 @@ const MenuPanel = ({ currencies, section }) => {
       amount =
         id === '1'
           ? ethers.utils.formatEther(
-              await contract.getTokenToTokenAmount(
+              await exchange.getTokenToTokenAmount(
                 price,
                 outputToken[0].address
               )
@@ -186,7 +187,7 @@ const MenuPanel = ({ currencies, section }) => {
           : (
               (input * input) /
               ethers.utils.formatEther(
-                await contract.getTokenToTokenAmount(
+                await exchange.getTokenToTokenAmount(
                   price,
                   outputToken[0].address
                 )
@@ -195,13 +196,13 @@ const MenuPanel = ({ currencies, section }) => {
     } else if (callFunction === 'TokenToEthSwap') {
       amount =
         id === '1'
-          ? ethers.utils.formatEther(await contract.getEthAmount(price))
-          : ethers.utils.formatEther(await contract.getTokenAmount(price));
+          ? ethers.utils.formatEther(await exchange.getEthAmount(price))
+          : ethers.utils.formatEther(await exchange.getTokenAmount(price));
     } else {
       amount =
         id === '1'
-          ? ethers.utils.formatEther(await contract.getTokenAmount(price))
-          : ethers.utils.formatEther(await contract.getEthAmount(price));
+          ? ethers.utils.formatEther(await exchange.getTokenAmount(price))
+          : ethers.utils.formatEther(await exchange.getEthAmount(price));
     }
 
     console.log('amount', amount);
@@ -294,7 +295,7 @@ const MenuPanel = ({ currencies, section }) => {
       console.log('transaction', transaction);
     } else {
       let minTokensAmount = ethers.utils.formatEther(
-        await contract.getTokenToTokenAmount(
+        await exchange.getTokenToTokenAmount(
           ethers.utils.parseEther(allowanceAmount.toString()),
           outputToken[0].address
         )
@@ -354,6 +355,7 @@ const MenuPanel = ({ currencies, section }) => {
         inputToken={inputToken}
         outputToken={outputToken}
         section={section}
+        exchange={exchange}
         callBondingCurve={callBondingCurve}
         exchangeCurrent={exchangeCurrent}
         shareOfPool={shareOfPool}
@@ -378,7 +380,7 @@ const MenuPanel = ({ currencies, section }) => {
               ? section === 'swap'
                 ? swap()
                 : add()
-              : connect(contract.address);
+              : connect(exchange.address);
           }}
         >
           {isUserWalletConnected

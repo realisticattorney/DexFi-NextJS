@@ -155,10 +155,12 @@ const MenuPanel = ({ currencies, section }) => {
     let inpot;
     let amount;
     amount =
-      id === '1' ? (balance * input) / reserve : (reserve * input) / balance;
+      id === '1'
+        ? (balance * input) / exchangeCurrent.reserve
+        : (exchangeCurrent.reserve * input) / balance;
     console.log('amount', amount);
     if (id === '1') {
-      intoNumb = parseInt(reserve);
+      intoNumb = parseInt(exchangeCurrent.reserve);
       setInputOne(input);
       setInputTwo(amount);
     } else {
@@ -195,13 +197,21 @@ const MenuPanel = ({ currencies, section }) => {
     } else if (callFunction === 'TokenToEthSwap') {
       amount =
         id === '1'
-          ? ethers.utils.formatEther(await contract.getEthAmount(price))
-          : ethers.utils.formatEther(await contract.getTokenAmount(price));
+          ? ethers.utils.formatEther(
+              await contract.getEthAmount(price)
+            )
+          : ethers.utils.formatEther(
+              await contract.getTokenAmount(price)
+            );
     } else {
       amount =
         id === '1'
-          ? ethers.utils.formatEther(await contract.getTokenAmount(price))
-          : ethers.utils.formatEther(await contract.getEthAmount(price));
+          ? ethers.utils.formatEther(
+              await contract.getTokenAmount(price)
+            )
+          : ethers.utils.formatEther(
+              await contract.getEthAmount(price)
+            );
     }
 
     console.log('amount', amount);
