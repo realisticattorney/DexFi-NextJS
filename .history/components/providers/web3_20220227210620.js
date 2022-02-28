@@ -46,15 +46,7 @@ export default function Web3Provider({ children }) {
           Exchange.abi,
           provider
         );
-        const exchangeBalance = ethers.utils.formatEther(
-          await provider.getBalance(exchangeBunny.address)
-        );
-        const getReserve = ethers.utils.formatEther(
-          await exchangeBunny.getReserve()
-        );
-        const totalSupply = ethers.utils.formatEther(
-          await exchangeBunny.totalSupply()
-        );
+
         setWeb3Api({
           provider,
           web3,
@@ -62,12 +54,12 @@ export default function Web3Provider({ children }) {
           exchangeBunny,
           isLoading: false,
           providerType: 'default',
-          exchangeCurrent: {
-            balance: exchangeBalance,
-            reserve: getReserve,
-            totalSupply,
-            contract: exchangeBunny,
-          },
+          // exchangeCurrent: {
+          //   balance: exchangeBalance,
+          //   reserve: getReserve,
+          //   totalSupply,
+          //   contract: exchangeBunny,
+          // },
         });
       } else {
         setWeb3Api((api) => ({ ...api, isLoading: false }));

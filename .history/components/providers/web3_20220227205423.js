@@ -66,7 +66,7 @@ export default function Web3Provider({ children }) {
             balance: exchangeBalance,
             reserve: getReserve,
             totalSupply,
-            contract: exchangeBunny,
+            contract: exchangeBunny
           },
         });
       } else {

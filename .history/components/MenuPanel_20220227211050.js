@@ -74,7 +74,7 @@ const MenuPanel = ({ currencies, section }) => {
 
       if (currentTokenExchangeAddress.current !== toBeExchange) {
         currentTokenExchangeAddress.current = toBeExchange;
-        let newExchangeAddress = await registry.getExchange(toBeExchange);
+        let newExchangeAddress = await registry?.getExchange(toBeExchange);
         const newExchange = new ethers.Contract(newExchangeAddress, Exchange.abi, provider)
         setExchangeCallback(newExchange);
      

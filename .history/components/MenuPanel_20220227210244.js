@@ -81,7 +81,7 @@ const MenuPanel = ({ currencies, section }) => {
       }
       console.log('base exchange loaded');
     }
-    loadingRegistry && registry &&
+    loadingRegistry &&
       loadExchange(exchangeHandler, registry, setExchangeCallback);
   }, [
     exchangeHandler,

@@ -18,7 +18,7 @@ const MenuPanel = ({ currencies, section }) => {
     web3,
     isUserWalletConnected,
     connect,
-    exchangeCurrent,
+    
   } = useWeb3();
 
   const [exchange, setExchange] = useState(exchangeBunny);
@@ -34,6 +34,9 @@ const MenuPanel = ({ currencies, section }) => {
   const handleCloseSecond = useCallback(() => setOpenSecond(false), []);
   const [inputOne, setInputOne] = useState(null);
   const [inputTwo, setInputTwo] = useState(null);
+  const [exchangeBalance, setExchangeBalance] = useState(0);
+  const [tokenReserve, setTokenReserve] = useState(0);
+  const [tokenSupply, setTokenSupply] = useState(0);
 
   const exchangeHandler = useCallback(() => {
     if (inputToken[1] !== 1) {
@@ -75,13 +78,28 @@ const MenuPanel = ({ currencies, section }) => {
       if (currentTokenExchangeAddress.current !== toBeExchange) {
         currentTokenExchangeAddress.current = toBeExchange;
         let newExchangeAddress = await registry.getExchange(toBeExchange);
-        const newExchange = new ethers.Contract(newExchangeAddress, Exchange.abi, provider)
+        const newExchange = new ethers.Contract(
+          newExchangeAddress,
+          Exchange.abi,
+          provider
+        );
+        const getReserve = ethers.utils.formatEther(
+          await newExchange.getReserve()
+        );
+        const exchangeBalance = ethers.utils.formatEther(
+          await provider.getBalance(newExchange.address)
+        );
+        const totalSupply = ethers.utils.formatEther(
+          await newExchange.totalSupply()
+        );
+        setExchangeBalance(exchangeBalance);
+        setTokenReserve(getReserve);
+        setTokenSupply(totalSupply);
         setExchangeCallback(newExchange);
-     
       }
       console.log('base exchange loaded');
     }
-    loadingRegistry && registry &&
+    loadingRegistry &&
       loadExchange(exchangeHandler, registry, setExchangeCallback);
   }, [
     exchangeHandler,
@@ -366,7 +384,6 @@ const MenuPanel = ({ currencies, section }) => {
         section={section}
         exchange={exchange}
         callBondingCurve={callBondingCurve}
-        exchangeCurrent={exchangeCurrent}
       />
 
       <div className="px-4 absolute w-full bottom-4">
