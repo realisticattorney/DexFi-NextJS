@@ -17,9 +17,7 @@ import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import Image from 'next/image';
 import Settings from '../components/Settings';
 import { makeStyles } from '@material-ui/core/styles';
-// import { useSetExchange } from '../components/web3/hooks/useSetExchange';
-import Router from 'next/router';
-import { useExchange } from '../components/providers/web3';
+import { useSetExchange } from '../components/web3/hooks/useSetExchange';
 
 const useStyles = makeStyles({
   hideBorder: {
@@ -31,18 +29,16 @@ const useStyles = makeStyles({
 });
 
 export default function Liquidity(props) {
-  const { provider, registry, isUserWalletConnected, setExchangeCurrent } =
-    useWeb3();
+  const {
+    provider,
+    registry,
+    isUserWalletConnected,
+  } = useWeb3();
   const { currencies, backedCurrency } = props;
 
   const classes = useStyles();
   const [userLps, setUserLps] = useState([]);
   const { account } = useAccount();
-
-  const setExchange = async (exchange, symbol) => {
-    await setExchangeCurrent(exchange);
-    Router.push(`/remove/${account}_${symbol}/`);
-  };
 
   useEffect(() => {
     if (isUserWalletConnected && userLps.length === 0) {
@@ -78,7 +74,7 @@ export default function Liquidity(props) {
       });
     }
   }, [isUserWalletConnected, currencies, provider, registry, userLps.length]);
-  console.log('userLps', userLps);
+console.log('userLps', userLps);
   return (
     <div className="flex-col ">
       <Subnav marked={'Liquidity'} />
@@ -194,14 +190,12 @@ export default function Liquidity(props) {
                             {'<'}0.01%
                           </p>
                         </div>
-                        <button
-                          className="w-full text-center cursor-pointer  hover:opacity-75 transition-opacity duration-150 mt-2.5 text-sm  bg-pink-500 shadow-sm text-white font-bold py-2.5 px-12 rounded-xl active:translate-y-0.1 active:shadow-none active:opacity-90"
-                          onClick={() =>
-                            setExchange(currency.connectToAbi, currency.symbol)
-                          }
-                        >
-                          Remove
-                        </button>
+                        <Link href={`/remove/${account}_${currency.symbol}/`}>
+                          <button className="w-full text-center cursor-pointer  hover:opacity-75 transition-opacity duration-150 mt-2.5 text-sm  bg-pink-500 shadow-sm text-white font-bold py-2.5 px-12 rounded-xl active:translate-y-0.1 active:shadow-none active:opacity-90"
+                          onClick={() }>
+                            Remove
+                          </button>
+                        </Link>
                         <Link href="/add">
                           <a className="w-full text-center cursor-pointer hover:opacity-75 transition-opacity duration-150 mt-5 text-sm  text-pink-500 font-bold rounded-2xl active:translate-y-0.1 active:shadow-none active:opacity-90">
                             + Add liquidity instead

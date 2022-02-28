@@ -11,14 +11,9 @@ import Web3Modal from 'web3modal';
 import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
 import Router from 'next/router';
 
+
 const RemovePanel = ({ address, currency, backCurrency }) => {
-  const {
-    provider,
-    registry,
-    connect,
-    isUserWalletConnected,
-    exchangeCurrent,
-  } = useWeb3();
+  const { provider, registry, connect, isUserWalletConnected, exchangeCurrent } = useWeb3();
 
   const [userLps, setUserLps] = useState(0);
   const [userLpsToRemove, setUserLpsToRemove] = useState(0);
@@ -27,7 +22,7 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
   const [tokenReserve, setTokenReserve] = useState(0);
   const [tokenSupply, setTokenSupply] = useState(0);
   const [expectedWithdrawn, setExpectedWithdrawn] = useState([0, 0]);
-  console.log('exchangeCurrent', exchangeCurrent);
+console.log()
   const handleSliderChange = (event, newValue) => {
     setUserLpsToRemove(newValue);
     returnsEstimator(newValue);

@@ -31,8 +31,7 @@ const useStyles = makeStyles({
 });
 
 export default function Liquidity(props) {
-  const { provider, registry, isUserWalletConnected, setExchangeCurrent } =
-    useWeb3();
+  const { provider, registry, isUserWalletConnected,setExchangeCurrent } = useWeb3();
   const { currencies, backedCurrency } = props;
 
   const classes = useStyles();
@@ -41,7 +40,7 @@ export default function Liquidity(props) {
 
   const setExchange = async (exchange, symbol) => {
     await setExchangeCurrent(exchange);
-    Router.push(`/remove/${account}_${symbol}/`);
+    Router.push(`/remove/${account}_${currency.symbol}/`);
   };
 
   useEffect(() => {
@@ -196,9 +195,10 @@ export default function Liquidity(props) {
                         </div>
                         <button
                           className="w-full text-center cursor-pointer  hover:opacity-75 transition-opacity duration-150 mt-2.5 text-sm  bg-pink-500 shadow-sm text-white font-bold py-2.5 px-12 rounded-xl active:translate-y-0.1 active:shadow-none active:opacity-90"
-                          onClick={() =>
-                            setExchange(currency.connectToAbi, currency.symbol)
-                          }
+                          onClick={setExchange(
+                            currency.connectToAbi,
+                            currency.symbol
+                          )}
                         >
                           Remove
                         </button>
