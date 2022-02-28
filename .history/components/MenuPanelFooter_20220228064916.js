@@ -49,9 +49,9 @@ const MenuPanelFooter = ({
     );
   } else if (section === 'add') {
     return (
-      <div className="flex-col mt-5 relative mx-auto w-[400px] h-[126px] bg-white rounded-3xl border border-gray-50">
-        <p className='p-5 text-sm text-center text-dexfi-violet font-medium '>
-        🥞 By adding liquidity youll earn 0.17% of all trades on this pair
+      <div className="flex-col mt-5 relative py-4 mx-auto w-[400px] h-[126px] bg-white rounded-3xl border border-gray-50">
+        <p>
+          By adding liquidity youll earn 0.17% of all trades on this pair
           proportional to your share of the pool. Fees are added to the pool,
           accrue in real time and can be claimed by withdrawing your liquidity.
         </p>
