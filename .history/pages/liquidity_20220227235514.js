@@ -296,3 +296,20 @@ export async function getStaticProps() {
     },
   };
 }
+
+{
+  /* <Image
+                    src={currency.logoURI}
+                    height={24}
+                    width={24}
+                    quality={50}
+                    alt=""
+                  />
+                  <h1 className="ml-2 font-semibold text-dexfi-violet">
+                    {currency.symbol}
+                  </h1>
+                </div>
+                <p className="ml-3 font-bold text-violet-900">
+                  ${currency.userLPTokens}
+                </p> */
+}

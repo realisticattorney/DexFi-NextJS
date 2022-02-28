@@ -288,6 +288,9 @@ export async function getStaticProps() {
     })
   );
   const currencies = [scammCurrency, USDCCurrency, ETCCurrency];
+  // currencies.unshift(scammCurrency);
+  // currencies.push(USDCCurrency);
+  // currencies.push(ETCCurrency);
 
   return {
     props: {
@@ -295,4 +298,21 @@ export async function getStaticProps() {
       backedCurrency,
     },
   };
+}
+
+{
+  /* <Image
+                    src={currency.logoURI}
+                    height={24}
+                    width={24}
+                    quality={50}
+                    alt=""
+                  />
+                  <h1 className="ml-2 font-semibold text-dexfi-violet">
+                    {currency.symbol}
+                  </h1>
+                </div>
+                <p className="ml-3 font-bold text-violet-900">
+                  ${currency.userLPTokens}
+                </p> */
 }
