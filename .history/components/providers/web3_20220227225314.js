@@ -83,26 +83,6 @@ export default function Web3Provider({ children }) {
       isWeb3Loaded: web3Api.providerType === 'default',
       isUserWalletConnected: web3Api.providerType === 'user',
       getHooks: () => setupHooks(web3Api.web3),
-      setExchangeCurrent: async (exchange) => {
-        const exchangeBalance = ethers.utils.formatEther(
-          await web3Api.provider.getBalance(exchange.address)
-        );
-        const getReserve = ethers.utils.formatEther(
-          await exchange.getReserve()
-        );
-        const totalSupply = ethers.utils.formatEther(
-          await exchange.totalSupply()
-        );
-        setWeb3Api((api) => ({
-          ...api,
-          exchangeCurrent: {
-            balance: exchangeBalance,
-            reserve: getReserve,
-            totalSupply,
-            contract: exchange,
-          },
-        }));
-      },
       connect: web3Api.provider
         ? async (exAddress = scammExchangeAddress) => {
             try {
@@ -153,6 +133,4 @@ export function useHooks(cb) {
 }
 
 export function useExchange() {
-  const { exchangeCurrent } = useWeb3();
-  return exchangeCurrent;
-}
+  

@@ -102,7 +102,6 @@ export default function Web3Provider({ children }) {
             contract: exchange,
           },
         }));
-      },
       connect: web3Api.provider
         ? async (exAddress = scammExchangeAddress) => {
             try {

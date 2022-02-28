@@ -93,16 +93,7 @@ export default function Web3Provider({ children }) {
         const totalSupply = ethers.utils.formatEther(
           await exchange.totalSupply()
         );
-        setWeb3Api((api) => ({
-          ...api,
-          exchangeCurrent: {
-            balance: exchangeBalance,
-            reserve: getReserve,
-            totalSupply,
-            contract: exchange,
-          },
-        }));
-      },
+        
       connect: web3Api.provider
         ? async (exAddress = scammExchangeAddress) => {
             try {
