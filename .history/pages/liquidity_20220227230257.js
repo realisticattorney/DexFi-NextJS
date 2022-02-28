@@ -70,7 +70,6 @@ export default function Liquidity(props) {
         return {
           ...currency,
           userLPTokens,
-          connectToAbi,
         };
       });
       Promise.all(promises).then((lps) => {
@@ -78,7 +77,7 @@ export default function Liquidity(props) {
       });
     }
   }, [isUserWalletConnected, currencies, provider, registry, userLps.length]);
-console.log('userLps', userLps);
+console.log()
   return (
     <div className="flex-col ">
       <Subnav marked={'Liquidity'} />

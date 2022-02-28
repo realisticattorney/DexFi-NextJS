@@ -70,7 +70,6 @@ export default function Liquidity(props) {
         return {
           ...currency,
           userLPTokens,
-          connectToAbi,
         };
       });
       Promise.all(promises).then((lps) => {

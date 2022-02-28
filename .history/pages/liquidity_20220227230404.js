@@ -46,14 +46,14 @@ export default function Liquidity(props) {
 
   useEffect(() => {
     if (isUserWalletConnected && userLps.length === 0) {
+      ethereum.enable();
+      const providerAccounts = new Web3(window.ethereum);
+      window.ethereum.enable().catch((error) => {
+        // User denied account access
+        console.log(error);
+      });
+      const [account] = await providerAccounts.eth.getAccounts();
       const promises = currencies.map(async (currency) => {
-        ethereum.enable();
-        const providerAccounts = new Web3(window.ethereum);
-        window.ethereum.enable().catch((error) => {
-          // User denied account access
-          console.log(error);
-        });
-        const [account] = await providerAccounts.eth.getAccounts();
 
         let mappedExchangeAddress = await registry.getExchange(
           currency.address
