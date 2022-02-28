@@ -1,3 +1,4 @@
+import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from 'next/link';
@@ -24,8 +25,11 @@ const AddLiquidityPanel = () => {
         <p className="text-sm">Add liquidity to receive LP tokens</p>
       </div>
       <div className="w-[80px] flex items-center justify-between">
-        <Settings />
-        <button>
+      <Settings />
+        <button
+          className=""
+   
+        >
           <SettingsBackupRestoreIcon
             sx={{
               color: '#7c6484',
