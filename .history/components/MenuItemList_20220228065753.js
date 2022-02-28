@@ -34,8 +34,10 @@ const MenuItemList = ({
   id,
   section,
 }) => {
-  const modalIsDisabled = id === '2' && section === 'add' ? 'yes' : 'no';
-  const ethIsDisabled = id === '1' && section === 'add' ? 'yes' : 'no';
+  const modalIsDisabled =
+    id === '2' && section === 'add' ? 'yes' : 'no';
+  const ethIsDisabled =
+    id === '1' && section === 'add' ? 'yes' : 'no';
   return (
     <div className="flex flex-col space-y-2 px-4 py-5">
       <button
@@ -51,7 +53,9 @@ const MenuItemList = ({
           quality={50}
           alt=""
         />
-        <h1 className="ml-2 font-bold text-dexfi-violet">{token[0].symbol}</h1>
+        <h1 className="ml-2 font-bold text-dexfi-violet">
+          {token[0].symbol}
+        </h1>
         <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />
       </button>
       <Modal
@@ -69,7 +73,7 @@ const MenuItemList = ({
         <Fade in={open}>
           <Paper sx={modalstyle}>
             <MenuList>
-              <div className="flex px-3 pb-5 text-xl font-medium text-dexfi-violet border-b mb-4">
+              <div className="flex px-5 pb-5 text-xl font-medium text-dexfi-violet border-b mb-4">
                 <h1>Select a Token</h1>
               </div>
               {currencies.map((currency, index) => (
@@ -102,8 +106,6 @@ const MenuItemList = ({
       <Box
         component="form"
         sx={{
-          marginLeft: '8px',
-          marginRight: '8px',
           '& .MuiTextField-root': {
             m: 0,
             width: '100%',

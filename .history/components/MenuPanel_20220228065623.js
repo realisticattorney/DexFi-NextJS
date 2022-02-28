@@ -369,7 +369,7 @@ const MenuPanel = ({ currencies, section }) => {
 
         <div
           className={` absolute w-full ${
-            section === 'swap' ? 'bottom-4 px-4' : 'bottom-6 px-6'
+            section === 'swap' ? 'bottom-4' : 'bottom-6'
           } `}
         >
           <button

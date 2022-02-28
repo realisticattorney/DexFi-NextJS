@@ -367,11 +367,7 @@ const MenuPanel = ({ currencies, section }) => {
           shareOfPool={shareOfPool}
         />
 
-        <div
-          className={` absolute w-full ${
-            section === 'swap' ? 'bottom-4 px-4' : 'bottom-6 px-6'
-          } `}
-        >
+        <div className={`px-4 absolute w-full bottom-4 `}>
           <button
             className={`w-full bg-pink-500 hover:opacity-75 transition-opacity duration-200  text-white font-bold py-3 px-12 rounded-xl shadow-slate-500 shadow-sm active:translate-y-0.1 active:shadow-none active:opacity-90 ${
               isUserWalletConnected && 'disabled:cursor-not-allowed'

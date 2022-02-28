@@ -102,11 +102,10 @@ const MenuItemList = ({
       <Box
         component="form"
         sx={{
-          marginLeft: '8px',
-          marginRight: '8px',
           '& .MuiTextField-root': {
-            m: 0,
-            width: '100%',
+            marginLeft: '8px',
+            marginRight: '8px',
+            // width: '100%',
           },
 
           '& .MuiInputBase-input': {

@@ -102,8 +102,7 @@ const MenuItemList = ({
       <Box
         component="form"
         sx={{
-          marginLeft: '8px',
-          marginRight: '8px',
+          
           '& .MuiTextField-root': {
             m: 0,
             width: '100%',
@@ -118,6 +117,7 @@ const MenuItemList = ({
         }}
         noValidate
         autoComplete="off"
+        
       >
         <div>
           <TextField
