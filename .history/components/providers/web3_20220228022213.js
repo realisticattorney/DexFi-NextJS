@@ -59,7 +59,7 @@ export default function Web3Provider({ children }) {
           provider,
           web3,
           registry,
-          exchangeBunny: {
+          exchangeBunny:: {
             balance: exchangeBalance,
             reserve: getReserve,
             totalSupply,
@@ -121,7 +121,7 @@ export default function Web3Provider({ children }) {
                   Exchange.abi,
                   provider
                 );
-                // console.log('nonononono', exchangeBunny.address);
+                console.log('nonononono', exchangeBunny.address);
 
                 setWeb3Api({
                   ...web3Api,

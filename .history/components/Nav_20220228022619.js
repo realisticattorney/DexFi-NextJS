@@ -64,12 +64,10 @@ const Nav = () => {
       <div className="relative">
         <ModalMenu pathname={pathname} />
       </div>
-      <div className="ml-auto mr-3 flex">
-        <div className="flex mx-3 space-x-1">
-          <Image src="/logo.png" height={24} width={26} alt="" />
-          <h2 className="text-dexfi-grayviolet mt-0.1 pt-0.1 font-bold">
-            ${(exchangeBunny?.reserve / exchangeBunny?.balance).toFixed(3)}
-          </h2>
+      <div className="ml-auto mr-3 flex item">
+        <div>
+        <Image src="/logo.png" height={24} width={24} alt="" />
+
         </div>
         <Settings />
       </div>

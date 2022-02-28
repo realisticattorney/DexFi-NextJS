@@ -32,7 +32,7 @@ const Home = () => {
     if (exchangeBunny) {
       defualtExchange.current = exchangeBunny.contract;
     }
-  }, [exchangeBunny]);
+  }, [exchangeBunny.contract]);
 
   return (
     <div>

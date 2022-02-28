@@ -31,7 +31,7 @@ const modalstyle = {
 };
 
 const Nav = () => {
-  const { connect, isWeb3Loaded, isUserWalletConnected, exchangeBunny } =
+  const { connect, isWeb3Loaded, isUserWalletConnected, exchangeBunny, ex } =
     useWeb3();
   let router = useRouter();
   const [pathname, setPathname] = useState(router.pathname);
@@ -65,11 +65,9 @@ const Nav = () => {
         <ModalMenu pathname={pathname} />
       </div>
       <div className="ml-auto mr-3 flex">
-        <div className="flex mx-3 space-x-1">
-          <Image src="/logo.png" height={24} width={26} alt="" />
-          <h2 className="text-dexfi-grayviolet mt-0.1 pt-0.1 font-bold">
-            ${(exchangeBunny?.reserve / exchangeBunny?.balance).toFixed(3)}
-          </h2>
+        <div>
+        <Image src="/logo.png" height={24} width={24} alt="" />
+
         </div>
         <Settings />
       </div>
@@ -239,7 +237,7 @@ const Nav = () => {
         <button
           className=" mr-6 text-white font-bold py-1 px-4 shadow-slate-400 shadow-sm tracking-wide bg-pink-500 rounded-full active:translate-y-0.1 active:shadow-none active:opacity-90 hover:opacity-75 transition-opacity duration-150"
           onClick={() => {
-            connect(exchangeBunny.contract.address);
+            connect(exchangeBunny.address);
           }}
         >
           Connect Wallet
