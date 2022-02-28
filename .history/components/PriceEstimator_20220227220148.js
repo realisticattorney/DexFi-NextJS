@@ -75,9 +75,7 @@ const PriceEstimator = ({
               </div>
               <div className="text-center">
                 <h1 className="truncate">
-                  {(exchangeCurrent.balance / exchangeCurrent.reserve)
-                    .toString()
-                    .substring(0, 8)}
+                  {(poolNumbers[1] / poolNumbers[0]).toString().substring(0, 8)}
                 </h1>
                 <h1 className="text-sm">{`${outputToken[0].symbol} per ${inputToken[0].symbol}`}</h1>
               </div>

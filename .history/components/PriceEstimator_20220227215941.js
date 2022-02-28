@@ -35,9 +35,7 @@ const PriceEstimator = ({
         {inputOne > 0 && (
           <div className="h-8">
             <div className="flex w-full justify-around">
-              <h1 className="text-xs1 font-bold text-violet-700 ml-1.5">
-                Price
-              </h1>
+              <h1 className="text-xs1 font-bold text-violet-700 ml-1.5">Price</h1>
               <h1 className="truncate text-sm mr-1 font-medium text-gray-700">{`${
                 (inputOne / inputTwo).toString().length > 9
                   ? (inputOne / inputTwo).toString().substring(0, 10)
@@ -64,34 +62,32 @@ const PriceEstimator = ({
             Prices and pool share
           </h1>
           <div className="flex p-4 rounded-lg  justify-around">
-            <div className="flex font-medium text-violet-900 space-x-6">
-              <div className="text-center">
-                <h1 className="truncate">
-                  {(exchangeCurrent.reserve / exchangeCurrent.balance)
-                    .toString()
-                    .substring(0, 8)}
-                </h1>
-                <h1 className="text-sm">{`${inputToken[0].symbol} per ${outputToken[0].symbol}`}</h1>
-              </div>
-              <div className="text-center">
-                <h1 className="truncate">
-                  {(exchangeCurrent.balance / exchangeCurrent.reserve)
-                    .toString()
-                    .substring(0, 8)}
-                </h1>
-                <h1 className="text-sm">{`${outputToken[0].symbol} per ${inputToken[0].symbol}`}</h1>
-              </div>
-              <div className="text-center">
-                {inputOne > 0 ? (
+            {inputOne > 0 && (
+              <div className="flex font-medium text-violet-900 space-x-6">
+                <div className="text-center">
+                  <h1 className="truncate">
+                    {(exchang/ / poolNumbers[1])
+                      .toString()
+                      .substring(0, 8)}
+                  </h1>
+                  <h1 className="text-sm">{`${inputToken[0].symbol} per ${outputToken[0].symbol}`}</h1>
+                </div>
+                <div className="text-center">
+                  <h1 className="truncate">
+                    {(poolNumbers[1] / poolNumbers[0])
+                      .toString()
+                      .substring(0, 8)}
+                  </h1>
+                  <h1 className="text-sm">{`${outputToken[0].symbol} per ${inputToken[0].symbol}`}</h1>
+                </div>
+                <div className="text-center">
                   <h1 className="truncate">
                     {poolNumbers[2].toFixed(2).toString()}%
                   </h1>
-                ) : (
-                  <h1 className="truncate">0.00%</h1>
-                )}
-                <h1 className="text-sm">Share of Pool</h1>
+                  <h1 className="text-sm">Share of Pool</h1>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
