@@ -395,7 +395,7 @@ const MenuPanel = ({ currencies, section }) => {
             Minimun received
           </h2>
           <h2 className="text-dexfi-violet font-medium text-sm">
-            {(inputTwo * 99).toFixed(3)} {outputToken[0].symbol}
+            {(inputTwo * 99).toFixed(4)} {outputToken[0].symbol}
           </h2>
         </div>
         <div className="flex justify-between px-4">
@@ -409,7 +409,7 @@ const MenuPanel = ({ currencies, section }) => {
             Liquidity Provider Fee
           </h2>
           <h2 className="text-dexfi-violet font-medium text-sm">
-            {(inputOne / 100).toFixed(3)} {inputToken[0].symbol}
+            {(inputTwo * 99).toFixed(4)} {outputToken[0].symbol}
           </h2>
         </div>
       </div>
