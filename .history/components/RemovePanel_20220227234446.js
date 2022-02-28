@@ -12,7 +12,11 @@ import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
 import Router from 'next/router';
 
 const RemovePanel = ({ address, currency, backCurrency }) => {
-  const { connect, isUserWalletConnected, exchangeCurrent } = useWeb3();
+  const {
+    connect,
+    isUserWalletConnected,
+    exchangeCurrent,
+  } = useWeb3();
 
   const [userLps, setUserLps] = useState(0);
   const [userLpsToRemove, setUserLpsToRemove] = useState(0);
@@ -43,25 +47,18 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
       setUserLps(userLPTokens);
     };
 
-    exchangeCurrent.contract && loadExchange();
-  }, [address, exchangeCurrent.contract]);
+    exchangeCurrent && loadExchange();
+  }, [address, exchangeCurrent]);
 
   const returnsEstimator = useCallback(
     (userLpsToRemove) => {
       let lps = (userLps * userLpsToRemove) / 100;
-      const ethWithdrawn =
-        (exchangeCurrent.balance * lps) / exchangeCurrent.totalSupply;
-      const tokenWithdrawn =
-        (exchangeCurrent.reserve * lps) / exchangeCurrent.totalSupply;
+      const ethWithdrawn = (exchangeCurrent.balance * lps) / exchangeCurrent.totalSupply;
+      const tokenWithdrawn = (exchangeCurrent.reserve * lps) / exchangeCurrent.totalSupply;
 
       setExpectedWithdrawn([ethWithdrawn, tokenWithdrawn]);
     },
-    [
-      userLps,
-      exchangeCurrent.balance,
-      exchangeCurrent.totalSupply,
-      exchangeCurrent.reserve,
-    ]
+    [userLps, exchangeCurrent.balance, exchangeCurrent.totalSupply, exchangeCurrent.reserve]
   );
 
   async function remove() {
@@ -76,13 +73,13 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
       signer
     );
     const exchangeUserConnection = new ethers.Contract(
-      exchangeCurrent.contract.address,
+      exchange.address,
       Exchange.abi,
       signer
     );
 
     const wasApproved = await tokenUserConnection.approve(
-      exchangeCurrent.contract.address,
+      exchange.address,
       ethers.utils.parseEther(userLpsToRemove.toString())
     );
     console.log('not yet confirmed');
@@ -92,7 +89,7 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
     const allowanceAmount = ethers.utils.formatEther(
       await tokenUserConnection.allowance(
         await signer.getAddress(),
-        exchangeCurrent.contract.address
+        exchange.address
       )
     );
 
@@ -249,15 +246,13 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
             1 {currency.symbol}
           </h1>
           <p className="font-medium text-sm text-dexfi-grayviolet">
-            {exchangeCurrent.balance / exchangeCurrent.reserve}{' '}
-            {backCurrency.symbol}
+            {exchangeCurrent.balance / exchangeCurrent.reserve} {backCurrency.symbol}
           </p>
         </div>
         <div className="flex justify-between mt-1">
           <h1 className="font-medium text-sm text-dexfi-grayviolet">1 WETH</h1>
           <p className="font-medium text-sm text-dexfi-grayviolet">
-            {exchangeCurrent.reserve / exchangeCurrent.balance}{' '}
-            {currency.symbol}
+            {exchangeCurrent.reserve / exchangeCurrent.balance} {currency.symbol}
           </p>
         </div>
       </div>

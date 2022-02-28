@@ -82,7 +82,7 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
     );
 
     const wasApproved = await tokenUserConnection.approve(
-      exchangeCurrent.contract.address,
+      exchange.address,
       ethers.utils.parseEther(userLpsToRemove.toString())
     );
     console.log('not yet confirmed');
@@ -92,7 +92,7 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
     const allowanceAmount = ethers.utils.formatEther(
       await tokenUserConnection.allowance(
         await signer.getAddress(),
-        exchangeCurrent.contract.address
+        exchange.address
       )
     );
 

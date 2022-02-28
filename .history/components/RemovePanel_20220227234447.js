@@ -43,8 +43,8 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
       setUserLps(userLPTokens);
     };
 
-    exchangeCurrent.contract && loadExchange();
-  }, [address, exchangeCurrent.contract]);
+    exchangeCurrent && loadExchange();
+  }, [address, exchangeCurrent]);
 
   const returnsEstimator = useCallback(
     (userLpsToRemove) => {
@@ -76,13 +76,13 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
       signer
     );
     const exchangeUserConnection = new ethers.Contract(
-      exchangeCurrent.contract.address,
+      exchange.address,
       Exchange.abi,
       signer
     );
 
     const wasApproved = await tokenUserConnection.approve(
-      exchangeCurrent.contract.address,
+      exchange.address,
       ethers.utils.parseEther(userLpsToRemove.toString())
     );
     console.log('not yet confirmed');
@@ -92,7 +92,7 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
     const allowanceAmount = ethers.utils.formatEther(
       await tokenUserConnection.allowance(
         await signer.getAddress(),
-        exchangeCurrent.contract.address
+        exchange.address
       )
     );
 

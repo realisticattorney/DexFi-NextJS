@@ -12,10 +12,20 @@ import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
 import Router from 'next/router';
 
 const RemovePanel = ({ address, currency, backCurrency }) => {
-  const { connect, isUserWalletConnected, exchangeCurrent } = useWeb3();
+  const {
+    provider,
+    registry,
+    connect,
+    isUserWalletConnected,
+    exchangeCurrent,
+  } = useWeb3();
 
   const [userLps, setUserLps] = useState(0);
   const [userLpsToRemove, setUserLpsToRemove] = useState(0);
+  const [exchange, setExchange] = useState(null);
+  const [exchangeBalance, setExchangeBalance] = useState(0);
+  const [tokenReserve, setTokenReserve] = useState(0);
+  const [tokenSupply, setTokenSupply] = useState(0);
   const [expectedWithdrawn, setExpectedWithdrawn] = useState([0, 0]);
   console.log('exchangeCurrent', exchangeCurrent);
   const handleSliderChange = (event, newValue) => {
@@ -36,6 +46,9 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
   };
 
   useEffect(() => {
+    if (tokenSupply > 0) {
+      return;
+    }
     const loadExchange = async () => {
       const userLPTokens = ethers.utils.formatEther(
         await exchangeCurrent.contract.balanceOf(address)
@@ -43,25 +56,18 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
       setUserLps(userLPTokens);
     };
 
-    exchangeCurrent.contract && loadExchange();
-  }, [address, exchangeCurrent.contract]);
+    loadExchange();
+  }, [address, currency.address, provider, registry, tokenSupply]);
 
   const returnsEstimator = useCallback(
     (userLpsToRemove) => {
       let lps = (userLps * userLpsToRemove) / 100;
-      const ethWithdrawn =
-        (exchangeCurrent.balance * lps) / exchangeCurrent.totalSupply;
-      const tokenWithdrawn =
-        (exchangeCurrent.reserve * lps) / exchangeCurrent.totalSupply;
+      const ethWithdrawn = (exchangeBalance * lps) / tokenSupply;
+      const tokenWithdrawn = (tokenReserve * lps) / tokenSupply;
 
       setExpectedWithdrawn([ethWithdrawn, tokenWithdrawn]);
     },
-    [
-      userLps,
-      exchangeCurrent.balance,
-      exchangeCurrent.totalSupply,
-      exchangeCurrent.reserve,
-    ]
+    [userLps, exchangeBalance, tokenSupply, tokenReserve]
   );
 
   async function remove() {
@@ -76,13 +82,13 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
       signer
     );
     const exchangeUserConnection = new ethers.Contract(
-      exchangeCurrent.contract.address,
+      exchange.address,
       Exchange.abi,
       signer
     );
 
     const wasApproved = await tokenUserConnection.approve(
-      exchangeCurrent.contract.address,
+      exchange.address,
       ethers.utils.parseEther(userLpsToRemove.toString())
     );
     console.log('not yet confirmed');
@@ -92,7 +98,7 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
     const allowanceAmount = ethers.utils.formatEther(
       await tokenUserConnection.allowance(
         await signer.getAddress(),
-        exchangeCurrent.contract.address
+        exchange.address
       )
     );
 
@@ -249,15 +255,13 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
             1 {currency.symbol}
           </h1>
           <p className="font-medium text-sm text-dexfi-grayviolet">
-            {exchangeCurrent.balance / exchangeCurrent.reserve}{' '}
-            {backCurrency.symbol}
+            {exchangeBalance / tokenReserve} {backCurrency.symbol}
           </p>
         </div>
         <div className="flex justify-between mt-1">
           <h1 className="font-medium text-sm text-dexfi-grayviolet">1 WETH</h1>
           <p className="font-medium text-sm text-dexfi-grayviolet">
-            {exchangeCurrent.reserve / exchangeCurrent.balance}{' '}
-            {currency.symbol}
+            {tokenReserve / exchangeBalance} {currency.symbol}
           </p>
         </div>
       </div>
