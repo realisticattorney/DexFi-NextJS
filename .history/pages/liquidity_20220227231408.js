@@ -10,6 +10,7 @@ import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useAccount } from '../components/web3/hooks/useAccount';
 import { scammcoinAddress, USDCAddress, ETCAddress } from '../config.js';

@@ -6,10 +6,12 @@ import fs from 'fs/promises';
 import path from 'path';
 import Link from 'next/link';
 import Subnav from '../components/Subnav';
+import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useAccount } from '../components/web3/hooks/useAccount';
 import { scammcoinAddress, USDCAddress, ETCAddress } from '../config.js';
@@ -17,7 +19,7 @@ import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import Image from 'next/image';
 import Settings from '../components/Settings';
 import { makeStyles } from '@material-ui/core/styles';
-import { useSetExchange } from '../components/web3/hooks/useSetExchange';
+import { useSetExchange } from '../web3/hooks/useSetExchange';
 
 const useStyles = makeStyles({
   hideBorder: {
@@ -32,7 +34,10 @@ export default function Liquidity(props) {
   const {
     provider,
     registry,
+    exchangeBunny,
+    web3,
     isUserWalletConnected,
+    connect,
   } = useWeb3();
   const { currencies, backedCurrency } = props;
 

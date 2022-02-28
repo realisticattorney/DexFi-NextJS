@@ -11,7 +11,6 @@ import Web3Modal from 'web3modal';
 import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
 import Router from 'next/router';
 
-
 const RemovePanel = ({ address, currency, backCurrency }) => {
   const { provider, registry, connect, isUserWalletConnected } = useWeb3();
 

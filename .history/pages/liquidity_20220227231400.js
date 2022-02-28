@@ -6,10 +6,12 @@ import fs from 'fs/promises';
 import path from 'path';
 import Link from 'next/link';
 import Subnav from '../components/Subnav';
+import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useAccount } from '../components/web3/hooks/useAccount';
 import { scammcoinAddress, USDCAddress, ETCAddress } from '../config.js';
@@ -33,6 +35,7 @@ export default function Liquidity(props) {
     provider,
     registry,
     isUserWalletConnected,
+    connect,
   } = useWeb3();
   const { currencies, backedCurrency } = props;
 
