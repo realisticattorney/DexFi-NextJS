@@ -2,7 +2,6 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from 'next/link';
-import Settings from './Settings';
 
 const AddLiquidityPanel = () => {
   return (
