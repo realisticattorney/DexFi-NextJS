@@ -20,6 +20,7 @@ const MenuPanel = ({ currencies, section }) => {
     setExchangeCurrent,
   } = useWeb3();
   const { contract, balance, reserve } = exchangeCurrent ?? {};
+
   const [loadingRegistry, setLoadingRegistry] = useState(false);
   const [inputToken, setInputToken] = useState([currencies[0], 0]);
   const [outputToken, setOutputToken] = useState([currencies[1], 1]);
@@ -170,7 +171,7 @@ const MenuPanel = ({ currencies, section }) => {
   }
 
   async function callExchange(input, id) {
-    let price = ethers.utils.parseEther(input);
+    let price = await ethers.utils.parseEther(input);
     let amount;
     let callFunction = swapTypeHandler();
     if (callFunction === 'TokenToTokenSwap') {
@@ -353,6 +354,7 @@ const MenuPanel = ({ currencies, section }) => {
         inputToken={inputToken}
         outputToken={outputToken}
         section={section}
+        callBondingCurve={callBondingCurve}
         exchangeCurrent={exchangeCurrent}
         shareOfPool={shareOfPool}
       />
