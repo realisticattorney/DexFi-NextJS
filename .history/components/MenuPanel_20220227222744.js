@@ -158,7 +158,7 @@ const MenuPanel = ({ currencies, section }) => {
         : (exchangeCurrent.reserve * input) / exchangeCurrent.balance;
     console.log('amount', amount);
     if (id === '1') {
-      intoNumb = parseInt(exchangeCurrent.reserve);
+      intoNumb = parseInt(exchangeCurrent.balance);
       setInputOne(input);
       setInputTwo(amount);
     } else {

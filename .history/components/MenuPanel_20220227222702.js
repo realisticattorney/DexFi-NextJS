@@ -158,16 +158,15 @@ const MenuPanel = ({ currencies, section }) => {
         : (exchangeCurrent.reserve * input) / exchangeCurrent.balance;
     console.log('amount', amount);
     if (id === '1') {
-      intoNumb = parseInt(exchangeCurrent.reserve);
       setInputOne(input);
       setInputTwo(amount);
     } else {
-      intoNumb = parseInt(exchangeCurrent.balance);
       setInputTwo(input);
+      
+      inpot = parseInt(input);
+      setShareOfPool((inpot / (inpot + intoNumb)) * 100);
       setInputOne(amount);
     }
-    inpot = parseInt(input);
-    setShareOfPool((inpot / (inpot + intoNumb)) * 100);
   }
 
   async function callExchange(input, id) {

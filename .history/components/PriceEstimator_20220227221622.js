@@ -7,16 +7,16 @@ const PriceEstimator = ({
   inputToken,
   outputToken,
   section,
-  shareOfPool,
+  exchange,
+  callBondingCurve,
   exchangeCurrent,
 }) => {
   const { provider } = useWeb3();
-
   // const [poolNumbers, setPoolNumbers] = useState(null);
 
-  // const setPoolNumbersCallback = useCallback((exchange) => {
-  //   setPoolNumbers(exchange);
-  // }, []);
+  const setPoolNumbersCallback = useCallback((exchange) => {
+    setPoolNumbers(exchange);
+  }, []);
   // useEffect(() => {
   //   if (provider === null || provider === undefined || exchange === null) {
   //     return;
@@ -65,29 +65,25 @@ const PriceEstimator = ({
           <div className="flex p-4 rounded-lg  justify-around">
             <div className="flex font-medium text-violet-900 space-x-6">
               <div className="text-center">
-                {exchangeCurrent && (
-                  <h1 className="truncate">
-                    {(exchangeCurrent.reserve / exchangeCurrent.balance)
-                      .toString()
-                      .substring(0, 8)}
-                  </h1>
-                )}
+                <h1 className="truncate">
+                  {(exchangeCurrent.reserve / exchangeCurrent.balance)
+                    .toString()
+                    .substring(0, 8)}
+                </h1>
                 <h1 className="text-sm">{`${inputToken[0].symbol} per ${outputToken[0].symbol}`}</h1>
               </div>
               <div className="text-center">
-                {exchangeCurrent && (
-                  <h1 className="truncate">
-                    {(exchangeCurrent.balance / exchangeCurrent.reserve)
-                      .toString()
-                      .substring(0, 8)}
-                  </h1>
-                )}
+                <h1 className="truncate">
+                  {(exchangeCurrent.balance / exchangeCurrent.reserve)
+                    .toString()
+                    .substring(0, 8)}
+                </h1>
                 <h1 className="text-sm">{`${outputToken[0].symbol} per ${inputToken[0].symbol}`}</h1>
               </div>
               <div className="text-center">
                 {inputOne > 0 ? (
                   <h1 className="truncate">
-                    {shareOfPool.toFixed(2).toString()}%
+                    {poolNumbers.toFixed(2).toString()}%
                   </h1>
                 ) : (
                   <h1 className="truncate">0.00%</h1>

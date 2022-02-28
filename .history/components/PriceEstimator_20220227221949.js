@@ -11,7 +11,6 @@ const PriceEstimator = ({
   exchangeCurrent,
 }) => {
   const { provider } = useWeb3();
-
   // const [poolNumbers, setPoolNumbers] = useState(null);
 
   // const setPoolNumbersCallback = useCallback((exchange) => {
@@ -65,23 +64,19 @@ const PriceEstimator = ({
           <div className="flex p-4 rounded-lg  justify-around">
             <div className="flex font-medium text-violet-900 space-x-6">
               <div className="text-center">
-                {exchangeCurrent && (
-                  <h1 className="truncate">
-                    {(exchangeCurrent.reserve / exchangeCurrent.balance)
-                      .toString()
-                      .substring(0, 8)}
-                  </h1>
-                )}
+                <h1 className="truncate">
+                  {(exchangeCurrent.reserve / exchangeCurrent.balance)
+                    .toString()
+                    .substring(0, 8)}
+                </h1>
                 <h1 className="text-sm">{`${inputToken[0].symbol} per ${outputToken[0].symbol}`}</h1>
               </div>
               <div className="text-center">
-                {exchangeCurrent && (
-                  <h1 className="truncate">
-                    {(exchangeCurrent.balance / exchangeCurrent.reserve)
-                      .toString()
-                      .substring(0, 8)}
-                  </h1>
-                )}
+                <h1 className="truncate">
+                  {(exchangeCurrent.balance / exchangeCurrent.reserve)
+                    .toString()
+                    .substring(0, 8)}
+                </h1>
                 <h1 className="text-sm">{`${outputToken[0].symbol} per ${inputToken[0].symbol}`}</h1>
               </div>
               <div className="text-center">

@@ -148,8 +148,9 @@ const MenuPanel = ({ currencies, section }) => {
   };
 
   async function callBondingCurve(input, id) {
-    let intoNumb;
-    let inpot;
+    let intoNumb = parseInt(exchangeCurrent.balance);
+    let inpot = parseInt(input);
+    setShareOfPool((inpot / (inpot + intoNumb)) * 100);
 
     let amount;
     amount =
@@ -158,16 +159,12 @@ const MenuPanel = ({ currencies, section }) => {
         : (exchangeCurrent.reserve * input) / exchangeCurrent.balance;
     console.log('amount', amount);
     if (id === '1') {
-      intoNumb = parseInt(exchangeCurrent.reserve);
       setInputOne(input);
       setInputTwo(amount);
     } else {
-      intoNumb = parseInt(exchangeCurrent.balance);
       setInputTwo(input);
       setInputOne(amount);
     }
-    inpot = parseInt(input);
-    setShareOfPool((inpot / (inpot + intoNumb)) * 100);
   }
 
   async function callExchange(input, id) {
@@ -357,7 +354,6 @@ const MenuPanel = ({ currencies, section }) => {
         exchange={exchange}
         callBondingCurve={callBondingCurve}
         exchangeCurrent={exchangeCurrent}
-        shareOfPool={shareOfPool}
       />
 
       <div className="px-4 absolute w-full bottom-4">
