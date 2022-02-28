@@ -121,6 +121,7 @@ export default function Web3Provider({ children }) {
                   Exchange.abi,
                   provider
                 );
+
                 setWeb3Api((prevState) => ({
                   ...prevState,
                   provider,

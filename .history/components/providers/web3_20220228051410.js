@@ -100,6 +100,10 @@ export default function Web3Provider({ children }) {
         );
         setWeb3Api((api) => ({
           ...api,
+          exchangeBunny:{
+            ...exchangeBunny,
+            contract: 
+          }
           exchangeCurrent: {
             balance: exchangeBalance,
             reserve: getReserve,
@@ -116,25 +120,24 @@ export default function Web3Provider({ children }) {
               );
               const web3 = new Web3(provider);
               if (provider) {
-                const exchangeBunnyNew = new ethers.Contract(
+                const exchangeBunny = new ethers.Contract(
                   exAddress,
                   Exchange.abi,
                   provider
                 );
-                setWeb3Api((prevState) => ({
-                  ...prevState,
+                // console.log('nonononono', exchangeBunny.address);
+
+                setWeb3Api({
+                  ...web3Api,
                   provider,
                   web3,
-                  exchangeBunny: {
-                    ...prevState.exchangeBunny,
-                    contract: exchangeBunnyNew,
-                  },
+                  exchangeBunny,
                   isLoading: false,
                   providerType: 'user',
-                }));
+                });
               }
-            } catch (e) {
-              console.error('Please, connect to Metamask.', e);
+            } catch {
+              location.reload();
             }
           }
         : () =>

@@ -121,6 +121,8 @@ export default function Web3Provider({ children }) {
                   Exchange.abi,
                   provider
                 );
+                console.log('nonononono', exchangeBunnyNew);
+
                 setWeb3Api((prevState) => ({
                   ...prevState,
                   provider,

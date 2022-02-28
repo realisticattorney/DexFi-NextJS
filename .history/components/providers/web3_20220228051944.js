@@ -121,20 +121,22 @@ export default function Web3Provider({ children }) {
                   Exchange.abi,
                   provider
                 );
-                setWeb3Api((prevState) => ({
-                  ...prevState,
+                console.log('nonononono', exchangeBunny);
+
+                setWeb3Api({
+                  ...web3Api,
                   provider,
                   web3,
                   exchangeBunny: {
-                    ...prevState.exchangeBunny,
+                    ...exchangeBunny,
                     contract: exchangeBunnyNew,
                   },
                   isLoading: false,
                   providerType: 'user',
-                }));
+                });
               }
-            } catch (e) {
-              console.error('Please, connect to Metamask.', e);
+            } catch {
+              console.error()
             }
           }
         : () =>
