@@ -1,3 +1,6 @@
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useWeb3 } from './providers/web3';
+
 const PriceEstimator = ({
   inputOne,
   inputTwo,
@@ -7,6 +10,9 @@ const PriceEstimator = ({
   shareOfPool,
   exchangeCurrent,
 }) => {
+  const { provider } = useWeb3();
+
+
   if (section === 'swap') {
     return (
       <>

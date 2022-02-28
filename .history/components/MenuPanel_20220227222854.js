@@ -150,6 +150,7 @@ const MenuPanel = ({ currencies, section }) => {
   async function callBondingCurve(input, id) {
     let intoNumb;
     let inpot;
+
     let amount;
     amount =
       id === '1'
