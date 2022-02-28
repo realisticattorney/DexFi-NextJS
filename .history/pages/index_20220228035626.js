@@ -40,12 +40,11 @@ const CoinWrapper = styled.div`
     animation: ${floatingAnim('3px', '15px')} 3s ease-in-out infinite;
     animation-delay: 1s;
   }
-
-  & > span :nth-child(3) > :first-child {
+  & :nth-child(3) > :first-child {
     animation: ${floatingAnim('5px', '10px')} 3s ease-in-out infinite;
     animation-delay: 0.66s;
   }
-  & > span :nth-child(2) > img {
+  & :nth-child(4) > :first-child {
     animation: ${floatingAnim('6px', '5px')} 3s ease-in-out infinite;
     animation-delay: 0.33s;
   }

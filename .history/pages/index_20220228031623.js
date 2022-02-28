@@ -16,39 +16,9 @@ const flyingAnim = () => keyframes`
   }
 `;
 
-const floatingAnim = (x, y) => keyframes`
-  from {
-    transform: translate(0,  0px);
-  }
-  50% {
-    transform: translate(${x}, ${y});
-  }
-  to {
-    transform: translate(0, 0px);
-  }
-`;
-
 const BunnyWrapper = styled.div`
   width: 100%;
   animation: ${flyingAnim} 3.5s ease-in-out infinite;
-`;
-
-const CoinWrapper = styled.div`
-  position: relative;
-  max-height: '512px';
-  & :nth-child(2) > :first-child {
-    animation: ${floatingAnim('3px', '15px')} 3s ease-in-out infinite;
-    animation-delay: 1s;
-  }
-
-  & > span :nth-child(3) > :first-child {
-    animation: ${floatingAnim('5px', '10px')} 3s ease-in-out infinite;
-    animation-delay: 0.66s;
-  }
-  & > span :nth-child(2) > img {
-    animation: ${floatingAnim('6px', '5px')} 3s ease-in-out infinite;
-    animation-delay: 0.33s;
-  }
 `;
 
 const Home = () => {
@@ -224,69 +194,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
-        <svg
-          viewBox="0 0 1660 48"
-          preserveAspectRatio="none"
-          color="text"
-          fill="#D7CAEC"
-          className="w-full bg-[#FAF9FA]"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M1660 48C1139.02 46.1887 336.256 15.2453 0 0H1660V48Z"></path>
-        </svg>
-        <div className="w-full grid grid-cols-2 grid-rows-1 max-w-[1200px] mx-auto mt-24">
-          <div className="flex-col px-6 py-40 flex-grow space-y-6">
-            <h1 className="text-6xl tracking-wide font-bold text-dexfi-moon">
-              The moon is made of pancakes.
-            </h1>
-            <p className="text-xl font-bold text-dexfi-violet">
-              Trade, earn, and win crypto on the most popular decentralized
-              platform in the galaxy.
-            </p>
-            <div className="space-x-2">
-              {!isUserWalletConnected && (
-                <button
-                  onClick={() => {
-                    connect(defualtExchange.current.address);
-                  }}
-                  className="w-[166px] bg-pink-500 active:translate-y-0.1 active:shadow-none active:opacity-90  text-white font-bold py-2.5 px-5 hover:opacity-75 transition-opacity duration-300 rounded-xl shadow-slate-500 shadow-sm "
-                >
-                  Connect Wallet
-                </button>
-              )}
-              <Link href="/swap">
-                <a>
-                  <button className="w-[132px] border-pink-500 border-2 font-bold py-2.5 px-5 rounded-xl shadow-sm text-pink-500 hover:opacity-75 transition-opacity duration-300 active:translate-y-0.1 active:shadow-none active:opacity-90">
-                    Trade Now
-                  </button>
-                </a>
-              </Link>
-            </div>
-          </div>
-          <CoinWrapper maxHeight={512} className="">
-            <Image
-              src="/BNB.png"
-              layout="fill"
-              alt="lol"
-              priority={true}
-              objectFit="contain"
-            />
-            <Image
-              src="/BTC.png"
-              layout="fill"
-              alt="lol"
-              priority={true}
-              objectFit="contain"
-            />
-            <Image
-              src="/CAKE.png"
-              layout="fill"
-              alt="lol"
-              priority={true}
-              objectFit="contain"
-            />
-          </CoinWrapper>
+              <div className='h-[280px]'></div>
         </div>
       </div>
     </div>

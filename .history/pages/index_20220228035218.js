@@ -36,18 +36,18 @@ const BunnyWrapper = styled.div`
 const CoinWrapper = styled.div`
   position: relative;
   max-height: '512px';
-  & :nth-child(2) > :first-child {
-    animation: ${floatingAnim('3px', '15px')} 3s ease-in-out infinite;
+  & :nth-child(2) {
+    animation: ${floatingAnim('3px', '15px')} 1s ease-in-out infinite;
     animation-delay: 1s;
-  }
+    & :nth-child(3) {
+      animation: ${floatingAnim('55px', '10px')} 3s ease-in-out infinite;
+      animation-delay: 2.66s;
+    }
 
-  & > span :nth-child(3) > :first-child {
-    animation: ${floatingAnim('5px', '10px')} 3s ease-in-out infinite;
-    animation-delay: 0.66s;
-  }
-  & > span :nth-child(2) > img {
-    animation: ${floatingAnim('6px', '5px')} 3s ease-in-out infinite;
-    animation-delay: 0.33s;
+    & :nth-child(2) {
+      animation: ${floatingAnim('6px', '5px')} 3s ease-in-out infinite;
+      animation-delay: 0.33s;
+    }
   }
 `;
 
@@ -265,13 +265,16 @@ const Home = () => {
             </div>
           </div>
           <CoinWrapper maxHeight={512} className="">
-            <Image
-              src="/BNB.png"
-              layout="fill"
-              alt="lol"
-              priority={true}
-              objectFit="contain"
-            />
+            <div>
+              {' '}
+              <Image
+                src="/BNB.png"
+                layout="fill"
+                alt="lol"
+                priority={true}
+                objectFit="contain"
+              />
+            </div>
             <Image
               src="/BTC.png"
               layout="fill"
