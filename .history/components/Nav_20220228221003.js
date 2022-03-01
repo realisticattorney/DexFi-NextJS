@@ -215,26 +215,26 @@ const Nav = () => {
                       <h2 className="bg-gray-100 py-2 rounded-2xl text-dexfi-violet font-bold text-center mb-3">
                         <div className="truncate px-4">{account}</div>
                       </h2>
-                      {parseInt(accountBalance[1]) < 0.1 && (
-                        <div className="p-4 bg-orange-50 border border-orange-300 rounded-xl">
-                          <div className="flex">
-                            <WarningIcon
-                              sx={{
-                                fontSize: 24,
-                                color: '#FFB237',
-                              }}
-                            />
-                            <div className="ml-3">
-                              <h1 className="text-dexfi-violet font-bold">
-                                ETH Balance Low
-                              </h1>
-                              <h1 className="text-dexfi-violet font-medium">
-                                Your need ETH for transaction fees.
-                              </h1>
-                            </div>
+                          {parseInt(accountBalance[1]) > 0.1 && (
+                      <div className="p-4 my-6 bg-orange-50 border border-orange-300 rounded-xl">
+                        <div className="flex">
+                          <WarningIcon
+                            sx={{
+                              fontSize: 24,
+                              color: '#FFB237',
+                            }}
+                          />
+                          <div className="ml-3">
+                            <h1 className="text-dexfi-violet font-bold">
+                              ETH Balance Low
+                            </h1>
+                            <h1 className="text-dexfi-violet font-medium">
+                              Your need ETH for transaction fees.
+                            </h1>
                           </div>
                         </div>
-                      )}
+                      </div>
+                          )}
                       <div className="flex justify-between mt-3">
                         <h2 className="text-dexfi-grayviolet font-medium">
                           SCAM Balance
