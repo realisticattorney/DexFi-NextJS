@@ -124,6 +124,7 @@ export default function Web3Provider({ children }) {
                 setWeb3Api((prevState) => ({
                   ...prevState,
                   provider,
+                  web3,
                   exchangeBunny: {
                     ...prevState.exchangeBunny,
                     contract: exchangeBunnyNew,

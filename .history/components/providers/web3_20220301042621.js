@@ -114,7 +114,7 @@ export default function Web3Provider({ children }) {
               const provider = new ethers.providers.Web3Provider(
                 window.ethereum
               );
-              // const web3 = new Web3(provider);
+              const web3 = new Web3(provider);
               if (provider) {
                 const exchangeBunnyNew = new ethers.Contract(
                   exAddress,
@@ -124,6 +124,7 @@ export default function Web3Provider({ children }) {
                 setWeb3Api((prevState) => ({
                   ...prevState,
                   provider,
+                  web3,
                   exchangeBunny: {
                     ...prevState.exchangeBunny,
                     contract: exchangeBunnyNew,
