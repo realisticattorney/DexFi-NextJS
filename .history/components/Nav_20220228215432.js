@@ -19,7 +19,6 @@ import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 import Settings from './Settings';
 import ERC20Token from '../artifacts/contracts/ERC20Token.sol/ERC20Token.json';
-import { scammcoinAddress } from '../config.js';
 const modalstyle = {
   position: 'absolute',
   top: '30%',
@@ -46,29 +45,25 @@ const Nav = () => {
   const [openWallet, setOpenWallet] = useState(false);
   const handleOpenWallet = useCallback(() => setOpenWallet(true), []);
   const handleCloseWallet = useCallback(() => setOpenWallet(false), []);
+  console.log('exchangeBunnyexchangeBunny', exchangeBunny);
   const { account } = useAccount();
-
   const ethAccountBalance = useCallback(async () => {
-    if (account && provider) {
-      const ScammCoinAbi = new ethers.Contract(
-        scammcoinAddress,
-        ERC20Token.abi,
-        provider
-      );
+    if (account && exchangeBunny) {
       return [
         ethers.utils.formatEther(await provider.getBalance(account)),
-        ethers.utils.formatEther(await ScammCoinAbi.balanceOf(account)),
+        ethers.utils.formatEther(await exchangeBunny.getEthBalance(account)),
       ];
     }
-  }, [account, provider]);
+  }, [account, exchangeBunny, provider]);
 
   const [accountBalance, setAccountBalance] = useState(0);
   useEffect(() => {
+    //get eth account balance (async)
     async function getEthAccountBalance() {
       setAccountBalance(await ethAccountBalance());
     }
     getEthAccountBalance();
-  }, [ethAccountBalance]);
+  }, [ethAccountBalance, account, provider]);
 
   useEffect(() => {
     if (router === pathname) {
@@ -236,16 +231,14 @@ const Nav = () => {
                         <h2 className="text-dexfi-grayviolet font-medium">
                           SCAM Balance
                         </h2>
-                        <h2 className="text-dexfi-violet font-medium">
-                          {parseInt(accountBalance[1]).toFixed(2)}
-                        </h2>
+                        <h2 className="text-dexfi-violet font-medium">0.0</h2>
                       </div>
                       <div className="flex justify-between">
                         <h2 className="text-dexfi-grayviolet font-medium">
                           ETH Balance
                         </h2>
                         <h2 className="text-dexfi-violet font-medium">
-                          {parseInt(accountBalance[0]).toFixed(2)}
+                          {parseInt(accountBalance).toFixed(3)}
                         </h2>
                       </div>
                       <div className="flex my-6 justify-end font-bold text-cyan-500">

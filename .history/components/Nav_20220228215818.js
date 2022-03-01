@@ -46,10 +46,10 @@ const Nav = () => {
   const [openWallet, setOpenWallet] = useState(false);
   const handleOpenWallet = useCallback(() => setOpenWallet(true), []);
   const handleCloseWallet = useCallback(() => setOpenWallet(false), []);
+  console.log('exchangeBunnyexchangeBunny', exchangeBunny);
   const { account } = useAccount();
-
   const ethAccountBalance = useCallback(async () => {
-    if (account && provider) {
+    if (account && exchangeBunny) {
       const ScammCoinAbi = new ethers.Contract(
         scammcoinAddress,
         ERC20Token.abi,
@@ -60,15 +60,16 @@ const Nav = () => {
         ethers.utils.formatEther(await ScammCoinAbi.balanceOf(account)),
       ];
     }
-  }, [account, provider]);
+  }, [account, exchangeBunny, provider]);
 
   const [accountBalance, setAccountBalance] = useState(0);
   useEffect(() => {
+    //get eth account balance (async)
     async function getEthAccountBalance() {
       setAccountBalance(await ethAccountBalance());
     }
     getEthAccountBalance();
-  }, [ethAccountBalance]);
+  }, [ethAccountBalance, account, provider]);
 
   useEffect(() => {
     if (router === pathname) {

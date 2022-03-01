@@ -46,6 +46,7 @@ const Nav = () => {
   const [openWallet, setOpenWallet] = useState(false);
   const handleOpenWallet = useCallback(() => setOpenWallet(true), []);
   const handleCloseWallet = useCallback(() => setOpenWallet(false), []);
+  console.log('exchangeBunnyexchangeBunny', exchangeBunny);
   const { account } = useAccount();
 
   const ethAccountBalance = useCallback(async () => {
