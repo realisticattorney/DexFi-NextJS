@@ -132,7 +132,7 @@ const MenuPanel = ({ currencies, section }) => {
       setInputOne(((parseFloat(inputTwo) * 990) / 999).toFixed(17).toString());
       setInputTwo(inputOne);
     } else {
-      setInputTwo(((parseFloat(inputOne) * 999) / 990).toFixed(17).toString());
+      setInputTwo(((parseFloat(inputOne) * 999) / 9950).toFixed(17).toString());
       setInputOne(inputTwo);
     }
   };

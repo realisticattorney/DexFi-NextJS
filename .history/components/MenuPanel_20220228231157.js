@@ -126,15 +126,15 @@ const MenuPanel = ({ currencies, section }) => {
     const newIndex = newSelected;
     setInputToken([currencies[newIndex], newIndex]);
     setOutputToken([currencies[prevIndex], prevIndex]);
-    // setInputOne(inputTwo);
+    setInputOne(inputTwo);
+    setInputTwo(inputOne);
+    // if(menuItem === 1){
+    // setInputOne(((inputTwo * 98) / 100));
     // setInputTwo(inputOne);
-    if (menuItem === 1) {
-      setInputOne(((parseFloat(inputTwo) * 990) / 999).toFixed(17).toString());
-      setInputTwo(inputOne);
-    } else {
-      setInputTwo(((parseFloat(inputOne) * 999) / 990).toFixed(17).toString());
-      setInputOne(inputTwo);
-    }
+    // } else {
+    // setInputTwo(((inputOne * 101.01) / 100));
+    // setInputOne(inputTwo);
+    // }
   };
 
   const handleInputChange = (event) => {
@@ -180,7 +180,6 @@ const MenuPanel = ({ currencies, section }) => {
 
   async function callExchange(input, id) {
     let price = ethers.utils.parseEther(input);
-
     let amount;
     let callFunction = swapTypeHandler();
     if (callFunction === 'TokenToTokenSwap') {
@@ -222,10 +221,6 @@ const MenuPanel = ({ currencies, section }) => {
       setInputTwo(input);
     }
   }
-
-  console.log('inputOne', inputOne);
-  console.log('inputTwo', inputTwo);
-
   async function operate() {
     const web3modal = new Web3Modal();
     const connection = await web3modal.connect();
@@ -290,16 +285,10 @@ const MenuPanel = ({ currencies, section }) => {
   async function swap() {
     const [exchangeUserConnection, allowanceAmount] = await operate();
     const swapType = swapTypeHandler();
-    console.log(
-      'lalalalala',
-      ethers.utils.formatEther(
-        ethers.utils.parseEther((inputTwo * 0.98).toString())
-      ),
-      ethers.utils.formatEther(ethers.utils.parseEther(inputOne.toString())), swapType
-    );
+
     if (swapType === 'EthToTokenSwap') {
       let transaction = await exchangeUserConnection.ethToTokenSwap(
-        ethers.utils.parseEther((inputTwo * 0.97).toString()),
+        ethers.utils.parseEther((inputTwo * 0.98).toString()),
         {
           value: ethers.utils.parseEther(inputOne.toString()),
         }

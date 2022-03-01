@@ -129,10 +129,10 @@ const MenuPanel = ({ currencies, section }) => {
     // setInputOne(inputTwo);
     // setInputTwo(inputOne);
     if (menuItem === 1) {
-      setInputOne(((parseFloat(inputTwo) * 990) / 999).toFixed(17).toString());
+      setInputOne(((parseFloat(inputTwo) * 99) / 100).toFixed(18).toString());
       setInputTwo(inputOne);
     } else {
-      setInputTwo(((parseFloat(inputOne) * 999) / 990).toFixed(17).toString());
+      setInputTwo(((parseFloat(inputOne) * 100) / 99).toFixed(18).toString());
       setInputOne(inputTwo);
     }
   };
@@ -180,7 +180,7 @@ const MenuPanel = ({ currencies, section }) => {
 
   async function callExchange(input, id) {
     let price = ethers.utils.parseEther(input);
-
+    
     let amount;
     let callFunction = swapTypeHandler();
     if (callFunction === 'TokenToTokenSwap') {
@@ -290,16 +290,10 @@ const MenuPanel = ({ currencies, section }) => {
   async function swap() {
     const [exchangeUserConnection, allowanceAmount] = await operate();
     const swapType = swapTypeHandler();
-    console.log(
-      'lalalalala',
-      ethers.utils.formatEther(
-        ethers.utils.parseEther((inputTwo * 0.98).toString())
-      ),
-      ethers.utils.formatEther(ethers.utils.parseEther(inputOne.toString())), swapType
-    );
+console.log("lalalalala",     ethers.utils.parseEther((inputTwo * 0.98).toString()),)
     if (swapType === 'EthToTokenSwap') {
       let transaction = await exchangeUserConnection.ethToTokenSwap(
-        ethers.utils.parseEther((inputTwo * 0.97).toString()),
+        ethers.utils.parseEther((inputTwo * 0.98).toString()),
         {
           value: ethers.utils.parseEther(inputOne.toString()),
         }

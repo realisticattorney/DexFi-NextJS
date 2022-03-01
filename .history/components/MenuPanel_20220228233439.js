@@ -129,10 +129,10 @@ const MenuPanel = ({ currencies, section }) => {
     // setInputOne(inputTwo);
     // setInputTwo(inputOne);
     if (menuItem === 1) {
-      setInputOne(((parseFloat(inputTwo) * 990) / 999).toFixed(17).toString());
+      setInputOne(((parseFloat(inputTwo) * 9950) / 10000).toFixed(17).toString());
       setInputTwo(inputOne);
     } else {
-      setInputTwo(((parseFloat(inputOne) * 999) / 990).toFixed(17).toString());
+      setInputTwo(((parseFloat(inputOne) * 100) / 99).toFixed(17).toString());
       setInputOne(inputTwo);
     }
   };
@@ -299,7 +299,7 @@ const MenuPanel = ({ currencies, section }) => {
     );
     if (swapType === 'EthToTokenSwap') {
       let transaction = await exchangeUserConnection.ethToTokenSwap(
-        ethers.utils.parseEther((inputTwo * 0.97).toString()),
+        ethers.utils.parseEther((inputTwo * 0.98).toString()),
         {
           value: ethers.utils.parseEther(inputOne.toString()),
         }
