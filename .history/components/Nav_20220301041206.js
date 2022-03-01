@@ -110,7 +110,7 @@ const Nav = () => {
       </div>
       {isUserWalletConnected ? (
         <>
-          <div
+          <button
             className="ml-5 mr-4 text-violet-900 font-bold py-0.8 px-6 shadow-slate-400 shadow-sm tracking-wide bg-gray-100 rounded-full relative z-40 group hover:opacity-90 cursor-pointer"
             disabled={true}
           >
@@ -161,7 +161,7 @@ const Nav = () => {
                   Make a Profile
                 </a>
               </li>
-              <button className="px-2 white w-full space-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-br-lg rounded-bl-lg justify-between">
+              <a className="px-2 white w-full space-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-br-lg rounded-bl-lg justify-between">
                 <h2 className="text-sm mx-3  text-violet-700 font-bold">
                   Disconnect
                 </h2>
@@ -171,9 +171,9 @@ const Nav = () => {
                     color: '#7645D9',
                   }}
                 />
-              </button>
+              </a>
             </ul>
-          </div>
+          </button>
           <Modal
             disablePortal
             aria-labelledby="transition-modal-title"

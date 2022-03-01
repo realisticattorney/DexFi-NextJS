@@ -53,27 +53,27 @@ const Nav = () => {
   const { network } = useNetwork();
   console.log('network', network);
   console.log('web3', web3);
-  const ethAccountBalance = useCallback(async () => {
-    if (account && provider) {
-      const ScammCoinAbi = new ethers.Contract(
-        scammcoinAddress,
-        ERC20Token.abi,
-        provider
-      );
-      return [
-        ethers.utils.formatEther(await provider.getBalance(account)),
-        ethers.utils.formatEther(await ScammCoinAbi.balanceOf(account)),
-      ];
-    }
-  }, [account, provider]);
+  // const ethAccountBalance = useCallback(async () => {
+  //   if (account && provider) {
+  //     const ScammCoinAbi = new ethers.Contract(
+  //       scammcoinAddress,
+  //       ERC20Token.abi,
+  //       provider
+  //     );
+  //     return [
+  //       ethers.utils.formatEther(await provider.getBalance(account)),
+  //       ethers.utils.formatEther(await ScammCoinAbi.balanceOf(account)),
+  //     ];
+  //   }
+  // }, [account, provider]);
 
   const [accountBalance, setAccountBalance] = useState(0);
-  useEffect(() => {
-    async function getEthAccountBalance() {
-      setAccountBalance(await ethAccountBalance());
-    }
-    getEthAccountBalance();
-  }, [ethAccountBalance]);
+  // useEffect(() => {
+  //   async function getEthAccountBalance() {
+  //     setAccountBalance(await ethAccountBalance());
+  //   }
+  //   getEthAccountBalance();
+  // }, [ethAccountBalance]);
 
   useEffect(() => {
     if (router === pathname) {
@@ -110,7 +110,7 @@ const Nav = () => {
       </div>
       {isUserWalletConnected ? (
         <>
-          <div
+          <button
             className="ml-5 mr-4 text-violet-900 font-bold py-0.8 px-6 shadow-slate-400 shadow-sm tracking-wide bg-gray-100 rounded-full relative z-40 group hover:opacity-90 cursor-pointer"
             disabled={true}
           >
@@ -173,7 +173,7 @@ const Nav = () => {
                 />
               </button>
             </ul>
-          </div>
+          </button>
           <Modal
             disablePortal
             aria-labelledby="transition-modal-title"

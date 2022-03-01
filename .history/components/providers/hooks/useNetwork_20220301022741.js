@@ -13,7 +13,7 @@ const NETWORKS = {
 
 const targetNetwork = NETWORKS[process.env.NEXT_PUBLIC_TARGET_CHAIN_ID];
 
-export const handler = (web3, providerMetamask) => () => {
+export const handler = (web3, provider) => () => {
   const { data, mutate, ...rest } = useSWR(
     () => (web3 ? 'web3/network' : null),
     async () => {
@@ -23,8 +23,8 @@ export const handler = (web3, providerMetamask) => () => {
   );
 
   useEffect(() => {
-    providerMetamask &&
-      providerMetamask.on('chainChanged', (chainId) => {
+    provider &&
+      provider.on('chainChanged', (chainId) => {
         mutate(NETWORKS[parseInt(chainId, 16)]);
       });
   }, [web3, mutate]);

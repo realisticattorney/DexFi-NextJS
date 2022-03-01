@@ -28,43 +28,42 @@ export default function Web3Provider({ children }) {
 
   useEffect(() => {
     const loadProvider = async () => {
-      const provider = new ethers.providers.getDefaultProvider(
-        'http://localhost:8545'
-      );
-      const providerMetamask = await detectEthereumProvider();
+      // const provider = new ethers.providers.getDefaultProvider(
+      //   'http://localhost:8545'
+      // );
+      const provider = await detectEthereumProvider();
       if (provider) {
-        const web3 = new Web3(providerMetamask);
-        const registry = new ethers.Contract(
-          registryAddress,
-          Registry.abi,
-          provider
-        );
+        const web3 = new Web3(provider);
+        // const registry = new ethers.Contract(
+        //   registryAddress,
+        //   Registry.abi,
+        //   provider
+        // );
 
-        const exchangeBunny = new ethers.Contract(
-          scammExchangeAddress,
-          Exchange.abi,
-          provider
-        );
-        const exchangeBalance = ethers.utils.formatEther(
-          await provider.getBalance(exchangeBunny.address)
-        );
-        const getReserve = ethers.utils.formatEther(
-          await exchangeBunny.getReserve()
-        );
-        const totalSupply = ethers.utils.formatEther(
-          await exchangeBunny.totalSupply()
-        );
+        // const exchangeBunny = new ethers.Contract(
+        //   scammExchangeAddress,
+        //   Exchange.abi,
+        //   provider
+        // );
+        // const exchangeBalance = ethers.utils.formatEther(
+        //   await provider.getBalance(exchangeBunny.address)
+        // );
+        // const getReserve = ethers.utils.formatEther(
+        //   await exchangeBunny.getReserve()
+        // );
+        // const totalSupply = ethers.utils.formatEther(
+        //   await exchangeBunny.totalSupply()
+        // );
         setWeb3Api({
           provider,
-          providerMetamask,
           web3,
-          registry,
-          exchangeBunny: {
-            balance: exchangeBalance,
-            reserve: getReserve,
-            totalSupply,
-            contract: exchangeBunny,
-          },
+          // registry,
+          // exchangeBunny: {
+          //   balance: exchangeBalance,
+          //   reserve: getReserve,
+          //   totalSupply,
+          //   contract: exchangeBunny,
+          // },
           isLoading: false,
           providerType: 'default',
           exchangeCurrent: {
@@ -87,7 +86,7 @@ export default function Web3Provider({ children }) {
       ...web3Api,
       isWeb3Loaded: web3Api.providerType === 'default',
       isUserWalletConnected: web3Api.providerType === 'user',
-      getHooks: () => setupHooks(web3Api.web3, web3Api.providerMetamask),
+      getHooks: () => setupHooks(web3Api.web3, web3Api.provider),
       setExchangeCurrent: async (exchange) => {
         const exchangeBalance = ethers.utils.formatEther(
           await web3Api.provider.getBalance(exchange.address)

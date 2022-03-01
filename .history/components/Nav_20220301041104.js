@@ -110,7 +110,7 @@ const Nav = () => {
       </div>
       {isUserWalletConnected ? (
         <>
-          <div
+          <button
             className="ml-5 mr-4 text-violet-900 font-bold py-0.8 px-6 shadow-slate-400 shadow-sm tracking-wide bg-gray-100 rounded-full relative z-40 group hover:opacity-90 cursor-pointer"
             disabled={true}
           >
@@ -173,7 +173,7 @@ const Nav = () => {
                 />
               </button>
             </ul>
-          </div>
+          </button>
           <Modal
             disablePortal
             aria-labelledby="transition-modal-title"
@@ -263,12 +263,12 @@ const Nav = () => {
                           }}
                         />
                       </div>
-                      <button
+                      <a
                         className="w-full border-cyan-500 border-2  text-cyan-500 font-bold py-3 px-12 rounded-2xl hover:opacity-75 transition-opacity duration-300"
-                        onClick={() => {}}
+                        // onClick={() => {}}
                       >
                         Disconnect Wallet
-                      </button>
+                      </a>
                     </div>
                   </div>
                 </MenuList>

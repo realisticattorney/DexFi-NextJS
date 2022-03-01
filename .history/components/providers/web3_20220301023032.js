@@ -6,12 +6,13 @@ const {
   useMemo,
 } = require('react');
 import { ethers } from 'ethers';
-import detectEthereumProvider from '@metamask/detect-provider';
-import { setupHooks } from './hooks/setupHooks.js';
 import Web3 from 'web3';
+
 import { registryAddress, scammExchangeAddress } from '../../config.js';
+
 import Registry from '../../artifacts/contracts/Registry.sol/Registry.json';
 import Exchange from '../../artifacts/contracts/Exchange.sol/Exchange.json';
+import { setupHooks } from './hooks/setupHooks.js';
 
 const Web3Context = createContext(null);
 
@@ -31,9 +32,8 @@ export default function Web3Provider({ children }) {
       const provider = new ethers.providers.getDefaultProvider(
         'http://localhost:8545'
       );
-      const providerMetamask = await detectEthereumProvider();
       if (provider) {
-        const web3 = new Web3(providerMetamask);
+        const web3 = new Web3(provider);
         const registry = new ethers.Contract(
           registryAddress,
           Registry.abi,
@@ -56,7 +56,6 @@ export default function Web3Provider({ children }) {
         );
         setWeb3Api({
           provider,
-          providerMetamask,
           web3,
           registry,
           exchangeBunny: {
@@ -87,7 +86,7 @@ export default function Web3Provider({ children }) {
       ...web3Api,
       isWeb3Loaded: web3Api.providerType === 'default',
       isUserWalletConnected: web3Api.providerType === 'user',
-      getHooks: () => setupHooks(web3Api.web3, web3Api.providerMetamask),
+      getHooks: () => setupHooks(web3Api.web3),
       setExchangeCurrent: async (exchange) => {
         const exchangeBalance = ethers.utils.formatEther(
           await web3Api.provider.getBalance(exchange.address)

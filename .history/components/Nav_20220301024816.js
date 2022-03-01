@@ -51,8 +51,8 @@ const Nav = () => {
   const handleCloseWallet = useCallback(() => setOpenWallet(false), []);
   const { account } = useAccount();
   const { network } = useNetwork();
-  console.log('network', network);
-  console.log('web3', web3);
+console.log("network",network);
+console.log("account",account);
   const ethAccountBalance = useCallback(async () => {
     if (account && provider) {
       const ScammCoinAbi = new ethers.Contract(
@@ -110,7 +110,7 @@ const Nav = () => {
       </div>
       {isUserWalletConnected ? (
         <>
-          <div
+          <button
             className="ml-5 mr-4 text-violet-900 font-bold py-0.8 px-6 shadow-slate-400 shadow-sm tracking-wide bg-gray-100 rounded-full relative z-40 group hover:opacity-90 cursor-pointer"
             disabled={true}
           >
@@ -173,7 +173,7 @@ const Nav = () => {
                 />
               </button>
             </ul>
-          </div>
+          </button>
           <Modal
             disablePortal
             aria-labelledby="transition-modal-title"
