@@ -110,7 +110,7 @@ const MenuItemList = ({
           },
 
           '& .MuiInputBase-input': {
-            backgroundColor: '#EEEAF4',
+            backgroundColor: '#7A6EAA',
             borderRadius: 3,
             height: 48,
             textIndent: 0,

@@ -49,8 +49,6 @@ input[type='number']::-webkit-outer-spin-button {
 
 .scaleFirstChild:hover > :first-child {
   transform: scale(1.15);
+  transition: all in-ease 0.1s ease-in-out;
 }
-
-.scaleFirstChild > * {
-  transition: transform 0.12s ease-in-out;
-}
+.scaleFirstChild > 

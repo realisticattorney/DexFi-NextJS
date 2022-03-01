@@ -42,7 +42,7 @@ const MenuItemList = ({
         onClick={() => {
           modalIsDisabled === 'yes' ? '' : handleOpen();
         }}
-        className="flex items-center ml-3.5 mb-0.5"
+        className="flex items-center ml-2 mb-0.5"
       >
         <Image
           src={token[0].logoURI}

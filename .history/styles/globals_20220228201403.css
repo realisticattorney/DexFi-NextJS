@@ -47,10 +47,18 @@ input[type='number']::-webkit-outer-spin-button {
   );
 }
 
-.scaleFirstChild:hover > :first-child {
-  transform: scale(1.15);
+.scalefirstchild {
+  background-color: red;
+  width: 50%;
+  margin: 0 auto;
+  transition: all ease-in 0.4s;
+  margin-top: 1rem;
+  padding: 3rem;
+}
+.scalefirstchild > * {
+  transition: all ease-in 0.8s;
 }
 
-.scaleFirstChild > * {
-  transition: transform 0.12s ease-in-out;
+.scalefirstchild:hover > *:first-child {
+  transform: scale(2) translate(20%);
 }
