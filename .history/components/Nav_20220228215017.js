@@ -237,7 +237,7 @@ const Nav = () => {
                           ETH Balance
                         </h2>
                         <h2 className="text-dexfi-violet font-medium">
-                          {parseInt(accountBalance).toFixed(3)}
+                          {accountBalance.toFixed(3)}
                         </h2>
                       </div>
                       <div className="flex my-6 justify-end font-bold text-cyan-500">

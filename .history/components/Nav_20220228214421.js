@@ -1,5 +1,4 @@
 import { useState, useCallback, useEffect } from 'react';
-import { ethers } from 'ethers';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useWeb3 } from '../components/providers/web3';
@@ -49,20 +48,9 @@ const Nav = () => {
   const { account } = useAccount();
   const ethAccountBalance = useCallback(async () => {
     if (account && exchangeBunny) {
-      return ethers.utils.formatEther(await provider.getBalance(account));
+      return ethers.utils.formatEther(await provider.getBalance(addr1.address))
     }
-  }, [account, exchangeBunny, provider]);
-
-  const [accountBalance, setAccountBalance] = useState(0);
-  useEffect(() => {
-    //get eth account balance (async)
-    async function getEthAccountBalance() {
-      setAccountBalance(
-        ethers.utils.formatEther(await provider.getBalance(account))
-      );
-    }
-    getEthAccountBalance();
-  }, [ethAccountBalance, account, provider]);
+  }, [account, exchangeBunny]);
 
   useEffect(() => {
     if (router === pathname) {
@@ -236,9 +224,7 @@ const Nav = () => {
                         <h2 className="text-dexfi-grayviolet font-medium">
                           ETH Balance
                         </h2>
-                        <h2 className="text-dexfi-violet font-medium">
-                          {parseInt(accountBalance).toFixed(3)}
-                        </h2>
+                        <h2 className="text-dexfi-violet font-medium">{ethAccountBalance()}</h2>
                       </div>
                       <div className="flex my-6 justify-end font-bold text-cyan-500">
                         View on BscScan
