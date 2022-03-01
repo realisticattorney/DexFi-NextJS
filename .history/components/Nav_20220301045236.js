@@ -222,7 +222,7 @@ const Nav = () => {
                         <div className="p-4 bg-orange-50 border border-orange-300 rounded-xl">
                           <div className="flex">
                             <WarningIcon
-                              sx={{
+                              sx={{ 
                                 fontSize: 24,
                                 color: '#FFB237',
                               }}
