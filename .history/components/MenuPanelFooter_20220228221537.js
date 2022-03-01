@@ -26,7 +26,7 @@ const MenuPanelFooter = ({
           {inputTwo > 0 ? (
             <h2 className="text-emerald-400 font-medium text-sm tracking-wide">
               {'<'}
-              {((parseInt(inputTwo) / (parseInt(balance) + (parseInt(inputTwo)))) * 99 + 0.01).toFixed(
+              {((parseInt(inputTwo) / parseInt(balance) =) * 99 + 0.01).toFixed(
                 2
               )}
               %
