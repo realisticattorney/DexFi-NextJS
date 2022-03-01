@@ -17,7 +17,7 @@ export const handler = (web3, providerMetamask) => () => {
   const { data, mutate, ...rest } = useSWR(
     () => (web3 ? 'web3/network' : null),
     async () => {
-      const chainId = await web3?.eth?.getChainId();
+      const chainId = await web3?.eth.getChainId();
       return NETWORKS[chainId];
     }
   );

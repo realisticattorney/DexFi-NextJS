@@ -99,7 +99,7 @@ const Home = () => {
             src="/bunnyHome.png"
             layout="fill"
             alt="lol"
-            priority={false}
+            priority={true}
             objectFit="contain"
           />
         </BunnyWrapper>
@@ -293,6 +293,7 @@ const Home = () => {
               src="/BNB.png"
               layout="fill"
               alt="lol"
+              priority="low"
               priority={false}
               objectFit="contain"
             />
@@ -300,6 +301,7 @@ const Home = () => {
               src="/BTC.png"
               layout="fill"
               alt="lol"
+              priority="low"
               priority={false}
               objectFit="contain"
             />
@@ -307,6 +309,7 @@ const Home = () => {
               src="/CAKE.png"
               layout="fill"
               alt="lol"
+              priority="low"
               priority={false}
               objectFit="contain"
             />
