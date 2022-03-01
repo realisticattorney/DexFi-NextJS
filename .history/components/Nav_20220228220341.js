@@ -43,7 +43,7 @@ const Nav = () => {
   let router = useRouter();
   const [pathname, setPathname] = useState(router.pathname);
   const { contract, balance, reserve } = exchangeBunny ?? {};
-  const { address } = contract ?? {};
+  const {address} 
   const [openWallet, setOpenWallet] = useState(false);
   const handleOpenWallet = useCallback(() => setOpenWallet(true), []);
   const handleCloseWallet = useCallback(() => setOpenWallet(false), []);
@@ -274,7 +274,7 @@ const Nav = () => {
         <button
           className=" mr-6 text-white font-bold py-1 px-4 shadow-slate-400 shadow-sm tracking-wide bg-pink-500 rounded-full active:translate-y-0.1 active:shadow-none active:opacity-90 hover:opacity-75 transition-opacity duration-150"
           onClick={() => {
-            connect(address);
+            connect(contract.address);
           }}
         >
           Connect Wallet

@@ -43,7 +43,7 @@ const Nav = () => {
   let router = useRouter();
   const [pathname, setPathname] = useState(router.pathname);
   const { contract, balance, reserve } = exchangeBunny ?? {};
-  const { address } = contract ?? {};
+  const {address} = contract ?? {};
   const [openWallet, setOpenWallet] = useState(false);
   const handleOpenWallet = useCallback(() => setOpenWallet(true), []);
   const handleCloseWallet = useCallback(() => setOpenWallet(false), []);
