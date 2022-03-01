@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useWeb3 } from '../components/providers/web3';
 import { useAccount } from '../components/web3/hooks/useAccount';
-import { useNetwork } from '../components/web3/hooks/useNetwork';
+import { useAccount } from '../components/web3/hooks/useAccount';
 import { useRouter } from 'next/router';
 import ModalMenu from './ModalMenu.js';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
@@ -49,8 +49,7 @@ const Nav = () => {
   const handleOpenWallet = useCallback(() => setOpenWallet(true), []);
   const handleCloseWallet = useCallback(() => setOpenWallet(false), []);
   const { account } = useAccount();
-  const { network } = useNetwork();
-console.log("network",network.data);
+
   const ethAccountBalance = useCallback(async () => {
     if (account && provider) {
       const ScammCoinAbi = new ethers.Contract(

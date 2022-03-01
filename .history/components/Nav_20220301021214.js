@@ -49,8 +49,8 @@ const Nav = () => {
   const handleOpenWallet = useCallback(() => setOpenWallet(true), []);
   const handleCloseWallet = useCallback(() => setOpenWallet(false), []);
   const { account } = useAccount();
-  const { network } = useNetwork();
-console.log("network",network.data);
+  const { account } = useAccount();
+
   const ethAccountBalance = useCallback(async () => {
     if (account && provider) {
       const ScammCoinAbi = new ethers.Contract(
