@@ -11,7 +11,7 @@ module.exports = {
       chainId: 1337,
     },
     rinkeby: {
-      url: `https://eth-rinkeby.alchemyapi.io/v2/${rinkebyApiKey}`,
+      url: `https://polygon-mumbai.g.alchemy.com/v2/${rinkebyApiKey}`,
       accounts: [privateKey],
     },
     // mainnet: {
@@ -29,3 +29,4 @@ module.exports = {
     },
   },
 };
+https://eth-rinkeby.alchemyapi.io/v2/nyTlwya67CtkePdd15Xx8GeeMmHBHC4J

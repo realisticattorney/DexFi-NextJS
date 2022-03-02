@@ -1,7 +1,7 @@
 require('@nomiclabs/hardhat-waffle');
 const fs = require('fs');
 
-const rinkebyApiKey = fs.readFileSync('.rinkeby').toString();
+const mumbaiApiKey = fs.readFileSync('.rinkeby').toString();
 const privateKey = fs.readFileSync('.secret').toString();
 
 module.exports = {
@@ -10,8 +10,8 @@ module.exports = {
     hardhat: {
       chainId: 1337,
     },
-    rinkeby: {
-      url: `https://eth-rinkeby.alchemyapi.io/v2/${rinkebyApiKey}`,
+    mumbai: {
+      url: `https://polygon-mumbai.g.alchemy.com/v2/${mumbaiApiKey}`,
       accounts: [privateKey],
     },
     // mainnet: {
