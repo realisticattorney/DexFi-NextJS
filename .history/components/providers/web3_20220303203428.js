@@ -30,9 +30,9 @@ export default function Web3Provider({ children }) {
     const loadProvider = async () => {
       const url = `https://eth-rinkeby.alchemyapi.io/v2/nyTlwya67CtkePdd15Xx8GeeMmHBHC4J`;
       const provider = new ethers.providers.JsonRpcProvider(url);
-      const providerMetamask = await detectEthereumProvider();
+      // const provider = await detectEthereumProvider();
       if (provider) {
-        const web3 = new Web3(providerMetamask);
+        const web3 = new Web3(provider);
         const registry = new ethers.Contract(
           registryAddress,
           Registry.abi,
@@ -55,7 +55,7 @@ export default function Web3Provider({ children }) {
         );
         setWeb3Api({
           provider,
-          providerMetamask,
+          provider,
           web3,
           registry,
           exchangeBunny: {
@@ -86,7 +86,7 @@ export default function Web3Provider({ children }) {
       ...web3Api,
       isWeb3Loaded: web3Api.providerType === 'default',
       isUserWalletConnected: web3Api.providerType === 'user',
-      getHooks: () => setupHooks(web3Api.web3, web3Api.providerMetamask),
+      getHooks: () => setupHooks(web3Api.web3, web3Api.provider),
       setExchangeCurrent: async (exchange) => {
         const exchangeBalance = ethers.utils.formatEther(
           await web3Api.provider.getBalance(exchange.address)

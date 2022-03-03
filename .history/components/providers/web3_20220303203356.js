@@ -9,7 +9,7 @@ import { ethers } from 'ethers';
 import detectEthereumProvider from '@metamask/detect-provider';
 import { setupHooks } from './hooks/setupHooks.js';
 import Web3 from 'web3';
-import { registryAddress, scammExchangeAddress } from '../../config.js';
+import { registryAddress, scammExchangeAddress } from '../../config-local.js';
 import Registry from '../../artifacts/contracts/Registry.sol/Registry.json';
 import Exchange from '../../artifacts/contracts/Exchange.sol/Exchange.json';
 
@@ -30,7 +30,7 @@ export default function Web3Provider({ children }) {
     const loadProvider = async () => {
       const url = `https://eth-rinkeby.alchemyapi.io/v2/nyTlwya67CtkePdd15Xx8GeeMmHBHC4J`;
       const provider = new ethers.providers.JsonRpcProvider(url);
-      const providerMetamask = await detectEthereumProvider();
+      // const providerMetamask = await detectEthereumProvider();
       if (provider) {
         const web3 = new Web3(providerMetamask);
         const registry = new ethers.Contract(
