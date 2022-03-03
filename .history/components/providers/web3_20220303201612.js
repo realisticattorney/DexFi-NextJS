@@ -56,6 +56,7 @@ export default function Web3Provider({ children }) {
         );
         setWeb3Api({
           provider,
+          provider,
           web3,
           registry,
           exchangeBunny: {
