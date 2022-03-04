@@ -34,7 +34,12 @@ const modalstyle = {
 };
 
 const Nav = () => {
-  const { connect, isWeb3Loaded, exchangeBunny, provider } = useWeb3();
+  const {
+    connect,
+    isWeb3Loaded,
+    exchangeBunny,
+    provider,
+  } = useWeb3();
   let router = useRouter();
   const [pathname, setPathname] = useState(router.pathname);
   const { contract, balance, reserve } = exchangeBunny ?? {};
@@ -98,7 +103,7 @@ const Nav = () => {
           <div className="flex mx-5 space-x-2 cursor-pointer scaleFirstChild  ">
             <Image src="/logo.png" height={24} width={26} alt="" className="" />
             <h2 className="text-dexfi-grayviolet mt-0.1 pt-0.1 font-bold">
-              ${reserve ? (reserve / balance).toFixed(2) : '0.00'}
+              ${reserve ? (reserve / balance).toFixed(3) : ""}
             </h2>
           </div>
         </Link>

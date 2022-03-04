@@ -98,7 +98,7 @@ const Nav = () => {
           <div className="flex mx-5 space-x-2 cursor-pointer scaleFirstChild  ">
             <Image src="/logo.png" height={24} width={26} alt="" className="" />
             <h2 className="text-dexfi-grayviolet mt-0.1 pt-0.1 font-bold">
-              ${reserve ? (reserve / balance).toFixed(2) : '0.00'}
+              ${reserve ? (reserve / balance).toFixed(3) : '0.00'}
             </h2>
           </div>
         </Link>
