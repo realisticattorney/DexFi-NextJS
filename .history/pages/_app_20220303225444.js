@@ -5,13 +5,14 @@ import Layout from '../components/Layout';
 const APP_ID = process.env.NEXT_PUBLIC_APP_ID;
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
-const isServerInfo = Boolean(APP_ID && SERVER_URL);
-
 function MyApp({ Component, pageProps }) {
   return (
-    <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
+    <MoralisProvider
+      appId={process.env.NEXT_PUBLIC_APP_ID}
+      serverUrl={process.env.NEXT_PUBLIC_SERVER_URL}
+    >
       <Layout>
-        <Component {...pageProps} isServerInfo={isServerInfo} />
+        <Component {...pageProps} />
       </Layout>
     </MoralisProvider>
   );
