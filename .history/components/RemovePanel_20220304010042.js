@@ -1,4 +1,4 @@
-import Exchange from '../utils/Exchange.json';
+import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import { ethers } from 'ethers';
 import { useState, useEffect, useCallback } from 'react';
 import { useWeb3 } from '../components/providers/web3';

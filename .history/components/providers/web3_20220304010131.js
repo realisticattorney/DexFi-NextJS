@@ -10,7 +10,7 @@ import detectEthereumProvider from '@metamask/detect-provider';
 import { setupHooks } from './hooks/setupHooks.js';
 import Web3 from 'web3';
 import { registryAddress, scammExchangeAddress } from '../../config-local.js';
-import Registry from '../../utils/Registry.json';
+import Registry from '../../artifacts/contracts/Registry.sol/Registry.json';
 import Exchange from '../../utils/Exchange.json';
 
 const Web3Context = createContext(null);

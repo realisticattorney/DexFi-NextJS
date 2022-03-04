@@ -4,7 +4,7 @@ import Web3Modal from 'web3modal';
 import MenuItemList from './MenuItemList.js';
 import { useWeb3 } from './providers/web3';
 import { scammExchangeAddress } from '../config-local.js';
-import Exchange from '../utils/Exchange.json';
+import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json';
 import ERC20Token from '../utils/ERC20Token.json';
 import SwitchIcon from './SwitchIcon.js';
 import PriceEstimator from './PriceEstimator.js';
