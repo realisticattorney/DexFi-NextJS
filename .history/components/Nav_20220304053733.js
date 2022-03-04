@@ -52,7 +52,7 @@ const Nav = () => {
   const { isAuthenticated, authenticate, user, logout } = useMoralis();
   // console.log('network', network);
   // console.log('web3', web3)
-  console.log('user', user);
+  console.log("user", user);
   console.log('isAuthenticated', isAuthenticated);
   console.log('balance', balance);
   console.log('reserve', reserve);
@@ -164,10 +164,7 @@ const Nav = () => {
                   Make a Profile
                 </a>
               </li>
-              <button
-                className="px-2 white w-full space-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-br-lg rounded-bl-lg justify-between"
-                onClick={logout}
-              >
+              <button className="px-2 white w-full space-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-br-lg rounded-bl-lg justify-between">
                 <h2 className="text-sm mx-3  text-violet-700 font-bold">
                   Disconnect
                 </h2>

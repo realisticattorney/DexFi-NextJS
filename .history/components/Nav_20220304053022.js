@@ -22,7 +22,6 @@ import Settings from './Settings';
 import ERC20Token from '../utils/ERC20Token.json';
 import { scammcoinAddress } from '../config-local.js';
 import { useMoralis } from 'react-moralis';
-import Logout from '@mui/icons-material/Logout';
 
 const modalstyle = {
   position: 'absolute',
@@ -49,10 +48,9 @@ const Nav = () => {
   const { account } = useAccount();
   const { network } = useNetwork();
   console.log('acount', account);
-  const { isAuthenticated, authenticate, user, logout } = useMoralis();
+  const { isAuthenticated, authenticate } = useMoralis();
   // console.log('network', network);
-  // console.log('web3', web3)
-  console.log('user', user);
+  // console.log('web3', web3);
   console.log('isAuthenticated', isAuthenticated);
   console.log('balance', balance);
   console.log('reserve', reserve);
@@ -111,7 +109,7 @@ const Nav = () => {
         </Link>
         <Settings />
       </div>
-      {isAuthenticated ? (
+      {isA ? (
         <>
           <div
             className="ml-5 mr-4 text-violet-900 font-bold py-0.8 px-6 shadow-slate-400 shadow-sm tracking-wide bg-gray-100 rounded-full relative z-40 group hover:opacity-90 cursor-pointer"
@@ -164,10 +162,7 @@ const Nav = () => {
                   Make a Profile
                 </a>
               </li>
-              <button
-                className="px-2 white w-full space-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-br-lg rounded-bl-lg justify-between"
-                onClick={logout}
-              >
+              <button className="px-2 white w-full space-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-br-lg rounded-bl-lg justify-between">
                 <h2 className="text-sm mx-3  text-violet-700 font-bold">
                   Disconnect
                 </h2>
@@ -275,7 +270,7 @@ const Nav = () => {
                       </div>
                       <button
                         className="w-full border-cyan-500 border-2  text-cyan-500 font-bold py-3 px-12 rounded-2xl hover:opacity-75 transition-opacity duration-300"
-                        onClick={logout}
+                        onClick={() => {}}
                       >
                         Disconnect Wallet
                       </button>
@@ -289,9 +284,11 @@ const Nav = () => {
       ) : isWeb3Loaded ? (
         <button
           className=" mr-6 text-white font-bold py-1 px-4 shadow-slate-400 shadow-sm tracking-wide bg-pink-500 rounded-full active:translate-y-0.1 active:shadow-none active:opacity-90 hover:opacity-75 transition-opacity duration-150"
-          onClick={() => authenticate()}
+          onClick={() => {
+            connect(address);
+          }}
         >
-          Connect Wallet
+          Loading...
         </button>
       ) : (
         <button
