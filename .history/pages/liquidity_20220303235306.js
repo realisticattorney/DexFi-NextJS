@@ -64,9 +64,6 @@ export default function Liquidity(props) {
         const userLPTokens = ethers.utils.formatEther(
           await connectToAbi.balanceOf(account)
         );
-        const exchangeBalance = ethers.utils.formatEther(
-          await provider.getBalance(connectToAbi.address)
-        );
 
         const getReserve = ethers.utils.formatEther(
           await connectToAbi.getReserve()
@@ -79,7 +76,6 @@ export default function Liquidity(props) {
         return {
           ...currency,
           userLPTokens,
-          exchangeBalance,
           tokenWithdrawn,
           connectToAbi,
         };
@@ -177,7 +173,7 @@ export default function Liquidity(props) {
                             </h1>
                           </div>
                           <p className="font-medium text-sm text-dexfi-grayviolet">
-                            {currency.tokenWithdrawn.toFixed(2).toString()}
+                            {currency.userLPTokens}
                           </p>
                         </div>
                         <div className="flex justify-between">
@@ -202,10 +198,7 @@ export default function Liquidity(props) {
                             Share of pool
                           </h1>
                           <p className="font-medium text-sm text-dexfi-grayviolet">
-                            {(currency.userLPTokens /
-                              currency.exchangeBalance) *
-                              100}
-                            %
+                            {'<'}0.01%
                           </p>
                         </div>
                         <button

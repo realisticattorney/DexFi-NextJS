@@ -74,6 +74,7 @@ export default function Liquidity(props) {
         const totalSupply = ethers.utils.formatEther(
           await connectToAbi.totalSupply()
         );
+        const ethWithdrawn = (exchangeBalance * userLPTokens) / totalSupply;
         const tokenWithdrawn = (getReserve * userLPTokens) / totalSupply;
 
         return {
@@ -202,10 +203,7 @@ export default function Liquidity(props) {
                             Share of pool
                           </h1>
                           <p className="font-medium text-sm text-dexfi-grayviolet">
-                            {(currency.userLPTokens /
-                              currency.exchangeBalance) *
-                              100}
-                            %
+                            {'<'}{currency.userLPTokens / currency.}%
                           </p>
                         </div>
                         <button

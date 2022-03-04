@@ -36,7 +36,7 @@ export default function Liquidity(props) {
   const classes = useStyles();
   const [userLps, setUserLps] = useState([]);
   const { account } = useAccount();
-
+  
   const setExchange = async (exchange, symbol) => {
     await setExchangeCurrent(exchange);
     Router.push(`/remove/${account}_${symbol}/`);
@@ -64,23 +64,10 @@ export default function Liquidity(props) {
         const userLPTokens = ethers.utils.formatEther(
           await connectToAbi.balanceOf(account)
         );
-        const exchangeBalance = ethers.utils.formatEther(
-          await provider.getBalance(connectToAbi.address)
-        );
-
-        const getReserve = ethers.utils.formatEther(
-          await connectToAbi.getReserve()
-        );
-        const totalSupply = ethers.utils.formatEther(
-          await connectToAbi.totalSupply()
-        );
-        const tokenWithdrawn = (getReserve * userLPTokens) / totalSupply;
 
         return {
           ...currency,
           userLPTokens,
-          exchangeBalance,
-          tokenWithdrawn,
           connectToAbi,
         };
       });
@@ -177,7 +164,7 @@ export default function Liquidity(props) {
                             </h1>
                           </div>
                           <p className="font-medium text-sm text-dexfi-grayviolet">
-                            {currency.tokenWithdrawn.toFixed(2).toString()}
+                            {currency.userLPTokens}
                           </p>
                         </div>
                         <div className="flex justify-between">
@@ -202,10 +189,7 @@ export default function Liquidity(props) {
                             Share of pool
                           </h1>
                           <p className="font-medium text-sm text-dexfi-grayviolet">
-                            {(currency.userLPTokens /
-                              currency.exchangeBalance) *
-                              100}
-                            %
+                            {'<'}0.01%
                           </p>
                         </div>
                         <button
