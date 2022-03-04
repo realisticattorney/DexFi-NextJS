@@ -28,9 +28,9 @@ export default function Web3Provider({ children }) {
 
   useEffect(() => {
     const loadProvider = async () => {
-      // const provider = new ethers.providers.getDefaultProvider(
-      //   'http://localhost:8545'
-      // );
+      const provider = new ethers.providers.getDefaultProvider(
+        'http://localhost:8545'
+      );
       const url = `https://eth-rinkeby.alchemyapi.io/v2/nyTlwya67CtkePdd15Xx8GeeMmHBHC4J`;
       const provider = new ethers.providers.JsonRpcProvider(url);
       const providerMetamask = await detectEthereumProvider();
