@@ -245,21 +245,18 @@ const Nav = () => {
                         <h2 className="text-dexfi-grayviolet font-medium">
                           SCAM Balance
                         </h2>
-                        {accountBalance && (
-                          <h2 className="text-dexfi-violet font-medium">
-                            {parseInt(accountBalance[1]).toFixed(2)}
-                          </h2>
-                        )}
+                        <h2 className="text-dexfi-violet font-medium">
+                        accountBalance
+                          {parseInt(accountBalance[1]).toFixed(2)}
+                        </h2>
                       </div>
                       <div className="flex justify-between">
                         <h2 className="text-dexfi-grayviolet font-medium">
                           ETH Balance
                         </h2>
-                        {accountBalance && (
-                          <h2 className="text-dexfi-violet font-medium">
-                            {parseInt(accountBalance[0]).toFixed(2)}
-                          </h2>
-                        )}
+                        <h2 className="text-dexfi-violet font-medium">
+                          {parseInt(accountBalance[0]).toFixed(2)}
+                        </h2>
                       </div>
                       <div className="flex my-6 justify-end font-bold text-cyan-500">
                         View on BscScan

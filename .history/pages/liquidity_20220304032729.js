@@ -43,7 +43,7 @@ export default function Liquidity(props) {
   };
 
   useEffect(() => {
-    if (userLps.length === 0 && account && registry) {
+    if (userLps.length === 0 && account) {
       const promises = currencies.map(async (currency) => {
         let mappedExchangeAddress = await registry.getExchange(
           currency.address
@@ -67,7 +67,6 @@ export default function Liquidity(props) {
         const totalSupply = ethers.utils.formatEther(
           await connectToAbi.totalSupply()
         );
-        console.log('totalSupply', totalSupply);
         const tokenWithdrawn = (getReserve * userLPTokens) / totalSupply;
         return {
           ...currency,

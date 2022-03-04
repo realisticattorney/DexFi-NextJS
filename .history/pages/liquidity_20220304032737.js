@@ -43,7 +43,7 @@ export default function Liquidity(props) {
   };
 
   useEffect(() => {
-    if (userLps.length === 0 && account && registry) {
+    if (userLps.length === 0 && account) {
       const promises = currencies.map(async (currency) => {
         let mappedExchangeAddress = await registry.getExchange(
           currency.address
