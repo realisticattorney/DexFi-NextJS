@@ -52,8 +52,7 @@ const Nav = () => {
   const { network } = useNetwork();
   // console.log('network', network);
   // console.log('web3', web3);
-  console.log('balance', balance);
-  console.log('reserve', reserve);
+  
   const ethAccountBalance = useCallback(async () => {
     if (account && provider) {
       const ScammCoinAbi = new ethers.Contract(
