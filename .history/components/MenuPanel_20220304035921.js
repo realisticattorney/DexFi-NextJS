@@ -37,7 +37,7 @@ const MenuPanel = ({ currencies, section }) => {
   const [inputTwo, setInputTwo] = useState(null);
   const [shareOfPool, setShareOfPool] = useState(null);
   const { account } = useAccount();
-
+  
   const exchangeHandler = useCallback(() => {
     if (inputToken[1] !== 1) {
       return inputToken[0].address;
@@ -393,10 +393,10 @@ const MenuPanel = ({ currencies, section }) => {
         >
           <button
             className={`w-full bg-pink-500 hover:opacity-75 transition-opacity duration-200  text-white font-bold py-3 px-12 rounded-xl shadow-slate-500 shadow-sm active:translate-y-0.1 active:shadow-none active:opacity-90 ${
-              account && 'disabled:cursor-not-allowed'
+              isUserWalletConnected && 'disabled:cursor-not-allowed'
             }`}
             disabled={
-              account &&
+              isUserWalletConnected &&
               (inputOne <= 0 ||
                 inputTwo <= 0 ||
                 inputOne === '' ||
@@ -405,14 +405,14 @@ const MenuPanel = ({ currencies, section }) => {
                 inputTwo === null)
             }
             onClick={() => {
-              account
+              isUserWalletConnected
                 ? section === 'swap'
                   ? swap()
                   : add()
                 : connect(contract.address);
             }}
           >
-            {account
+            {isUserWalletConnected
               ? section === 'swap'
                 ? 'Swap'
                 : 'Add Liquidity'

@@ -227,6 +227,7 @@ const MenuPanel = ({ currencies, section }) => {
   // console.log('inputTwo', inputTwo);
 
   async function operate() {
+    
     const web3modal = new Web3Modal();
     const connection = await web3modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);

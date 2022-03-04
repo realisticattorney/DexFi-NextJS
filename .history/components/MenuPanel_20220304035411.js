@@ -227,8 +227,11 @@ const MenuPanel = ({ currencies, section }) => {
   // console.log('inputTwo', inputTwo);
 
   async function operate() {
+    console.log("jajajajajaja")
+    console.log("jajajajajaja")
     const web3modal = new Web3Modal();
     const connection = await web3modal.connect();
+    console.log("jajajajajaja")
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
     let currentExchangeAddress = await registry.getExchange(

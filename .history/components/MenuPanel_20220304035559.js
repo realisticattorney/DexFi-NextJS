@@ -227,9 +227,8 @@ const MenuPanel = ({ currencies, section }) => {
   // console.log('inputTwo', inputTwo);
 
   async function operate() {
-    const web3modal = new Web3Modal();
-    const connection = await web3modal.connect();
-    const provider = new ethers.providers.Web3Provider(connection);
+    console.log('jajajajajaja');
+   
     const signer = provider.getSigner();
     let currentExchangeAddress = await registry.getExchange(
       currentTokenExchangeAddress.current
@@ -239,6 +238,7 @@ const MenuPanel = ({ currencies, section }) => {
       ERC20Token.abi,
       signer
     );
+    console.log('jajajajajaja');
     const exchangeUserConnection = new ethers.Contract(
       currentExchangeAddress,
       Exchange.abi,
