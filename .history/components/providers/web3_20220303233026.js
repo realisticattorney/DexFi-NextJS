@@ -9,7 +9,7 @@ import { ethers } from 'ethers';
 import detectEthereumProvider from '@metamask/detect-provider';
 import { setupHooks } from './hooks/setupHooks.js';
 import Web3 from 'web3';
-import { registryAddress, scammExchangeAddress } from '../../config-local.js';
+import { registryAddress, scammExchangeAddress } from '../../config.js';
 import Registry from '../../artifacts/contracts/Registry.sol/Registry.json';
 import Exchange from '../../artifacts/contracts/Exchange.sol/Exchange.json';
 

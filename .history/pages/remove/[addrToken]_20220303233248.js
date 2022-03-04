@@ -1,10 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import {
-  scammcoinAddress,
-  USDCAddress,
-  ETCAddress,
-} from '../../config-local.js';
+import { scammcoinAddress, USDCAddress, ETCAddress } from '../../config-local.js';
 import RemoveUpperSection from '../../components/RemoveUpperSection';
 import RemovePanel from '../../components/RemovePanel';
 const Remove = ({ address, currency, backCurrency }) => {

@@ -231,7 +231,7 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
             </h1>
           </div>
           <p className="font-medium text-sm text-dexfi-grayviolet">
-            {expectedWithdrawn[0]}
+            {expectedWithdrawn[1]}
           </p>
         </div>
       </div>
