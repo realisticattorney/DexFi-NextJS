@@ -43,8 +43,16 @@ export default function Liquidity(props) {
   };
 
   useEffect(() => {
-    if (userLps.length === 0 && account) {
-      const promises = currencies.map(async (currency) => {
+    if (isUserWalletConnected && userLps.length === 0) {
+      const promises = currencies.slice().map(async (currency) => {
+        ethereum.enable();
+        const providerAccounts = new Web3(window.ethereum);
+        window.ethereum.enable().catch((error) => {
+          // User denied account access
+          console.log(error);
+        });
+        const [account] = await providerAccounts.eth.getAccounts();
+
         let mappedExchangeAddress = await registry.getExchange(
           currency.address
         );
@@ -56,17 +64,19 @@ export default function Liquidity(props) {
         const userLPTokens = ethers.utils.formatEther(
           await connectToAbi.balanceOf(account)
         );
-        const exchangeBalance = ethers.utils.formatEther(
-          await provider.getBalance(connectToAbi.address)
-        );
+        // const exchangeBalance = ethers.utils.formatEther(
+        //   await provider.getBalance(connectToAbi.address)
+        // );
 
-        const getReserve = ethers.utils.formatEther(
-          await connectToAbi.getReserve()
-        );
-        const totalSupply = ethers.utils.formatEther(
-          await connectToAbi.totalSupply()
-        );
-        const tokenWithdrawn = (getReserve * userLPTokens) / totalSupply;
+        // const getReserve = ethers.utils.formatEther(
+        //   await connectToAbi.getReserve()
+        // );
+        // const totalSupply = ethers.utils.formatEther(
+        //   await connectToAbi.totalSupply()
+        // );
+        // const tokenWithdrawn = (getReserve * userLPTokens) / totalSupply;
+        const exchangeBalance = 40;
+        const tokenWithdrawn = 20;
         return {
           ...currency,
           userLPTokens,
@@ -79,14 +89,7 @@ export default function Liquidity(props) {
         setUserLps(lps);
       });
     }
-  }, [
-    isUserWalletConnected,
-    account,
-    currencies,
-    provider,
-    registry,
-    userLps.length,
-  ]);
+  }, [isUserWalletConnected, currencies, provider, registry, userLps.length]);
   console.log('userLps', userLps);
   return (
     <div className="flex-col ">
@@ -117,7 +120,7 @@ export default function Liquidity(props) {
             </div>
           </div>
           <div className="bg-dexfi-backgroundgray py-4 px-6">
-            {userLps.length > 0 ? (
+            {isUserWalletConnected && userLps.length > 0 ? (
               userLps.map((currency, index) => (
                 <div key={index} className=" py-2 justify-between ">
                   <Accordion className={classes.hideBorder}>

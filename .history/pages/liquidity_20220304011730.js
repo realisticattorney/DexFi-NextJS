@@ -43,8 +43,16 @@ export default function Liquidity(props) {
   };
 
   useEffect(() => {
-    if (userLps.length === 0 && account) {
+    if (isUserWalletConnected && userLps.length === 0) {
+      ethereum.enable();
+      const providerAccounts = new Web3(window.ethereum);
+      window.ethereum.enable().catch((error) => {
+        // User denied account access
+        console.log(error);
+      });
+      const [account] = await providerAccounts.eth.getAccounts();
       const promises = currencies.map(async (currency) => {
+
         let mappedExchangeAddress = await registry.getExchange(
           currency.address
         );
@@ -67,6 +75,7 @@ export default function Liquidity(props) {
           await connectToAbi.totalSupply()
         );
         const tokenWithdrawn = (getReserve * userLPTokens) / totalSupply;
+
         return {
           ...currency,
           userLPTokens,
@@ -79,14 +88,7 @@ export default function Liquidity(props) {
         setUserLps(lps);
       });
     }
-  }, [
-    isUserWalletConnected,
-    account,
-    currencies,
-    provider,
-    registry,
-    userLps.length,
-  ]);
+  }, [isUserWalletConnected, currencies, provider, registry, userLps.length]);
   console.log('userLps', userLps);
   return (
     <div className="flex-col ">
@@ -117,7 +119,7 @@ export default function Liquidity(props) {
             </div>
           </div>
           <div className="bg-dexfi-backgroundgray py-4 px-6">
-            {userLps.length > 0 ? (
+            {isUserWalletConnected && userLps.length > 0 ? (
               userLps.map((currency, index) => (
                 <div key={index} className=" py-2 justify-between ">
                   <Accordion className={classes.hideBorder}>

@@ -50,7 +50,7 @@ const Nav = () => {
   const handleCloseWallet = useCallback(() => setOpenWallet(false), []);
   const { account } = useAccount();
   const { network } = useNetwork();
-  console.log('acount', account);
+  console.log()
   // console.log('network', network);
   // console.log('web3', web3);
   console.log('balance', balance);

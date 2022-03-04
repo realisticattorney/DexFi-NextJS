@@ -45,6 +45,8 @@ export default function Liquidity(props) {
   useEffect(() => {
     if (userLps.length === 0 && account) {
       const promises = currencies.map(async (currency) => {
+ 
+
         let mappedExchangeAddress = await registry.getExchange(
           currency.address
         );
@@ -67,6 +69,7 @@ export default function Liquidity(props) {
           await connectToAbi.totalSupply()
         );
         const tokenWithdrawn = (getReserve * userLPTokens) / totalSupply;
+
         return {
           ...currency,
           userLPTokens,
@@ -79,14 +82,7 @@ export default function Liquidity(props) {
         setUserLps(lps);
       });
     }
-  }, [
-    isUserWalletConnected,
-    account,
-    currencies,
-    provider,
-    registry,
-    userLps.length,
-  ]);
+  }, [isUserWalletConnected, account, currencies, provider, registry, userLps.length]);
   console.log('userLps', userLps);
   return (
     <div className="flex-col ">
