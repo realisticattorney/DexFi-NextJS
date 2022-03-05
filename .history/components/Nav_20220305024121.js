@@ -140,7 +140,7 @@ const Nav = () => {
               }}
             />
             <div className="flex max-w-[100px]">
-              <div className="truncate">{user.get('ethAddress')}</div>
+              {/* <div className="truncate">{account}</div> */}
               <KeyboardArrowDownIcon
                 sx={{
                   marginRight: '-18px',

@@ -140,7 +140,7 @@ const Nav = () => {
               }}
             />
             <div className="flex max-w-[100px]">
-              <div className="truncate">{user.get('ethAddress')}</div>
+              {/* <div className="truncate">{account}</div> */}
               <KeyboardArrowDownIcon
                 sx={{
                   marginRight: '-18px',
@@ -231,7 +231,7 @@ const Nav = () => {
                         Your Address
                       </h2>
                       <h2 className="bg-gray-100 py-2 rounded-2xl text-dexfi-violet font-bold text-center mb-3">
-                        <div className="truncate px-4">{user.get('ethAddress')}</div>
+                        {/* <div className="truncate px-4">{user.get('ethAddress')}</div> */}
                       </h2>
                       {accountBalance && parseInt(accountBalance[1]) < 0.1 && (
                         <div className="p-4 bg-orange-50 border border-orange-300 rounded-xl">
