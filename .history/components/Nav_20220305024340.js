@@ -83,12 +83,12 @@ const Nav = () => {
     getEthAccountBalance();
   }, [ethAccountBalance]);
 
-  useEffect(() => {
-    if (router === pathname) {
-      return;
-    }
-    setPathname(router.pathname);
-  }, [router, pathname, setPathname]);
+  // useEffect(() => {
+  //   if (router === pathname) {
+  //     return;
+  //   }
+  //   setPathname(router.pathname);
+  // }, [router, pathname, setPathname]);
 
   return (
     <div className="flex border-b-1.5 border-gray-200 p-0 items-center">
@@ -228,9 +228,7 @@ const Nav = () => {
                         Your Address
                       </h2>
                       <h2 className="bg-gray-100 py-2 rounded-2xl text-dexfi-violet font-bold text-center mb-3">
-                        <div className="truncate px-4">
-                          {user.get('ethAddress')}
-                        </div>
+                        <div className="truncate px-4">{user.get('ethAddress')}</div>
                       </h2>
                       {accountBalance && parseInt(accountBalance[1]) < 0.1 && (
                         <div className="p-4 bg-orange-50 border border-orange-300 rounded-xl">

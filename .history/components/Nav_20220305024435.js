@@ -51,28 +51,28 @@ const Nav = () => {
   console.log('balance', balance);
   console.log('reserve', reserve);
   const ethAccountBalance = useCallback(async () => {
-    if (user && provider) {
-      const ScammCoinAbi = new ethers.Contract(
-        scammcoinAddress,
-        ERC20Token.abi,
-        provider
-      );
+    // if (user && provider) {
+    //   const ScammCoinAbi = new ethers.Contract(
+    //     scammcoinAddress,
+    //     ERC20Token.abi,
+    //     provider
+    //   );
 
-      const result = await Web3Api.account
-        .getNativeBalance({
-          chain: 'rinkeby',
-          address: user.get('ethAddress'),
-        })
-        .catch((e) => console.log(e));
-      if (result.balance) {
-        return [
-          Moralis.Units.FromWei(result.balance),
-          ethers.utils.formatEther(
-            await ScammCoinAbi.balanceOf(user.get('ethAddress'))
-          ),
-        ];
-      }
-    }
+    //   const result = await Web3Api.account
+    //     .getNativeBalance({
+    //       chain: 'rinkeby',
+    //       address: user.get('ethAddress'),
+    //     })
+    //     .catch((e) => console.log(e));
+    //   if (result.balance) {
+    //     return [
+    //       Moralis.Units.FromWei(result.balance),
+    //       ethers.utils.formatEther(
+    //         await ScammCoinAbi.balanceOf(user.get('ethAddress'))
+    //       ),
+    //     ];
+    //   }
+    // }
   }, [user, provider, Web3Api.account]);
 
   const [accountBalance, setAccountBalance] = useState(0);
@@ -228,9 +228,7 @@ const Nav = () => {
                         Your Address
                       </h2>
                       <h2 className="bg-gray-100 py-2 rounded-2xl text-dexfi-violet font-bold text-center mb-3">
-                        <div className="truncate px-4">
-                          {user.get('ethAddress')}
-                        </div>
+                        <div className="truncate px-4">{user.get('ethAddress')}</div>
                       </h2>
                       {accountBalance && parseInt(accountBalance[1]) < 0.1 && (
                         <div className="p-4 bg-orange-50 border border-orange-300 rounded-xl">
