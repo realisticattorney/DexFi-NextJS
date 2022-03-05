@@ -153,10 +153,10 @@ export function useWeb3() {
   return useContext(Web3Context);
 }
 
-// export function useHooks(cb) {
-//   const { getHooks } = useWeb3();
-//   return cb(getHooks());
-// }
+export function useHooks(cb) {
+  const { getHooks } = useWeb3();
+  return cb(getHooks());
+}
 
 export async function useExchange(exchange) {
   const { setExchangeCurrent } = useWeb3();

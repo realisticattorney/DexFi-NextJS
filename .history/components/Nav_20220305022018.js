@@ -61,8 +61,8 @@ const Nav = () => {
         provider
       );
       return [
-        ethers.utils.formatEther(await provider.getBalance(user)),
-        ethers.utils.formatEther(await ScammCoinAbi.balanceOf(user)),
+        ethers.utils.formatEther(await provider.getBalance(account)),
+        ethers.utils.formatEther(await ScammCoinAbi.balanceOf(account)),
       ];
     }
   }, [user, provider]);

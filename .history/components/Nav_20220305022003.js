@@ -54,15 +54,15 @@ const Nav = () => {
   console.log('balance', balance);
   console.log('reserve', reserve);
   const ethAccountBalance = useCallback(async () => {
-    if (user && provider) {
+    if (account && provider) {
       const ScammCoinAbi = new ethers.Contract(
         scammcoinAddress,
         ERC20Token.abi,
         provider
       );
       return [
-        ethers.utils.formatEther(await provider.getBalance(user)),
-        ethers.utils.formatEther(await ScammCoinAbi.balanceOf(user)),
+        ethers.utils.formatEther(await provider.getBalance(account)),
+        ethers.utils.formatEther(await ScammCoinAbi.balanceOf(account)),
       ];
     }
   }, [user, provider]);

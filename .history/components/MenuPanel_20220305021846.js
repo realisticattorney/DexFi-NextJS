@@ -395,10 +395,10 @@ const MenuPanel = ({ currencies, section }) => {
         >
           <button
             className={`w-full bg-pink-500 hover:opacity-75 transition-opacity duration-200  text-white font-bold py-3 px-12 rounded-xl shadow-slate-500 shadow-sm active:translate-y-0.1 active:shadow-none active:opacity-90 ${
-              user && 'disabled:cursor-not-allowed'
+              account && 'disabled:cursor-not-allowed'
             }`}
             disabled={
-              user &&
+              account &&
               (inputOne <= 0 ||
                 inputTwo <= 0 ||
                 inputOne === '' ||
@@ -407,14 +407,14 @@ const MenuPanel = ({ currencies, section }) => {
                 inputTwo === null)
             }
             onClick={() => {
-              user
+              account
                 ? section === 'swap'
                   ? swap()
                   : add()
                 : connect(contract.address);
             }}
           >
-            {user
+            {account
               ? section === 'swap'
                 ? 'Swap'
                 : 'Add Liquidity'

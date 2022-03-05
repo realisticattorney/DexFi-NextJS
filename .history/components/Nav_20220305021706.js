@@ -54,18 +54,18 @@ const Nav = () => {
   console.log('balance', balance);
   console.log('reserve', reserve);
   const ethAccountBalance = useCallback(async () => {
-    if (user && provider) {
+    if (account && provider) {
       const ScammCoinAbi = new ethers.Contract(
         scammcoinAddress,
         ERC20Token.abi,
         provider
       );
       return [
-        ethers.utils.formatEther(await provider.getBalance(user)),
-        ethers.utils.formatEther(await ScammCoinAbi.balanceOf(user)),
+        ethers.utils.formatEther(await provider.getBalance(account)),
+        ethers.utils.formatEther(await ScammCoinAbi.balanceOf(account)),
       ];
     }
-  }, [user, provider]);
+  }, [account, provider]);
 
   const [accountBalance, setAccountBalance] = useState(0);
   useEffect(() => {
@@ -129,7 +129,7 @@ const Nav = () => {
               }}
             />
             <div className="flex max-w-[100px]">
-              {/* <div className="truncate">{account}</div> */}
+              <div className="truncate">{account}</div>
               <KeyboardArrowDownIcon
                 sx={{
                   marginRight: '-18px',
@@ -220,7 +220,7 @@ const Nav = () => {
                         Your Address
                       </h2>
                       <h2 className="bg-gray-100 py-2 rounded-2xl text-dexfi-violet font-bold text-center mb-3">
-                        {/* <div className="truncate px-4">{account}</div> */}
+                        <div className="truncate px-4">{account}</div>
                       </h2>
                       {accountBalance && parseInt(accountBalance[1]) < 0.1 && (
                         <div className="p-4 bg-orange-50 border border-orange-300 rounded-xl">

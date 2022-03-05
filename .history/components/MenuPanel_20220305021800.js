@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
 import Web3Modal from 'web3modal';
 import MenuItemList from './MenuItemList.js';
 import { useWeb3 } from './providers/web3';
+import { useAccount } from '../components/web3/hooks/useAccount';
 import { scammExchangeAddress } from '../config-local.js';
 import Exchange from '../utils/Exchange.json';
 import ERC20Token from '../utils/ERC20Token.json';
@@ -12,8 +13,6 @@ import _ from 'lodash';
 import SwapUpperSection from '../components/SwapUpperSection.js';
 import AddUpperSection from '../components/AddUpperSection';
 import MenuPanelFooter from './MenuPanelFooter.js';
-import { useMoralis } from 'react-moralis';
-
 const MenuPanel = ({ currencies, section }) => {
   const {
     provider,
@@ -38,8 +37,7 @@ const MenuPanel = ({ currencies, section }) => {
   const [inputTwo, setInputTwo] = useState(null);
   const [shareOfPool, setShareOfPool] = useState(null);
   // const { account } = useAccount();
-  const { isAuthenticated, authenticate, user, logout } = useMoralis();
-  
+
   const exchangeHandler = useCallback(() => {
     if (inputToken[1] !== 1) {
       return inputToken[0].address;
@@ -395,10 +393,10 @@ const MenuPanel = ({ currencies, section }) => {
         >
           <button
             className={`w-full bg-pink-500 hover:opacity-75 transition-opacity duration-200  text-white font-bold py-3 px-12 rounded-xl shadow-slate-500 shadow-sm active:translate-y-0.1 active:shadow-none active:opacity-90 ${
-              user && 'disabled:cursor-not-allowed'
+              account && 'disabled:cursor-not-allowed'
             }`}
             disabled={
-              user &&
+              account &&
               (inputOne <= 0 ||
                 inputTwo <= 0 ||
                 inputOne === '' ||
@@ -407,14 +405,14 @@ const MenuPanel = ({ currencies, section }) => {
                 inputTwo === null)
             }
             onClick={() => {
-              user
+              account
                 ? section === 'swap'
                   ? swap()
                   : add()
                 : connect(contract.address);
             }}
           >
-            {user
+            {account
               ? section === 'swap'
                 ? 'Swap'
                 : 'Add Liquidity'

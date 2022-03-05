@@ -110,37 +110,37 @@ export default function Web3Provider({ children }) {
           },
         }));
       },
-      // connect: web3Api.provider
-      //   ? async (exAddress = scammExchangeAddress) => {
-      //       try {
-      //         const provider = new ethers.providers.Web3Provider(
-      //           window.ethereum
-      //         );
-      //         if (provider) {
-      //           const exchangeBunnyNew = new ethers.Contract(
-      //             exAddress,
-      //             Exchange.abi,
-      //             provider
-      //           );
-      //           setWeb3Api((prevState) => ({
-      //             ...prevState,
-      //             provider,
-      //             exchangeBunny: {
-      //               ...prevState.exchangeBunny,
-      //               contract: exchangeBunnyNew,
-      //             },
-      //             isLoading: false,
-      //             providerType: 'user',
-      //           }));
-      //         }
-      //       } catch (e) {
-      //         console.error('Please, connect to Metamask.', e);
-      //       }
-      //     }
-      //   : () =>
-      //       console.error(
-      //         'Cannot connect to Metamask, try to reload your browser please.'
-      //       ),
+      connect: web3Api.provider
+        ? async (exAddress = scammExchangeAddress) => {
+            try {
+              const provider = new ethers.providers.Web3Provider(
+                window.ethereum
+              );
+              if (provider) {
+                const exchangeBunnyNew = new ethers.Contract(
+                  exAddress,
+                  Exchange.abi,
+                  provider
+                );
+                setWeb3Api((prevState) => ({
+                  ...prevState,
+                  provider,
+                  exchangeBunny: {
+                    ...prevState.exchangeBunny,
+                    contract: exchangeBunnyNew,
+                  },
+                  isLoading: false,
+                  providerType: 'user',
+                }));
+              }
+            } catch (e) {
+              console.error('Please, connect to Metamask.', e);
+            }
+          }
+        : () =>
+            console.error(
+              'Cannot connect to Metamask, try to reload your browser please.'
+            ),
     };
   }, [web3Api]);
 
@@ -153,10 +153,10 @@ export function useWeb3() {
   return useContext(Web3Context);
 }
 
-// export function useHooks(cb) {
-//   const { getHooks } = useWeb3();
-//   return cb(getHooks());
-// }
+export function useHooks(cb) {
+  const { getHooks } = useWeb3();
+  return cb(getHooks());
+}
 
 export async function useExchange(exchange) {
   const { setExchangeCurrent } = useWeb3();
