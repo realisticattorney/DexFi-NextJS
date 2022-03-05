@@ -22,7 +22,7 @@ import Settings from './Settings';
 import ERC20Token from '../utils/ERC20Token.json';
 import { scammcoinAddress } from '../config-local.js';
 import { useMoralis, useMoralisWeb3Api, useERC20Balances } from 'react-moralis';
-import Moralis from 'moralis';
+import Moralis from "moralis";
 const modalstyle = {
   position: 'absolute',
   top: '30%',
@@ -37,7 +37,7 @@ const modalstyle = {
 
 const Nav = () => {
   const { connect, isWeb3Loaded, exchangeBunny, provider } = useWeb3();
-  const Web3Api = useMoralisWeb3Api();
+  const Web3Api = useMoralisWeb3Api()
   let router = useRouter();
   const [pathname, setPathname] = useState(router.pathname);
   const { contract, balance, reserve } = exchangeBunny ?? {};
@@ -60,23 +60,17 @@ const Nav = () => {
         ERC20Token.abi,
         provider
       );
+      return [
+        Moralis.Units.FromWei(await Web3Api.account.getNativeBalance({
+          chain: "rinkeby",
+          address: user.get('ethAddress')
+      })),
+        ethers.utils.formatEther(await ScammCoinAbi.balanceOf(user.get('ethAddress'))),
+      ];
 
-      const result = await Web3Api.account
-        .getNativeBalance({
-          chain: 'rinkeby',
-          address: user.get('ethAddress'),
-        })
-        .catch((e) => console.log(e));
-      if (result.balance) {
-        return [
-          Moralis.Units.FromWei(result.balance),
-          ethers.utils.formatEther(
-            await ScammCoinAbi.balanceOf(user.get('ethAddress'))
-          ),
-        ];
-      }
+      
     }
-  }, [user, provider, Web3Api.account]);
+  }, [user, provider]);
 
   const [accountBalance, setAccountBalance] = useState(0);
   useEffect(() => {

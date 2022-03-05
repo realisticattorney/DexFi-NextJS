@@ -61,22 +61,23 @@ const Nav = () => {
         provider
       );
 
-      const result = await Web3Api.account
-        .getNativeBalance({
-          chain: 'rinkeby',
-          address: user.get('ethAddress'),
-        })
-        .catch((e) => console.log(e));
-      if (result.balance) {
-        return [
-          Moralis.Units.FromWei(result.balance),
-          ethers.utils.formatEther(
-            await ScammCoinAbi.balanceOf(user.get('ethAddress'))
-          ),
-        ];
-      }
+      const result = await Web3Api.account.getNativeBalance({
+        chain: "rinkeby",
+        address: user.get('ethAddress')
+    }).catch(e => console.log(e))
+    if (result.balance) {
+      return [
+        Moralis.Units.FromWei(result.balance),
+        ethers.utils.formatEther(
+          await ScammCoinAbi.balanceOf(user.get('ethAddress'))
+        )
+      ]
     }
-  }, [user, provider, Web3Api.account]);
+      
+
+      
+    }
+  }, [user, provider]);
 
   const [accountBalance, setAccountBalance] = useState(0);
   useEffect(() => {

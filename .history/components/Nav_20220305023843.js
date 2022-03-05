@@ -76,7 +76,7 @@ const Nav = () => {
         ];
       }
     }
-  }, [user, provider, Web3Api.account]);
+  }, [user, provider]);
 
   const [accountBalance, setAccountBalance] = useState(0);
   useEffect(() => {
