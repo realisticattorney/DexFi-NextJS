@@ -31,7 +31,8 @@ export default function Web3Provider({ children }) {
 
   useEffect(() => {
     const loadProvider = async () => {
-      const provider = await Moralis.enableWeb3();
+      const url = `https://eth-rinkeby.alchemyapi.io/v2/${API_KEY}`;
+      const provider = new ethers.providers.JsonRpcProvider(url);
       if (provider) {
         const registry = new ethers.Contract(
           registryAddress,

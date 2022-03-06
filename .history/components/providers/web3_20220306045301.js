@@ -31,8 +31,12 @@ export default function Web3Provider({ children }) {
 
   useEffect(() => {
     const loadProvider = async () => {
-      const provider = await Moralis.enableWeb3();
+      const url = `https://eth-rinkeby.alchemyapi.io/v2/${API_KEY}`;
+      const provider = new ethers.providers.JsonRpcProvider(url);
+      // const providerMetamask = await detectEthereumProvider();
       if (provider) {
+        // Moralis.start();
+        // const web3 = new Web3(providerMetamask);
         const registry = new ethers.Contract(
           registryAddress,
           Registry.abi,
@@ -55,6 +59,7 @@ export default function Web3Provider({ children }) {
         );
         setWeb3Api({
           provider,
+          signer,
           registry,
           exchangeBunny: {
             balance: exchangeBalance,
@@ -63,6 +68,7 @@ export default function Web3Provider({ children }) {
             contract: exchangeBunny,
           },
           isLoading: false,
+          providerType: 'default',
           exchangeCurrent: {
             balance: exchangeBalance,
             reserve: getReserve,
@@ -81,6 +87,9 @@ export default function Web3Provider({ children }) {
   const _web3Api = useMemo(() => {
     return {
       ...web3Api,
+      isWeb3Loaded: web3Api.providerType === 'default',
+      isUserWalletConnected: web3Api.providerType === 'user',
+      // getHooks: () => setupHooks(web3Api.web3, web3Api.providerMetamask),
       setExchangeCurrent: async (exchange) => {
         const exchangeBalance = ethers.utils.formatEther(
           await web3Api.provider.getBalance(exchange.address)

@@ -105,7 +105,7 @@ const MenuPanel = ({ currencies, section }) => {
     provider,
     loadingRegistry,
     setExchangeCallback,
-    signer,
+    signer
   ]);
 
   const handleMenuItemClick = async (event, index, menuItem) => {
@@ -234,6 +234,9 @@ const MenuPanel = ({ currencies, section }) => {
       setInputTwo(input);
     }
   }
+
+  // console.log('inputOne', inputOne);
+  // console.log('inputTwo', inputTwo);
 
   async function operate() {
     const web3modal = new Web3Modal();

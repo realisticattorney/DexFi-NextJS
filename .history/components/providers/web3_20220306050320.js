@@ -31,7 +31,7 @@ export default function Web3Provider({ children }) {
 
   useEffect(() => {
     const loadProvider = async () => {
-      const provider = await Moralis.enableWeb3();
+      const url = await Moralis.enableWeb3();
       if (provider) {
         const registry = new ethers.Contract(
           registryAddress,
