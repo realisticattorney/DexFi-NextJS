@@ -36,7 +36,7 @@ export default function Web3Provider({ children }) {
       const provider = new ethers.providers.JsonRpcProvider(url);
       // const providerMetamask = await detectEthereumProvider();
       if (provider) {
-        // Moralis.start();
+        Moralis.start()
         // const web3 = new Web3(providerMetamask);
         const registry = new ethers.Contract(
           registryAddress,

@@ -35,6 +35,7 @@ export default function Liquidity(props) {
 
   const classes = useStyles();
   const [userLps, setUserLps] = useState([]);
+  // const { account } = useAccount();
   const { isAuthenticated, authenticate, user, logout } = useMoralis();
   const setExchange = async (exchange, symbol) => {
     await setExchangeCurrent(exchange);

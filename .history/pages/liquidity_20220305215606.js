@@ -35,14 +35,15 @@ export default function Liquidity(props) {
 
   const classes = useStyles();
   const [userLps, setUserLps] = useState([]);
-  const { isAuthenticated, authenticate, user, logout } = useMoralis();
+  const { account } = useAccount();
+
   const setExchange = async (exchange, symbol) => {
     await setExchangeCurrent(exchange);
-    Router.push(`/remove/${user.get('ethAddress')}_${symbol}/`);
+    Router.push(`/remove/${account}_${symbol}/`);
   };
 
   useEffect(() => {
-    if (userLps.length === 0 && user && registry) {
+    if (userLps.length === 0 && account && registry) {
       const promises = currencies.map(async (currency) => {
         let mappedExchangeAddress = await registry.getExchange(
           currency.address
@@ -53,7 +54,7 @@ export default function Liquidity(props) {
           provider
         );
         const userLPTokens = ethers.utils.formatEther(
-          await connectToAbi.balanceOf(user.get('ethAddress'))
+          await connectToAbi.balanceOf(account)
         );
         const exchangeBalance = ethers.utils.formatEther(
           await provider.getBalance(connectToAbi.address)
@@ -82,7 +83,7 @@ export default function Liquidity(props) {
     }
   }, [
     isUserWalletConnected,
-    user,
+    account,
     currencies,
     provider,
     registry,

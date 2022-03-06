@@ -50,7 +50,7 @@ const Nav = () => {
   console.log('isAuthenticated', isAuthenticated);
   console.log('balance', balance);
   console.log('reserve', reserve);
-  // console.log("something something", Moralis.Web3API.token.getTokenPrice(scammcoinAddress));
+  
   const ethAccountBalance = useCallback(async () => {
     if (user && provider) {
       const ScammCoinAbi = new ethers.Contract(
