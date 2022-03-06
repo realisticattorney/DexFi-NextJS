@@ -24,6 +24,7 @@ export default function Web3Provider({ children }) {
     web3: null,
     exchangeBunny: null,
     registry: null,
+    providerType: null,
     exchangeCurrent: null,
   });
 

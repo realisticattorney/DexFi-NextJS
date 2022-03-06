@@ -24,6 +24,8 @@ export default function Web3Provider({ children }) {
     web3: null,
     exchangeBunny: null,
     registry: null,
+    isLoading: true,
+    providerType: null,
     exchangeCurrent: null,
   });
 
@@ -66,6 +68,7 @@ export default function Web3Provider({ children }) {
             totalSupply,
             contract: exchangeBunny,
           },
+          isLoading: false,
           exchangeCurrent: {
             balance: exchangeBalance,
             reserve: getReserve,
