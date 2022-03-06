@@ -6,6 +6,7 @@ const {
   useMemo,
 } = require('react');
 import { ethers } from 'ethers';
+
 import Moralis from 'moralis';
 import { registryAddress, scammExchangeAddress } from '../../config-local.js';
 import Registry from '../../utils/Registry.json';

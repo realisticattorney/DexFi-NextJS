@@ -6,6 +6,9 @@ const {
   useMemo,
 } = require('react');
 import { ethers } from 'ethers';
+import detectEthereumProvider from '@metamask/detect-provider';
+import { setupHooks } from './hooks/setupHooks.js';
+import Web3 from 'web3';
 import Moralis from 'moralis';
 import { registryAddress, scammExchangeAddress } from '../../config-local.js';
 import Registry from '../../utils/Registry.json';
