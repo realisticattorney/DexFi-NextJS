@@ -1,6 +1,7 @@
 import { ethers } from 'ethers';
 import { useState, useEffect } from 'react'; //hooks
 import { useWeb3 } from '../components/providers/web3';
+import Web3 from 'web3';
 import fs from 'fs/promises';
 import path from 'path';
 import Link from 'next/link';

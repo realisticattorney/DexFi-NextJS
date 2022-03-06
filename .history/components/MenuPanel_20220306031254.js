@@ -10,19 +10,14 @@ import Registry from '../utils/Registry.json';
 import SwitchIcon from './SwitchIcon.js';
 import PriceEstimator from './PriceEstimator.js';
 import _ from 'lodash';
+const { ethers, waffle } = require('hardhat');
 import SwapUpperSection from '../components/SwapUpperSection.js';
 import AddUpperSection from '../components/AddUpperSection';
 import MenuPanelFooter from './MenuPanelFooter.js';
 import { useMoralis, useWeb3ExecuteFunction } from 'react-moralis';
 const MenuPanel = ({ currencies, section }) => {
-  const {
-    provider,
-    registry,
-    connect,
-    exchangeCurrent,
-    setExchangeCurrent,
-    signer,
-  } = useWeb3();
+  const { provider, registry, connect, exchangeCurrent, setExchangeCurrent } =
+    useWeb3();
   const { contract, balance, reserve } = exchangeCurrent ?? {};
   const [loadingRegistry, setLoadingRegistry] = useState(false);
   const [inputToken, setInputToken] = useState([currencies[0], 0]);
@@ -39,7 +34,8 @@ const MenuPanel = ({ currencies, section }) => {
   const [shareOfPool, setShareOfPool] = useState(null);
   const { isAuthenticated, authenticate, user, logout } = useMoralis();
   const { data, error, fetch, isFetching, isLoading } =
-    useWeb3ExecuteFunction();
+  useWeb3ExecuteFunction();
+
 
   const exchangeHandler = useCallback(() => {
     if (inputToken[1] !== 1) {
@@ -67,7 +63,7 @@ const MenuPanel = ({ currencies, section }) => {
     },
     [setExchangeCurrent]
   );
-  console.log('sigggneerrr,', signer);
+
   useEffect(() => {
     currentTokenExchangeAddress.current = scammExchangeAddress;
     setLoadingRegistry(true);
@@ -91,14 +87,15 @@ const MenuPanel = ({ currencies, section }) => {
           newExchangeAddress === '0x0000000000000000000000000000000000000000'
         ) {
           console.log('11111');
-          // let registryNew = new ethers.Contract(
-          //   registry.address,
-          //   Registry.abi,
-          //   signer
-          // );
-          // console.log('22222');
-          // console.log(toBeExchange);
-          // newExchangeAddress = await registryNew.createExchange(toBeExchange).catch((e) => console.log(e));;
+          console.log('lslslslsl', provider.getSigner());
+          let registryNew = new ethers.Contract(
+            registry.address,
+            Registry.abi,
+            provider.getSigner()
+          );
+          console.log('22222');
+          console.log(toBeExchange);
+          newExchangeAddress = await registryNew.createExchange(toBeExchange);
         }
         console.log('33333');
         const newExchange = new ethers.Contract(
@@ -119,7 +116,6 @@ const MenuPanel = ({ currencies, section }) => {
     provider,
     loadingRegistry,
     setExchangeCallback,
-    signer
   ]);
 
   const handleMenuItemClick = async (event, index, menuItem) => {

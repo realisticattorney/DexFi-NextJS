@@ -15,14 +15,8 @@ import AddUpperSection from '../components/AddUpperSection';
 import MenuPanelFooter from './MenuPanelFooter.js';
 import { useMoralis, useWeb3ExecuteFunction } from 'react-moralis';
 const MenuPanel = ({ currencies, section }) => {
-  const {
-    provider,
-    registry,
-    connect,
-    exchangeCurrent,
-    setExchangeCurrent,
-    signer,
-  } = useWeb3();
+  const { provider, registry, connect, exchangeCurrent, setExchangeCurrent, signer } =
+    useWeb3();
   const { contract, balance, reserve } = exchangeCurrent ?? {};
   const [loadingRegistry, setLoadingRegistry] = useState(false);
   const [inputToken, setInputToken] = useState([currencies[0], 0]);
@@ -67,7 +61,7 @@ const MenuPanel = ({ currencies, section }) => {
     },
     [setExchangeCurrent]
   );
-  console.log('sigggneerrr,', signer);
+console.log("sigggneerrr,",signer);
   useEffect(() => {
     currentTokenExchangeAddress.current = scammExchangeAddress;
     setLoadingRegistry(true);
@@ -90,15 +84,17 @@ const MenuPanel = ({ currencies, section }) => {
         if (
           newExchangeAddress === '0x0000000000000000000000000000000000000000'
         ) {
+          // const web3Provider = await Moralis.enableWeb3();
           console.log('11111');
-          // let registryNew = new ethers.Contract(
-          //   registry.address,
-          //   Registry.abi,
-          //   signer
-          // );
-          // console.log('22222');
-          // console.log(toBeExchange);
-          // newExchangeAddress = await registryNew.createExchange(toBeExchange).catch((e) => console.log(e));;
+          console.log('lslslslsl', await provider.listAccounts());
+          let registryNew = new ethers.Contract(
+            registry.address,
+            Registry.abi,
+            signer
+          );
+          console.log('22222');
+          console.log(toBeExchange);
+          newExchangeAddress = await registryNew.createExchange(toBeExchange);
         }
         console.log('33333');
         const newExchange = new ethers.Contract(
@@ -119,7 +115,6 @@ const MenuPanel = ({ currencies, section }) => {
     provider,
     loadingRegistry,
     setExchangeCallback,
-    signer
   ]);
 
   const handleMenuItemClick = async (event, index, menuItem) => {

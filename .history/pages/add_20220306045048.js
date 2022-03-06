@@ -1,21 +1,16 @@
 import fs from 'fs/promises';
 import path from 'path';
-import Image from 'next/image';
-import MenuPanel from '../components/MenuPanel.js';
 import { scammcoinAddress, USDCAddress, ETCAddress } from '../config-local.js';
-import Subnav from '../components/Subnav.js';
+import AddUpperSection from '../components/AddUpperSection';
+import MenuPanel from '../components/MenuPanel';
 
-export default function Swap(props) {
+export default function Add(props) {
   const { currencies } = props;
-
+console.log(currencies);
   return (
     <div className="flex-col ">
-      <Subnav marked={'Exchange'} />
-      <div className="p-6 mx-auto w-min h-screen -mb-[102px]">
-        <MenuPanel currencies={currencies} section={'swap'} />
-        <div className="absolute bottom-0 right-10 -mb-1">
-          <Image src="/help.png" width={191} height={130} alt="lol" />
-        </div>
+      <div className="p-6 mx-auto w-min">
+        <MenuPanel currencies={currencies} section={'add'} />
       </div>
     </div>
   );
@@ -53,7 +48,16 @@ export async function getStaticProps() {
     address: ETCAddress,
   };
   const selectedCurrencies = allCurrenciesData.tokens.filter(
-    ({ symbol }) => symbol === 'WETH'
+    ({ symbol }) =>
+      symbol === 'WETH' ||
+      // symbol === 'USDT' ||
+      // symbol === 'DAI' ||
+      // symbol === 'MATIC' ||
+      symbol === 'UNI' ||
+      // symbol === 'SUSHI' ||
+      // symbol === 'BUSD' ||
+      // symbol === 'AAVE' ||
+      // symbol === 'SHIB'
   );
   const currencies = selectedCurrencies.map(
     ({ symbol, logoURI, decimals, address }) => ({

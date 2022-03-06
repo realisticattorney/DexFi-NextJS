@@ -4,16 +4,16 @@ import Web3Modal from 'web3modal';
 import MenuItemList from './MenuItemList.js';
 import { useWeb3 } from './providers/web3';
 import { scammExchangeAddress } from '../config-local.js';
-import ERC20Token from '../utils/ERC20Token.json';
 import Exchange from '../utils/Exchange.json';
-import Registry from '../utils/Registry.json';
+import ERC20Token from '../utils/ERC20Token.json';
 import SwitchIcon from './SwitchIcon.js';
 import PriceEstimator from './PriceEstimator.js';
 import _ from 'lodash';
 import SwapUpperSection from '../components/SwapUpperSection.js';
 import AddUpperSection from '../components/AddUpperSection';
 import MenuPanelFooter from './MenuPanelFooter.js';
-import { useMoralis, useWeb3ExecuteFunction } from 'react-moralis';
+import { useMoralis } from 'react-moralis';
+
 const MenuPanel = ({ currencies, section }) => {
   const {
     provider,
@@ -21,7 +21,6 @@ const MenuPanel = ({ currencies, section }) => {
     connect,
     exchangeCurrent,
     setExchangeCurrent,
-    signer,
   } = useWeb3();
   const { contract, balance, reserve } = exchangeCurrent ?? {};
   const [loadingRegistry, setLoadingRegistry] = useState(false);
@@ -38,9 +37,7 @@ const MenuPanel = ({ currencies, section }) => {
   const [inputTwo, setInputTwo] = useState(null);
   const [shareOfPool, setShareOfPool] = useState(null);
   const { isAuthenticated, authenticate, user, logout } = useMoralis();
-  const { data, error, fetch, isFetching, isLoading } =
-    useWeb3ExecuteFunction();
-
+  
   const exchangeHandler = useCallback(() => {
     if (inputToken[1] !== 1) {
       return inputToken[0].address;
@@ -67,7 +64,7 @@ const MenuPanel = ({ currencies, section }) => {
     },
     [setExchangeCurrent]
   );
-  console.log('sigggneerrr,', signer);
+
   useEffect(() => {
     currentTokenExchangeAddress.current = scammExchangeAddress;
     setLoadingRegistry(true);
@@ -83,24 +80,8 @@ const MenuPanel = ({ currencies, section }) => {
 
       if (currentTokenExchangeAddress.current !== toBeExchange) {
         currentTokenExchangeAddress.current = toBeExchange;
-        let newExchangeAddress = await registry
-          .getExchange(toBeExchange)
-          .catch((e) => console.log(e));
-        console.log('newExchangeAddress', newExchangeAddress);
-        if (
-          newExchangeAddress === '0x0000000000000000000000000000000000000000'
-        ) {
-          console.log('11111');
-          // let registryNew = new ethers.Contract(
-          //   registry.address,
-          //   Registry.abi,
-          //   signer
-          // );
-          // console.log('22222');
-          // console.log(toBeExchange);
-          // newExchangeAddress = await registryNew.createExchange(toBeExchange).catch((e) => console.log(e));;
-        }
-        console.log('33333');
+        let newExchangeAddress = await registry.getExchange(toBeExchange);
+        console.log("newExchangeAddress",newExchangeAddress);
         const newExchange = new ethers.Contract(
           newExchangeAddress,
           Exchange.abi,
@@ -119,7 +100,6 @@ const MenuPanel = ({ currencies, section }) => {
     provider,
     loadingRegistry,
     setExchangeCallback,
-    signer
   ]);
 
   const handleMenuItemClick = async (event, index, menuItem) => {
@@ -180,11 +160,11 @@ const MenuPanel = ({ currencies, section }) => {
   };
 
   async function callBondingCurve(input, id) {
-    if (exchangeCurrent.balance === 0) {
+    if(exchangeCurrent.balance === 0) {
       console.log('no balance');
-      return;
+      return
     }
-
+    
     let intoNumb;
     let inpot;
     let amount;
@@ -256,7 +236,6 @@ const MenuPanel = ({ currencies, section }) => {
     const web3modal = new Web3Modal();
     const connection = await web3modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
-    console.log('providerrrrr', provider);
     const signer = provider.getSigner();
     let currentExchangeAddress = await registry.getExchange(
       currentTokenExchangeAddress.current

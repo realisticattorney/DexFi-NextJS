@@ -34,8 +34,7 @@ export default function Web3Provider({ children }) {
       // const provider = new ethers.providers.getDefaultProvider(
       //   'http://localhost:8545'
       // );
-      const alchemyProvider = new ethers.providers.AlchemyProvider("rinkeby", API_KEY);
-      const signer = new ethers.Wallet(PRIVATE_KEY, alchemyProvider);
+
       const url = `https://eth-rinkeby.alchemyapi.io/v2/${API_KEY}`;
       const provider = new ethers.providers.JsonRpcProvider(url);
       // const providerMetamask = await detectEthereumProvider();
@@ -64,7 +63,6 @@ export default function Web3Provider({ children }) {
         );
         setWeb3Api({
           provider,
-          signer,
           registry,
           exchangeBunny: {
             balance: exchangeBalance,

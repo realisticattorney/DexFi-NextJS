@@ -91,14 +91,14 @@ const MenuPanel = ({ currencies, section }) => {
           newExchangeAddress === '0x0000000000000000000000000000000000000000'
         ) {
           console.log('11111');
-          // let registryNew = new ethers.Contract(
-          //   registry.address,
-          //   Registry.abi,
-          //   signer
-          // );
-          // console.log('22222');
-          // console.log(toBeExchange);
-          // newExchangeAddress = await registryNew.createExchange(toBeExchange).catch((e) => console.log(e));;
+          let registryNew = new ethers.Contract(
+            registry.address,
+            Registry.abi,
+            signer
+          );
+          console.log('22222');
+          console.log(toBeExchange);
+          newExchangeAddress = await registryNew.createExchange(toBeExchange);
         }
         console.log('33333');
         const newExchange = new ethers.Contract(
@@ -119,7 +119,6 @@ const MenuPanel = ({ currencies, section }) => {
     provider,
     loadingRegistry,
     setExchangeCallback,
-    signer
   ]);
 
   const handleMenuItemClick = async (event, index, menuItem) => {
