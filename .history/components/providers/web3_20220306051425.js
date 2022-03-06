@@ -31,16 +31,12 @@ export default function Web3Provider({ children }) {
 
   useEffect(() => {
     const loadProvider = async () => {
-      let provider;
-      let hasWallet;
-      if (window.ethereum) {
-        provider = await Moralis.enableWeb3();
-        hasWallet = true;
-      } else {
-        const url = `https://eth-rinkeby.alchemyapi.io/v2/${API_KEY}`;
-        provider = new ethers.providers.JsonRpcProvider(url);
-        hasWallet = false;
-      }
+      if(window.ethereum) {
+      const provider = await Moralis.enableWeb3();
+      else{
+      const url = `https://eth-rinkeby.alchemyapi.io/v2/${API_KEY}`;
+      // const provider = new ethers.providers.JsonRpcProvider(url);
+    }
       if (provider) {
         const registry = new ethers.Contract(
           registryAddress,
@@ -65,7 +61,6 @@ export default function Web3Provider({ children }) {
         setWeb3Api({
           provider,
           registry,
-          hasWallet,
           exchangeBunny: {
             balance: exchangeBalance,
             reserve: getReserve,

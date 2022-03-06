@@ -65,7 +65,6 @@ export default function Web3Provider({ children }) {
         setWeb3Api({
           provider,
           registry,
-          hasWallet,
           exchangeBunny: {
             balance: exchangeBalance,
             reserve: getReserve,

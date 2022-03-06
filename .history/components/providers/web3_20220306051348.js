@@ -15,8 +15,7 @@ import Registry from '../../utils/Registry.json';
 import Exchange from '../../utils/Exchange.json';
 
 const Web3Context = createContext(null);
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
-const PRIVATE_KEY = process.env.NEXT_PUBLIC_PRIVATE_KEY;
+
 
 export default function Web3Provider({ children }) {
   const [web3Api, setWeb3Api] = useState({
@@ -31,16 +30,7 @@ export default function Web3Provider({ children }) {
 
   useEffect(() => {
     const loadProvider = async () => {
-      let provider;
-      let hasWallet;
-      if (window.ethereum) {
-        provider = await Moralis.enableWeb3();
-        hasWallet = true;
-      } else {
-        const url = `https://eth-rinkeby.alchemyapi.io/v2/${API_KEY}`;
-        provider = new ethers.providers.JsonRpcProvider(url);
-        hasWallet = false;
-      }
+      const provider = await Moralis.enableWeb3();
       if (provider) {
         const registry = new ethers.Contract(
           registryAddress,
@@ -65,7 +55,6 @@ export default function Web3Provider({ children }) {
         setWeb3Api({
           provider,
           registry,
-          hasWallet,
           exchangeBunny: {
             balance: exchangeBalance,
             reserve: getReserve,

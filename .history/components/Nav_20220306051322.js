@@ -36,8 +36,7 @@ const modalstyle = {
 };
 
 const Nav = () => {
-  const { connect, isWeb3Loaded, exchangeBunny, provider, hasWallet } =
-    useWeb3();
+  const { connect, isWeb3Loaded, exchangeBunny, provider } = useWeb3();
   const Web3Api = useMoralisWeb3Api();
   let router = useRouter();
   const [pathname, setPathname] = useState(router.pathname);
@@ -46,14 +45,7 @@ const Nav = () => {
   const [openWallet, setOpenWallet] = useState(false);
   const handleOpenWallet = useCallback(() => setOpenWallet(true), []);
   const handleCloseWallet = useCallback(() => setOpenWallet(false), []);
-  const {
-    isAuthenticated,
-    isInitialized,
-    connector,
-    authenticate,
-    user,
-    logout,
-  } = useMoralis();
+  const { isAuthenticated, isInitialized,connector, authenticate, user, logout } = useMoralis();
   console.log('user', user);
   console.log('isAuthenticated', isAuthenticated);
   console.log('isInitialized', isInitialized);
@@ -304,7 +296,7 @@ const Nav = () => {
             </Fade>
           </Modal>
         </>
-      ) : hasWallet ? (
+      ) : isInitialized ? (
         <button
           className=" mr-6 text-white font-bold py-1 px-4 shadow-slate-400 shadow-sm tracking-wide bg-pink-500 rounded-full active:translate-y-0.1 active:shadow-none active:opacity-90 hover:opacity-75 transition-opacity duration-150"
           onClick={() => authenticate()}
