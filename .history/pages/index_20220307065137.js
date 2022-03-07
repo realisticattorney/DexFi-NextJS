@@ -159,7 +159,7 @@ const Home = () => {
               PancakeSwap has the most users of any decentralized platform,
               ever.
             </h2>
-            <h2 className=" mb-5 text-center sm:w-[580px] font-semibold text-dexfi-violet text-opacity-70">
+            <h2 className=" mb-5 text-center w-[580px] font-semibold text-dexfi-violet text-opacity-70">
               And those users are now entrusting the platform with over $12
               billion in funds.
             </h2>

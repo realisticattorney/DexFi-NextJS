@@ -148,18 +148,18 @@ const Home = () => {
                 </linearGradient>
               </defs>
             </svg>
-            <h1 className="mt-5 text-4xl text-center w-[311px] font-bold tracking-wide text-dexfi-violet">
+            <h1 className="mt-5 sm:text-4xl text-center sm:w-[311px] font-bold tracking-wide text-dexfi-violet">
               Used by millions.
             </h1>
             <h1 className="text-4xl text-center w-[380px] font-bold tracking-wide text-dexfi-violet">
               Trusted with billions.
             </h1>
 
-            <h2 className="mt-10 text-center sm:w-[500px] font-semibold text-dexfi-violet text-opacity-70">
+            <h2 className="mt-10 text-center w-[500px] font-semibold text-dexfi-violet text-opacity-70">
               PancakeSwap has the most users of any decentralized platform,
               ever.
             </h2>
-            <h2 className=" mb-5 text-center sm:w-[580px] font-semibold text-dexfi-violet text-opacity-70">
+            <h2 className=" mb-5 text-center w-[580px] font-semibold text-dexfi-violet text-opacity-70">
               And those users are now entrusting the platform with over $12
               billion in funds.
             </h2>
