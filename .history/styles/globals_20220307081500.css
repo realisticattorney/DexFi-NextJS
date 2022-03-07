@@ -9,9 +9,10 @@
 
 html,
 body {
-  padding: 0 !important;
+  padding: 0;
   margin: 0;
   min-width: fit-content;
+  width: 100%;
 }
 svg path {
   stroke-width: 1.2;

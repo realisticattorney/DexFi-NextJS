@@ -12,9 +12,9 @@ const Remove = ({ address, currency, backCurrency }) => {
   console.log('currency', currency);
 
   return (
-    <div className="flex-col">
+    <div className="flex-col ">
       <div className="p-6 mx-auto w-min">
-        <div className="flex-col relative sm:w-[387px] sm:h-[626px] bg-white rounded-3xl border shadow-sm">
+        <div className="flex-col  sm:w-[387px] sm:h-[626px] bg-white rounded-3xl border shadow-sm">
           <RemoveUpperSection currency={currency} />
           <RemovePanel
             address={address}
