@@ -81,23 +81,23 @@ export default function Web3Provider({ children }) {
     return {
       ...web3Api,
       setExchangeCurrent: async (exchange) => {
-        let newExchangeAddress = await web3Api.registry
-          .getExchange(exchange)
+        let newExchangeAddress = await registry
+          .getExchange(toBeExchange)
           .catch((e) => console.log(e));
         const newExchange = new ethers.Contract(
           newExchangeAddress,
           Exchange.abi,
-          web3Api.provider
+          provider
         );
 
         const exchangeBalance = ethers.utils.formatEther(
-          await web3Api.provider.getBalance(newExchange.address)
+          await web3Api.provider.getBalance(exchange.address)
         );
         const getReserve = ethers.utils.formatEther(
-          await newExchange.getReserve()
+          await exchange.getReserve()
         );
         const totalSupply = ethers.utils.formatEther(
-          await newExchange.totalSupply()
+          await exchange.totalSupply()
         );
         setWeb3Api((api) => ({
           ...api,
@@ -105,7 +105,7 @@ export default function Web3Provider({ children }) {
             balance: exchangeBalance,
             reserve: getReserve,
             totalSupply,
-            contract: newExchange,
+            contract: exchange,
           },
         }));
       },

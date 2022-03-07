@@ -105,7 +105,7 @@ export default function Web3Provider({ children }) {
             balance: exchangeBalance,
             reserve: getReserve,
             totalSupply,
-            contract: newExchange,
+            contract: exchange,
           },
         }));
       },

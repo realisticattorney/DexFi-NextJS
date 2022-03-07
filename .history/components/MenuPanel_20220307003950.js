@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'; //hooks
 import Web3Modal from 'web3modal';
 import MenuItemList from './MenuItemList.js';
 import { useWeb3 } from './providers/web3';
@@ -264,7 +264,7 @@ const MenuPanel = ({ currencies, section }) => {
     const [exchangeUserConnection] = await operate();
 
     let transaction = await exchangeUserConnection.addLiquidity(
-      ethers.utils.parseEther((inputOne * 0.98).toString()),
+      ethers.utils.parseEther(inputOne.toString()),
       {
         value: ethers.utils.parseEther(inputTwo.toString()),
       }

@@ -6,6 +6,7 @@ import { useWeb3 } from './providers/web3';
 import { scammExchangeAddress } from '../config-local.js';
 import ERC20Token from '../utils/ERC20Token.json';
 import Exchange from '../utils/Exchange.json';
+import Registry from '../utils/Registry.json';
 import SwitchIcon from './SwitchIcon.js';
 import PriceEstimator from './PriceEstimator.js';
 import _ from 'lodash';
@@ -14,7 +15,14 @@ import AddUpperSection from '../components/AddUpperSection';
 import MenuPanelFooter from './MenuPanelFooter.js';
 import { useMoralis, useWeb3ExecuteFunction } from 'react-moralis';
 const MenuPanel = ({ currencies, section }) => {
-  const { registry, connect, exchangeCurrent, setExchangeCurrent } = useWeb3();
+  const {
+    provider,
+    registry,
+    connect,
+    exchangeCurrent,
+    setExchangeCurrent,
+    signer,
+  } = useWeb3();
   const { contract, balance, reserve } = exchangeCurrent ?? {};
   const [loadingRegistry, setLoadingRegistry] = useState(false);
   const [inputToken, setInputToken] = useState([currencies[0], 0]);
@@ -60,6 +68,8 @@ const MenuPanel = ({ currencies, section }) => {
     },
     [setExchangeCurrent]
   );
+  console.log('registry', registry);
+  console.log('isInitialized', isInitialized);
   useEffect(() => {
     currentTokenExchangeAddress.current = scammExchangeAddress;
     setLoadingRegistry(true);
@@ -264,7 +274,7 @@ const MenuPanel = ({ currencies, section }) => {
     const [exchangeUserConnection] = await operate();
 
     let transaction = await exchangeUserConnection.addLiquidity(
-      ethers.utils.parseEther((inputOne * 0.98).toString()),
+      ethers.utils.parseEther(inputOne.toString()),
       {
         value: ethers.utils.parseEther(inputTwo.toString()),
       }
