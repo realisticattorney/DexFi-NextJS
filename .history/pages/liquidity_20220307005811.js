@@ -83,29 +83,29 @@ export default function Liquidity(props) {
         ) => ({
           ethAmount: symbol
             ? previousValue.ethAmount -
-              parseFloat(ethers.utils.formatEther(ethAmount))
+              parseFloat(ethers.utils.formatEther(ethAmount)).toFixed(2)
             : previousValue.ethAmount +
-              parseFloat(ethers.utils.formatEther(ethAmount)),
+              parseFloat(ethers.utils.formatEther(ethAmount)).toFixed(2),
           tokenAmount: symbol
             ? previousValue.tokenAmount -
-              parseFloat(ethers.utils.formatEther(tokenAmount))
+              parseFloat(ethers.utils.formatEther(tokenAmount)).toFixed(2)
             : previousValue.ethAmount +
-              parseFloat(ethers.utils.formatEther(tokenAmount)),
+              parseFloat(ethers.utils.formatEther(tokenAmount)).toFixed(2),
           userEthAmount:
             provider === user.get('ethAddress')
               ? symbol
                 ? previousValue.userEthAmount -
-                  parseFloat(ethers.utils.formatEther(ethAmount))
+                  parseFloat(ethers.utils.formatEther(ethAmount)).toFixed(2)
                 : previousValue.userEthAmount +
-                  parseFloat(ethers.utils.formatEther(ethAmount))
+                  parseFloat(ethers.utils.formatEther(ethAmount)).toFixed(2)
               : previousValue.userEthAmount,
           userTokenAmount:
             provider === user.get('ethAddress')
               ? symbol
                 ? previousValue.userTokenAmount -
-                  parseFloat(ethers.utils.formatEther(tokenAmount))
+                  parseFloat(ethers.utils.formatEther(tokenAmount)).toFixed(2)
                 : previousValue.userTokenAmount +
-                  parseFloat(ethers.utils.formatEther(tokenAmount))
+                  parseFloat(ethers.utils.formatEther(tokenAmount)).toFixed(2)
               : previousValue.userTokenAmount,
         }),
         { ethAmount: 0, tokenAmount: 0, userEthAmount: 0, userTokenAmount: 0 }

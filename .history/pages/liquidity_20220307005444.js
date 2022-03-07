@@ -82,36 +82,33 @@ export default function Liquidity(props) {
           { data: { ethAmount, tokenAmount, symbol, provider } }
         ) => ({
           ethAmount: symbol
-            ? previousValue.ethAmount -
-              parseFloat(ethers.utils.formatEther(ethAmount))
-            : previousValue.ethAmount +
-              parseFloat(ethers.utils.formatEther(ethAmount)),
+            ? previousValue.ethAmount - parseInt(ethAmount)
+            : previousValue.ethAmount + parseInt(ethAmount),
           tokenAmount: symbol
-            ? previousValue.tokenAmount -
-              parseFloat(ethers.utils.formatEther(tokenAmount))
-            : previousValue.ethAmount +
-              parseFloat(ethers.utils.formatEther(tokenAmount)),
+            ? previousValue.tokenAmount - parseInt(tokenAmount)
+            : previousValue.ethAmount + parseInt(tokenAmount),
           userEthAmount:
             provider === user.get('ethAddress')
               ? symbol
-                ? previousValue.userEthAmount -
-                  parseFloat(ethers.utils.formatEther(ethAmount))
-                : previousValue.userEthAmount +
-                  parseFloat(ethers.utils.formatEther(ethAmount))
+                ? previousValue.userEthAmount - parseInt(ethAmount)
+                : previousValue.userEthAmount + parseInt(ethAmount)
               : previousValue.userEthAmount,
           userTokenAmount:
             provider === user.get('ethAddress')
               ? symbol
-                ? previousValue.userTokenAmount -
-                  parseFloat(ethers.utils.formatEther(tokenAmount))
-                : previousValue.userTokenAmount +
-                  parseFloat(ethers.utils.formatEther(tokenAmount))
+                ? previousValue.userTokenAmount - parseInt(tokenAmount)
+                : previousValue.userTokenAmount + parseInt(tokenAmount)
               : previousValue.userTokenAmount,
         }),
         { ethAmount: 0, tokenAmount: 0, userEthAmount: 0, userTokenAmount: 0 }
       );
 
-      return events;
+      events = {
+        ethAmount: Moralis.Units.FromWei(events.ethAmount),
+        tokenAmount: Moralis.Units.FromWei(events.tokenAmount),
+        userEthAmount: Moralis.Units.FromWei(events.userEthAmount),
+        userTokenAmount: Moralis.Units.FromWei(events.userTokenAmount),
+      };
     },
     [user, Web3Api.native]
   );
