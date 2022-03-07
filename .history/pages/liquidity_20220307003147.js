@@ -116,7 +116,7 @@ export default function Liquidity(props) {
         const userLPTok = await fetchContractEvents(mappedExchangeAddress);
         console.log('userLPTok', userLPTok);
         if (!userLPTok) {
-          return;
+          return
         }
         let connectToAbi = new ethers.Contract(
           mappedExchangeAddress,
@@ -301,19 +301,16 @@ export default function Liquidity(props) {
               ))
             ) : (
               <div className="h-[72px] p-6 mx-auto text-center  bg-gray-200">
-                {user ? (
-                  userLps && userLps.length === 0 ? (
-                    <h1 className="font-medium text-gray-600">
-                      You have no liquidity
-                    </h1>
-                  ) : (
-                    <h1 className="font-medium text-gray-600">Loading</h1>
-                  )
+              {user ? userLps === [] ? (
+                <h1 className="font-medium text-gray-600">
+                You have no liquidity
+                </h1>
                 ) : (
                   <h1 className="font-medium text-gray-600">
-                    Connect to a wallet to view your liquidity
-                  </h1>
-                )}
+                  Connect to a wallet to view your liquidity
+                </h1>
+                )
+              }
               </div>
             )}
             <div className="h-[80px] flex flex-col text-center p-4">

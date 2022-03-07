@@ -37,7 +37,7 @@ export default function Liquidity(props) {
   const { currencies, backedCurrency } = props;
   const Web3Api = useMoralisWeb3Api();
   const classes = useStyles();
-  const [userLps, setUserLps] = useState(null);
+  const [userLps, setUserLps] = useState([]);
   const { isAuthenticated, authenticate, user, logout } = useMoralis();
   const setExchange = async (exchange, symbol) => {
     await setExchangeCurrent(exchange);
@@ -45,7 +45,8 @@ export default function Liquidity(props) {
   };
 
   const fetchContractEvents = useCallback(
-    async (mappedExchangeAddress) => {
+    async (currency) => {
+      let mappedExchangeAddress = await registry.getExchange(currency.address);
       const options1 = {
         chain: 'rinkeby',
         address: mappedExchangeAddress,
@@ -104,20 +105,14 @@ export default function Liquidity(props) {
 
       return events;
     },
-    [user, Web3Api.native]
+    [user, Web3Api.native, registry]
   );
 
   useEffect(() => {
-    if (userLps === null && user && registry) {
+    if (userLps.length === 0 && user && registry) {
       const promises = currencies.map(async (currency) => {
-        let mappedExchangeAddress = await registry.getExchange(
-          currency.address
-        );
+        let mappedExchangeAddress = await registry.getExchange(currency.address);
         const userLPTok = await fetchContractEvents(mappedExchangeAddress);
-        console.log('userLPTok', userLPTok);
-        if (!userLPTok) {
-          return;
-        }
         let connectToAbi = new ethers.Contract(
           mappedExchangeAddress,
           Exchange.abi,
@@ -148,8 +143,6 @@ export default function Liquidity(props) {
         };
       });
       Promise.all(promises).then((lps) => {
-        lps = lps.filter((lp) => lp !== undefined);
-        console.log('lps', lps);
         setUserLps(lps);
       });
     }
@@ -160,7 +153,7 @@ export default function Liquidity(props) {
     currencies,
     provider,
     registry,
-    userLps,
+    userLps.length,
   ]);
   console.log('userLps', userLps);
   return (
@@ -192,7 +185,7 @@ export default function Liquidity(props) {
             </div>
           </div>
           <div className="bg-dexfi-backgroundgray py-4 px-6">
-            {userLps && userLps.length > 0 ? (
+            {userLps.length > 0 ? (
               userLps.map((currency, index) => (
                 <div key={index} className=" py-2 justify-between ">
                   <Accordion className={classes.hideBorder}>
@@ -301,19 +294,9 @@ export default function Liquidity(props) {
               ))
             ) : (
               <div className="h-[72px] p-6 mx-auto text-center  bg-gray-200">
-                {user ? (
-                  userLps && userLps.length === 0 ? (
-                    <h1 className="font-medium text-gray-600">
-                      You have no liquidity
-                    </h1>
-                  ) : (
-                    <h1 className="font-medium text-gray-600">Loading</h1>
-                  )
-                ) : (
-                  <h1 className="font-medium text-gray-600">
-                    Connect to a wallet to view your liquidity
-                  </h1>
-                )}
+                <h1 className="font-medium text-gray-600">
+                  Connect to a wallet to view your liquidity
+                </h1>
               </div>
             )}
             <div className="h-[80px] flex flex-col text-center p-4">

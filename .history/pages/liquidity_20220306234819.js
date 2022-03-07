@@ -37,108 +37,86 @@ export default function Liquidity(props) {
   const { currencies, backedCurrency } = props;
   const Web3Api = useMoralisWeb3Api();
   const classes = useStyles();
-  const [userLps, setUserLps] = useState(null);
+  const [userLps, setUserLps] = useState([]);
   const { isAuthenticated, authenticate, user, logout } = useMoralis();
   const setExchange = async (exchange, symbol) => {
     await setExchangeCurrent(exchange);
     Router.push(`/remove/${user.get('ethAddress')}_${symbol}/`);
   };
 
-  const fetchContractEvents = useCallback(
-    async (mappedExchangeAddress) => {
-      const options1 = {
-        chain: 'rinkeby',
-        address: mappedExchangeAddress,
-        topic:
-          '0x06239653922ac7bea6aa2b19dc486b9361821d37712eb796adfd38d81de278ca',
-        abi: Exchange.abi[1],
-      };
-      let addLiquidityEvents = await Web3Api.native.getContractEvents(options1);
-      let userAddLiquidityEvents = addLiquidityEvents.result.filter(
-        ({ data }) => data.provider === user.get('ethAddress')
-      );
-      if (userAddLiquidityEvents.length === 0) {
-        return null;
-      }
-      const options2 = {
-        chain: 'rinkeby',
-        address: mappedExchangeAddress,
-        topic:
-          '0x0fbf06c058b90cb038a618f8c2acbf6145f8b3570fd1fa56abb8f0f3f05b36e8',
-        abi: Exchange.abi[4],
-      };
-      let removeLiquidityEvents = await Web3Api.native.getContractEvents(
-        options2
-      );
-      const LiquidityEvents = addLiquidityEvents.result.concat(
-        removeLiquidityEvents.result.map((e) => {
-          return { ...e, data: { ...e.data, symbol: 'remove' } };
-        })
-      );
-      const events = LiquidityEvents.reduce(
-        (
-          previousValue,
-          { data: { ethAmount, tokenAmount, symbol, provider } }
-        ) => ({
-          ethAmount: symbol
-            ? previousValue.ethAmount - parseInt(ethAmount)
-            : previousValue.ethAmount + parseInt(ethAmount),
-          tokenAmount: symbol
-            ? previousValue.tokenAmount - parseInt(tokenAmount)
-            : previousValue.ethAmount + parseInt(tokenAmount),
-          userEthAmount:
-            provider === user.get('ethAddress')
-              ? symbol
-                ? previousValue.userEthAmount - parseInt(ethAmount)
-                : previousValue.userEthAmount + parseInt(ethAmount)
-              : previousValue.userEthAmount,
-          userTokenAmount:
-            provider === user.get('ethAddress')
-              ? symbol
-                ? previousValue.userTokenAmount - parseInt(tokenAmount)
-                : previousValue.userTokenAmount + parseInt(tokenAmount)
-              : previousValue.userTokenAmount,
-        }),
-        { ethAmount: 0, tokenAmount: 0, userEthAmount: 0, userTokenAmount: 0 }
-      );
+  const fetchContractEvents = useCallback(async () => {
+    const options1 = {
+      chain: 'rinkeby',
+      address: scammExchangeAddress,
+      topic:
+        '0x06239653922ac7bea6aa2b19dc486b9361821d37712eb796adfd38d81de278ca',
+      abi: Exchange.abi[1],
+    };
+    const options2 = {
+      chain: 'rinkeby',
+      address: scammExchangeAddress,
+      topic:
+        '0x0fbf06c058b90cb038a618f8c2acbf6145f8b3570fd1fa56abb8f0f3f05b36e8',
+      abi: Exchange.abi[4],
+    };
+    let addLiquidityEvents = await Web3Api.native.getContractEvents(options1);
+    let removeLiquidityEvents = await Web3Api.native.getContractEvents(
+      options2
+    );
+    const userLiquidityEvents = addLiquidityEvents.result
+      .filter(({ data }) => data.provider === user.get('ethAddress'))
+      .concat(
+        removeLiquidityEvents.result
+          .filter(({ data }) => data.provider === user.get('ethAddress'))
 
-      return events;
-    },
-    [user, Web3Api.native]
-  );
+          .map((e) => {
+            return { ...e, data: { ...e.data, symbol: 'remove' } };
+          })
+      );
+    console.log('userLiquidityEvents', userLiquidityEvents);
+    if(userLiquidityEvents.length === 0) {
+      return null
+    }
+    const sumWithInitial = userLiquidityEvents.reduce(
+      (previousValue, { data: { ethAmount, tokenAmount, symbol } }) => ({
+        ethAmount: symbol
+          ? previousValue.ethAmount - parseInt(ethAmount)
+          : previousValue.ethAmount + parseInt(ethAmount),
+        tokenAmount: symbol
+          ? previousValue.tokenAmount - parseInt(tokenAmount)
+          : previousValue.ethAmount + parseInt(tokenAmount),
+      }),
+      { ethAmount: 0, tokenAmount: 0 }
+    );
+
+    return [sumWithInitial, ]
+  }, [user, Web3Api.native]);
 
   useEffect(() => {
-    if (userLps === null && user && registry) {
+    if (userLps.length === 0 && user && registry) {
       const promises = currencies.map(async (currency) => {
-        let mappedExchangeAddress = await registry.getExchange(
-          currency.address
-        );
-        const userLPTok = await fetchContractEvents(mappedExchangeAddress);
-        console.log('userLPTok', userLPTok);
-        if (!userLPTok) {
-          return;
-        }
-        let connectToAbi = new ethers.Contract(
-          mappedExchangeAddress,
-          Exchange.abi,
-          provider
-        );
-        const userLPTokens = ethers.utils.formatEther(
-          await connectToAbi.balanceOf(user.get('ethAddress'))
-        );
-        const exchangeBalance = ethers.utils.formatEther(
-          await provider.getBalance(connectToAbi.address)
-        );
+        fetchContractEvents();
+        // let connectToAbi = new ethers.Contract(
+        //   mappedExchangeAddress,
+        //   Exchange.abi,
+        //   provider
+        // );
+        // const userLPTokens = ethers.utils.formatEther(
+        //   await connectToAbi.balanceOf(user.get('ethAddress'))
+        // );
+        // const exchangeBalance = ethers.utils.formatEther(
+        //   await provider.getBalance(connectToAbi.address)
+        // );
 
-        const getReserve = ethers.utils.formatEther(
-          await connectToAbi.getReserve()
-        );
-        console.log('getReserve', getReserve);
-        const totalSupply = ethers.utils.formatEther(
-          await connectToAbi.totalSupply()
-        );
-        console.log('totalSupply', totalSupply);
-        const tokenWithdrawn = (getReserve * userLPTokens) / totalSupply;
+        // const getReserve = ethers.utils.formatEther(
+        //   await connectToAbi.getReserve()
+        // );
+        // console.log('getReserve', getReserve);
+        // const totalSupply = ethers.utils.formatEther(
+        //   await connectToAbi.totalSupply()
+        // );
+        // console.log('totalSupply', totalSupply);
+        // const tokenWithdrawn = (getReserve * userLPTokens) / totalSupply;
         return {
           ...currency,
           userLPTokens,
@@ -148,8 +126,6 @@ export default function Liquidity(props) {
         };
       });
       Promise.all(promises).then((lps) => {
-        lps = lps.filter((lp) => lp !== undefined);
-        console.log('lps', lps);
         setUserLps(lps);
       });
     }
@@ -160,7 +136,7 @@ export default function Liquidity(props) {
     currencies,
     provider,
     registry,
-    userLps,
+    userLps.length,
   ]);
   console.log('userLps', userLps);
   return (
@@ -192,7 +168,7 @@ export default function Liquidity(props) {
             </div>
           </div>
           <div className="bg-dexfi-backgroundgray py-4 px-6">
-            {userLps && userLps.length > 0 ? (
+            {userLps.length > 0 ? (
               userLps.map((currency, index) => (
                 <div key={index} className=" py-2 justify-between ">
                   <Accordion className={classes.hideBorder}>
@@ -301,19 +277,9 @@ export default function Liquidity(props) {
               ))
             ) : (
               <div className="h-[72px] p-6 mx-auto text-center  bg-gray-200">
-                {user ? (
-                  userLps && userLps.length === 0 ? (
-                    <h1 className="font-medium text-gray-600">
-                      You have no liquidity
-                    </h1>
-                  ) : (
-                    <h1 className="font-medium text-gray-600">Loading</h1>
-                  )
-                ) : (
-                  <h1 className="font-medium text-gray-600">
-                    Connect to a wallet to view your liquidity
-                  </h1>
-                )}
+                <h1 className="font-medium text-gray-600">
+                  Connect to a wallet to view your liquidity
+                </h1>
               </div>
             )}
             <div className="h-[80px] flex flex-col text-center p-4">

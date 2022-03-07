@@ -302,7 +302,7 @@ export default function Liquidity(props) {
             ) : (
               <div className="h-[72px] p-6 mx-auto text-center  bg-gray-200">
                 {user ? (
-                  userLps && userLps.length === 0 ? (
+                  userLps  ? (
                     <h1 className="font-medium text-gray-600">
                       You have no liquidity
                     </h1>
