@@ -33,7 +33,7 @@ const MenuPanel = ({ currencies, section }) => {
     useMoralis();
   const { data, error, fetch, isFetching, isLoading } =
     useWeb3ExecuteFunction();
-  console.log("exchangeCurrenteeeeee",exchangeCurrent)
+  console.log(exchangeCurrent)
   const exchangeHandler = useCallback(() => {
     if (inputToken[1] !== 1) {
       return inputToken[0].address;

@@ -51,7 +51,7 @@ const PriceEstimator = ({
                       .substring(0, 8)}
                   </h1>
                 ) : (
-                  <h1 className="truncate">0.00</h1>
+                  <h1 className="truncate">0</h1>
                 )}
                 <h1 className="text-sm">{`${inputToken[0].symbol} per ${outputToken[0].symbol}`}</h1>
               </div>
@@ -62,13 +62,11 @@ const PriceEstimator = ({
                       .toString()
                       .substring(0, 8)}
                   </h1>
-                ) : (
-                  <h1 className="truncate">0.00</h1>
                 )}
                 <h1 className="text-sm">{`${outputToken[0].symbol} per ${inputToken[0].symbol}`}</h1>
               </div>
               <div className="text-center">
-                {exchangeCurrent?.reserve > 0 && inputOne > 0 ? (
+                {inputOne > 0 ? (
                   <h1 className="truncate">
                     {shareOfPool.toFixed(2).toString()}%
                   </h1>

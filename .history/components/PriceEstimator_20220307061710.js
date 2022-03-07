@@ -68,7 +68,7 @@ const PriceEstimator = ({
                 <h1 className="text-sm">{`${outputToken[0].symbol} per ${inputToken[0].symbol}`}</h1>
               </div>
               <div className="text-center">
-                {exchangeCurrent?.reserve > 0 && inputOne > 0 ? (
+                {inputOne > 0 ? (
                   <h1 className="truncate">
                     {shareOfPool.toFixed(2).toString()}%
                   </h1>
