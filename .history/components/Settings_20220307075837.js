@@ -88,7 +88,7 @@ const Settings = () => {
                     <h2 className="text-dexfi-grayviolet font-medium my-5">
                       Dark mode
                     </h2>
-                    {/* <h2 className="text-dexfi-violet font-medium">0.0</h2> */}
+                    <h2 className="text-dexfi-violet font-medium">0.0</h2>
                   </div>
                   <div className="flex justify-between">
                     <h2 className="text-dexfi-grayviolet font-medium">

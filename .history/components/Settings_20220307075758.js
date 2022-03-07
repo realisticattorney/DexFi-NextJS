@@ -79,7 +79,7 @@ const Settings = () => {
                   </button>
                 </div>
               </div>
-              <div className="w-full p-6 bg-white rounded-br-3xl rounded-bl-3xl">
+              <div className="w-full p-3 bg-white rounded-br-3xl rounded-bl-3xl">
                 <div className="flex flex-col mb-6">
                   <h2 className="text-violet-700 font-bold text-xs mb-0 text-left">
                     GLOBAL
@@ -88,7 +88,7 @@ const Settings = () => {
                     <h2 className="text-dexfi-grayviolet font-medium my-5">
                       Dark mode
                     </h2>
-                    {/* <h2 className="text-dexfi-violet font-medium">0.0</h2> */}
+                    <h2 className="text-dexfi-violet font-medium">0.0</h2>
                   </div>
                   <div className="flex justify-between">
                     <h2 className="text-dexfi-grayviolet font-medium">
@@ -129,7 +129,7 @@ const Settings = () => {
                     <button className="shadow-sm text-dexfi-grayviolet py-0.5 px-4 bg-gray-200 border-dexfi-grayviolet border rounded-3xl font-medium hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
                       0.50
                     </button>
-                    <p className="mr-10 text-dexfi-cyan font-bold hidden sm:block">%</p>
+                    <p className="mr-10 text-dexfi-cyan font-bold">%</p>
                   </div>
                 </div>
               </div>
