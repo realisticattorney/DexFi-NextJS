@@ -165,7 +165,7 @@ export default function Liquidity(props) {
               <h1 className="text-xl font-bold">Your Liquidity</h1>
               <p className="text-sm">Remove liquidity to receive tokens back</p>
             </div>
-            <div className="space-x-2 -mt-5  flex items-center justify-between">
+            <div className="sm:w-[80px] space-x-2 -mt-2 flex items-center justify-between">
               <Settings />
               <button
                 className=""

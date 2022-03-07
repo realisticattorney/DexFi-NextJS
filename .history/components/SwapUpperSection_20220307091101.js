@@ -5,11 +5,11 @@ import Settings from './Settings';
 const SwapUpperSection = () => {
   return (
    <div className="flex-col border-b pb-5">
-   <div className="text-center flex">
+   <div className="text-center   flex">
      <h1 className="text-xl font-bold tracking-wide ml-[136px] text-dexfi-violet">
        Swap
      </h1>
-     <div className="w-full flex items-center justify-center space-x-2">
+     <div className="w-full flex items-center justify-center space-x-0">
       <Settings />
        <button
          className=""
