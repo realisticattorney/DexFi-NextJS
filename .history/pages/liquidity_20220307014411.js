@@ -33,7 +33,7 @@ export default function Liquidity(props) {
   const Web3Api = useMoralisWeb3Api();
   const classes = useStyles();
   const [userLps, setUserLps] = useState(null);
-  const { user } = useMoralis();
+  const { isAuthenticated, authenticate, user} = useMoralis();
   const setExchange = async (exchange, symbol) => {
     await setExchangeCurrent(exchange);
     Router.push(`/remove/${user.get('ethAddress')}_${symbol}/`);

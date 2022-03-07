@@ -33,7 +33,7 @@ export default function Liquidity(props) {
   const Web3Api = useMoralisWeb3Api();
   const classes = useStyles();
   const [userLps, setUserLps] = useState(null);
-  const { user } = useMoralis();
+  const { isAuthenticated, authenticate, user, logout } = useMoralis();
   const setExchange = async (exchange, symbol) => {
     await setExchangeCurrent(exchange);
     Router.push(`/remove/${user.get('ethAddress')}_${symbol}/`);
@@ -153,7 +153,6 @@ export default function Liquidity(props) {
     registry,
     userLps,
   ]);
-
   return (
     <div className="flex-col ">
       <Subnav marked={'Liquidity'} />

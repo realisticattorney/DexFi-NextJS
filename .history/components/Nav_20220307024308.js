@@ -68,7 +68,7 @@ const Nav = () => {
       }
     }
   }, [user, provider, Web3Api.account]);
-  console.log('connector', connector);
+ console.log("connector", connector);
   const [accountBalance, setAccountBalance] = useState(0);
   useEffect(() => {
     async function getEthAccountBalance() {
@@ -291,18 +291,18 @@ const Nav = () => {
         >
           Connect Wallet
         </button>
-      )}
+      ) 
+      {/* : (
+        <button
+          className=" mr-6 text-white font-bold py-1 px-4 shadow-slate-400 shadow-sm tracking-wide bg-pink-500 rounded-full active:translate-y-0.1 active:shadow-none active:opacity-90 hover:opacity-75 transition-opacity duration-150"
+          onClick={() => router.push('https://metamask.io/download.html')}
+        >
+          Install Metamask
+        </button>
+      ) */}
+      }
     </div>
   );
 };
 
 export default Nav;
-
-      // {/* : (
-      //   <button
-      //     className=" mr-6 text-white font-bold py-1 px-4 shadow-slate-400 shadow-sm tracking-wide bg-pink-500 rounded-full active:translate-y-0.1 active:shadow-none active:opacity-90 hover:opacity-75 transition-opacity duration-150"
-      //     onClick={() => router.push('https://metamask.io/download.html')}
-      //   >
-      //     Install Metamask
-      //   </button>
-      // ) */}
