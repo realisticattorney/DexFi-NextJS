@@ -418,12 +418,9 @@ const MenuPanel = ({ currencies, section }) => {
               }}
             />
             <div className="ml-3">
-              <h1 className="text-dexfi-violet font-bold">
-                No Liquidity in this pool
-              </h1>
+              <h1 className="text-dexfi-violet font-bold">No Liquidity</h1>
               <h1 className="text-dexfi-violet font-medium">
-                To be first to add liquidity, set whatever amount you find
-                convenient.
+                Your need ETH for transaction fees.
               </h1>
             </div>
           </div>

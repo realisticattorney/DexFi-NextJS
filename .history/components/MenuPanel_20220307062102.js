@@ -9,7 +9,6 @@ import Exchange from '../utils/Exchange.json';
 import SwitchIcon from './SwitchIcon.js';
 import PriceEstimator from './PriceEstimator.js';
 import _ from 'lodash';
-import WarningIcon from '@mui/icons-material/Warning';
 import SwapUpperSection from '../components/SwapUpperSection.js';
 import AddUpperSection from '../components/AddUpperSection';
 import MenuPanelFooter from './MenuPanelFooter.js';
@@ -143,8 +142,8 @@ const MenuPanel = ({ currencies, section }) => {
   };
 
   async function callBondingCurve(input, id) {
-    console.log('exchangeCurrent', exchangeCurrent);
-    if (exchangeCurrent.balance === '0.0') {
+    console.log()
+    if (exchangeCurrent.balance === 0) {
       if (id === '1') {
         setInputOne(input);
       } else {
@@ -408,27 +407,6 @@ const MenuPanel = ({ currencies, section }) => {
           </button>
         </div>
       </div>
-      {exchangeCurrent?.balance === '0.0' && (
-        <div className="p-4 mx-4 mt-4 bg-orange-50 border border-orange-300 rounded-3xl">
-          <div className="flex">
-            <WarningIcon
-              sx={{
-                fontSize: 24,
-                color: '#FFB237',
-              }}
-            />
-            <div className="ml-3">
-              <h1 className="text-dexfi-violet font-bold">
-                No Liquidity in this pool
-              </h1>
-              <h1 className="text-dexfi-violet font-medium">
-                To be first to add liquidity, set whatever amount you find
-                convenient.
-              </h1>
-            </div>
-          </div>
-        </div>
-      )}
       <MenuPanelFooter
         inputOne={inputOne}
         inputTwo={inputTwo}

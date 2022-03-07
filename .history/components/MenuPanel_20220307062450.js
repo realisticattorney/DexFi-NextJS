@@ -409,7 +409,7 @@ const MenuPanel = ({ currencies, section }) => {
         </div>
       </div>
       {exchangeCurrent?.balance === '0.0' && (
-        <div className="p-4 mx-4 mt-4 bg-orange-50 border border-orange-300 rounded-3xl">
+        <div className="p-4 mx-4 mt-3 bg-orange-50 border border-orange-300 rounded-3xl">
           <div className="flex">
             <WarningIcon
               sx={{
@@ -418,12 +418,9 @@ const MenuPanel = ({ currencies, section }) => {
               }}
             />
             <div className="ml-3">
-              <h1 className="text-dexfi-violet font-bold">
-                No Liquidity in this pool
-              </h1>
+              <h1 className="text-dexfi-violet font-bold">ETH Balance Low</h1>
               <h1 className="text-dexfi-violet font-medium">
-                To be first to add liquidity, set whatever amount you find
-                convenient.
+                Your need ETH for transaction fees.
               </h1>
             </div>
           </div>
