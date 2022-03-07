@@ -158,8 +158,8 @@ export default function Liquidity(props) {
     <div className="flex-col ">
       <Subnav marked={'Liquidity'} />
 
-      <div className="p-3 mt-1 mb-10 sm:p-6 sm:mb-0 sm:mt-0 mx-auto w-fit sm:w-min">
-        <div className="flex-col relative sm:w-[436px] min-h-[273px] bg-white rounded-3xl border shadow-sm">
+      <div className="p-3 mt-2 sm: mx-auto w-min">
+        <div className="flex-col relative w-[436px] min-h-[273px] bg-white rounded-3xl border shadow-sm">
           <div className="h-[100px] p-6 justify-between flex">
             <div className="flex-col">
               <h1 className="text-xl font-bold">Your Liquidity</h1>
@@ -182,7 +182,7 @@ export default function Liquidity(props) {
               </button>
             </div>
           </div>
-          <div className="bg-dexfi-backgroundgray py-2 sm:py-4 px-3 sm:px-6">
+          <div className="bg-dexfi-backgroundgray py-4 px-6">
             {user && userLps && userLps.length > 0 ? (
               userLps.map((currency, index) => (
                 <div key={index} className=" py-2 justify-between ">

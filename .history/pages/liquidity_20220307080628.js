@@ -182,7 +182,7 @@ export default function Liquidity(props) {
               </button>
             </div>
           </div>
-          <div className="bg-dexfi-backgroundgray py-2 sm:py-4 px-3 sm:px-6">
+          <div className="bg-dexfi-backgroundgray py-4 px-3 sm:px-6">
             {user && userLps && userLps.length > 0 ? (
               userLps.map((currency, index) => (
                 <div key={index} className=" py-2 justify-between ">
