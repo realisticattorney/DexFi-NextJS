@@ -9,11 +9,11 @@ export default function Swap(props) {
   const { currencies } = props;
 
   return (
-    <div className="flex-col ">
+    <div className="flex-col mb-32">
       <Subnav marked={'Exchange'} />
-      <div className="p-6 mx-auto w-min h-screen mb-[58px] sm:-mb-[102px]">
+      <div className="p-6 mx-auto w-min h-screen -mb-[102px]">
         <MenuPanel currencies={currencies} section={'swap'} />
-        <div className="absolute -bottom-40 sm:bottom-0 right-10 -mb-1 ">
+        <div className="absolute bottom-0 right-10 -mb-1 ">
           <Image src="/help.png" width={191} height={130} alt="lol" />
         </div>
       </div>
