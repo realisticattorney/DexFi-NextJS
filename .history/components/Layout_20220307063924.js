@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
     <Web3Provider>
     <div className="flex flex-col min-h-screen">
       <Nav />
-      <main className="h-full w-full flex-grow appBackground">
+      <main className="h-full md:w-full md:flex-grow appBackground">
         {children}
       </main>
       <Footer />

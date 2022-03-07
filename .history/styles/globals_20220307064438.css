@@ -7,6 +7,10 @@
   background-color: rgba(40, 13, 95, 0.6);
 }
 
+html.js-focus-visible body {
+  width: 100% !important;
+
+}
 
 svg path {
   stroke-width: 1.2;
