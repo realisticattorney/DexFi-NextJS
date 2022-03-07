@@ -10,7 +10,7 @@ import { useWeb3 } from '../components/providers/web3';
 const Footer = () => {
   const { exchangeBunny } = useWeb3();
   return (
-    <footer className=" text-white  font-medium  p-0 sm:p-5 bg-dexfi-space_gray">
+    <footer className=" text-white  font-medium  p-5 sm:p-5 bg-dexfi-space_gray">
       <div className="grid col-span-3 grid-cols-1 mx-6  grid-flow-row sm:grid-rows-4   md:grid-cols-4 md:grid-rows-1 mt-8">
         <div className="inline-flex col-span-1 row-span-1 mb-4 sm:mb-0">
           <ul className="flex-col space-y-1.7 ">

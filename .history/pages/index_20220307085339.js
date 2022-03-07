@@ -55,7 +55,7 @@ const Home = () => {
   return (
     <div>
       <div className="w-full grid grid-cols-2 grid-rows-2 sm:grid-rows-1 sm:max-w-[1200px] sm:mx-auto sm:mt-24">
-        <div className="flex-col px-4 sm:px-6 sm:py-40  -mt-7 sm:mt-0 flex-grow space-y-3 sm:space-y-6 row-start-2 sm:row-start-1 col-span-2 sm:col-span-1">
+        <div className="flex-col px-6 sm:py-40  -mt-7 sm:mt-0 flex-grow space-y-3 sm:space-y-6 row-start-2 sm:row-start-1 col-span-2 sm:col-span-1">
           <h1 className="text-5xl sm:text-6xl tracking-wide font-bold text-dexfi-moon">
             The moon is made of pancakes.
           </h1>
@@ -254,7 +254,7 @@ const Home = () => {
         </svg>
       </div>
       <div className="w-full bg-[#FAF9FA]">
-        <div className="w-full grid bg-[#FAF9FA] grid-cols-2 grid-rows-2 sm:grid-rows-1 max-w-[1200px] mx-auto pb-16 sm:pb-24 pt-0 sm:pt-10">
+        <div className="w-full grid bg-[#FAF9FA] grid-cols-2 grid-rows-2 sm:grid-rows-1 max-w-[1200px] mx-auto pb-24 pt-10">
           <div className="flex-col px-6 sm:py-32 flex-grow row-start-2 sm:row-start-1 col-span-2 sm:col-span-1">
             <h1 className="text-4xl tracking-wide font-extrabold text-dexfi-violet">
               <span className="text-dexfi-moon">Trade</span> anything. No
