@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { useWeb3 } from '../components/providers/web3';
 import { useMoralis } from 'react-moralis';
-
 const flyingAnim = () => keyframes`
   from {
     transform: translate(0,  0px);
@@ -50,7 +51,16 @@ const CoinWrapper = styled.div`
 `;
 
 const Home = () => {
-  const { isAuthenticated, authenticate } = useMoralis();
+  const { connect, isUserWalletConnected, provider, exchangeBunny } = useWeb3();
+  const { isAuthenticated, authenticate, user, logout } = useMoralis();
+  const defualtExchange = useRef(null);
+
+  useEffect(() => {
+    if (exchangeBunny) {
+      defualtExchange.current = exchangeBunny.contract;
+    }
+  }, [exchangeBunny]);
+
   return (
     <div>
       <div className="w-full grid grid-cols-2 grid-rows-1 max-w-[1200px] mx-auto mt-24">
@@ -63,7 +73,7 @@ const Home = () => {
             platform in the galaxy.
           </p>
           <div className="space-x-2">
-            {!isAuthenticated && (
+            {!isUserWalletConnected && (
               <button
                 onClick={() => {
                   authenticate();

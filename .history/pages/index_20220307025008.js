@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled, { keyframes } from 'styled-components';
 import { useMoralis } from 'react-moralis';
-
 const flyingAnim = () => keyframes`
   from {
     transform: translate(0,  0px);
