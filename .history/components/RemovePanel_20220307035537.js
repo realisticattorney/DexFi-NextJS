@@ -78,7 +78,7 @@ console.log("expectedWithdrawn", expectedWithdrawn);
 
     const wasApproved = await tokenUserConnection.approve(
       contract.address,
-      ethers.utils.parseEther(expectedWithdrawn[2].toString())
+      ethers.utils.parseEther(userLpsToRemove.toString())
     );
     console.log('not yet confirmed');
     let waitDude = await wasApproved.wait();
@@ -98,13 +98,13 @@ console.log("expectedWithdrawn", expectedWithdrawn);
       return;
     }
 
-    if (allowanceAmount < expectedWithdrawn[2].toString()) {
+    if (allowanceAmount < userLpsToRemove.toString()) {
       console.log('not enough allowance');
       return;
     }
 
     let transaction = await exchangeUserConnection.removeLiquidity(
-      ethers.utils.parseEther(expectedWithdrawn[2].toString())
+      ethers.utils.parseEther(userLpsToRemove.toString())
     );
     console.log('transaction', transaction);
     if (transaction.hash) {

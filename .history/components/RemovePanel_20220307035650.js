@@ -98,7 +98,7 @@ console.log("expectedWithdrawn", expectedWithdrawn);
       return;
     }
 
-    if (allowanceAmount < expectedWithdrawn[2].toString()) {
+    if (allowanceAmount < userLpsToRemove.toString()) {
       console.log('not enough allowance');
       return;
     }

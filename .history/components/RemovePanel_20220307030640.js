@@ -16,15 +16,13 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
   const { contract, balance, reserve, totalSupply } = exchangeCurrent;
   const [userLps, setUserLps] = useState(0);
   const [userLpsToRemove, setUserLpsToRemove] = useState(0);
-  const [expectedWithdrawn, setExpectedWithdrawn] = useState([0, 0, 0]);
+  const [expectedWithdrawn, setExpectedWithdrawn] = useState([0, 0]);
   console.log('exchangeCurrent', exchangeCurrent);
   const handleSliderChange = (event, newValue) => {
     setUserLpsToRemove(newValue);
     returnsEstimator(newValue);
   };
-console.log("userLpsToRemove", userLpsToRemove);
-console.log("userLPTokens",userLps )
-console.log("expectedWithdrawn", expectedWithdrawn);
+
   const handleInputChange = (event) => {
     if (event.target?.value) {
       setUserLpsToRemove(
@@ -54,7 +52,7 @@ console.log("expectedWithdrawn", expectedWithdrawn);
       const ethWithdrawn = (balance * lps) / totalSupply;
       const tokenWithdrawn = (reserve * lps) / totalSupply;
 
-      setExpectedWithdrawn([ethWithdrawn, tokenWithdrawn, lps]);
+      setExpectedWithdrawn([ethWithdrawn, tokenWithdrawn]);
     },
     [userLps, balance, totalSupply, reserve]
   );
@@ -78,7 +76,7 @@ console.log("expectedWithdrawn", expectedWithdrawn);
 
     const wasApproved = await tokenUserConnection.approve(
       contract.address,
-      ethers.utils.parseEther(expectedWithdrawn[2].toString())
+      ethers.utils.parseEther(userLpsToRemove.toString())
     );
     console.log('not yet confirmed');
     let waitDude = await wasApproved.wait();
@@ -98,13 +96,13 @@ console.log("expectedWithdrawn", expectedWithdrawn);
       return;
     }
 
-    if (allowanceAmount < expectedWithdrawn[2].toString()) {
+    if (allowanceAmount < userLpsToRemove.toString()) {
       console.log('not enough allowance');
       return;
     }
 
     let transaction = await exchangeUserConnection.removeLiquidity(
-      ethers.utils.parseEther(expectedWithdrawn[2].toString())
+      ethers.utils.parseEther(userLpsToRemove.toString())
     );
     console.log('transaction', transaction);
     if (transaction.hash) {

@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { useWeb3 } from '../components/providers/web3';
 import { useMoralis } from 'react-moralis';
-
 const flyingAnim = () => keyframes`
   from {
     transform: translate(0,  0px);
