@@ -39,7 +39,7 @@ export default function Liquidity(props) {
   const [userLps, setUserLps] = useState(null);
   const { isAuthenticated, authenticate, user, logout } = useMoralis();
   const setExchange = async (exchange, symbol) => {
-    console.log('setExchange', exchange, symbol);
+    console.log()
     await setExchangeCurrent(exchange);
     Router.push(`/remove/${user.get('ethAddress')}_${symbol}/`);
   };
@@ -150,6 +150,7 @@ export default function Liquidity(props) {
           pooledTokens,
           userLPTokens,
           totalSupply,
+          exchangeAddress: mappedExchangeAddress,
         };
       });
       Promise.all(promises).then((lps) => {
@@ -297,7 +298,7 @@ export default function Liquidity(props) {
                           className="w-full text-center cursor-pointer  hover:opacity-75 transition-opacity duration-150 mt-2.5 text-sm  bg-pink-500 shadow-sm text-white font-bold py-2.5 px-12 rounded-xl active:translate-y-0.1 active:shadow-none active:opacity-90"
                           onClick={() =>
                             setExchange(
-                              currency.address,
+                              currency.exchangeAddress,
                               currency.symbol
                             )
                           }

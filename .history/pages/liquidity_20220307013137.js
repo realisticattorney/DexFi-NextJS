@@ -12,9 +12,11 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {
   scammcoinAddress,
+  scammExchangeAddress,
   USDCAddress,
   ETCAddress,
 } from '../config-local.js';
+import Moralis from 'moralis';
 import Exchange from '../utils/Exchange.json';
 import Image from 'next/image';
 import Settings from '../components/Settings';
@@ -39,7 +41,6 @@ export default function Liquidity(props) {
   const [userLps, setUserLps] = useState(null);
   const { isAuthenticated, authenticate, user, logout } = useMoralis();
   const setExchange = async (exchange, symbol) => {
-    console.log('setExchange', exchange, symbol);
     await setExchangeCurrent(exchange);
     Router.push(`/remove/${user.get('ethAddress')}_${symbol}/`);
   };
@@ -150,6 +151,7 @@ export default function Liquidity(props) {
           pooledTokens,
           userLPTokens,
           totalSupply,
+          exchangeAddress: mappedExchangeAddress,
         };
       });
       Promise.all(promises).then((lps) => {
@@ -286,10 +288,8 @@ export default function Liquidity(props) {
                             Share of pool
                           </h1>
                           <p className="font-medium text-sm text-dexfi-grayviolet">
-                            {(
-                              (currency.userLPTokens / currency.totalSupply) *
-                              100
-                            ).toFixed(2)}
+                            {((currency.userLPTokens / currency.totalSupply) *
+                              100).}
                             %
                           </p>
                         </div>
@@ -297,7 +297,7 @@ export default function Liquidity(props) {
                           className="w-full text-center cursor-pointer  hover:opacity-75 transition-opacity duration-150 mt-2.5 text-sm  bg-pink-500 shadow-sm text-white font-bold py-2.5 px-12 rounded-xl active:translate-y-0.1 active:shadow-none active:opacity-90"
                           onClick={() =>
                             setExchange(
-                              currency.address,
+                              currency.exchangeAddress,
                               currency.symbol
                             )
                           }
