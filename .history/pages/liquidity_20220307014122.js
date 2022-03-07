@@ -16,7 +16,7 @@ import Image from 'next/image';
 import Settings from '../components/Settings';
 import { makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
-import { useMoralis, useMoralisWeb3Api } from 'react-moralis';
+import { useMoralis, useMoralisWeb3Api, vb } from 'react-moralis';
 const useStyles = makeStyles({
   hideBorder: {
     '&.MuiAccordion-root': {
@@ -183,7 +183,7 @@ export default function Liquidity(props) {
             </div>
           </div>
           <div className="bg-dexfi-backgroundgray py-4 px-6">
-            {user && userLps && userLps.length > 0 ? (
+            {userLps && userLps.length > 0 ? (
               userLps.map((currency, index) => (
                 <div key={index} className=" py-2 justify-between ">
                   <Accordion className={classes.hideBorder}>

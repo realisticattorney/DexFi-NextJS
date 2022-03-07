@@ -16,7 +16,7 @@ import Image from 'next/image';
 import Settings from '../components/Settings';
 import { makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
-import { useMoralis, useMoralisWeb3Api } from 'react-moralis';
+import { useMoralis, useMoralisWeb3Api, vb } from 'react-moralis';
 const useStyles = makeStyles({
   hideBorder: {
     '&.MuiAccordion-root': {
@@ -105,6 +105,13 @@ export default function Liquidity(props) {
         { ethAmount: 0, tokenAmount: 0, userEthAmount: 0, userTokenAmount: 0 }
       );
 
+      // events = {
+      //   ethAmount: events.ethAmount.toFixed(2),
+      //   tokenAmount: events.tokenAmount.toFixed(2),
+      //   userEthAmount: events.userEthAmount.toFixed(2),
+      //   userTokenAmount: events.userTokenAmount.toFixed(2),
+      // };
+
       return events;
     },
     [user, Web3Api.native]
@@ -117,6 +124,7 @@ export default function Liquidity(props) {
           currency.address
         );
         const pooledTokens = await fetchContractEvents(mappedExchangeAddress);
+        console.log('userLPTok', pooledTokens);
         if (!pooledTokens) {
           return;
         }
@@ -141,6 +149,7 @@ export default function Liquidity(props) {
       });
       Promise.all(promises).then((lps) => {
         lps = lps.filter((lp) => lp !== undefined);
+        console.log('lps', lps);
         setUserLps(lps);
       });
     }
@@ -183,7 +192,7 @@ export default function Liquidity(props) {
             </div>
           </div>
           <div className="bg-dexfi-backgroundgray py-4 px-6">
-            {user && userLps && userLps.length > 0 ? (
+            {userLps && userLps.length > 0 ? (
               userLps.map((currency, index) => (
                 <div key={index} className=" py-2 justify-between ">
                   <Accordion className={classes.hideBorder}>
