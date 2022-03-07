@@ -32,7 +32,7 @@ const Footer = () => {
             <li className="hover:underline cursor-pointer">Guides</li>
           </ul>
         </div>
-        <div className="inline-flex col-span-1 row-span-1 mb-4 sm:mb-0">
+        <div className="inline-flex col-span-1 row-span-1 ">
           <ul className="flex-col space-y-1.7 ">
             <li className="text-violet-500 font-bold">DEVELOPERS</li>
             <li className="hover:underline cursor-pointer">Github</li>
@@ -43,7 +43,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="col-span-1 row-span-1 self-start hidden sm:flex sm:place-self-end">
+        <div className="flex col-span-1 row-span-1 self-start sm:place-self-end">
           <div className="items-center">
             <Image src="/bunny.svg" height={28} width={28} alt="" />
           </div>

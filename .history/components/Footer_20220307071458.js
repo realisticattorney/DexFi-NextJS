@@ -43,7 +43,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="col-span-1 row-span-1 self-start hidden sm:flex sm:place-self-end">
+        <div className="flex col-span-1 row-span-1 self-start hidden sm:flex sm:place-self-end">
           <div className="items-center">
             <Image src="/bunny.svg" height={28} width={28} alt="" />
           </div>
