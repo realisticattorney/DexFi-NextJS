@@ -55,8 +55,8 @@ const Home = () => {
   return (
     <div>
       <div className="w-full grid grid-cols-2 grid-rows-2 sm:grid-rows-1 sm:max-w-[1200px] sm:mx-auto sm:mt-24">
-        <div className="flex-col px-6 sm:py-40  -mt-7 sm:mt-0 flex-grow space-y-3 sm:space-y-6 row-start-2 sm:row-start-1 col-span-2 sm:col-span-1">
-          <h1 className="text-5xl sm:text-6xl tracking-wide font-bold text-dexfi-moon">
+        <div className="flex-col px-6 sm:py-40  -mt-12 sm:mt-0 flex-grow space-y-6 row-start-2 sm:row-start-1 col-span-2 sm:col-span-1">
+          <h1 className="text-6xl tracking-wide font-bold text-dexfi-moon">
             The moon is made of pancakes.
           </h1>
           <p className="text-xl font-bold text-dexfi-violet">
@@ -83,7 +83,7 @@ const Home = () => {
             </Link>
           </div>
         </div>
-        <BunnyWrapper className="col-span-1 col-start-2 -mt-7 sm:mt-0 relative row-span-1 z-0">
+        <BunnyWrapper className="col-span-1 col-start-2 -mt-12 sm:mt-0 relative row-span-1 z-0">
           <Image
             src="/bunnyHome.png"
             layout="fill"
@@ -147,10 +147,10 @@ const Home = () => {
                 </linearGradient>
               </defs>
             </svg>
-            <h1 className="mt-5 text-3xl sm:text-4xl text-center sm:w-[311px] font-bold tracking-wide text-dexfi-violet">
+            <h1 className="mt-5 sm:text-4xl text-center sm:w-[311px] font-bold tracking-wide text-dexfi-violet">
               Used by millions.
             </h1>
-            <h1 className="text-3xl sm:text-4xl text-center sm:w-[380px] font-bold tracking-wide text-dexfi-violet">
+            <h1 className="text-4xl text-center sm:w-[380px] font-bold tracking-wide text-dexfi-violet">
               Trusted with billions.
             </h1>
 

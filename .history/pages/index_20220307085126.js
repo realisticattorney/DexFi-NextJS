@@ -83,7 +83,7 @@ const Home = () => {
             </Link>
           </div>
         </div>
-        <BunnyWrapper className="col-span-1 col-start-2 -mt-7 sm:mt-0 relative row-span-1 z-0">
+        <BunnyWrapper className="col-span-1 col-start-2 -mt-12 sm:mt-0 relative row-span-1 z-0">
           <Image
             src="/bunnyHome.png"
             layout="fill"
