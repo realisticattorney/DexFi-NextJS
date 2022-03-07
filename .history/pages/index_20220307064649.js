@@ -56,7 +56,7 @@ const Home = () => {
   return (
     <div>
       <div className="w-full grid grid-cols-2 grid-rows-2 sm:grid-rows-1 max-w-[1200px] mx-auto sm:mt-24">
-        <div className="flex-col px-6 sm:py-40 flex-grow space-y-6 row-start-2 sm:row-start-1 col-span-2 sm:col-span-1">
+        <div className="flex-col px-6 py-40 flex-grow space-y-6 row-2">
           <h1 className="text-6xl tracking-wide font-bold text-dexfi-moon">
             The moon is made of pancakes.
           </h1>
@@ -84,7 +84,7 @@ const Home = () => {
             </Link>
           </div>
         </div>
-        <BunnyWrapper className="col-span-1 col-start-2 relative row-span-1 z-0">
+        <BunnyWrapper className="col-span-1 relative row-span-1 z-0">
           <Image
             src="/bunnyHome.png"
             layout="fill"
