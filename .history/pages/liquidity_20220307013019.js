@@ -288,7 +288,8 @@ export default function Liquidity(props) {
                             Share of pool
                           </h1>
                           <p className="font-medium text-sm text-dexfi-grayviolet">
-                            {(currency.userLPTokens / currency.totalSupply) *
+                            {(currency.userLPTokens /
+                              currency.exchangeBalance) *
                               100}
                             %
                           </p>

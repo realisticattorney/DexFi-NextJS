@@ -142,15 +142,26 @@ export default function Liquidity(props) {
         const userLPTokens = ethers.utils.formatEther(
           await connectToAbi.balanceOf(user.get('ethAddress'))
         );
-        const totalSupply = ethers.utils.formatEther(
-          await connectToAbi.totalSupply()
+        const userLPTokens = ethers.utils.formatEther(
+          await connectToAbi.balanceOf(user.get('ethAddress'))
         );
+        // const exchangeBalance = ethers.utils.formatEther(
+        //   await provider.getBalance(connectToAbi.address)
+        // );
 
+        // const getReserve = ethers.utils.formatEther(
+        //   await connectToAbi.getReserve()
+        // );
+        // console.log('getReserve', getReserve);
+        // const totalSupply = ethers.utils.formatEther(
+        //   await connectToAbi.totalSupply()
+        // );
+        // console.log('totalSupply', totalSupply);
+        // const tokenWithdrawn = (getReserve * userLPTokens) / totalSupply;
         return {
           ...currency,
           pooledTokens,
           userLPTokens,
-          totalSupply,
           exchangeAddress: mappedExchangeAddress,
         };
       });
@@ -288,7 +299,8 @@ export default function Liquidity(props) {
                             Share of pool
                           </h1>
                           <p className="font-medium text-sm text-dexfi-grayviolet">
-                            {(currency.userLPTokens / currency.totalSupply) *
+                            {(currency.userLPTokens /
+                              currency.exchangeBalance) *
                               100}
                             %
                           </p>
@@ -296,10 +308,7 @@ export default function Liquidity(props) {
                         <button
                           className="w-full text-center cursor-pointer  hover:opacity-75 transition-opacity duration-150 mt-2.5 text-sm  bg-pink-500 shadow-sm text-white font-bold py-2.5 px-12 rounded-xl active:translate-y-0.1 active:shadow-none active:opacity-90"
                           onClick={() =>
-                            setExchange(
-                              currency.exchangeAddress,
-                              currency.symbol
-                            )
+                            setExchange(currency.connectToAbi, currency.symbol)
                           }
                         >
                           Remove

@@ -111,12 +111,12 @@ export default function Liquidity(props) {
         { ethAmount: 0, tokenAmount: 0, userEthAmount: 0, userTokenAmount: 0 }
       );
 
-      // events = {
-      //   ethAmount: events.ethAmount.toFixed(2),
-      //   tokenAmount: events.tokenAmount.toFixed(2),
-      //   userEthAmount: events.userEthAmount.toFixed(2),
-      //   userTokenAmount: events.userTokenAmount.toFixed(2),
-      // };
+      events = {
+        ethAmount: events.ethAmount.toFixed(2),
+        tokenAmount: events.tokenAmount.toFixed(2),
+        userEthAmount: events.userEthAmount.toFixed(2),
+        userTokenAmount: events.userTokenAmount.toFixed(2),
+      };
 
       return events;
     },
@@ -142,15 +142,23 @@ export default function Liquidity(props) {
         const userLPTokens = ethers.utils.formatEther(
           await connectToAbi.balanceOf(user.get('ethAddress'))
         );
-        const totalSupply = ethers.utils.formatEther(
-          await connectToAbi.totalSupply()
-        );
+        // const exchangeBalance = ethers.utils.formatEther(
+        //   await provider.getBalance(connectToAbi.address)
+        // );
 
+        // const getReserve = ethers.utils.formatEther(
+        //   await connectToAbi.getReserve()
+        // );
+        // console.log('getReserve', getReserve);
+        // const totalSupply = ethers.utils.formatEther(
+        //   await connectToAbi.totalSupply()
+        // );
+        // console.log('totalSupply', totalSupply);
+        // const tokenWithdrawn = (getReserve * userLPTokens) / totalSupply;
         return {
           ...currency,
           pooledTokens,
           userLPTokens,
-          totalSupply,
           exchangeAddress: mappedExchangeAddress,
         };
       });
@@ -237,9 +245,7 @@ export default function Liquidity(props) {
                           </h1>
                         </div>
                         <p className="font-medium text-xs1 text-dexfi-grayviolet">
-                          {parseFloat(currency.userLPTokens)
-                            .toFixed(2)
-                            .toString()}
+                          {parseInt(currency.userLPTokens).toFixed(2)}
                         </p>
                       </div>
                     </AccordionSummary>
@@ -259,9 +265,7 @@ export default function Liquidity(props) {
                             </h1>
                           </div>
                           <p className="font-medium text-sm text-dexfi-grayviolet">
-                            {currency.pooledTokens.userTokenAmount
-                              .toFixed(2)
-                              .toString()}
+                            {currency.pooledTokens.use.toFixed(2).toString()}
                           </p>
                         </div>
                         <div className="flex justify-between">
@@ -278,9 +282,7 @@ export default function Liquidity(props) {
                             </h1>
                           </div>
                           <p className="font-medium text-sm text-dexfi-grayviolet">
-                            {currency.pooledTokens.userEthAmount
-                              .toFixed(2)
-                              .toString()}
+                            {currency.userLPTokens}
                           </p>
                         </div>
                         <div className="flex justify-between mt-1.5">
@@ -288,7 +290,8 @@ export default function Liquidity(props) {
                             Share of pool
                           </h1>
                           <p className="font-medium text-sm text-dexfi-grayviolet">
-                            {(currency.userLPTokens / currency.totalSupply) *
+                            {(currency.userLPTokens /
+                              currency.exchangeBalance) *
                               100}
                             %
                           </p>
@@ -296,10 +299,7 @@ export default function Liquidity(props) {
                         <button
                           className="w-full text-center cursor-pointer  hover:opacity-75 transition-opacity duration-150 mt-2.5 text-sm  bg-pink-500 shadow-sm text-white font-bold py-2.5 px-12 rounded-xl active:translate-y-0.1 active:shadow-none active:opacity-90"
                           onClick={() =>
-                            setExchange(
-                              currency.exchangeAddress,
-                              currency.symbol
-                            )
+                            setExchange(currency.connectToAbi, currency.symbol)
                           }
                         >
                           Remove
