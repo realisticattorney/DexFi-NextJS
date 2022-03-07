@@ -264,9 +264,9 @@ const MenuPanel = ({ currencies, section }) => {
     const [exchangeUserConnection] = await operate();
 
     let transaction = await exchangeUserConnection.addLiquidity(
-      ethers.utils.parseEther(inputOne.toString()),
+      ethers.utils.parseEther((inputOne * 0.98).toString()),
       {
-        value: ethers.utils.parseEther((inputTwo * 0.98).toString()),
+        value: ethers.utils.parseEther(inputTwo.toString()),
       }
     );
     console.log('transaction', transaction);
@@ -391,7 +391,11 @@ const MenuPanel = ({ currencies, section }) => {
                 inputTwo === null)
             }
             onClick={() => {
-              user ? (section === 'swap' ? swap() : add()) : authenticate();
+              user
+                ? section === 'swap'
+                  ? swap()
+                  : add()
+                : onClick={() => authenticate()}
             }}
           >
             {user
