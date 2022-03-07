@@ -5,9 +5,9 @@ import Footer from './Footer';
 const Layout = ({ children }) => {
   return (
     <Web3Provider>
-      <div className="flex flex-col sm:min-h-screen min-w-full w-fit sm:w-full">
+      <div className="flex flex-col sm:min-h-screen w-fit sm:w-full">
         <Nav />
-        <main className="h-full w-full flex-grow appBackground">
+        <main className="h-full w-fit sm:w-full flex-grow appBackground">
           {children}
         </main>
         <Footer />

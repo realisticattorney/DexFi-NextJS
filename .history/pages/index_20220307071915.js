@@ -52,6 +52,7 @@ const CoinWrapper = styled.div`
 const Home = () => {
   const { isAuthenticated, authenticate } = useMoralis();
 
+
   return (
     <div>
       <div className="w-full grid grid-cols-2 grid-rows-2 sm:grid-rows-1 max-w-[1200px] sm:mx-auto mt-5 sm:mt-24">
