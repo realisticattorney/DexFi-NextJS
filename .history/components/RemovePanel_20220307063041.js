@@ -216,7 +216,7 @@ console.log("expectedWithdrawn", expectedWithdrawn);
             </h1>
           </div>
           <p className="font-medium text-sm text-dexfi-grayviolet">
-            {expectedWithdrawn[1].toFixed(2)}
+            {expectedWithdrawn[1].toFixed(3)}
           </p>
         </div>
         <div className="flex justify-between mt-2.5">
@@ -233,7 +233,7 @@ console.log("expectedWithdrawn", expectedWithdrawn);
             </h1>
           </div>
           <p className="font-medium text-sm text-dexfi-grayviolet">
-            {expectedWithdrawn[0].toFixed(2)}
+            {expectedWithdrawn[0]}
           </p>
         </div>
       </div>

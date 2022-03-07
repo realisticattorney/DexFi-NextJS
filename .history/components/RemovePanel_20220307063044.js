@@ -233,7 +233,7 @@ console.log("expectedWithdrawn", expectedWithdrawn);
             </h1>
           </div>
           <p className="font-medium text-sm text-dexfi-grayviolet">
-            {expectedWithdrawn[0].toFixed(2)}
+            {expectedWithdrawn[0]}
           </p>
         </div>
       </div>
