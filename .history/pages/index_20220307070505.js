@@ -55,7 +55,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className="w-full grid grid-cols-2 mr-5 grid-rows-2 sm:grid-rows-1 max-w-[1200px] sm:mx-auto mt-5 sm:mt-24">
+      <div className="w-full grid grid-cols-2 grid-rows-2 sm:grid-rows-1 max-w-[1200px] mx-auto sm:mt-24">
         <div className="flex-col px-6 sm:py-40 flex-grow space-y-6 row-start-2 sm:row-start-1 col-span-2 sm:col-span-1">
           <h1 className="text-6xl tracking-wide font-bold text-dexfi-moon">
             The moon is made of pancakes.
@@ -159,7 +159,7 @@ const Home = () => {
               PancakeSwap has the most users of any decentralized platform,
               ever.
             </h2>
-            <h2 className=" mb-5 text-center mx-5 sm:mx-0 sm:w-[580px] font-semibold text-dexfi-violet text-opacity-70">
+            <h2 className=" mb-5 text-center sm:w-[580px] font-semibold text-dexfi-violet text-opacity-70">
               And those users are now entrusting the platform with over $12
               billion in funds.
             </h2>
