@@ -62,7 +62,7 @@ const Settings = () => {
               }}
             >
               <div className="flex  text-xl font-bold text-dexfi-violet settingsBackground border-b-2  rounded-tl-3xl border-gray-200 rounded-tr-3xl">
-                <div className="p-4 sm:p-6 flex justify-between w-full">
+                <div className="p-4 pb-3 sm:p-6 flex justify-between w-full">
                   <h1 className="">Settings</h1>{' '}
                   <button
                     className="hover:opacity-60 transition-opacity text-cyan-500 duration-300 cursor-pointer"
@@ -79,7 +79,7 @@ const Settings = () => {
                   </button>
                 </div>
               </div>
-              <div className="w-full p-4 pb-3 sm:p-6 bg-white rounded-br-3xl rounded-bl-3xl">
+              <div className="w-full p-4 sm:p-6 bg-white rounded-br-3xl rounded-bl-3xl">
                 <div className="flex flex-col mb-6">
                   <h2 className="text-violet-700 font-bold text-xs mb-0 text-left">
                     GLOBAL

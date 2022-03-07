@@ -79,7 +79,7 @@ const Settings = () => {
                   </button>
                 </div>
               </div>
-              <div className="w-full p-4 pb-3 sm:p-6 bg-white rounded-br-3xl rounded-bl-3xl">
+              <div className="w-full p-4 sm:p-6 bg-white rounded-br-3xl rounded-bl-3xl">
                 <div className="flex flex-col mb-6">
                   <h2 className="text-violet-700 font-bold text-xs mb-0 text-left">
                     GLOBAL
@@ -96,13 +96,13 @@ const Settings = () => {
                     </h2>
                   </div>
                   <div className="flex justify-between mt-4 pb-6 border-b border-gray-200">
-                    <button className="shadow-sm text-white py-0.5 px-2.5 sm:px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
+                    <button className="shadow-sm text-white py-0.5 px-3 sm:px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
                       Standard{' (5)'}
                     </button>
-                    <button className="shadow-sm text-dexfi-cyan py-0.5 px-2.5 sm:px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
+                    <button className="shadow-sm text-dexfi-cyan py-0.5 px-3 sm:px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
                       Fast{' (6)'}
                     </button>
-                    <button className="shadow-sm text-dexfi-cyan py-0.5 px-2.5 sm:px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
+                    <button className="shadow-sm text-dexfi-cyan py-0.5 px-3 sm:px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
                       Instant{' (7)'}
                     </button>
                   </div>

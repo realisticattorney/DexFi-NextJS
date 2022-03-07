@@ -79,7 +79,7 @@ const Settings = () => {
                   </button>
                 </div>
               </div>
-              <div className="w-full p-4 pb-3 sm:p-6 bg-white rounded-br-3xl rounded-bl-3xl">
+              <div className="w-full p-4 pb-2 sm:p-6 bg-white rounded-br-3xl rounded-bl-3xl">
                 <div className="flex flex-col mb-6">
                   <h2 className="text-violet-700 font-bold text-xs mb-0 text-left">
                     GLOBAL
