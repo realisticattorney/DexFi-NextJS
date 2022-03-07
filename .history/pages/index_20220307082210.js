@@ -53,9 +53,9 @@ const Home = () => {
   const { isAuthenticated, authenticate } = useMoralis();
 
   return (
-    <div>
-      <div className="w-full grid grid-cols-2 grid-rows-2 sm:grid-rows-1 sm:max-w-[1200px] sm:mx-auto sm:mt-24">
-        <div className="flex-col px-6 sm:py-40  -mt-12 sm:mt-0 flex-grow space-y-6 row-start-2 sm:row-start-1 col-span-2 sm:col-span-1">
+    <div className='w-'>
+      <div className="w-full grid grid-cols-2 grid-rows-2 sm:grid-rows-1 max-w-[1200px] sm:mx-auto mt-5 sm:mt-24">
+        <div className="flex-col px-6 sm:py-40 flex-grow space-y-6 row-start-2 sm:row-start-1 col-span-2 sm:col-span-1">
           <h1 className="text-6xl tracking-wide font-bold text-dexfi-moon">
             The moon is made of pancakes.
           </h1>
@@ -83,7 +83,7 @@ const Home = () => {
             </Link>
           </div>
         </div>
-        <BunnyWrapper className="col-span-1 col-start-2 -mt-12 sm:mt-0 relative row-span-1 z-0">
+        <BunnyWrapper className="col-span-1 col-start-2 relative row-span-1 z-0">
           <Image
             src="/bunnyHome.png"
             layout="fill"
@@ -162,7 +162,7 @@ const Home = () => {
               And those users are now entrusting the platform with over $12
               billion in funds.
             </h2>
-            <h2 className=" mb-8 text-center sm:w-[580px] font-bold text-dexfi-violet text-opacity-75">
+            <h2 className=" mb-8 text-center w-[580px] font-bold text-dexfi-violet text-opacity-75">
               Will you join them?
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-3 px-5 gap-5 mb-10">
