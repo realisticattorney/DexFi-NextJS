@@ -7,11 +7,9 @@
   background-color: rgba(40, 13, 95, 0.6);
 }
 
-html,
-body {
+html.js-focus-visible body {
   padding: 0px;
-  margin: 0px;
-  min-width: fit-content;
+  width: 100vw;
 }
 svg path {
   stroke-width: 1.2;

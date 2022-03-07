@@ -11,7 +11,7 @@ html,
 body {
   padding: 0px;
   margin: 0px;
-  min-width: fit-content;
+  width: 100%;
 }
 svg path {
   stroke-width: 1.2;

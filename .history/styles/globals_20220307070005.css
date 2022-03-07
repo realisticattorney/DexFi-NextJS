@@ -7,11 +7,8 @@
   background-color: rgba(40, 13, 95, 0.6);
 }
 
-html,
-body {
-  padding: 0px;
-  margin: 0px;
-  min-width: fit-content;
+html{
+
 }
 svg path {
   stroke-width: 1.2;
