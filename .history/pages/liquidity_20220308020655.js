@@ -298,38 +298,34 @@ export default function Liquidity(props) {
                 </div>
               ))
             ) : (
-              <div className="h-[72px] p-3 mx-auto text-center">
+              <div className="h-[72px] p-3 mx-auto text-center  bg-gray-100">
                 {user ? (
                   userLps && userLps.length === 0 ? (
-                    <h1 className="font-medium text-dexfi-grayviolet">
+                    <h1 className="text-dexfi-grayviolet">
                       You have no liquidity
                     </h1>
                   ) : (
-                    <h1 className="font-medium text-dexfi-grayviolet">
-                      Loading
-                    </h1>
+                    <h1 className="text-dexfi-grayviolet">Loading</h1>
                   )
                 ) : (
-                  <h1 className="font-medium text-dexfi-grayviolet">
+                  <h1 className="text-dexfi-grayviolet">
                     Connect to a wallet to view your liquidity
                   </h1>
                 )}
               </div>
             )}
-            {userLps && userLps.length > 0 && (
-              <div className="sm:h-[80px] flex flex-col text-center p-4">
-                <p className="text-sm font-medium text-dexfi-grayviolet">
-                  Don{"'"}t see a pool you joined?
-                </p>
-                <Link href="/swap">
-                  <a>
-                    <button className="w-fit mt-1.5 border-pink-500 border-2 font-bold py-0.5 px-4 rounded-3xl shadow-sm text-sm text-pink-500 hover:opacity-75 transition-opacity duration-300 active:translate-y-0.1 active:shadow-none active:opacity-90">
-                      Find other LP tokens
-                    </button>
-                  </a>
-                </Link>
-              </div>
-            )}
+            <div className="h-[80px] flex flex-col text-center p-4">
+              <p className="text-sm font-medium text-dexfi-grayviolet">
+                Don{"'"}t see a pool you joined?
+              </p>
+              <Link href="/swap">
+                <a>
+                  <button className="w-fit mt-1.5 border-pink-500 border-2 font-bold py-0.5 px-4 rounded-3xl shadow-sm text-sm text-pink-500 hover:opacity-75 transition-opacity duration-300 active:translate-y-0.1 active:shadow-none active:opacity-90">
+                    Find other LP tokens
+                  </button>
+                </a>
+              </Link>
+            </div>
           </div>
           <div className="h-[100px] py-3 px-6 mx-auto text-center ">
             <Link href="/add">

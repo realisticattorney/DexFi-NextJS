@@ -115,7 +115,7 @@ const Footer = () => {
           </Link>
           <Link href="/swap">
             <a>
-              <button className=" text-white font-bold py-1 px-4 shadow-sm tracking-wide bg-pink-500 rounded-full hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90 mr-4 sm:mr-6">
+              <button className=" text-white font-bold py-1 px-4 shadow-sm tracking-wide bg-pink-500 rounded-full hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90 ">
                 Buy SCAM -{'>'}
               </button>
             </a>
