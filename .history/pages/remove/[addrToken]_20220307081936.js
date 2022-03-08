@@ -8,6 +8,9 @@ import {
 import RemoveUpperSection from '../../components/RemoveUpperSection';
 import RemovePanel from '../../components/RemovePanel';
 const Remove = ({ address, currency, backCurrency }) => {
+  console.log('address', address);
+  console.log('currency', currency);
+
   return (
     <div className="flex-col">
       <div className="p-6 mx-auto w-min">

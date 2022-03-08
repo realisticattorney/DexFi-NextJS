@@ -21,6 +21,9 @@ module.exports = {
           cyan: '#1FC7D4',
           backgroundgray: '#EEEEEE',
         },
+        // deepoe_default: {
+        //   black: '#302e2f',
+        // },
       },
       fontSize: {
         xs: ' 0.625rem',
