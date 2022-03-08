@@ -51,7 +51,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="flex space-x-6 items-center px-6 sm:pt-10 pt-5 pb-7 w-full border-b border-gray-700">
+      <div className="flex space-x-6 items-center px-6 pt-10 pb-7 w-full border-b border-gray-700">
         <div className="rounded-full shadow">
           <TwitterIcon
             sx={{
@@ -96,7 +96,7 @@ const Footer = () => {
           />
         </div>
       </div>
-      <div className="flex justify-between py-6">
+      <div className="flex justify-between py-5">
         <div></div>
         <div className="items-center flex">
           <Link href={`/swap`} passHref>
