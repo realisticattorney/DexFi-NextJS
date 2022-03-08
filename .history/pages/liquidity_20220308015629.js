@@ -159,7 +159,7 @@ export default function Liquidity(props) {
       <Subnav marked={'Liquidity'} />
 
       <div className="p-6 mt-1 mb-10 sm:p-6 sm:mb-0 sm:mt-0 mx-auto w-fit sm:w-min">
-        <div className="flex-col relative sm:w-[436px] min-h-[273px] bg-white rounded-3xl border shadow-sm">
+        <div className="flex-col mx-3 relative sm:w-[436px] min-h-[273px] bg-white rounded-3xl border shadow-sm">
           <div className="h-[100px] p-6 justify-between flex">
             <div className="flex-col">
               <h1 className="text-xl font-bold">Your Liquidity</h1>
