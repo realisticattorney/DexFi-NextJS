@@ -311,7 +311,7 @@ const MenuPanel = ({ currencies, section }) => {
       <div
         className={`${
           section === 'swap'
-            ? 'py-5 w-[328px] min-h-[518px]'
+            ? 'py-5 w-[328px] sm:min-h-[518px]'
             : 'sm:w-[436px] sm:h-[626px]'
         } flex-col relative  bg-white rounded-3xl border shadow-sm shadow-slate-300`}
       >
