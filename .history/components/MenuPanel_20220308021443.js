@@ -276,19 +276,28 @@ const MenuPanel = ({ currencies, section }) => {
   async function swap() {
     const [exchangeUserConnection, allowanceAmount] = await operate();
     const swapType = swapTypeHandler();
-    let transaction;
+    console.log(
+      'lalalalala',
+      ethers.utils.formatEther(
+        ethers.utils.parseEther((inputTwo * 0.98).toString())
+      ),
+      ethers.utils.formatEther(ethers.utils.parseEther(inputOne.toString())),
+      swapType
+    );
     if (swapType === 'EthToTokenSwap') {
-      transaction = await exchangeUserConnection.ethToTokenSwap(
+      let transaction = await exchangeUserConnection.ethToTokenSwap(
         ethers.utils.parseEther((inputTwo * 0.97).toString()),
         {
           value: ethers.utils.parseEther(inputOne.toString()),
         }
       );
+      console.log('transaction', transaction);
     } else if (swapType === 'TokenToEthSwap') {
-      transaction = await exchangeUserConnection.tokenToEthSwap(
+      let transaction = await exchangeUserConnection.tokenToEthSwap(
         ethers.utils.parseEther(allowanceAmount.toString()),
         ethers.utils.parseEther((inputTwo * 0.98).toString())
       );
+      console.log('transaction', transaction);
     } else {
       let minTokensAmount = ethers.utils.formatEther(
         await contract.getTokenToTokenAmount(
@@ -296,13 +305,13 @@ const MenuPanel = ({ currencies, section }) => {
           outputToken[0].address
         )
       );
-      transaction = await exchangeUserConnection.tokenToTokenSwap(
+      let transaction = await exchangeUserConnection.tokenToTokenSwap(
         ethers.utils.parseEther(allowanceAmount.toString()),
         ethers.utils.parseEther((minTokensAmount * 0.98).toString()),
         outputToken[0].address
       );
+      console.log('transaction', transaction);
     }
-    console.log('transaction', transaction);
     console.log('transaction done!');
   }
 

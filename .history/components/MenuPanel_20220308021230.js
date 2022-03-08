@@ -13,7 +13,7 @@ import WarningIcon from '@mui/icons-material/Warning';
 import SwapUpperSection from '../components/SwapUpperSection.js';
 import AddUpperSection from '../components/AddUpperSection';
 import MenuPanelFooter from './MenuPanelFooter.js';
-import { useMoralis } from 'react-moralis';
+import { useMoralis, useWeb3ExecuteFunction } from 'react-moralis';
 const MenuPanel = ({ currencies, section }) => {
   const { registry, exchangeCurrent, setExchangeCurrent } = useWeb3();
   const { contract, balance, reserve } = exchangeCurrent ?? {};
@@ -30,7 +30,8 @@ const MenuPanel = ({ currencies, section }) => {
   const [inputOne, setInputOne] = useState(null);
   const [inputTwo, setInputTwo] = useState(null);
   const [shareOfPool, setShareOfPool] = useState(null);
-  const { authenticate, user } = useMoralis();
+  const { isAuthenticated, authenticate, user, logout, isInitialized } =
+    useMoralis();
 
   const exchangeHandler = useCallback(() => {
     if (inputToken[1] !== 1) {
@@ -119,6 +120,8 @@ const MenuPanel = ({ currencies, section }) => {
   };
 
   const handleInputChange = (event) => {
+    console.log('evento', event.target.value);
+    console.log('evento target', event.target.id);
     if (event.target.value > 0) {
       if (section === 'swap') {
         callExchange(event.target.value, event.target.id);
@@ -138,6 +141,7 @@ const MenuPanel = ({ currencies, section }) => {
   };
 
   async function callBondingCurve(input, id) {
+    console.log('exchangeCurrent', exchangeCurrent);
     if (exchangeCurrent.balance === '0.0') {
       if (id === '1') {
         setInputOne(input);
@@ -276,19 +280,28 @@ const MenuPanel = ({ currencies, section }) => {
   async function swap() {
     const [exchangeUserConnection, allowanceAmount] = await operate();
     const swapType = swapTypeHandler();
-    let transaction;
+    console.log(
+      'lalalalala',
+      ethers.utils.formatEther(
+        ethers.utils.parseEther((inputTwo * 0.98).toString())
+      ),
+      ethers.utils.formatEther(ethers.utils.parseEther(inputOne.toString())),
+      swapType
+    );
     if (swapType === 'EthToTokenSwap') {
-      transaction = await exchangeUserConnection.ethToTokenSwap(
+      let transaction = await exchangeUserConnection.ethToTokenSwap(
         ethers.utils.parseEther((inputTwo * 0.97).toString()),
         {
           value: ethers.utils.parseEther(inputOne.toString()),
         }
       );
+      console.log('transaction', transaction);
     } else if (swapType === 'TokenToEthSwap') {
-      transaction = await exchangeUserConnection.tokenToEthSwap(
+      let transaction = await exchangeUserConnection.tokenToEthSwap(
         ethers.utils.parseEther(allowanceAmount.toString()),
         ethers.utils.parseEther((inputTwo * 0.98).toString())
       );
+      console.log('transaction', transaction);
     } else {
       let minTokensAmount = ethers.utils.formatEther(
         await contract.getTokenToTokenAmount(
@@ -296,13 +309,13 @@ const MenuPanel = ({ currencies, section }) => {
           outputToken[0].address
         )
       );
-      transaction = await exchangeUserConnection.tokenToTokenSwap(
+      let transaction = await exchangeUserConnection.tokenToTokenSwap(
         ethers.utils.parseEther(allowanceAmount.toString()),
         ethers.utils.parseEther((minTokensAmount * 0.98).toString()),
         outputToken[0].address
       );
+      console.log('transaction', transaction);
     }
-    console.log('transaction', transaction);
     console.log('transaction done!');
   }
 

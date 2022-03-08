@@ -77,7 +77,9 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
       contract.address,
       ethers.utils.parseEther(expectedWithdrawn[2].toString())
     );
+    console.log('not yet confirmed');
     let waitDude = await wasApproved.wait();
+    console.log('waitdudeee', waitDude);
     console.log('was approved?', wasApproved);
     const allowanceAmount = ethers.utils.formatEther(
       await tokenUserConnection.allowance(

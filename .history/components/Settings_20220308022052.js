@@ -9,11 +9,11 @@ import CloseIcon from '@mui/icons-material/Close';
 
 const modalstyle = {
   position: 'absolute',
-  top: '45%',
+  top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '90%',
-  maxWidth: '400px',
+  width: "90%",
+  maxWidth: "400px",
   bgcolor: 'background.paper',
   boxShadow: 1,
   borderRadius: 6,
@@ -127,9 +127,7 @@ const Settings = () => {
                     <button className="shadow-sm text-dexfi-grayviolet py-0.5 px-4 bg-gray-200 border-dexfi-grayviolet border rounded-3xl font-medium hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
                       0.50
                     </button>
-                    <p className="mr-10 text-dexfi-cyan font-bold hidden sm:block">
-                      %
-                    </p>
+                    <p className="mr-10 text-dexfi-cyan font-bold hidden sm:block">%</p>
                   </div>
                 </div>
               </div>
