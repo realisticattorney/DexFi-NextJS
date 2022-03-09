@@ -208,6 +208,7 @@ const MenuPanel = ({ currencies, section }) => {
             : (input * 99 * balance) / (reserve * 100 + input * 99);
       }
 
+      console.log('amount', amount);
       if (id === '1') {
         setInputOne(input);
         setInputTwo(amount);
