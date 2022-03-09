@@ -100,9 +100,7 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
     }
 
     if (allowanceAmount < expectedWithdrawn[2].toString()) {
-      toast.error(
-        `No enough allowance ${allowanceAmount} for ${expectedWithdrawn[2].toString()} amount`
-      );
+      console.log('not enough allowance');
       return;
     }
 

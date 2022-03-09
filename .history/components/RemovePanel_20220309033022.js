@@ -95,14 +95,12 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
     console.log('allowanceAmount', allowanceAmount);
 
     if (allowanceAmount === '0') {
-      toast.error('No allowance');
+      console.log('no allowance');
       return;
     }
 
     if (allowanceAmount < expectedWithdrawn[2].toString()) {
-      toast.error(
-        `No enough allowance ${allowanceAmount} for ${expectedWithdrawn[2].toString()} amount`
-      );
+      console.log('not enough allowance');
       return;
     }
 
@@ -265,7 +263,6 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
       >
         Remove Liquidity
       </button>
-      <ToastContainer />
     </div>
   );
 };

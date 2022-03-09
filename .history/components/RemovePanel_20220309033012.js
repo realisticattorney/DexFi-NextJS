@@ -10,8 +10,6 @@ import Image from 'next/image';
 import Web3Modal from 'web3modal';
 import ERC20Token from '../utils/ERC20Token.json';
 import Router from 'next/router';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const RemovePanel = ({ address, currency, backCurrency }) => {
   const { exchangeCurrent } = useWeb3();
@@ -95,14 +93,12 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
     console.log('allowanceAmount', allowanceAmount);
 
     if (allowanceAmount === '0') {
-      toast.error('No allowance');
+      console.log('no allowance');
       return;
     }
 
     if (allowanceAmount < expectedWithdrawn[2].toString()) {
-      toast.error(
-        `No enough allowance ${allowanceAmount} for ${expectedWithdrawn[2].toString()} amount`
-      );
+      console.log('not enough allowance');
       return;
     }
 
@@ -265,7 +261,6 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
       >
         Remove Liquidity
       </button>
-      <ToastContainer />
     </div>
   );
 };
