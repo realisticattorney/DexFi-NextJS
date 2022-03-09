@@ -141,7 +141,7 @@ const MenuPanel = ({ currencies, section }) => {
 
   const callBondingCurve = useCallback(
     async (input, id) => {
-      if (balance === '0.0') {
+      if (exchangeCurrent.balance === '0.0') {
         if (id === '1') {
           setInputOne(input);
         } else {
@@ -167,15 +167,15 @@ const MenuPanel = ({ currencies, section }) => {
       inpot = parseInt(input);
       setShareOfPool((inpot / (inpot + intoNumb)) * 100);
     },
-    [balance, reserve]
+    [balance, reserve, exchangeCurrent.balance]
   );
 
   const callExchange = useCallback(
     async (input, id) => {
       let price = ethers.utils.parseEther(input);
-      let numerator = input * 99 * balance;
-      let denominator = (reserve * 100) + (input * 99);
-      console.log('share?', numerator / denominator);
+      let numerator = ((input * 99) * balance)
+      let denominator =  (reserve * 10000) + (input * 99)
+      console.log('share?', numerator / denominator));
       let amount;
       let callFunction = swapTypeHandler();
       if (callFunction === 'TokenToTokenSwap') {

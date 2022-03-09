@@ -174,7 +174,7 @@ const MenuPanel = ({ currencies, section }) => {
     async (input, id) => {
       let price = ethers.utils.parseEther(input);
       let numerator = input * 99 * balance;
-      let denominator = (reserve * 100) + (input * 99);
+      let denominator = reserve * 10000 + input * 99;
       console.log('share?', numerator / denominator);
       let amount;
       let callFunction = swapTypeHandler();
