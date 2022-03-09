@@ -220,8 +220,13 @@ const MenuPanel = ({ currencies, section }) => {
     const provider = new ethers.providers.Web3Provider(connection);
     console.log('providerrrrr', provider);
     const signer = provider.getSigner();
-    let currentExchangeAddress = await registry.getExchange(
-      currentTokenExchangeAddress.current
+    let currentExchangeAddress = await toast.promise(
+      registry.getExchange(currentTokenExchangeAddress.current),
+      {
+        pending: 'Promise is pending',
+        success: 'Promise resolved 👌',
+        error: 'Promise rejected 🤯',
+      }
     );
     const tokenUserConnection = new ethers.Contract(
       currentTokenExchangeAddress.current,
@@ -242,12 +247,7 @@ const MenuPanel = ({ currencies, section }) => {
       currentExchangeAddress,
       ethers.utils.parseEther(inputOne)
     );
-    
-    await toast.promise(wasApproved.wait(), {
-      pending: 'Approve is pending',
-      success: 'Approve resolved 👌',
-      error: 'Approve rejected 🤯',
-    });
+    await wasApproved.wait();
     const allowanceAmount = ethers.utils.formatEther(
       await tokenUserConnection.allowance(
         await signer.getAddress(),

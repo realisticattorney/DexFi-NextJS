@@ -238,15 +238,21 @@ const MenuPanel = ({ currencies, section }) => {
       return [exchangeUserConnection];
     }
 
-    const wasApproved = await tokenUserConnection.approve(
-      currentExchangeAddress,
-      ethers.utils.parseEther(inputOne)
+    const wasApproved = await toast.promise(
+      tokenUserConnection.approve(
+        currentExchangeAddress,
+        ethers.utils.parseEther(inputOne)
+      ),
+      {
+        pending: 'wasApproved is pending',
+        success: 'wasApproved resolved 👌',
+        error: 'wasApproved rejected 🤯',
+      }
     );
-    
     await toast.promise(wasApproved.wait(), {
-      pending: 'Approve is pending',
-      success: 'Approve resolved 👌',
-      error: 'Approve rejected 🤯',
+      pending: 'Ap is pending',
+      success: 'Waittt resolved 👌',
+      error: 'Waittt rejected 🤯',
     });
     const allowanceAmount = ethers.utils.formatEther(
       await tokenUserConnection.allowance(

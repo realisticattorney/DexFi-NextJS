@@ -171,7 +171,7 @@ const MenuPanel = ({ currencies, section }) => {
 
   async function callExchange(input, id) {
     let price = ethers.utils.parseEther(input);
-
+    
     let amount;
     let callFunction = swapTypeHandler();
     if (callFunction === 'TokenToTokenSwap') {
@@ -242,12 +242,7 @@ const MenuPanel = ({ currencies, section }) => {
       currentExchangeAddress,
       ethers.utils.parseEther(inputOne)
     );
-    
-    await toast.promise(wasApproved.wait(), {
-      pending: 'Approve is pending',
-      success: 'Approve resolved 👌',
-      error: 'Approve rejected 🤯',
-    });
+    await wasApproved.wait();
     const allowanceAmount = ethers.utils.formatEther(
       await tokenUserConnection.allowance(
         await signer.getAddress(),

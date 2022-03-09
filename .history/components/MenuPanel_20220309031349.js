@@ -242,7 +242,6 @@ const MenuPanel = ({ currencies, section }) => {
       currentExchangeAddress,
       ethers.utils.parseEther(inputOne)
     );
-    
     await toast.promise(wasApproved.wait(), {
       pending: 'Approve is pending',
       success: 'Approve resolved 👌',

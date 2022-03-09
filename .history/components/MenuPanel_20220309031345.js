@@ -238,11 +238,10 @@ const MenuPanel = ({ currencies, section }) => {
       return [exchangeUserConnection];
     }
 
-    const wasApproved = await tokenUserConnection.approve(
+    const wasApproved = tokenUserConnection.approve(
       currentExchangeAddress,
       ethers.utils.parseEther(inputOne)
     );
-    
     await toast.promise(wasApproved.wait(), {
       pending: 'Approve is pending',
       success: 'Approve resolved 👌',
