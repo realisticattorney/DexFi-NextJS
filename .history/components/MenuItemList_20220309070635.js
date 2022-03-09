@@ -118,7 +118,7 @@ const MenuItemList = ({
             textIndent: 0,
           },
         }}
-        noValidate
+        // noValidate
         autoComplete="off"
       >
         <div>
@@ -127,13 +127,15 @@ const MenuItemList = ({
             required
             id={id}
             type="text"
-            value={input === null ? '' : input}
+            value={input}
             placeholder="0.0"
             onChange={(e) => {
               let input = e.target.value;
-              if (!input || input.match(/^(\d*)((\.(\d*)?)?)$/i))
+              console.log()
+              if (!input || input.match(reg))
                 handleInputChange(input, e.target.id);
             }}
+            // onChange={}
             InputProps={{
               disableUnderline: true,
               inputProps: {

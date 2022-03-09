@@ -111,25 +111,25 @@ const MenuPanel = ({ currencies, section }) => {
     }
   };
 
-  const handleInputChange = (event, id) => {
-    console.log('event', event);
-    console.log('event type', typeof event);
-    // if (event > 0) {
-    //   if (section === 'swap') {
-    //     callExchange(event, id);
-    //   } else {
-    //     callBondingCurve(event, id);
-    //   }
-    // } else if (event === '') {
-    //   setInputOne(null);
-    //   setInputTwo(null);
-    // } else if (event === '00') {
-    //   setInputOne(inputOne);
-    //   setInputTwo(inputTwo);
-    // } else {
+  const handleInputChange = (event,id) => {
+    console.log("event",event);
+    console.log("event type",typeof event);
+    if (event > 0) {
+      if (section === 'swap') {
+        callExchange(event, id);
+      } else {
+        callBondingCurve(event, id);
+      }
+    } else if (event === '') {
+      setInputOne(null);
+      setInputTwo(null);
+    } else if (event === '00') {
+      setInputOne(inputOne);
+      setInputTwo(inputTwo);
+    } else {
       setInputOne(event);
       setInputTwo(event);
-    // }
+    }
   };
 
   const callBondingCurve = useCallback(

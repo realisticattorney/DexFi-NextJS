@@ -37,7 +37,6 @@ const MenuItemList = ({
 }) => {
   const modalIsDisabled = id === '2' && section === 'add' ? 'yes' : 'no';
   const ethIsDisabled = id === '1' && section === 'add' ? 'yes' : 'no';
-  const reg = /^(0|[1-9]\d*)(\.\d+)?$/;
   return (
     <div className="flex flex-col space-y-2 px-4 py-5">
       <button
@@ -131,9 +130,14 @@ const MenuItemList = ({
             placeholder="0.0"
             onChange={(e) => {
               let input = e.target.value;
-              if (!input || input.match(/^(\d*)((\.(\d*)?)?)$/i))
-                handleInputChange(input, e.target.id);
+              if (
+                !input ||
+                (input[input.length - 1].match('[0-9]') &&
+                  input[0].match('^[0-9]\d*(\.\d+)?$'))
+              )
+                handleInputChange(input,e.target.id);
             }}
+            // onChange={}
             InputProps={{
               disableUnderline: true,
               inputProps: {

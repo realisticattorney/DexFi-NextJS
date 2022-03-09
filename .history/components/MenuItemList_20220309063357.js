@@ -37,7 +37,6 @@ const MenuItemList = ({
 }) => {
   const modalIsDisabled = id === '2' && section === 'add' ? 'yes' : 'no';
   const ethIsDisabled = id === '1' && section === 'add' ? 'yes' : 'no';
-  const reg = /^(0|[1-9]\d*)(\.\d+)?$/;
   return (
     <div className="flex flex-col space-y-2 px-4 py-5">
       <button
@@ -118,7 +117,7 @@ const MenuItemList = ({
             textIndent: 0,
           },
         }}
-        noValidate
+        noValidate={false}
         autoComplete="off"
       >
         <div>
@@ -126,24 +125,25 @@ const MenuItemList = ({
             variant="standard"
             required
             id={id}
-            type="text"
+            type="number"
             value={input === null ? '' : input}
             placeholder="0.0"
-            onChange={(e) => {
-              let input = e.target.value;
-              if (!input || input.match(/^(\d*)((\.(\d*)?)?)$/i))
-                handleInputChange(input, e.target.id);
-            }}
-            InputProps={{
-              disableUnderline: true,
-              inputProps: {
-                style: {
-                  textAlign: 'right',
-                  fontSize: '1rem',
-                  paddingRight: '1rem',
-                },
-              },
-            }}
+            onChange={handleInputChange}
+            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+            // InputProps={{
+            //   inputMode: 'decimal',
+            //   pattern: '[0-9]*',
+            //   disableUnderline: true,
+            //   inputProps: {
+            //     inputMode: 'numeric',
+            //     pattern: '[0-9]*',
+            //     style: {
+            //       textAlign: 'right',
+            //       fontSize: '1rem',
+            //       paddingRight: '1rem',
+            //     },
+            //   },
+            // }}
           />
         </div>
       </Box>

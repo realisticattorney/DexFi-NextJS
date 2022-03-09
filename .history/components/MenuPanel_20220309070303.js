@@ -129,7 +129,7 @@ const MenuPanel = ({ currencies, section }) => {
     // } else {
       setInputOne(event);
       setInputTwo(event);
-    // }
+    }
   };
 
   const callBondingCurve = useCallback(

@@ -134,6 +134,7 @@ const MenuItemList = ({
               if (!input || input.match(/^(\d*)((\.(\d*)?)?)$/i))
                 handleInputChange(input, e.target.id);
             }}
+            // onChange={}
             InputProps={{
               disableUnderline: true,
               inputProps: {
