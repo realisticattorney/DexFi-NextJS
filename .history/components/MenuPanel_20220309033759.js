@@ -278,17 +278,10 @@ const MenuPanel = ({ currencies, section }) => {
           value: ethers.utils.parseEther((inputTwo * 0.98).toString()),
         }
       ),
-      {
-        pending: 'Tx is pending',
-        success: 'Tx sent 👌',
-        error: 'Tx rejected 🤯',
-      }
+      {}
     );
-    await toast.promise(transaction.wait(), {
-      pending: 'Mining of tx is pending',
-      success: 'Mining of tx resolved 👌',
-      error: 'Mining of tx rejected 🤯',
-    });
+    console.log('transaction', transaction);
+    console.log('transaction done!');
   }
 
   async function swap() {
