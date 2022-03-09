@@ -31,7 +31,6 @@ const MenuItemList = ({
   input,
   handleInputChange,
   handleMenuItemClick,
-  menuNumber,
   id,
   section,
 }) => {
@@ -84,7 +83,7 @@ const MenuItemList = ({
                   }
                   selected={index === token[1]}
                   onClick={() =>
-                    handleMenuItemClick(index, menuNumber)
+                    handleMenuItemClick(index, id)
                   }
                 >
                   <Image

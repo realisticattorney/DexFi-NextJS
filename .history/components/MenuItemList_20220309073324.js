@@ -83,9 +83,7 @@ const MenuItemList = ({
                       : index === token[1]
                   }
                   selected={index === token[1]}
-                  onClick={() =>
-                    handleMenuItemClick(index, menuNumber)
-                  }
+                  onClick={() => handleMenuItemClick(event, index, menuNumber)}
                 >
                   <Image
                     src={currency.logoURI}

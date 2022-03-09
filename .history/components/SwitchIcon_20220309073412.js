@@ -38,7 +38,7 @@ const SwitchIcon = ({ handleMenuItemClick, outputToken, callExchange }) => {
     <div className="text-center -mt-2 -mb-2">
       <button
         className="w-fit"
-        onClick={() => handleMenuItemClick(1, outputToken[1])}
+        onClick={() => handleMenuItemClick(event, 1, outputToken[1])}
       >
         <Icon
           sx={{

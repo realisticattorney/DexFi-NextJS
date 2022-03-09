@@ -102,25 +102,19 @@ const MenuPanel = ({ currencies, section }) => {
     const newIndex = newSelected;
     setInputToken([currencies[newIndex], newIndex]);
     setOutputToken([currencies[prevIndex], prevIndex]);
-    if (inputOne > 0) {
-      if (menuItem === 1) {
-        setInputOne(
-          ((parseFloat(inputTwo) * 990) / 999).toFixed(17).toString()
-        );
-        setInputTwo(inputOne);
-      } else {
-        setInputTwo(
-          ((parseFloat(inputOne) * 999) / 990).toFixed(17).toString()
-        );
-        setInputOne(inputTwo);
-      }
+    if(inputOne > 0) {
+    if (menuItem === 1) {
+      setInputOne(((parseFloat(inputTwo) * 990) / 999).toFixed(17).toString());
+      setInputTwo(inputOne);
     } else {
-      setInputOne(null);
-      setInputTwo(null);
+      setInputTwo(((parseFloat(inputOne) * 999) / 990).toFixed(17).toString());
+      setInputOne(inputTwo);
     }
   };
 
   const handleInputChange = (event, id) => {
+    console.log('event', event);
+    console.log('event type', typeof event);
     if (event > 0) {
       if (section === 'swap') {
         callExchange(event, id);

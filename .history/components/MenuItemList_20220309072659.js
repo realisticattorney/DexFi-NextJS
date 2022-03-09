@@ -83,8 +83,8 @@ const MenuItemList = ({
                       : index === token[1]
                   }
                   selected={index === token[1]}
-                  onClick={() =>
-                    handleMenuItemClick(index, menuNumber)
+                  onClick={(event) =>
+                    handleMenuItemClick(event, index, menuNumber)
                   }
                 >
                   <Image
@@ -132,7 +132,7 @@ const MenuItemList = ({
             onChange={(e) => {
               let input = e.target.value;
               if (!input || input.match(/^(\d*)((\.(\d*)?)?)$/i))
-                handleInputChange(input, e.target.id);
+                
             }}
             InputProps={{
               disableUnderline: true,

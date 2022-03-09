@@ -75,7 +75,7 @@ const MenuPanel = ({ currencies, section }) => {
     registry?.address && loadExchange(exchangeHandler, setExchangeCallback);
   }, [exchangeHandler, registry?.address, setExchangeCallback]);
 
-  const handleMenuItemClick = async (index, menuItem) => {
+  const handleMenuItemClick = async (event, index, menuItem) => {
     if (menuItem === 1) {
       if (index === outputToken[1]) {
         handleMenuItemSwitch(inputToken[1], outputToken[1], menuItem);
@@ -102,34 +102,24 @@ const MenuPanel = ({ currencies, section }) => {
     const newIndex = newSelected;
     setInputToken([currencies[newIndex], newIndex]);
     setOutputToken([currencies[prevIndex], prevIndex]);
-    if (inputOne > 0) {
-      if (menuItem === 1) {
-        setInputOne(
-          ((parseFloat(inputTwo) * 990) / 999).toFixed(17).toString()
-        );
-        setInputTwo(inputOne);
-      } else {
-        setInputTwo(
-          ((parseFloat(inputOne) * 999) / 990).toFixed(17).toString()
-        );
-        setInputOne(inputTwo);
-      }
+    if (menuItem === 1) {
+      setInputOne(((parseFloat(inputTwo) * 990) / 999).toFixed(17).toString());
+      setInputTwo(inputOne);
     } else {
-      setInputOne(null);
-      setInputTwo(null);
+      setInputTwo(((parseFloat(inputOne) * 999) / 990).toFixed(17).toString());
+      setInputOne(inputTwo);
     }
   };
 
   const handleInputChange = (event, id) => {
+    console.log('event', event);
+    console.log('event type', typeof event);
     if (event > 0) {
       if (section === 'swap') {
         callExchange(event, id);
       } else {
         callBondingCurve(event, id);
       }
-    } else if (event === '') {
-      setInputOne(null);
-      setInputTwo(null);
     } else if (event === '00') {
       setInputOne(inputOne);
       setInputTwo(inputTwo);

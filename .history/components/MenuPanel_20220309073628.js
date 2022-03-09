@@ -121,6 +121,8 @@ const MenuPanel = ({ currencies, section }) => {
   };
 
   const handleInputChange = (event, id) => {
+    console.log('event', event);
+    console.log('event type', typeof event);
     if (event > 0) {
       if (section === 'swap') {
         callExchange(event, id);
