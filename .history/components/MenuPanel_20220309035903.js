@@ -139,8 +139,8 @@ const MenuPanel = ({ currencies, section }) => {
     }
   };
 
-  const callBondingCurve = useCallback(
-    async (input, id) => {
+  const callBondingCurve =
+    (async (input, id) => {
       if (exchangeCurrent.balance === '0.0') {
         if (id === '1') {
           setInputOne(input);
@@ -167,8 +167,7 @@ const MenuPanel = ({ currencies, section }) => {
       inpot = parseInt(input);
       setShareOfPool((inpot / (inpot + intoNumb)) * 100);
     },
-    [balance, reserve, exchangeCurrent.balance]
-  );
+    []);
 
   const callExchange = useCallback(
     async (input, id) => {

@@ -139,36 +139,33 @@ const MenuPanel = ({ currencies, section }) => {
     }
   };
 
-  const callBondingCurve = useCallback(
-    async (input, id) => {
-      if (exchangeCurrent.balance === '0.0') {
-        if (id === '1') {
-          setInputOne(input);
-        } else {
-          setInputTwo(input);
-        }
-        return;
-      }
-      let intoNumb;
-      let inpot;
-      let amount;
-      amount =
-        id === '1' ? (balance * input) / reserve : (reserve * input) / balance;
-      console.log('amount', amount);
+  async const callBondingCurve(input, id) {
+    if (exchangeCurrent.balance === '0.0') {
       if (id === '1') {
-        intoNumb = parseInt(reserve);
         setInputOne(input);
-        setInputTwo(amount);
       } else {
-        intoNumb = parseInt(balance);
         setInputTwo(input);
-        setInputOne(amount);
       }
-      inpot = parseInt(input);
-      setShareOfPool((inpot / (inpot + intoNumb)) * 100);
-    },
-    [balance, reserve, exchangeCurrent.balance]
-  );
+      return;
+    }
+    let intoNumb;
+    let inpot;
+    let amount;
+    amount =
+      id === '1' ? (balance * input) / reserve : (reserve * input) / balance;
+    console.log('amount', amount);
+    if (id === '1') {
+      intoNumb = parseInt(reserve);
+      setInputOne(input);
+      setInputTwo(amount);
+    } else {
+      intoNumb = parseInt(balance);
+      setInputTwo(input);
+      setInputOne(amount);
+    }
+    inpot = parseInt(input);
+    setShareOfPool((inpot / (inpot + intoNumb)) * 100);
+  }
 
   const callExchange = useCallback(
     async (input, id) => {
