@@ -175,30 +175,15 @@ const MenuPanel = ({ currencies, section }) => {
       let price = ethers.utils.parseEther(input);
       let numerator;
       let denominator;
-
+      // console.log('share?', numerator / denominator);
       let amount;
       let callFunction = swapTypeHandler();
-      if (callFunction === 'TokenToEthSwap') {
-        if (id === '1') {
-          numerator = input * 99 * balance;
-          denominator = reserve * 100 + input * 99;
-        } else {
-          numerator = input * 99 * reserve;
-          denominator = balance * 100 + input * 99;
-        }
-      } else if (callFunction === 'EthToTokenSwap') {
-        if (id === '1') {
-          numerator = input * 99 * reserve;
-          denominator = balance * 100 + input * 99;
-        } else {
-          numerator = input * 99 * balance;
-          denominator = reserve * 100 + input * 99;
-        }
-      } else {
-        console.log('lol');
-      }
+      if(callFunction === 'TokenToEthSwap'){
+        if(id === '1'){
 
-      console.log('share?', numerator / denominator);
+
+
+
       if (callFunction === 'TokenToTokenSwap') {
         amount =
           id === '1'

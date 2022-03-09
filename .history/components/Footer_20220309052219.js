@@ -11,7 +11,7 @@ const Footer = () => {
   const { exchangeBunny } = useWeb3();
   return (
     <footer className=" text-white  font-medium  p-0 sm:p-5 bg-dexfi-space_gray">
-      <div className="grid col-span-3 grid-cols-1 mx-3 sm:mx-6  grid-flow-row    sm:grid-cols-4  mt-8">
+      <div className="grid col-span-3 grid-cols-1 mx-3 sm:mx-6  grid-flow-row    md:grid-cols-4  mt-8">
         <div className="inline-flex col-span-1 row-span-1 mb-4 sm:mb-0">
           <ul className="flex-col space-y-1.7 ">
             <li className="text-violet-500 font-bold">ABOUT</li>
