@@ -167,53 +167,50 @@ const MenuPanel = ({ currencies, section }) => {
     setShareOfPool((inpot / (inpot + intoNumb)) * 100);
   }
 
-  const callExchange = useCallback(
-    async (input, id) => {
-      let price = ethers.utils.parseEther(input);
-      console.log('share?', (balance * ((input * 990) / 1000)) / reserve);
-      let amount;
-      let callFunction = swapTypeHandler();
-      if (callFunction === 'TokenToTokenSwap') {
-        amount =
-          id === '1'
-            ? ethers.utils.formatEther(
+  const callExchange = useCallback(async (input, id) => {
+    let price = ethers.utils.parseEther(input);
+    console.log('share?', (balance * ((input * 990) / 1000)) / reserve);
+    let amount;
+    let callFunction = swapTypeHandler();
+    if (callFunction === 'TokenToTokenSwap') {
+      amount =
+        id === '1'
+          ? ethers.utils.formatEther(
+              await contract.getTokenToTokenAmount(
+                price,
+                outputToken[0].address
+              )
+            )
+          : (
+              (input * input) /
+              ethers.utils.formatEther(
                 await contract.getTokenToTokenAmount(
                   price,
                   outputToken[0].address
                 )
               )
-            : (
-                (input * input) /
-                ethers.utils.formatEther(
-                  await contract.getTokenToTokenAmount(
-                    price,
-                    outputToken[0].address
-                  )
-                )
-              ).toString();
-      } else if (callFunction === 'TokenToEthSwap') {
-        amount =
-          id === '1'
-            ? ethers.utils.formatEther(await contract.getEthAmount(price))
-            : ethers.utils.formatEther(await contract.getTokenAmount(price));
-      } else {
-        amount =
-          id === '1'
-            ? ethers.utils.formatEther(await contract.getTokenAmount(price))
-            : ethers.utils.formatEther(await contract.getEthAmount(price));
-      }
+            ).toString();
+    } else if (callFunction === 'TokenToEthSwap') {
+      amount =
+        id === '1'
+          ? ethers.utils.formatEther(await contract.getEthAmount(price))
+          : ethers.utils.formatEther(await contract.getTokenAmount(price));
+    } else {
+      amount =
+        id === '1'
+          ? ethers.utils.formatEther(await contract.getTokenAmount(price))
+          : ethers.utils.formatEther(await contract.getEthAmount(price));
+    }
 
-      console.log('amount', amount);
-      if (id === '1') {
-        setInputOne(input);
-        setInputTwo(amount);
-      } else {
-        setInputOne(amount);
-        setInputTwo(input);
-      }
-    },
-    [balance, contract, outputToken, swapTypeHandler, reserve]
-  );
+    console.log('amount', amount);
+    if (id === '1') {
+      setInputOne(input);
+      setInputTwo(amount);
+    } else {
+      setInputOne(amount);
+      setInputTwo(input);
+    }
+  }, []);
   async function operate() {
     const web3modal = new Web3Modal();
     const connection = await web3modal.connect();
