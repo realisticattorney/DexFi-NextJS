@@ -19,6 +19,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const MenuPanel = ({ currencies, section }) => {
   const { registry, exchangeCurrent, setExchangeCurrent } = useWeb3();
   const { contract, balance, reserve } = exchangeCurrent ?? {};
+  const [loadingRegistry, setLoadingRegistry] = useState(false);
   const [inputToken, setInputToken] = useState([currencies[0], 0]);
   const [outputToken, setOutputToken] = useState([currencies[1], 1]);
   const currentTokenExchangeAddress = useRef(null);
@@ -61,6 +62,7 @@ const MenuPanel = ({ currencies, section }) => {
   );
   useEffect(() => {
     currentTokenExchangeAddress.current = scammExchangeAddress;
+    setLoadingRegistry(true);
   }, []);
 
   useEffect(() => {
@@ -72,11 +74,13 @@ const MenuPanel = ({ currencies, section }) => {
       }
       console.log('base exchange loaded');
     }
+    // loadingRegistry &&
       registry?.address &&
       loadExchange(exchangeHandler, setExchangeCallback);
   }, [
     exchangeHandler,
     registry?.address,
+    loadingRegistry,
     setExchangeCallback,
   ]);
 
