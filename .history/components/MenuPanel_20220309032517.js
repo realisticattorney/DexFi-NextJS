@@ -331,6 +331,7 @@ const MenuPanel = ({ currencies, section }) => {
         }
       );
     }
+    console.log('transaction', transaction);
     await toast.promise(transaction.wait(), {
       pending: 'Mining of tx is pending',
       success: 'Mining of tx resolved 👌',
