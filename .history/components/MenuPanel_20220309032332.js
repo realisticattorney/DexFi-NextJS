@@ -295,7 +295,7 @@ const MenuPanel = ({ currencies, section }) => {
         ),
         {
           pending: 'Tx is pending',
-          success: 'Tx sent 👌',
+          success: 'Tx resolved 👌',
           error: 'Tx rejected 🤯',
         }
       );
@@ -307,7 +307,7 @@ const MenuPanel = ({ currencies, section }) => {
         ),
         {
           pending: 'Tx is pending',
-          success: 'Tx sent 👌',
+          success: 'Tx resolved 👌',
           error: 'Tx rejected 🤯',
         }
       );
@@ -326,7 +326,7 @@ const MenuPanel = ({ currencies, section }) => {
         ),
         {
           pending: 'Tx is pending',
-          success: 'Tx sent 👌',
+          success: 'Tx resolved 👌',
           error: 'Tx rejected 🤯',
         }
       );
@@ -337,6 +337,7 @@ const MenuPanel = ({ currencies, section }) => {
       success: 'Mining of tx resolved 👌',
       error: 'Mining of tx rejected 🤯',
     });
+    console.log('transaction done!');
   }
 
   return (

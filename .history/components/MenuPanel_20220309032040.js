@@ -286,30 +286,20 @@ const MenuPanel = ({ currencies, section }) => {
     const swapType = swapTypeHandler();
     let transaction;
     if (swapType === 'EthToTokenSwap') {
-      transaction = await toast.promise(
-        exchangeUserConnection.ethToTokenSwap(
-          ethers.utils.parseEther((inputTwo * 0.97).toString()),
-          {
-            value: ethers.utils.parseEther(inputOne.toString()),
-          }
-        ),
+      transaction = await toast.promise(exchangeUserConnection.ethToTokenSwap(
+        ethers.utils.parseEther((inputTwo * 0.97).toString()),
         {
-          pending: 'Tx is pending',
-          success: 'Tx sent 👌',
-          error: 'Tx rejected 🤯',
+          value: ethers.utils.parseEther(inputOne.toString()),
         }
-      );
+      ),{
+        pending: 'Promise is pending',
+        success: 'Promise resolved 👌',
+        error: 'Promise rejected 🤯'
+      })
     } else if (swapType === 'TokenToEthSwap') {
-      transaction = await toast.promise(
-        exchangeUserConnection.tokenToEthSwap(
-          ethers.utils.parseEther(allowanceAmount.toString()),
-          ethers.utils.parseEther((inputTwo * 0.98).toString())
-        ),
-        {
-          pending: 'Tx is pending',
-          success: 'Tx sent 👌',
-          error: 'Tx rejected 🤯',
-        }
+      transaction = await exchangeUserConnection.tokenToEthSwap(
+        ethers.utils.parseEther(allowanceAmount.toString()),
+        ethers.utils.parseEther((inputTwo * 0.98).toString())
       );
     } else {
       let minTokensAmount = ethers.utils.formatEther(
@@ -318,25 +308,14 @@ const MenuPanel = ({ currencies, section }) => {
           outputToken[0].address
         )
       );
-      transaction = await toast.promise(
-        exchangeUserConnection.tokenToTokenSwap(
-          ethers.utils.parseEther(allowanceAmount.toString()),
-          ethers.utils.parseEther((minTokensAmount * 0.98).toString()),
-          outputToken[0].address
-        ),
-        {
-          pending: 'Tx is pending',
-          success: 'Tx sent 👌',
-          error: 'Tx rejected 🤯',
-        }
+      transaction = await exchangeUserConnection.tokenToTokenSwap(
+        ethers.utils.parseEther(allowanceAmount.toString()),
+        ethers.utils.parseEther((minTokensAmount * 0.98).toString()),
+        outputToken[0].address
       );
     }
     console.log('transaction', transaction);
-    await toast.promise(transaction.wait(), {
-      pending: 'Mining of tx is pending',
-      success: 'Mining of tx resolved 👌',
-      error: 'Mining of tx rejected 🤯',
-    });
+    console.log('transaction done!');
   }
 
   return (
