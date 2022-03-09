@@ -4,6 +4,7 @@ import Image from 'next/image';
 import MenuPanel from '../components/MenuPanel.js';
 import { scammcoinAddress, USDCAddress, ETCAddress } from '../config-local.js';
 import Subnav from '../components/Subnav.js';
+
 export default function Swap(props) {
   const { currencies } = props;
 

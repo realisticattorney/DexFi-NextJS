@@ -171,7 +171,7 @@ const MenuPanel = ({ currencies, section }) => {
 
   async function callExchange(input, id) {
     let price = ethers.utils.parseEther(input);
-    
+    toast.success()
     let amount;
     let callFunction = swapTypeHandler();
     if (callFunction === 'TokenToTokenSwap') {

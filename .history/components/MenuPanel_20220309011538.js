@@ -417,7 +417,6 @@ const MenuPanel = ({ currencies, section }) => {
           </div>
         </div>
       )}
-      <ToastContainer />
       <button onClick={() => notify()}>click me bitch</button>
       <MenuPanelFooter
         inputOne={inputOne}

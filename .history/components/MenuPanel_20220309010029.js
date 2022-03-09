@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react'; //hooks
 import Web3Modal from 'web3modal';
 import MenuItemList from './MenuItemList.js';
 import { useWeb3 } from './providers/web3';
@@ -8,14 +8,12 @@ import ERC20Token from '../utils/ERC20Token.json';
 import Exchange from '../utils/Exchange.json';
 import SwitchIcon from './SwitchIcon.js';
 import PriceEstimator from './PriceEstimator.js';
+import _ from 'lodash';
 import WarningIcon from '@mui/icons-material/Warning';
 import SwapUpperSection from '../components/SwapUpperSection.js';
 import AddUpperSection from '../components/AddUpperSection';
 import MenuPanelFooter from './MenuPanelFooter.js';
 import { useMoralis } from 'react-moralis';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 const MenuPanel = ({ currencies, section }) => {
   const { registry, exchangeCurrent, setExchangeCurrent } = useWeb3();
   const { contract, balance, reserve } = exchangeCurrent ?? {};
@@ -148,6 +146,7 @@ const MenuPanel = ({ currencies, section }) => {
       }
       return;
     }
+
     let intoNumb;
     let inpot;
     let amount;
@@ -167,11 +166,9 @@ const MenuPanel = ({ currencies, section }) => {
     setShareOfPool((inpot / (inpot + intoNumb)) * 100);
   }
 
-  const notify = () => toast.success('Swap Successful');
-
   async function callExchange(input, id) {
     let price = ethers.utils.parseEther(input);
-    
+
     let amount;
     let callFunction = swapTypeHandler();
     if (callFunction === 'TokenToTokenSwap') {
@@ -417,8 +414,6 @@ const MenuPanel = ({ currencies, section }) => {
           </div>
         </div>
       )}
-      <ToastContainer />
-      <button onClick={() => notify()}>click me bitch</button>
       <MenuPanelFooter
         inputOne={inputOne}
         inputTwo={inputTwo}
@@ -427,6 +422,9 @@ const MenuPanel = ({ currencies, section }) => {
         section={section}
         balance={balance}
       />
+          <div className="hidden sm:block absolute -bottom-40 sm:bottom-0 right-10 -mb-1 ">
+          <Image src="/help.png" width={191} height={130} alt="lol" />
+        </div>
     </>
   );
 };

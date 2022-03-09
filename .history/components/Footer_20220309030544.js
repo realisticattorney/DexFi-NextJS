@@ -109,10 +109,7 @@ const Footer = () => {
                 className=""
               />
               <h2 className="text-dexfi-other_gray mt-0.1 pt-0.1 font-bold">
-                $
-                {exchangeBunny?.reserve
-                  ? (exchangeBunny?.reserve / exchangeBunny?.balance).toFixed(2)
-                  : '0.00'}
+              ${exchangeBunny?.reserve ? (exchangeBunny?.reserve / exchangeBunny?.balance).toFixed(2) : '0.00'}
               </h2>
             </div>
           </Link>

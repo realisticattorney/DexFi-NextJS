@@ -167,8 +167,6 @@ const MenuPanel = ({ currencies, section }) => {
     setShareOfPool((inpot / (inpot + intoNumb)) * 100);
   }
 
-  const notify = () => toast.success('Swap Successful');
-
   async function callExchange(input, id) {
     let price = ethers.utils.parseEther(input);
     
@@ -417,7 +415,6 @@ const MenuPanel = ({ currencies, section }) => {
           </div>
         </div>
       )}
-      <ToastContainer />
       <button onClick={() => notify()}>click me bitch</button>
       <MenuPanelFooter
         inputOne={inputOne}

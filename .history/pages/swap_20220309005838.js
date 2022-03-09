@@ -4,6 +4,10 @@ import Image from 'next/image';
 import MenuPanel from '../components/MenuPanel.js';
 import { scammcoinAddress, USDCAddress, ETCAddress } from '../config-local.js';
 import Subnav from '../components/Subnav.js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 export default function Swap(props) {
   const { currencies } = props;
 
@@ -12,9 +16,9 @@ export default function Swap(props) {
       <Subnav marked={'Exchange'} />
       <div className="p-6 mx-auto w-min  mb-[58px] sm:-mb-[102px]">
         <MenuPanel currencies={currencies} section={'swap'} />
-        {/* <div className="hidden sm:block absolute -bottom-40 sm:bottom-0 right-10 -mb-1 ">
+        <div className="hidden sm:flex absolute bottom-40 sm:bottom-0 right-10 -mb-1 ">
           <Image src="/help.png" width={191} height={130} alt="lol" />
-        </div> */}
+        </div>
       </div>
     </div>
   );

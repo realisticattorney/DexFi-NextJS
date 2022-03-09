@@ -8,6 +8,7 @@ import ERC20Token from '../utils/ERC20Token.json';
 import Exchange from '../utils/Exchange.json';
 import SwitchIcon from './SwitchIcon.js';
 import PriceEstimator from './PriceEstimator.js';
+import _ from 'lodash';
 import WarningIcon from '@mui/icons-material/Warning';
 import SwapUpperSection from '../components/SwapUpperSection.js';
 import AddUpperSection from '../components/AddUpperSection';
@@ -148,6 +149,7 @@ const MenuPanel = ({ currencies, section }) => {
       }
       return;
     }
+
     let intoNumb;
     let inpot;
     let amount;
@@ -167,11 +169,9 @@ const MenuPanel = ({ currencies, section }) => {
     setShareOfPool((inpot / (inpot + intoNumb)) * 100);
   }
 
-  const notify = () => toast.success('Swap Successful');
-
   async function callExchange(input, id) {
     let price = ethers.utils.parseEther(input);
-    
+
     let amount;
     let callFunction = swapTypeHandler();
     if (callFunction === 'TokenToTokenSwap') {
@@ -417,8 +417,6 @@ const MenuPanel = ({ currencies, section }) => {
           </div>
         </div>
       )}
-      <ToastContainer />
-      <button onClick={() => notify()}>click me bitch</button>
       <MenuPanelFooter
         inputOne={inputOne}
         inputTwo={inputTwo}
@@ -427,6 +425,7 @@ const MenuPanel = ({ currencies, section }) => {
         section={section}
         balance={balance}
       />
+      
     </>
   );
 };
