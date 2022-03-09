@@ -106,24 +106,16 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
       return;
     }
 
-    let transaction = await toast.promise(
-      exchangeUserConnection.removeLiquidity(
-        ethers.utils.parseEther(expectedWithdrawn[2].toString())
-      ),
-      {
-        pending: 'Tx is pending',
-        success: 'Tx sent 👌',
-        error: 'Tx rejected 🤯',
-      }
-    );
+    let transaction = await toast.promise(exchangeUserConnection.removeLiquidity(
+      ethers.utils.parseEther(expectedWithdrawn[2].toString())
+    ),{
+      pending: 'Tx is pending',
+      success: 'Tx sent 👌',
+      error: 'Tx rejected 🤯',
+    })
     console.log('transaction', transaction);
-    await toast.promise(transaction.wait(), {
-      pending: 'Mining of tx is pending',
-      success: 'Mining of tx resolved 👌',
-      error: 'Mining of tx rejected 🤯',
-    });
     if (transaction.hash) {
-      Router.push('/liquidity');
+      Router.push('/');
     }
   }
 

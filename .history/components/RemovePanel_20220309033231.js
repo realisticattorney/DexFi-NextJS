@@ -117,13 +117,8 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
       }
     );
     console.log('transaction', transaction);
-    await toast.promise(transaction.wait(), {
-      pending: 'Mining of tx is pending',
-      success: 'Mining of tx resolved 👌',
-      error: 'Mining of tx rejected 🤯',
-    });
     if (transaction.hash) {
-      Router.push('/liquidity');
+      Router.push('/');
     }
   }
 
