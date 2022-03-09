@@ -259,9 +259,7 @@ const MenuPanel = ({ currencies, section }) => {
     }
 
     if (allowanceAmount < inputOne) {
-      toast.error(
-        `No enough allowance ${allowanceAmount} for ${inputOne} amount`
-      );
+      toast.error('No enough allowance');
       return;
     }
 

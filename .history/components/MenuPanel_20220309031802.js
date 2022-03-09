@@ -254,14 +254,12 @@ const MenuPanel = ({ currencies, section }) => {
     );
 
     if (allowanceAmount === '0') {
-      toast.error('No allowance');
+      toast.success('Swap Successful');
       return;
     }
 
     if (allowanceAmount < inputOne) {
-      toast.error(
-        `No enough allowance ${allowanceAmount} for ${inputOne} amount`
-      );
+      console.log('not enough allowance');
       return;
     }
 

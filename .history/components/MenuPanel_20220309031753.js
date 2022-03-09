@@ -167,6 +167,7 @@ const MenuPanel = ({ currencies, section }) => {
     setShareOfPool((inpot / (inpot + intoNumb)) * 100);
   }
 
+
   async function callExchange(input, id) {
     let price = ethers.utils.parseEther(input);
 
@@ -254,14 +255,12 @@ const MenuPanel = ({ currencies, section }) => {
     );
 
     if (allowanceAmount === '0') {
-      toast.error('No allowance');
+      console.log('no allowance');
       return;
     }
 
     if (allowanceAmount < inputOne) {
-      toast.error(
-        `No enough allowance ${allowanceAmount} for ${inputOne} amount`
-      );
+      console.log('not enough allowance');
       return;
     }
 
