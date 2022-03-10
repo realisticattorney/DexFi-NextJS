@@ -1,4 +1,3 @@
-import { ethers } from 'ethers';
 import Image from 'next/image';
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
@@ -39,7 +38,9 @@ const MenuItemList = ({
 }) => {
   const modalIsDisabled = id === '2' && section === 'add' ? 'yes' : 'no';
   const ethIsDisabled = id === '1' && section === 'add' ? 'yes' : 'no';
-  const reg = /^(0|[1-9]\d*)(\.\d+)?$/;
+
+  useEffect
+
   return (
     <div className="flex flex-col space-y-2 px-4 py-5">
       <div className="flex justify-between">
@@ -61,11 +62,10 @@ const MenuItemList = ({
           </h1>
           <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />
         </button>
-        {data?.map((t) =>
-          t.token_address === token[0].address.toLowerCase() ? (
-            <h1>{ethers.utils.formatEther(t.balance.toString())}</h1>
+        { ? (
+            <h1>{token.balance}</h1>
           ) : (
-            null
+            <h1>0.00</h1>
           )
         )}
       </div>

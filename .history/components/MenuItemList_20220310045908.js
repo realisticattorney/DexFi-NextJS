@@ -1,4 +1,3 @@
-import { ethers } from 'ethers';
 import Image from 'next/image';
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
@@ -61,13 +60,14 @@ const MenuItemList = ({
           </h1>
           <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />
         </button>
-        {data?.map((t) =>
-          t.token_address === token[0].address.toLowerCase() ? (
-            <h1>{ethers.utils.formatEther(t.balance.toString())}</h1>
-          ) : (
-            null
-          )
-        )}
+        {data &&
+          data.find((t, index) =>
+            t.token_address === token[0].address.toLowerCase() ? (
+              <h1 key={index}>{token.balance}</h1>
+            ) : (
+              <h1 key={index}>0.00</h1>
+            )
+          )}
       </div>
       <Modal
         disablePortal

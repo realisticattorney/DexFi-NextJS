@@ -1,4 +1,3 @@
-import { ethers } from 'ethers';
 import Image from 'next/image';
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';

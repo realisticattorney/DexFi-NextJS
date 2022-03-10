@@ -1,4 +1,3 @@
-import { ethers } from 'ethers';
 import Image from 'next/image';
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
@@ -63,9 +62,9 @@ const MenuItemList = ({
         </button>
         {data?.map((t) =>
           t.token_address === token[0].address.toLowerCase() ? (
-            <h1>{ethers.utils.formatEther(t.balance.toString())}</h1>
+            <h1>{t.balance.toString()}</h1>
           ) : (
-            null
+            <h1>0.00</h1>
           )
         )}
       </div>

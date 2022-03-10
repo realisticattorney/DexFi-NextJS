@@ -436,7 +436,6 @@ const MenuPanel = ({ currencies, section }) => {
           currencies={currencies}
           token={outputToken}
           open={openSecond}
-          data={data}
           input={inputTwo}
           handleInputChange={handleInputChange}
           handleMenuItemClick={handleMenuItemClick}

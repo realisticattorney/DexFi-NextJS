@@ -61,7 +61,6 @@ const MenuPanel = ({ currencies, section }) => {
   }, [erc20AccountBalance]);
 
   console.log('data', data);
-  console.log("inputToken",inputToken)
   console.log('accountERC20Balance', accountERC20Balance);
   console.log(
     'currentTokenExchangeAddress.current',
@@ -412,7 +411,6 @@ const MenuPanel = ({ currencies, section }) => {
           currencies={currencies}
           token={inputToken}
           open={open}
-          data={data}
           input={inputOne}
           handleInputChange={handleInputChange}
           handleMenuItemClick={handleMenuItemClick}
@@ -436,7 +434,6 @@ const MenuPanel = ({ currencies, section }) => {
           currencies={currencies}
           token={outputToken}
           open={openSecond}
-          data={data}
           input={inputTwo}
           handleInputChange={handleInputChange}
           handleMenuItemClick={handleMenuItemClick}

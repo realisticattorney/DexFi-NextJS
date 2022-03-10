@@ -1,4 +1,3 @@
-import { ethers } from 'ethers';
 import Image from 'next/image';
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
@@ -30,7 +29,6 @@ const MenuItemList = ({
   token,
   open,
   input,
-  data,
   handleInputChange,
   handleMenuItemClick,
   menuNumber,
@@ -42,32 +40,28 @@ const MenuItemList = ({
   const reg = /^(0|[1-9]\d*)(\.\d+)?$/;
   return (
     <div className="flex flex-col space-y-2 px-4 py-5">
-      <div className="flex justify-between">
-        <button
-          onClick={() => {
-            modalIsDisabled === 'yes' ? '' : handleOpen();
-          }}
-          className="flex items-center ml-3.5 mb-0.5"
-        >
-          <Image
-            src={token[0].logoURI}
-            height={24}
-            width={24}
-            quality={50}
-            alt=""
-          />
-          <h1 className="ml-2 font-bold text-dexfi-violet">
-            {token[0].symbol}
-          </h1>
-          <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />
-        </button>
-        {data?.map((t) =>
-          t.token_address === token[0].address.toLowerCase() ? (
-            <h1>{ethers.utils.formatEther(t.balance.toString())}</h1>
-          ) : (
-            null
-          )
-        )}
+    <div className='flex justify-between'>
+      <button
+        onClick={() => {
+          modalIsDisabled === 'yes' ? '' : handleOpen();
+        }}
+        className="flex items-center ml-3.5 mb-0.5"
+      >
+        <Image
+          src={token[0].logoURI}
+          height={24}
+          width={24}
+          quality={50}
+          alt=""
+        />
+        <h1 className="ml-2 font-bold text-dexfi-violet">{token[0].symbol}</h1>
+        <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />
+      </button>
+      {data && (
+        <h1>
+          {data.find(
+          (token) => token.token_address === token[0].address.toLowerCase() ? }
+        </h1>}
       </div>
       <Modal
         disablePortal
@@ -96,7 +90,9 @@ const MenuItemList = ({
                       : index === token[1]
                   }
                   selected={index === token[1]}
-                  onClick={() => handleMenuItemClick(index, menuNumber)}
+                  onClick={() =>
+                    handleMenuItemClick(index, menuNumber)
+                  }
                 >
                   <Image
                     src={currency.logoURI}
