@@ -97,22 +97,16 @@ const Nav = () => {
         <ModalMenu pathname={pathname} />
       </div>
       <div className="ml-auto mr-3 flex">
-        {reserve && (
-          <Link href={`/swap`} passHref>
-            <div className=" mx-5 space-x-2 cursor-pointer scaleFirstChild  hidden sm:flex">
-              <Image
-                src="/logo.png"
-                height={24}
-                width={26}
-                alt=""
-                className=""
-              />
-              <h2 className="text-dexfi-grayviolet mt-0.1 pt-0.1 font-bold">
-                ${(reserve / balance).toFixed(2)}
-              </h2>
-            </div>
-          </Link>
-        )}
+      {reserve && (
+        <Link href={`/swap`} passHref>
+          <div className=" mx-5 space-x-2 cursor-pointer scaleFirstChild  hidden sm:flex">
+            <Image src="/logo.png" height={24} width={26} alt="" className="" />
+            <h2 className="text-dexfi-grayviolet mt-0.1 pt-0.1 font-bold">
+               ${reserve / balance).toFixed(2)}
+            </h2>
+          </div>
+        </Link>
+      )}
         <Settings />
       </div>
       {isAuthenticated ? (

@@ -171,23 +171,25 @@ const Footer = () => {
       <div className="flex justify-between py-6">
         <div></div>
         <div className="items-center flex">
-          {exchangeBunny?.reserve && (
-            <Link href={`/swap`} passHref>
-              <div className="flex mx-5 space-x-2 cursor-pointer scaleFirstChild transition-transform duration-75 ">
-                <Image
-                  src="/logo.png"
-                  height={24}
-                  width={26}
-                  alt=""
-                  className=""
-                />
-                <h2 className="text-dexfi-other_gray mt-0.1 pt-0.1 font-bold">
-                  $
-                  {(exchangeBunny?.reserve / exchangeBunny?.balance).toFixed(2)}
-                </h2>
-              </div>
-            </Link>
-          )}
+        {exchangeBunny?.reserve && (
+          <Link href={`/swap`} passHref>
+            <div className="flex mx-5 space-x-2 cursor-pointer scaleFirstChild transition-transform duration-75 ">
+              <Image
+                src="/logo.png"
+                height={24}
+                width={26}
+                alt=""
+                className=""
+              />
+              <h2 className="text-dexfi-other_gray mt-0.1 pt-0.1 font-bold">
+                $
+                {exchangeBunny?.reserve
+                  ? (exchangeBunny?.reserve / exchangeBunny?.balance).toFixed(2)
+                  : '0.00'}
+              </h2>
+            </div>
+          </Link>
+        )}
           <Link href="/swap">
             <a>
               <button className=" text-white font-bold py-1 px-4 shadow-sm tracking-wide bg-pink-500 rounded-full hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90 mr-4 sm:mr-6">
