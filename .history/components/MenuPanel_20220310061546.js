@@ -45,8 +45,6 @@ const MenuPanel = ({ currencies, section }) => {
       (inputToken[1] === 1 &&
         (accountEthBalance < inputOne || accountEthBalance <= 0)));
 
-  console.log('isSwapDisabled', isSwapDisabled);
-
   const erc20AccountBalance = useCallback(async () => {
     if (user && provider) {
       const result = await Web3Api.account
@@ -466,18 +464,17 @@ const MenuPanel = ({ currencies, section }) => {
         >
           <button
             className={`w-full  hover:opacity-75 transition-opacity duration-200  text-white font-bold py-3 px-12 rounded-xl shadow-slate-500 shadow-sm active:translate-y-0.1 active:shadow-none active:opacity-90 ${
-              isSwapDisabled
-                ? 'bg-gray-300 disabled:cursor-not-allowed'
-                : 'bg-pink-500'
+              isSwapDisabled ? 'bg-gray-200 disabled:cursor-not-allowed' : 'bg-pink-500'
             } ${user && 'disabled:cursor-not-allowed'}`}
             disabled={
-              (user && isSwapDisabled) ||
-              inputOne <= 0 ||
-              inputTwo <= 0 ||
-              inputOne === '' ||
-              inputTwo === '' ||
-              inputOne === null ||
-              inputTwo === null
+              user &&
+              isSwapDisabled &&
+              (inputOne <= 0 ||
+                inputTwo <= 0 ||
+                inputOne === '' ||
+                inputTwo === '' ||
+                inputOne === null ||
+                inputTwo === null)
             }
             onClick={() => {
               user ? (section === 'swap' ? swap() : add()) : authenticate();
@@ -485,9 +482,7 @@ const MenuPanel = ({ currencies, section }) => {
           >
             {user
               ? section === 'swap'
-                ? isSwapDisabled
-                  ? `Insufficient ${inputToken[0].symbol}`
-                  : 'Swap'
+                ? 'Swap'
                 : 'Add Liquidity'
               : 'Connect Wallet'}
           </button>

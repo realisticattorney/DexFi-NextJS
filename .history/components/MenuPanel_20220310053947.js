@@ -38,15 +38,6 @@ const MenuPanel = ({ currencies, section }) => {
   const [accountERC20Balance, setAccountERC20Balance] = useState(0);
   const { fetchERC20Balances, data } = useERC20Balances();
 
-  const isSwapDisabled =
-    section === 'swap' &&
-    ((inputToken[1] !== 1 &&
-      (accountERC20Balance < inputOne || accountERC20Balance === 0)) ||
-      (inputToken[1] === 1 &&
-        (accountEthBalance < inputOne || accountEthBalance <= 0)));
-
-  console.log('isSwapDisabled', isSwapDisabled);
-
   const erc20AccountBalance = useCallback(async () => {
     if (user && provider) {
       const result = await Web3Api.account
@@ -69,6 +60,13 @@ const MenuPanel = ({ currencies, section }) => {
     getEthAccountBalance();
   }, [erc20AccountBalance]);
 
+  console.log('data', data);
+  console.log('inputToken', inputToken);
+  console.log('accountERC20Balance', accountERC20Balance);
+  console.log(
+    'currentTokenExchangeAddress.current',
+    currentTokenExchangeAddress.current
+  );
   const exchangeHandler = useCallback(() => {
     if (inputToken[1] !== 1) {
       return inputToken[0].address;
@@ -91,16 +89,7 @@ const MenuPanel = ({ currencies, section }) => {
 
   const setExchangeCallback = useCallback(
     async (exchange) => {
-      if (data) {
-        const tokenBalance = data.find(
-          (token) => token.token_address === exchange.toLowerCase()
-        );
-        tokenBalance
-          ? setAccountERC20Balance(
-              ethers.utils.formatEther(tokenBalance.balance)
-            )
-          : setAccountERC20Balance(0);
-      }
+
       await setExchangeCurrent(exchange);
     },
     [setExchangeCurrent, data]
@@ -465,19 +454,17 @@ const MenuPanel = ({ currencies, section }) => {
           } `}
         >
           <button
-            className={`w-full  hover:opacity-75 transition-opacity duration-200  text-white font-bold py-3 px-12 rounded-xl shadow-slate-500 shadow-sm active:translate-y-0.1 active:shadow-none active:opacity-90 ${
-              isSwapDisabled
-                ? 'bg-gray-300 disabled:cursor-not-allowed'
-                : 'bg-pink-500'
-            } ${user && 'disabled:cursor-not-allowed'}`}
+            className={`w-full bg-pink-500 hover:opacity-75 transition-opacity duration-200  text-white font-bold py-3 px-12 rounded-xl shadow-slate-500 shadow-sm active:translate-y-0.1 active:shadow-none active:opacity-90 ${
+              user && 'disabled:cursor-not-allowed'
+            }`}
             disabled={
-              (user && isSwapDisabled) ||
-              inputOne <= 0 ||
-              inputTwo <= 0 ||
-              inputOne === '' ||
-              inputTwo === '' ||
-              inputOne === null ||
-              inputTwo === null
+              user &&
+              (inputOne <= 0 ||
+                inputTwo <= 0 ||
+                inputOne === '' ||
+                inputTwo === '' ||
+                inputOne === null ||
+                inputTwo === null)
             }
             onClick={() => {
               user ? (section === 'swap' ? swap() : add()) : authenticate();
@@ -485,9 +472,7 @@ const MenuPanel = ({ currencies, section }) => {
           >
             {user
               ? section === 'swap'
-                ? isSwapDisabled
-                  ? `Insufficient ${inputToken[0].symbol}`
-                  : 'Swap'
+                ? 'Swap'
                 : 'Add Liquidity'
               : 'Connect Wallet'}
           </button>

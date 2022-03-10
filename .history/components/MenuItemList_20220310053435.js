@@ -41,6 +41,7 @@ const MenuItemList = ({
   const modalIsDisabled = id === '2' && section === 'add' ? 'yes' : 'no';
   const ethIsDisabled = id === '1' && section === 'add' ? 'yes' : 'no';
   const reg = /^(0|[1-9]\d*)(\.\d+)?$/;
+  console.log(accountEthBalance);
   return (
     <div className="flex flex-col space-y-2 px-4 py-5">
       <div className="flex justify-between">
@@ -63,9 +64,9 @@ const MenuItemList = ({
           <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />
         </button>
         {token[1] !== 1 &&
-          data?.map((t, index) =>
+          data?.map((t) =>
             t.token_address === token[0].address.toLowerCase() ? (
-              <h1 key={index} className="text-sm text-dexfi-violet">
+              <h1 className="text-sm text-dexfi-violet">
                 Balance:{' '}
                 {parseFloat(ethers.utils.formatEther(t.balance)).toFixed(2)}
               </h1>
