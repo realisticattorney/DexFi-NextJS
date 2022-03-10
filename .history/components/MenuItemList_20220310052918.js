@@ -63,11 +63,10 @@ const MenuItemList = ({
         </button>
         {data?.map((t) =>
           t.token_address === token[0].address.toLowerCase() ? (
-            <h1 className="text-sm text-dexfi-violet">
-              Balance:{' '}
-              {parseFloat(ethers.utils.formatEther(t.balance)).toFixed(2)}
-            </h1>
-          ) : null
+            <h1>{parseFloat(ethers.utils.formatEther(t.balance)).toFixed(2)}</h1>
+          ) : (
+            null
+          )
         )}
       </div>
       <Modal
