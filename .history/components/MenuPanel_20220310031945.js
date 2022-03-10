@@ -62,10 +62,7 @@ const MenuPanel = ({ currencies, section }) => {
 
   console.log('data', data);
   console.log('accountERC20Balance', accountERC20Balance);
-  console.log(
-    'currentTokenExchangeAddress.current',
-    currentTokenExchangeAddress.current
-  );
+  console.log("currentTokenExchangeAddress.current",currentTokenExchangeAddress.current)
   const exchangeHandler = useCallback(() => {
     if (inputToken[1] !== 1) {
       return inputToken[0].address;
@@ -88,16 +85,12 @@ const MenuPanel = ({ currencies, section }) => {
 
   const setExchangeCallback = useCallback(
     async (exchange) => {
-      if (data) {
-        const tokenBalance = data.find(
-          (token) => token.token_address === exchange.toLowerCase()
-        );
-        tokenBalance
-          ? setAccountERC20Balance(
-              ethers.utils.formatEther(tokenBalance.balance)
-            )
-          : setAccountERC20Balance(0);
-      }
+      const tokenBalance = data.find(
+        (token) => token.token_address === exchange.toLowerCase()
+      );
+      tokenBalance
+        ? setAccountERC20Balance(ether.utils.formatEther(balance)
+        : setAccountERC20Balance(0);
       await setExchangeCurrent(exchange);
     },
     [setExchangeCurrent, data]

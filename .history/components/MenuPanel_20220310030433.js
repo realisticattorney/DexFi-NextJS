@@ -35,11 +35,16 @@ const MenuPanel = ({ currencies, section }) => {
   const { authenticate, user } = useMoralis();
   const Web3Api = useMoralisWeb3Api();
   const [accountEthBalance, setAccountEthBalance] = useState(0);
-  const [accountERC20Balance, setAccountERC20Balance] = useState(0);
   const { fetchERC20Balances, data } = useERC20Balances();
 
   const erc20AccountBalance = useCallback(async () => {
     if (user && provider) {
+      // fetchERC20Balances({
+      //   params: {
+      //     chain: 'rinkeby',
+      //     address: user.get('ethAddress'),
+      //   },
+      // });
       const result = await Web3Api.account
         .getNativeBalance({
           chain: 'rinkeby',
@@ -50,7 +55,7 @@ const MenuPanel = ({ currencies, section }) => {
         return [Moralis.Units.FromWei(result.balance)];
       }
     }
-  }, [user, provider, Web3Api.account]);
+  }, [user, provider, Web3Api.account, fetchERC20Balances]);
 
   useEffect(() => {
     async function getEthAccountBalance() {
@@ -61,11 +66,7 @@ const MenuPanel = ({ currencies, section }) => {
   }, [erc20AccountBalance]);
 
   console.log('data', data);
-  console.log('accountERC20Balance', accountERC20Balance);
-  console.log(
-    'currentTokenExchangeAddress.current',
-    currentTokenExchangeAddress.current
-  );
+  // console.log('accountEthBalance', accountEthBalance);
   const exchangeHandler = useCallback(() => {
     if (inputToken[1] !== 1) {
       return inputToken[0].address;
@@ -88,19 +89,9 @@ const MenuPanel = ({ currencies, section }) => {
 
   const setExchangeCallback = useCallback(
     async (exchange) => {
-      if (data) {
-        const tokenBalance = data.find(
-          (token) => token.token_address === exchange.toLowerCase()
-        );
-        tokenBalance
-          ? setAccountERC20Balance(
-              ethers.utils.formatEther(tokenBalance.balance)
-            )
-          : setAccountERC20Balance(0);
-      }
       await setExchangeCurrent(exchange);
     },
-    [setExchangeCurrent, data]
+    [setExchangeCurrent]
   );
   useEffect(() => {
     currentTokenExchangeAddress.current = scammExchangeAddress;
@@ -111,8 +102,6 @@ const MenuPanel = ({ currencies, section }) => {
       const toBeExchange = exchangeHandler();
       if (currentTokenExchangeAddress.current !== toBeExchange) {
         currentTokenExchangeAddress.current = toBeExchange;
-        //map data to match tobeExchange
-
         setExchangeCallback(toBeExchange);
       }
       console.log('base exchange loaded');
