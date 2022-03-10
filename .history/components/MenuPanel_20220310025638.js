@@ -15,7 +15,6 @@ import MenuPanelFooter from './MenuPanelFooter.js';
 import { useERC20Balances, useMoralis, useMoralisWeb3Api } from 'react-moralis';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Moralis from "moralis";
 
 const MenuPanel = ({ currencies, section }) => {
   const { registry, exchangeCurrent, setExchangeCurrent, provider } = useWeb3();

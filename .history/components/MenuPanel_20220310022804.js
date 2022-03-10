@@ -12,18 +12,18 @@ import WarningIcon from '@mui/icons-material/Warning';
 import SwapUpperSection from '../components/SwapUpperSection.js';
 import AddUpperSection from '../components/AddUpperSection';
 import MenuPanelFooter from './MenuPanelFooter.js';
-import { useERC20Balances, useMoralis, useMoralisWeb3Api } from 'react-moralis';
+import { useMoralis, useMoralisWeb3Api } from 'react-moralis';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Moralis from "moralis";
 
 const MenuPanel = ({ currencies, section }) => {
-  const { registry, exchangeCurrent, setExchangeCurrent, provider } = useWeb3();
+  const { registry, exchangeCurrent, setExchangeCurrent } = useWeb3();
   const { contract, balance, reserve } = exchangeCurrent ?? {};
   const [inputToken, setInputToken] = useState([currencies[0], 0]);
   const [outputToken, setOutputToken] = useState([currencies[1], 1]);
   const currentTokenExchangeAddress = useRef(null);
   const [open, setOpen] = useState(false);
+  const Web3Api = useMoralisWeb3Api();
   const [openSecond, setOpenSecond] = useState(false);
   const handleOpen = useCallback(() => setOpen(true), []);
   const handleOpenSecond = useCallback(() => setOpenSecond(true), []);
@@ -33,17 +33,15 @@ const MenuPanel = ({ currencies, section }) => {
   const [inputTwo, setInputTwo] = useState(null);
   const [shareOfPool, setShareOfPool] = useState(null);
   const { authenticate, user } = useMoralis();
-  const Web3Api = useMoralisWeb3Api();
-  const [accountEthBalance, setAccountEthBalance] = useState(0);
-  const { fetchERC20Balances, data } = useERC20Balances();
+  const [accountERC20Balances, setAccountERC20Balances] = useState(0);
+
   const erc20AccountBalance = useCallback(async () => {
     if (user && provider) {
-      fetchERC20Balances({
-        params: {
-          chain: 'rinkeby',
-          address: user.get('ethAddress'),
-        },
-      });
+      const ScammCoinAbi = new ethers.Contract(
+        scammcoinAddress,
+        ERC20Token.abi,
+        provider
+      );
       const result = await Web3Api.account
         .getNativeBalance({
           chain: 'rinkeby',
@@ -51,21 +49,23 @@ const MenuPanel = ({ currencies, section }) => {
         })
         .catch((e) => console.log(e));
       if (result.balance) {
-        return [Moralis.Units.FromWei(result.balance)];
+        return [
+          Moralis.Units.FromWei(result.balance),
+          ethers.utils.formatEther(
+            await ScammCoinAbi.balanceOf(user.get('ethAddress'))
+          ),
+        ];
       }
     }
-  }, [user, provider, Web3Api.account, fetchERC20Balances]);
+  }, [user, provider, Web3Api.account]);
 
   useEffect(() => {
     async function getEthAccountBalance() {
-      setAccountEthBalance(await erc20AccountBalance());
+      setAccountERC20Balances(await ethAccountBalance());
     }
-
     getEthAccountBalance();
-  }, [erc20AccountBalance]);
+  }, [ethAccountBalance]);
 
-  console.log('data', data);
-  console.log('accountEthBalance', accountEthBalance);
   const exchangeHandler = useCallback(() => {
     if (inputToken[1] !== 1) {
       return inputToken[0].address;

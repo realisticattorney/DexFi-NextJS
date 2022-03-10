@@ -15,7 +15,6 @@ import MenuPanelFooter from './MenuPanelFooter.js';
 import { useERC20Balances, useMoralis, useMoralisWeb3Api } from 'react-moralis';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Moralis from "moralis";
 
 const MenuPanel = ({ currencies, section }) => {
   const { registry, exchangeCurrent, setExchangeCurrent, provider } = useWeb3();
@@ -51,7 +50,7 @@ const MenuPanel = ({ currencies, section }) => {
         })
         .catch((e) => console.log(e));
       if (result.balance) {
-        return [Moralis.Units.FromWei(result.balance)];
+        return [ethers.utils.parseEther(result.balance)];
       }
     }
   }, [user, provider, Web3Api.account, fetchERC20Balances]);
