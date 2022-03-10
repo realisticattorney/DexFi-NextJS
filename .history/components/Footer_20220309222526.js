@@ -69,7 +69,7 @@ const Footer = () => {
             <li className="text-violet-500 font-bold">DEVELOPERS</li>
             <li className="hover:underline cursor-pointer">
               <a
-                href="https://github.com/realisticattorney"
+                href="https://www.germanaquila.com"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -78,7 +78,7 @@ const Footer = () => {
             </li>
             <li className="hover:underline cursor-pointer">
               <a
-                href="https://github.com/realisticattorney"
+                href="https://www.germanaquila.com"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -87,7 +87,7 @@ const Footer = () => {
             </li>
             <li className="hover:underline cursor-pointer">
               <a
-                href="https://github.com/realisticattorney"
+                href="https://www.germanaquila.com"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -96,7 +96,7 @@ const Footer = () => {
             </li>
             <li className="hover:underline cursor-pointer">
               <a
-                href="https://github.com/realisticattorney"
+                href="https://www.germanaquila.com"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -105,7 +105,7 @@ const Footer = () => {
             </li>
             <li className="hover:underline cursor-pointer">
               <a
-                href="https://github.com/realisticattorney"
+                href="https://www.germanaquila.com"
                 target="_blank"
                 rel="noreferrer"
               >

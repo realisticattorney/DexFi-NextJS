@@ -15,42 +15,18 @@ const Footer = () => {
         <div className="inline-flex col-span-1 row-span-1 mb-4 sm:mb-0">
           <ul className="flex-col space-y-1.7 ">
             <li className="text-violet-500 font-bold">ABOUT</li>
-            <li className="hover:underline cursor-pointer">
-              <a
-                href="https://www.germanaquila.com"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Contact
-              </a>
-            </li>
-            <li className="hover:underline cursor-pointer">
-              <a
-                href="https://www.germanaquila.com"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Brand
-              </a>
-            </li>
-            <li className="hover:underline cursor-pointer">
-              <a
-                href="https://www.germanaquila.com"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Blog
-              </a>
-            </li>
-            <li className="hover:underline cursor-pointer">
-              <a
-                href="https://www.germanaquila.com"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Community
-              </a>
-            </li>
+            <li className="hover:underline cursor-pointer">       href="https://www.germanaquila.com"
+                  target="_blank"
+                  rel="noreferrer"Contact</li>
+            <li className="hover:underline cursor-pointer">       href="https://www.germanaquila.com"
+                  target="_blank"
+                  rel="noreferrer"Brand</li>
+            <li className="hover:underline cursor-pointer">       href="https://www.germanaquila.com"
+                  target="_blank"
+                  rel="noreferrer"Blog</li>
+            <li className="hover:underline cursor-pointer">       href="https://www.germanaquila.com"
+                  target="_blank"
+                  rel="noreferrer"Community</li>
             <li className="hover:underline cursor-pointer">SCAM Token</li>
             <li className="tracking-tighter">--</li>
             <li className="text-yellow-500">Online Store</li>
@@ -67,51 +43,11 @@ const Footer = () => {
         <div className="inline-flex col-span-1 row-span-1 mb-4 sm:mb-0">
           <ul className="flex-col space-y-1.7 ">
             <li className="text-violet-500 font-bold">DEVELOPERS</li>
-            <li className="hover:underline cursor-pointer">
-              <a
-                href="https://github.com/realisticattorney"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Github
-              </a>
-            </li>
-            <li className="hover:underline cursor-pointer">
-              <a
-                href="https://github.com/realisticattorney"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Documentation
-              </a>
-            </li>
-            <li className="hover:underline cursor-pointer">
-              <a
-                href="https://github.com/realisticattorney"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Bug Bounty
-              </a>
-            </li>
-            <li className="hover:underline cursor-pointer">
-              <a
-                href="https://github.com/realisticattorney"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Audits
-              </a>
-            </li>
-            <li className="hover:underline cursor-pointer">
-              <a
-                href="https://github.com/realisticattorney"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Careers
-              </a>
-            </li>
+            <li className="hover:underline cursor-pointer">Github</li>
+            <li className="hover:underline cursor-pointer">Documentation</li>
+            <li className="hover:underline cursor-pointer">Bug Bounty</li>
+            <li className="hover:underline cursor-pointer">Audits</li>
+            <li className="hover:underline cursor-pointer">Careers</li>
           </ul>
         </div>
 

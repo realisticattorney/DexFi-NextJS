@@ -69,48 +69,43 @@ const Footer = () => {
             <li className="text-violet-500 font-bold">DEVELOPERS</li>
             <li className="hover:underline cursor-pointer">
               <a
-                href="https://github.com/realisticattorney"
+                href="https://www.germanaquila.com"
                 target="_blank"
                 rel="noreferrer"
-              >
-                Github
-              </a>
+              ></a>
+              Github
             </li>
             <li className="hover:underline cursor-pointer">
               <a
-                href="https://github.com/realisticattorney"
+                href="https://www.germanaquila.com"
                 target="_blank"
                 rel="noreferrer"
-              >
-                Documentation
-              </a>
+              ></a>
+              Documentation
             </li>
             <li className="hover:underline cursor-pointer">
               <a
-                href="https://github.com/realisticattorney"
+                href="https://www.germanaquila.com"
                 target="_blank"
                 rel="noreferrer"
-              >
-                Bug Bounty
-              </a>
+              ></a>
+              Bug Bounty
             </li>
             <li className="hover:underline cursor-pointer">
               <a
-                href="https://github.com/realisticattorney"
+                href="https://www.germanaquila.com"
                 target="_blank"
                 rel="noreferrer"
-              >
-                Audits
-              </a>
+              ></a>
+              Audits
             </li>
             <li className="hover:underline cursor-pointer">
               <a
-                href="https://github.com/realisticattorney"
+                href="https://www.germanaquila.com"
                 target="_blank"
                 rel="noreferrer"
-              >
-                Careers
-              </a>
+              ></a>
+              Careers
             </li>
           </ul>
         </div>

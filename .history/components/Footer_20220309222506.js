@@ -67,51 +67,11 @@ const Footer = () => {
         <div className="inline-flex col-span-1 row-span-1 mb-4 sm:mb-0">
           <ul className="flex-col space-y-1.7 ">
             <li className="text-violet-500 font-bold">DEVELOPERS</li>
-            <li className="hover:underline cursor-pointer">
-              <a
-                href="https://github.com/realisticattorney"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Github
-              </a>
-            </li>
-            <li className="hover:underline cursor-pointer">
-              <a
-                href="https://github.com/realisticattorney"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Documentation
-              </a>
-            </li>
-            <li className="hover:underline cursor-pointer">
-              <a
-                href="https://github.com/realisticattorney"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Bug Bounty
-              </a>
-            </li>
-            <li className="hover:underline cursor-pointer">
-              <a
-                href="https://github.com/realisticattorney"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Audits
-              </a>
-            </li>
-            <li className="hover:underline cursor-pointer">
-              <a
-                href="https://github.com/realisticattorney"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Careers
-              </a>
-            </li>
+            <li className="hover:underline cursor-pointer"><a></a>Github</li>
+            <li className="hover:underline cursor-pointer"><a></a>Documentation</li>
+            <li className="hover:underline cursor-pointer"><a></a>Bug Bounty</li>
+            <li className="hover:underline cursor-pointer"><a></a>Audits</li>
+            <li className="hover:underline cursor-pointer"><a></a>Careers</li>
           </ul>
         </div>
 
