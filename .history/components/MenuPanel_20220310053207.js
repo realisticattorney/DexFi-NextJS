@@ -47,7 +47,7 @@ const MenuPanel = ({ currencies, section }) => {
         })
         .catch((e) => console.log(e));
       if (result.balance) {
-        return Moralis.Units.FromWei(result.balance);
+        return [Moralis.Units.FromWei(result.balance)];
       }
     }
   }, [user, provider, Web3Api.account]);
@@ -61,7 +61,7 @@ const MenuPanel = ({ currencies, section }) => {
   }, [erc20AccountBalance]);
 
   console.log('data', data);
-  console.log('inputToken', inputToken);
+  console.log("inputToken",inputToken)
   console.log('accountERC20Balance', accountERC20Balance);
   console.log(
     'currentTokenExchangeAddress.current',
@@ -439,7 +439,6 @@ const MenuPanel = ({ currencies, section }) => {
           open={openSecond}
           data={data}
           input={inputTwo}
-          accountEthBalance={accountEthBalance}
           handleInputChange={handleInputChange}
           handleMenuItemClick={handleMenuItemClick}
           key={2}
