@@ -158,7 +158,7 @@ const Settings = () => {
                           : 'text-dexfi-cyan bg-gray-100'
                       }  py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90`}
                       onClick={() => {
-                        setSlippageCallback(1);
+                        setSlippageCallback(0.1);
                       }}
                     >
                       1.0%

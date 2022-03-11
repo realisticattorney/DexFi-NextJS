@@ -134,8 +134,7 @@ const Settings = () => {
                           : 'text-dexfi-cyan bg-gray-100'
                       }  py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90`}
                       onClick={() => {
-                        setSlippageCallback(0.1);
-                      }}
+                        
                     >
                       0.1%
                     </button>
@@ -145,9 +144,6 @@ const Settings = () => {
                           ? 'text-white bg-dexfi-cyan'
                           : 'text-dexfi-cyan bg-gray-100'
                       }  py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90`}
-                      onClick={() => {
-                        setSlippageCallback(0.5);
-                      }}
                     >
                       0.5%
                     </button>
@@ -157,9 +153,6 @@ const Settings = () => {
                           ? 'text-white bg-dexfi-cyan'
                           : 'text-dexfi-cyan bg-gray-100'
                       }  py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90`}
-                      onClick={() => {
-                        setSlippageCallback(1);
-                      }}
                     >
                       1.0%
                     </button>
