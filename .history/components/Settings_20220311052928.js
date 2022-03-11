@@ -185,21 +185,13 @@ const Settings = () => {
                       noValidate
                       autoComplete="off"
                     >
-                      <div className="flex">
+                      <div className='flex'>
                         <TextField
                           variant="standard"
                           required
                           type="text"
-                          value={
-                            slippage === 0.1 ||
-                            slippage === 0.5 ||
-                            slippage === 1
-                              ? ''
-                              : slippage.toFixed(2)
-                          }
-                          placeholder={
-                            slippage ? slippage.toFixed(2).toString() : '0.00'
-                          }
+                          value={slippage ? slippage.toFixed(2) : 0}
+                          placeholder="0.00"
                           onChange={(e) => {
                             if (
                               !e.target.value ||
@@ -218,11 +210,11 @@ const Settings = () => {
                             },
                           }}
                         />
-                        <p className="mr-10 mt-0.7 ml-0.5 text-dexfi-cyan font-extrabold hidden sm:block">
-                          {' '}
-                          %
-                        </p>
+                         <p className="mr-10 mt-0.7 ml-0.5 text-dexfi-cyan font-extrabold hidden sm:block">
+                       {" "}%
+                    </p>
                       </div>
+                      
                     </Box>
                   </div>
                 </div>
