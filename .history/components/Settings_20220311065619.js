@@ -129,35 +129,23 @@ const Settings = () => {
                   </div>
                   <div className="flex justify-between mt-4 pb-6 border-b border-gray-200">
                     <button
-                      className={`shadow-sm ${
-                        txSpeed === 5
-                          ? 'text-white bg-dexfi-cyan'
-                          : 'text-dexfi-cyan bg-gray-100'
-                      }  py-0.5 px-2.5 sm:px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90`}
+                      className={`shadow-sm ${} text-dexfi-cyan py-0.5 px-2.5 sm:px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90`}
                       onClick={() => {
-                        setTxSpeedCallback(5);
+                        setTxSpeedCallback(7);
                       }}
                     >
                       Standard{' (5)'}
                     </button>
                     <button
-                      className={`shadow-sm ${
-                        txSpeed === 6
-                          ? 'text-white bg-dexfi-cyan'
-                          : 'text-dexfi-cyan bg-gray-100'
-                      }  py-0.5 px-2.5 sm:px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90`}
+                      className={`shadow-sm text-dexfi-cyan py-0.5 px-2.5 sm:px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90`}
                       onClick={() => {
-                        setTxSpeedCallback(6);
+                        setTxSpeedCallback(7);
                       }}
                     >
                       Fast{' (6)'}
                     </button>
                     <button
-                      className={`shadow-sm ${
-                        txSpeed === 7
-                          ? 'text-white bg-dexfi-cyan'
-                          : 'text-dexfi-cyan bg-gray-100'
-                      }  py-0.5 px-2.5 sm:px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90`}
+                      className={`shadow-sm text-dexfi-cyan py-0.5 px-2.5 sm:px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90`}
                       onClick={() => {
                         setTxSpeedCallback(7);
                       }}
