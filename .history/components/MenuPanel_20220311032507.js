@@ -70,7 +70,7 @@ const MenuPanel = ({ currencies, section }) => {
           address: user.get('ethAddress'),
         })
         .catch((e) => console.log(e));
-      if (result?.balance) {
+      if (result.balance) {
         return Moralis.Units.FromWei(result.balance);
       }
     }

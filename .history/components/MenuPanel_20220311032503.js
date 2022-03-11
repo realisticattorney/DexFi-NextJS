@@ -70,7 +70,7 @@ const MenuPanel = ({ currencies, section }) => {
           address: user.get('ethAddress'),
         })
         .catch((e) => console.log(e));
-      if (result?.balance) {
+      if (result.balance) {
         return Moralis.Units.FromWei(result.balance);
       }
     }
@@ -514,7 +514,7 @@ const MenuPanel = ({ currencies, section }) => {
                 ? `Insufficient ${inputToken[0].symbol}`
                 : isEthAmountDisabled
                 ? `Insufficient ${outputToken[0].symbol}`
-                : 'Add Balance'
+                : 'Add LP'
               : 'Connect Wallet'}
           </button>
         </div>

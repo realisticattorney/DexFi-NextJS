@@ -47,10 +47,10 @@ const MenuPanel = ({ currencies, section }) => {
 
   const isTokenAmountDisabled =
     accountEthBalance < inputTwo || accountEthBalance === 0;
-
+    
   const isEthAmountDisabled =
     accountERC20Balance < inputOne || accountERC20Balance === 0;
-
+    
   const isAddDisabled =
     section === 'add' && (isTokenAmountDisabled || isEthAmountDisabled);
   const isInputDisabled =
@@ -70,7 +70,7 @@ const MenuPanel = ({ currencies, section }) => {
           address: user.get('ethAddress'),
         })
         .catch((e) => console.log(e));
-      if (result?.balance) {
+      if (result.balance) {
         return Moralis.Units.FromWei(result.balance);
       }
     }
@@ -513,8 +513,6 @@ const MenuPanel = ({ currencies, section }) => {
                 : isTokenAmountDisabled
                 ? `Insufficient ${inputToken[0].symbol}`
                 : isEthAmountDisabled
-                ? `Insufficient ${outputToken[0].symbol}`
-                : 'Add Balance'
               : 'Connect Wallet'}
           </button>
         </div>
