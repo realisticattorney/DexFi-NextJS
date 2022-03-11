@@ -26,7 +26,7 @@ const Settings = () => {
   const handleCloseSettings = useCallback(() => setOpenSettings(false), []);
   const [openSettings, setOpenSettings] = useState(false);
   const { slippage, setSlippage } = useWeb3();
-  console.log('slippage', slippage);
+
   const setSlippageCallback = useCallback(
     (event) => {
       if (event.target) {
@@ -181,6 +181,7 @@ const Settings = () => {
                         '& .MuiInputBase-input': {
                           backgroundColor: '#EEEAF4',
                           borderRadius: 6,
+                          // height: 32,
                           textIndent: 0,
                         },
                       }}

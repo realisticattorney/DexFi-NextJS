@@ -7,7 +7,7 @@ import { useState, useCallback } from 'react'; //hooks
 import SettingsIcon from '@mui/icons-material/Settings';
 import CloseIcon from '@mui/icons-material/Close';
 import { useWeb3 } from '../components/providers/web3';
-import { Box, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 const modalstyle = {
   position: 'absolute',
   top: '45%',
@@ -26,7 +26,7 @@ const Settings = () => {
   const handleCloseSettings = useCallback(() => setOpenSettings(false), []);
   const [openSettings, setOpenSettings] = useState(false);
   const { slippage, setSlippage } = useWeb3();
-  console.log('slippage', slippage);
+
   const setSlippageCallback = useCallback(
     (event) => {
       if (event.target) {
@@ -173,14 +173,17 @@ const Settings = () => {
                     <Box
                       component="form"
                       sx={{
+                        marginLeft: '8px',
+                        marginRight: '8px',
                         '& .MuiTextField-root': {
                           m: 0,
-                          width: '70px',
+                          width: '100%',
                         },
 
                         '& .MuiInputBase-input': {
                           backgroundColor: '#EEEAF4',
-                          borderRadius: 6,
+                          borderRadius: 3,
+                          height: 48,
                           textIndent: 0,
                         },
                       }}
@@ -191,8 +194,9 @@ const Settings = () => {
                         <TextField
                           variant="standard"
                           required
+                          id={id}
                           type="text"
-                          value={slippage}
+                          value={input === null ? '' : input}
                           placeholder="0.0"
                           onChange={(e) => {
                             if (

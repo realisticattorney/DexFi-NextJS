@@ -7,7 +7,6 @@ import { useState, useCallback } from 'react'; //hooks
 import SettingsIcon from '@mui/icons-material/Settings';
 import CloseIcon from '@mui/icons-material/Close';
 import { useWeb3 } from '../components/providers/web3';
-import { Box, TextField } from '@mui/material';
 const modalstyle = {
   position: 'absolute',
   top: '45%',
@@ -26,7 +25,7 @@ const Settings = () => {
   const handleCloseSettings = useCallback(() => setOpenSettings(false), []);
   const [openSettings, setOpenSettings] = useState(false);
   const { slippage, setSlippage } = useWeb3();
-  console.log('slippage', slippage);
+
   const setSlippageCallback = useCallback(
     (event) => {
       if (event.target) {
@@ -133,7 +132,7 @@ const Settings = () => {
                         slippage === 0.1
                           ? 'text-white bg-dexfi-cyan'
                           : 'text-dexfi-cyan bg-gray-100'
-                      }  py-0.5 px-4 rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90`}
+                      }  py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90`}
                       onClick={() => {
                         setSlippageCallback(0.1);
                       }}
@@ -145,7 +144,7 @@ const Settings = () => {
                         slippage === 0.5
                           ? 'text-white bg-dexfi-cyan'
                           : 'text-dexfi-cyan bg-gray-100'
-                      }  py-0.5 px-4 rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90`}
+                      }  py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90`}
                       onClick={() => {
                         setSlippageCallback(0.5);
                       }}
@@ -157,7 +156,7 @@ const Settings = () => {
                         slippage === 1
                           ? 'text-white bg-dexfi-cyan'
                           : 'text-dexfi-cyan bg-gray-100'
-                      }  py-0.5 px-4 rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90`}
+                      }  py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90`}
                       onClick={() => {
                         setSlippageCallback(1);
                       }}
@@ -170,50 +169,6 @@ const Settings = () => {
                     <p className="mr-10 text-dexfi-cyan font-bold hidden sm:block">
                       %
                     </p> */}
-                    <Box
-                      component="form"
-                      sx={{
-                        '& .MuiTextField-root': {
-                          m: 0,
-                          width: '70px',
-                        },
-
-                        '& .MuiInputBase-input': {
-                          backgroundColor: '#EEEAF4',
-                          borderRadius: 6,
-                          textIndent: 0,
-                        },
-                      }}
-                      noValidate
-                      autoComplete="off"
-                    >
-                      <div>
-                        <TextField
-                          variant="standard"
-                          required
-                          type="text"
-                          value={slippage}
-                          placeholder="0.0"
-                          onChange={(e) => {
-                            if (
-                              !e.target.value ||
-                              e.target.value.match(/^(\d*)((\.(\d*)?)?)$/i)
-                            )
-                              setSlippageCallback(e.target.value);
-                          }}
-                          InputProps={{
-                            disableUnderline: true,
-                            inputProps: {
-                              style: {
-                                textAlign: 'right',
-                                fontSize: '1rem',
-                                paddingRight: '1rem',
-                              },
-                            },
-                          }}
-                        />
-                      </div>
-                    </Box>
                   </div>
                 </div>
               </div>
