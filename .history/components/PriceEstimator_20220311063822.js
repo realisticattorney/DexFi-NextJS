@@ -4,7 +4,6 @@ const PriceEstimator = ({
   inputToken,
   outputToken,
   section,
-  slippage,
   shareOfPool,
   exchangeCurrent,
 }) => {
@@ -30,9 +29,7 @@ const PriceEstimator = ({
             <h1 className="text-xs1 font-bold text-violet-700 mr-16">
               Slippage tolerance
             </h1>
-            <h1 className="truncate text-sm font-bold text-pink-500">
-              {slippage}%
-            </h1>
+            <h1 className="truncate text-sm font-bold text-pink-500">{slippage}%</h1>
           </div>
         </div>
       </>

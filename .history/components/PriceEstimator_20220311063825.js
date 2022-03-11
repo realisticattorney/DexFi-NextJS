@@ -4,6 +4,7 @@ const PriceEstimator = ({
   inputToken,
   outputToken,
   section,
+
   slippage,
   shareOfPool,
   exchangeCurrent,

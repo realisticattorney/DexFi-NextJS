@@ -474,7 +474,6 @@ const MenuPanel = ({ currencies, section }) => {
         <PriceEstimator
           inputOne={inputOne}
           inputTwo={inputTwo}
-          slippage={slippage}
           inputToken={inputToken}
           outputToken={outputToken}
           section={section}

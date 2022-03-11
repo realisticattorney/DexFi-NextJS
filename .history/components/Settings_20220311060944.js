@@ -37,11 +37,7 @@ const Settings = () => {
           console.log('aca');
           setSlippage(0);
         } else {
-          if (parseFloat(event.target.value) > 50) {
-            setSlippage(5);
-          } else {
-            setSlippage(parseFloat(event.target.value));
-          }
+          setSlippage(parseFloat(event.target.value));
         }
         setIsSlippageCustom(true);
       } else {
@@ -235,19 +231,7 @@ const Settings = () => {
                       </div>
                     </Box>
                   </div>
-                  <p
-                    className={`${
-                      slippage > 50 ? 'text-red-600' : 'text-orange-500'
-                    } text-sm font-medium`}
-                  >
-                    {slippage < 0.1
-                      ? 'Your transaction may fail'
-                      : slippage > 5 && slippage < 50
-                      ? 'Your transaction may be frontrun'
-                      : slippage > 50
-                      ? 'Enter a valid slippage percentage'
-                      : ''}
-                  </p>
+                    <p>dslfsadlk</p>
                 </div>
               </div>
             </MenuList>

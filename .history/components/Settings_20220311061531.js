@@ -39,9 +39,8 @@ const Settings = () => {
         } else {
           if (parseFloat(event.target.value) > 50) {
             setSlippage(5);
-          } else {
-            setSlippage(parseFloat(event.target.value));
           }
+          setSlippage(parseFloat(event.target.value));
         }
         setIsSlippageCustom(true);
       } else {

@@ -37,11 +37,10 @@ const Settings = () => {
           console.log('aca');
           setSlippage(0);
         } else {
-          if (parseFloat(event.target.value) > 50) {
-            setSlippage(5);
-          } else {
+          if (parseFloat(event.target.value) > 0) {
             setSlippage(parseFloat(event.target.value));
           }
+          setSlippage(parseFloat(event.target.value));
         }
         setIsSlippageCustom(true);
       } else {
