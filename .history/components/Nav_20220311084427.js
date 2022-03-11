@@ -71,9 +71,10 @@ const Nav = () => {
   }, [user, provider, Web3Api.account]);
 
   const switchNetworkCallback = useCallback(async () => {
-    await switchNetwork();
-
-  }, [switchNetwork]);
+    // await switchNetwork();
+    const chainIdHex = await Moralis.switchNetwork('0x4');
+    console.log("chainIdHexxxxxxxxxxxxxxxxxxxx",chainIdHex);
+  }, []);
 
   useEffect(() => {
     async function getEthAccountBalance() {

@@ -71,8 +71,9 @@ const Nav = () => {
   }, [user, provider, Web3Api.account]);
 
   const switchNetworkCallback = useCallback(async () => {
-    await switchNetwork();
-
+    const chainIdHex = await Moralis.switchNetwork('0x4');
+    console.log('chainIdHex chainIdHex chainIdHex', chainIdHex);
+    switchNetwork(chainIdHex);
   }, [switchNetwork]);
 
   useEffect(() => {
@@ -330,7 +331,7 @@ const Nav = () => {
                       <h1 className='text-dexfi-violet font-medium text-center pb-6'>You{"'"}re connected to the wrong network.</h1>
                       <button
                         className="w-full border-cyan-500 border-2  text-cyan-500 font-bold py-3 px-12 rounded-2xl hover:opacity-75 transition-opacity duration-300"
-                        onClick={switchNetworkCallback}
+                        onClick={logout}
                       >
                         Learn How
                       </button>

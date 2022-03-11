@@ -71,8 +71,9 @@ const Nav = () => {
   }, [user, provider, Web3Api.account]);
 
   const switchNetworkCallback = useCallback(async () => {
-    await switchNetwork();
-
+    const chainIdHex = await Moralis.switchNetwork('0x4');
+    console.log('chainIdHex chainIdHex chainIdHex', chainIdHex);
+    switchNetwork(chainIdHex);
   }, [switchNetwork]);
 
   useEffect(() => {

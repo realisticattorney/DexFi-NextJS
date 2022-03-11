@@ -30,8 +30,8 @@ export default function Web3Provider({ children }) {
       if (window.ethereum) {
         provider = await Moralis.enableWeb3();
         chainId = Moralis.chainId;
-      }
-      if (!window.ethereum || chainId !== '0x4') {
+      } 
+      if(!window.ethereum || chainId !== "0x4") {
         const url = `https://eth-rinkeby.alchemyapi.io/v2/${API_KEY}`;
         provider = new ethers.providers.JsonRpcProvider(url);
       }
@@ -87,8 +87,8 @@ export default function Web3Provider({ children }) {
     return {
       ...web3Api,
       switchNetwork: async () => {
-        const chainIdHex = await Moralis.switchNetwork('0x4');
-        setWeb3Api((api) => ({ ...api, chainId: "0x4" }));
+        const chainIdHex = await Moralis.switchNetwork("0x4"); 
+        );
       },
       setSlippage: (slippage) => {
         setWeb3Api((api) => ({ ...api, slippage }));

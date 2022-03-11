@@ -72,7 +72,6 @@ const Nav = () => {
 
   const switchNetworkCallback = useCallback(async () => {
     await switchNetwork();
-
   }, [switchNetwork]);
 
   useEffect(() => {

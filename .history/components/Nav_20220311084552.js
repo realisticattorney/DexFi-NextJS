@@ -73,7 +73,7 @@ const Nav = () => {
   const switchNetworkCallback = useCallback(async () => {
     await switchNetwork();
 
-  }, [switchNetwork]);
+  }, [sw]);
 
   useEffect(() => {
     async function getEthAccountBalance() {

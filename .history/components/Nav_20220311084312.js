@@ -71,8 +71,7 @@ const Nav = () => {
   }, [user, provider, Web3Api.account]);
 
   const switchNetworkCallback = useCallback(async () => {
-    await switchNetwork();
-
+    await switchNetwork(chainIdHex);
   }, [switchNetwork]);
 
   useEffect(() => {

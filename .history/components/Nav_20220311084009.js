@@ -35,7 +35,7 @@ const modalstyle = {
 };
 
 const Nav = () => {
-  const { exchangeBunny, provider, slippage, chainId, switchNetwork } = useWeb3();
+  const { exchangeBunny, provider, slippage, chainId } = useWeb3();
   const Web3Api = useMoralisWeb3Api();
   let router = useRouter();
   const [pathname, setPathname] = useState(router.pathname);
@@ -70,11 +70,8 @@ const Nav = () => {
     }
   }, [user, provider, Web3Api.account]);
 
-  const switchNetworkCallback = useCallback(async () => {
-    await switchNetwork();
 
-  }, [switchNetwork]);
-
+  
   useEffect(() => {
     async function getEthAccountBalance() {
       setAccountBalance(await ethAccountBalance());
@@ -330,7 +327,7 @@ const Nav = () => {
                       <h1 className='text-dexfi-violet font-medium text-center pb-6'>You{"'"}re connected to the wrong network.</h1>
                       <button
                         className="w-full border-cyan-500 border-2  text-cyan-500 font-bold py-3 px-12 rounded-2xl hover:opacity-75 transition-opacity duration-300"
-                        onClick={switchNetworkCallback}
+                        onClick={logout}
                       >
                         Learn How
                       </button>

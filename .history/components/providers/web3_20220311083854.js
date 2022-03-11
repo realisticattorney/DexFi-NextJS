@@ -88,7 +88,6 @@ export default function Web3Provider({ children }) {
       ...web3Api,
       switchNetwork: async () => {
         const chainIdHex = await Moralis.switchNetwork('0x4');
-        setWeb3Api((api) => ({ ...api, chainId: "0x4" }));
       },
       setSlippage: (slippage) => {
         setWeb3Api((api) => ({ ...api, slippage }));

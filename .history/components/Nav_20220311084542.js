@@ -71,9 +71,9 @@ const Nav = () => {
   }, [user, provider, Web3Api.account]);
 
   const switchNetworkCallback = useCallback(async () => {
-    await switchNetwork();
+    // await switchNetwork();
 
-  }, [switchNetwork]);
+  }, []);
 
   useEffect(() => {
     async function getEthAccountBalance() {
