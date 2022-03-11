@@ -163,7 +163,7 @@ const Nav = () => {
                   }}
                 />
                 <div className="flex max-w-[100px]">
-                  <div className="truncate">Network</div>
+                  <div className="truncate">{user.get('ethAddress')}</div>
                   <KeyboardArrowDownIcon
                     sx={{
                       marginRight: '-18px',

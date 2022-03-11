@@ -159,11 +159,11 @@ const Nav = () => {
                     left: '-20px',
                     backgroundColor: '#fff',
                     top: '-2px',
-                    color: '#ED4B9E',
+                    color: '#1FC7D4',
                   }}
                 />
                 <div className="flex max-w-[100px]">
-                  <div className="truncate">Network</div>
+                  <div className="truncate">{user.get('ethAddress')}</div>
                   <KeyboardArrowDownIcon
                     sx={{
                       marginRight: '-18px',
