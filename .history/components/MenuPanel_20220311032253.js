@@ -45,14 +45,16 @@ const MenuPanel = ({ currencies, section }) => {
       (inputToken[1] === 1 &&
         (accountEthBalance < inputOne || accountEthBalance <= 0)));
 
-  const isTokenAmountDisabled =
-    accountEthBalance < inputTwo || accountEthBalance === 0;
-    
-  const isEthAmountDisabled =
-    accountERC20Balance < inputOne || accountERC20Balance === 0;
-    
+  const isTokenAmountDisabled =(accountEthBalance < inputTwo || accountEthBalance === 0)
+  const isEthAmountDisabled = accountERC20Balance < inputOne ||
+  accountERC20Balance === 0
   const isAddDisabled =
-    section === 'add' && (isTokenAmountDisabled || isEthAmountDisabled);
+    section === 'add' &&
+       (isTokenAmountDisabled || isEthAmountDisabled);
+    ;
+
+
+
   const isInputDisabled =
     inputOne <= 0 ||
     inputTwo <= 0 ||

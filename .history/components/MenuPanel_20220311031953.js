@@ -45,14 +45,12 @@ const MenuPanel = ({ currencies, section }) => {
       (inputToken[1] === 1 &&
         (accountEthBalance < inputOne || accountEthBalance <= 0)));
 
-  const isTokenAmountDisabled =
-    accountEthBalance < inputTwo || accountEthBalance === 0;
-    
-  const isEthAmountDisabled =
-    accountERC20Balance < inputOne || accountERC20Balance === 0;
-    
   const isAddDisabled =
-    section === 'add' && (isTokenAmountDisabled || isEthAmountDisabled);
+    section === 'add' &&
+      (accountEthBalance < inputTwo || accountEthBalance === 0) ||
+    accountERC20Balance < inputOne ||
+    accountERC20Balance === 0;
+
   const isInputDisabled =
     inputOne <= 0 ||
     inputTwo <= 0 ||
@@ -510,9 +508,7 @@ const MenuPanel = ({ currencies, section }) => {
                 ? isSwapDisabled
                   ? `Insufficient ${inputToken[0].symbol}`
                   : 'Swap'
-                : isAddDisabled
-                ? `Insufficient ${outputToken[0].symbol}`
-                : 'Add Balance'
+                : 'Add Liquidity'
               : 'Connect Wallet'}
           </button>
         </div>

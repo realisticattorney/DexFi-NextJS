@@ -47,7 +47,6 @@ const MenuPanel = ({ currencies, section }) => {
 
   const isTokenAmountDisabled =
     accountEthBalance < inputTwo || accountEthBalance === 0;
-    
   const isEthAmountDisabled =
     accountERC20Balance < inputOne || accountERC20Balance === 0;
     

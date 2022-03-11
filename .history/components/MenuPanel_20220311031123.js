@@ -45,14 +45,6 @@ const MenuPanel = ({ currencies, section }) => {
       (inputToken[1] === 1 &&
         (accountEthBalance < inputOne || accountEthBalance <= 0)));
 
-  const isTokenAmountDisabled =
-    accountEthBalance < inputTwo || accountEthBalance === 0;
-    
-  const isEthAmountDisabled =
-    accountERC20Balance < inputOne || accountERC20Balance === 0;
-    
-  const isAddDisabled =
-    section === 'add' && (isTokenAmountDisabled || isEthAmountDisabled);
   const isInputDisabled =
     inputOne <= 0 ||
     inputTwo <= 0 ||
@@ -489,10 +481,11 @@ const MenuPanel = ({ currencies, section }) => {
         >
           <button
             className={`w-full  hover:opacity-75 transition-opacity duration-200  text-white font-bold py-3 px-12 rounded-xl shadow-slate-500 shadow-sm active:translate-y-0.1 active:shadow-none active:opacity-90 ${
-              (section === 'add' &&
-                (accountEthBalance < inputTwo || accountEthBalance === 0)) ||
-              accountERC20Balance < inputOne ||
-              accountERC20Balance === 0
+              section === 'add' &&
+                (accountEthBalance < inputTwo ||
+                  accountEthBalance === 0) ||
+                (inputToken[1] === 1 &&
+                  (accountEthBalance < inputOne || accountEthBalance <= 0)))
                 ? 'bg-gray-200'
                 : 'bg-pink-500'
             } ${
@@ -510,9 +503,7 @@ const MenuPanel = ({ currencies, section }) => {
                 ? isSwapDisabled
                   ? `Insufficient ${inputToken[0].symbol}`
                   : 'Swap'
-                : isAddDisabled
-                ? `Insufficient ${outputToken[0].symbol}`
-                : 'Add Balance'
+                : 'Add Liquidity'
               : 'Connect Wallet'}
           </button>
         </div>
