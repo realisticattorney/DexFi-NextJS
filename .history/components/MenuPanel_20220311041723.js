@@ -168,10 +168,10 @@ const MenuPanel = ({ currencies, section }) => {
     setOutputToken([currencies[prevIndex], prevIndex]);
     if (inputOne > 0) {
       if (menuItem === 1) {
-        setInputOne(((parseFloat(inputTwo) * 990) / 1000));
+        setInputOne(((parseFloat(inputTwo) * 990) / 1000).toFixed(17));
         setInputTwo(parseFloat(inputOne));
       } else {
-        setInputTwo(((parseFloat(inputOne) * 1000) / 990));
+        setInputTwo(((parseFloat(inputOne) * 999) / 990).toFixed(17));
         setInputOne(parseFloat(inputTwo));
       }
     } else {

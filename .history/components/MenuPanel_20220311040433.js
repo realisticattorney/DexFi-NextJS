@@ -168,11 +168,15 @@ const MenuPanel = ({ currencies, section }) => {
     setOutputToken([currencies[prevIndex], prevIndex]);
     if (inputOne > 0) {
       if (menuItem === 1) {
-        setInputOne(((parseFloat(inputTwo) * 990) / 1000));
-        setInputTwo(parseFloat(inputOne));
+        setInputOne(
+          ((parseFloat(inputTwo) * 990) / 999).toFixed(17).toString()
+        );
+        setInputTwo(inputOne);
       } else {
-        setInputTwo(((parseFloat(inputOne) * 1000) / 990));
-        setInputOne(parseFloat(inputTwo));
+        setInputTwo(
+          ((parseFloat(inputOne) * 999) / 990).toFixed(17).toString()
+        );
+        setInputOne(inputTwo);
       }
     } else {
       setInputOne(null);
@@ -265,11 +269,11 @@ const MenuPanel = ({ currencies, section }) => {
       }
 
       if (id === '1') {
-        setInputOne(parseFloat(input));
-        setInputTwo(parseFloat(amount));
+        setInputOne(parseFloat(input);
+        setInputTwo(amount);
       } else {
-        setInputOne(parseFloat(amount));
-        setInputTwo(parseFloat(input));
+        setInputOne(amount);
+        setInputTwo(input);
       }
     },
     [balance, contract, outputToken, swapTypeHandler, reserve]
@@ -304,14 +308,14 @@ const MenuPanel = ({ currencies, section }) => {
         currentExchangeAddress
       )
     );
-    console.log('allowanceAmount', allowanceAmount);
+
     if (allowanceAmount > inputOne) {
       return [exchangeUserConnection, allowanceAmount];
     }
 
     const wasApproved = await tokenUserConnection.approve(
       currentExchangeAddress,
-      ethers.utils.parseEther(inputOne.toString())
+      ethers.utils.parseEther(inputOne)
     );
 
     await toast.promise(wasApproved.wait(), {
