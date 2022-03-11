@@ -252,84 +252,78 @@ const Nav = () => {
                   </div>
                   {chainId === '0x4' ? (
                     <>
-                      <div className="w-full p-7 border-gray-200 border-b  bg-gray-50"></div>
-                      <div className="w-full p-6 bg-white rounded-br-3xl rounded-bl-3xl">
-                        <div className="flex flex-col">
-                          <h2 className="text-violet-700 font-semibold text-sm mb-2.5">
-                            Your Address
-                          </h2>
-                          <h2 className="bg-gray-100 py-2 rounded-2xl text-dexfi-violet font-bold text-center mb-3">
-                            <div className="truncate px-4">
-                              {user.get('ethAddress')}
-                            </div>
-                          </h2>
-                          {accountBalance && parseInt(accountBalance[1]) < 0.1 && (
-                            <div className="p-4 bg-orange-50 border border-orange-300 rounded-xl">
-                              <div className="flex">
-                                <WarningIcon
-                                  sx={{
-                                    fontSize: 24,
-                                    color: '#FFB237',
-                                  }}
-                                />
-                                <div className="ml-3">
-                                  <h1 className="text-dexfi-violet font-bold">
-                                    ETH Balance Low
-                                  </h1>
-                                  <h1 className="text-dexfi-violet font-medium">
-                                    Your need ETH for transaction fees.
-                                  </h1>
-                                </div>
+                  <div className="w-full p-7 border-gray-200 border-b  bg-gray-50"></div>
+                    <div className="w-full p-6 bg-white rounded-br-3xl rounded-bl-3xl">
+                      <div className="flex flex-col">
+                        <h2 className="text-violet-700 font-semibold text-sm mb-2.5">
+                          Your Address
+                        </h2>
+                        <h2 className="bg-gray-100 py-2 rounded-2xl text-dexfi-violet font-bold text-center mb-3">
+                          <div className="truncate px-4">
+                            {user.get('ethAddress')}
+                          </div>
+                        </h2>
+                        {accountBalance && parseInt(accountBalance[1]) < 0.1 && (
+                          <div className="p-4 bg-orange-50 border border-orange-300 rounded-xl">
+                            <div className="flex">
+                              <WarningIcon
+                                sx={{
+                                  fontSize: 24,
+                                  color: '#FFB237',
+                                }}
+                              />
+                              <div className="ml-3">
+                                <h1 className="text-dexfi-violet font-bold">
+                                  ETH Balance Low
+                                </h1>
+                                <h1 className="text-dexfi-violet font-medium">
+                                  Your need ETH for transaction fees.
+                                </h1>
                               </div>
                             </div>
+                          </div>
+                        )}
+                        <div className="flex justify-between mt-3">
+                          <h2 className="text-dexfi-grayviolet font-medium">
+                            SCAM Balance
+                          </h2>
+                          {accountBalance && (
+                            <h2 className="text-dexfi-violet font-medium">
+                              {parseInt(accountBalance[1]).toFixed(2)}
+                            </h2>
                           )}
-                          <div className="flex justify-between mt-3">
-                            <h2 className="text-dexfi-grayviolet font-medium">
-                              SCAM Balance
-                            </h2>
-                            {accountBalance && (
-                              <h2 className="text-dexfi-violet font-medium">
-                                {parseInt(accountBalance[1]).toFixed(2)}
-                              </h2>
-                            )}
-                          </div>
-                          <div className="flex justify-between">
-                            <h2 className="text-dexfi-grayviolet font-medium">
-                              ETH Balance
-                            </h2>
-                            {accountBalance && (
-                              <h2 className="text-dexfi-violet font-medium">
-                                {parseInt(accountBalance[0]).toFixed(2)}
-                              </h2>
-                            )}
-                          </div>
-                          <div className="flex my-6 justify-end font-bold text-cyan-500">
-                            View on BscScan
-                            <ExitToAppIcon
-                              sx={{
-                                marginLeft: '4px',
-                              }}
-                            />
-                          </div>
-                          <button
-                            className="w-full border-cyan-500 border-2  text-cyan-500 font-bold py-3 px-12 rounded-2xl hover:opacity-75 transition-opacity duration-300"
-                            onClick={logout}
-                          >
-                            Disconnect Wallet
-                          </button>
                         </div>
+                        <div className="flex justify-between">
+                          <h2 className="text-dexfi-grayviolet font-medium">
+                            ETH Balance
+                          </h2>
+                          {accountBalance && (
+                            <h2 className="text-dexfi-violet font-medium">
+                              {parseInt(accountBalance[0]).toFixed(2)}
+                            </h2>
+                          )}
+                        </div>
+                        <div className="flex my-6 justify-end font-bold text-cyan-500">
+                          View on BscScan
+                          <ExitToAppIcon
+                            sx={{
+                              marginLeft: '4px',
+                            }}
+                          />
+                        </div>
+                        <button
+                          className="w-full border-cyan-500 border-2  text-cyan-500 font-bold py-3 px-12 rounded-2xl hover:opacity-75 transition-opacity duration-300"
+                          onClick={logout}
+                        >
+                          Disconnect Wallet
+                        </button>
                       </div>
-                    </>
+                    </div>
                   ) : (
                     <div className="w-full p-6 bg-white rounded-br-3xl rounded-bl-3xl">
-                      <h1 className='text-dexfi-violet font-medium text-center pb-6'>You{"'"}re connected to the wrong network.</h1>
-                      <button
-                        className="w-full border-cyan-500 border-2  text-cyan-500 font-bold py-3 px-12 rounded-2xl hover:opacity-75 transition-opacity duration-300"
-                        onClick={logout}
-                      >
-                        Learn How
-                      </button>
+                      <h1>You{"'"}re connected to the wrong network.</h1>
                     </div>
+                    
                   )}
                 </MenuList>
               </Paper>

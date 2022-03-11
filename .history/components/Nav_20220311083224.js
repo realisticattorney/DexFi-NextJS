@@ -321,13 +321,13 @@ const Nav = () => {
                       </div>
                     </>
                   ) : (
-                    <div className="w-full p-6 bg-white rounded-br-3xl rounded-bl-3xl">
-                      <h1 className='text-dexfi-violet font-medium text-center pb-6'>You{"'"}re connected to the wrong network.</h1>
+                    <div className="w-full px-6 bg-white rounded-br-3xl rounded-bl-3xl">
+                      <h1 className='text-dexfi-violet font-medium text-center'>You{"'"}re connected to the wrong network.</h1>
                       <button
                         className="w-full border-cyan-500 border-2  text-cyan-500 font-bold py-3 px-12 rounded-2xl hover:opacity-75 transition-opacity duration-300"
                         onClick={logout}
                       >
-                        Learn How
+                        Disconnect Wallet
                       </button>
                     </div>
                   )}
