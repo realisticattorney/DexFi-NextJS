@@ -319,17 +319,17 @@ const MenuPanel = ({ currencies, section }) => {
         currentExchangeAddress
       )
     );
-    if (allowanceAmount === '0') {
-      toast.error('No allowance');
-      return;
-    }
+    // if (allowanceAmount === '0') {
+    //   toast.error('No allowance');
+    //   return;
+    // }
 
-    if (allowanceAmount < inputOne) {
-      toast.error(
-        `No enough allowance ${allowanceAmount} for ${inputOne} amount`
-      );
-      return;
-    }
+    // if (allowanceAmount < inputOne) {
+    //   toast.error(
+    //     `No enough allowance ${allowanceAmount} for ${inputOne} amount`
+    //   );
+    //   return;
+    // }
 
     return [exchangeUserConnection];
   }

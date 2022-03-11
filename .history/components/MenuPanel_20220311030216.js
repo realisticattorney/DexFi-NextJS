@@ -313,25 +313,19 @@ const MenuPanel = ({ currencies, section }) => {
       error: 'Approve rejected 🤯',
     });
 
-    allowanceAmount = ethers.utils.formatEther(
-      await tokenUserConnection.allowance(
-        await signer.getAddress(),
-        currentExchangeAddress
-      )
-    );
-    if (allowanceAmount === '0') {
-      toast.error('No allowance');
-      return;
-    }
+    // if (allowanceAmount === '0') {
+    //   toast.error('No allowance');
+    //   return;
+    // }
 
-    if (allowanceAmount < inputOne) {
-      toast.error(
-        `No enough allowance ${allowanceAmount} for ${inputOne} amount`
-      );
-      return;
-    }
+    // if (allowanceAmount < inputOne) {
+    //   toast.error(
+    //     `No enough allowance ${allowanceAmount} for ${inputOne} amount`
+    //   );
+    //   return;
+    // }
 
-    return [exchangeUserConnection];
+    return [exchangeUserConnection, allowanceAmount];
   }
 
   async function add() {

@@ -36,7 +36,7 @@ const MenuPanel = ({ currencies, section }) => {
   const Web3Api = useMoralisWeb3Api();
   const [accountEthBalance, setAccountEthBalance] = useState(0);
   const [accountERC20Balance, setAccountERC20Balance] = useState(0);
-  const { fetchERC20Balances } = useERC20Balances();
+  const { fetchERC20Balances} = useERC20Balances();
 
   const isSwapDisabled =
     section === 'swap' &&
@@ -291,16 +291,12 @@ const MenuPanel = ({ currencies, section }) => {
     if (section === 'swap' && swapTypeHandler() === 'EthToTokenSwap') {
       return [exchangeUserConnection];
     }
-    let allowanceAmount = ethers.utils.formatEther(
+    const allowanceAmount = ethers.utils.formatEther(
       await tokenUserConnection.allowance(
         await signer.getAddress(),
         currentExchangeAddress
       )
     );
-
-    if (allowanceAmount > inputOne) {
-      return [exchangeUserConnection, allowanceAmount];
-    }
 
     const wasApproved = await tokenUserConnection.approve(
       currentExchangeAddress,
@@ -313,12 +309,6 @@ const MenuPanel = ({ currencies, section }) => {
       error: 'Approve rejected 🤯',
     });
 
-    allowanceAmount = ethers.utils.formatEther(
-      await tokenUserConnection.allowance(
-        await signer.getAddress(),
-        currentExchangeAddress
-      )
-    );
     if (allowanceAmount === '0') {
       toast.error('No allowance');
       return;
@@ -331,7 +321,7 @@ const MenuPanel = ({ currencies, section }) => {
       return;
     }
 
-    return [exchangeUserConnection];
+    return [exchangeUserConnection, allowanceAmount];
   }
 
   async function add() {
@@ -358,7 +348,7 @@ const MenuPanel = ({ currencies, section }) => {
   }
 
   async function swap() {
-    const [exchangeUserConnection] = await operate();
+    const [exchangeUserConnection, allowanceAmount] = await operate();
     const swapType = swapTypeHandler();
     let transaction;
     if (swapType === 'EthToTokenSwap') {
@@ -378,7 +368,7 @@ const MenuPanel = ({ currencies, section }) => {
     } else if (swapType === 'TokenToEthSwap') {
       transaction = await toast.promise(
         exchangeUserConnection.tokenToEthSwap(
-          ethers.utils.parseEther(inputOne.toString()),
+          ethers.utils.parseEther(allowanceAmount.toString()),
           ethers.utils.parseEther((inputTwo * 0.98).toString())
         ),
         {
@@ -390,13 +380,13 @@ const MenuPanel = ({ currencies, section }) => {
     } else {
       let minTokensAmount = ethers.utils.formatEther(
         await contract.getTokenToTokenAmount(
-          ethers.utils.parseEther(inputOne.toString()),
+          ethers.utils.parseEther(allowanceAmount.toString()),
           outputToken[0].address
         )
       );
       transaction = await toast.promise(
         exchangeUserConnection.tokenToTokenSwap(
-          ethers.utils.parseEther(inputOne.toString()),
+          ethers.utils.parseEther(allowanceAmount.toString()),
           ethers.utils.parseEther((minTokensAmount * 0.98).toString()),
           outputToken[0].address
         ),
