@@ -10,7 +10,7 @@ export default function Swap(props) {
   return (
     <div className="flex-col ">
       <Subnav marked={'Exchange'} />
-      <div className="p-6 mx-auto w-min ">
+      <div className="p-6 mx-auto w-min  mb-[58px] sm:-mb-[102px]">
         <MenuPanel currencies={currencies} section={'swap'} />
         {/* <div className="hidden sm:block absolute -bottom-40 sm:bottom-0 right-10 -mb-1 ">
           <Image src="/help.png" width={191} height={130} alt="lol" />
