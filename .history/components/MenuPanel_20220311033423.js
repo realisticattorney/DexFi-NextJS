@@ -48,9 +48,9 @@ const MenuPanel = ({ currencies, section }) => {
   const isAddDisabled =
     section === 'add' &&
     (accountEthBalance < inputTwo ||
-      accountEthBalance <= 0 ||
+      accountEthBalance === 0 ||
       accountERC20Balance < inputOne ||
-      accountERC20Balance <= 0);
+      accountERC20Balance === 0);
 
   const isInputDisabled =
     inputOne <= 0 ||

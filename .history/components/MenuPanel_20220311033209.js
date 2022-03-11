@@ -48,9 +48,9 @@ const MenuPanel = ({ currencies, section }) => {
   const isAddDisabled =
     section === 'add' &&
     (accountEthBalance < inputTwo ||
-      accountEthBalance <= 0 ||
+      accountEthBalance === 0 ||
       accountERC20Balance < inputOne ||
-      accountERC20Balance <= 0);
+      accountERC20Balance === 0);
 
   const isInputDisabled =
     inputOne <= 0 ||
@@ -61,10 +61,6 @@ const MenuPanel = ({ currencies, section }) => {
     inputTwo === null;
 
   console.log('accountERC20Balance', accountERC20Balance);
-  console.log('accountEthBalance', accountEthBalance);
-  console.log('isSwapDisabled', isSwapDisabled);
-  console.log('isAddDisabled', isAddDisabled);
-  console.log('isInputDisabled', isInputDisabled);
   const erc20AccountBalance = useCallback(async () => {
     if (user && provider) {
       const result = await Web3Api.account

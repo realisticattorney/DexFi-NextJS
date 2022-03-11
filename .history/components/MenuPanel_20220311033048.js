@@ -47,11 +47,11 @@ const MenuPanel = ({ currencies, section }) => {
 
   const isAddDisabled =
     section === 'add' &&
-    (accountEthBalance < inputTwo ||
-      accountEthBalance <= 0 ||
-      accountERC20Balance < inputOne ||
-      accountERC20Balance <= 0);
+      (accountEthBalance < inputTwo || accountEthBalance === 0) ||
+    (accountERC20Balance < inputOne ||
+    accountERC20Balance === 0;
 
+    
   const isInputDisabled =
     inputOne <= 0 ||
     inputTwo <= 0 ||
@@ -61,10 +61,6 @@ const MenuPanel = ({ currencies, section }) => {
     inputTwo === null;
 
   console.log('accountERC20Balance', accountERC20Balance);
-  console.log('accountEthBalance', accountEthBalance);
-  console.log('isSwapDisabled', isSwapDisabled);
-  console.log('isAddDisabled', isAddDisabled);
-  console.log('isInputDisabled', isInputDisabled);
   const erc20AccountBalance = useCallback(async () => {
     if (user && provider) {
       const result = await Web3Api.account
@@ -490,9 +486,7 @@ const MenuPanel = ({ currencies, section }) => {
         >
           <button
             className={`w-full  hover:opacity-75 transition-opacity duration-200  text-white font-bold py-3 px-12 rounded-xl shadow-slate-500 shadow-sm active:translate-y-0.1 active:shadow-none active:opacity-90 ${
-              isAddDisabled
-                ? 'bg-gray-300 disabled:cursor-not-allowed'
-                : 'bg-pink-500'
+              isAddDisabled ? 'bg-gray-200' : 'bg-pink-500'
             } ${
               isSwapDisabled
                 ? 'bg-gray-300 disabled:cursor-not-allowed'
