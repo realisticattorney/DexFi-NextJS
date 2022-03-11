@@ -64,10 +64,7 @@ const MenuItemList = ({
         </button>
         {token[1] !== 1 && (
           <h1 className="text-sm text-dexfi-violet">
-            Balance:{' '}
-            {parseFloat(accountERC20Balance).toFixed(2) > 0
-              ? parseFloat(accountERC20Balance).toFixed(2)
-              : '0.00'}
+            Balance: {parseFloat(accountERC20Balance).toFixed(2)}
           </h1>
         )}
 

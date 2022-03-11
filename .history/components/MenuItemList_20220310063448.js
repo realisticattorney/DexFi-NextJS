@@ -62,12 +62,9 @@ const MenuItemList = ({
           </h1>
           <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />
         </button>
-        {token[1] !== 1 && (
-          <h1 className="text-sm text-dexfi-violet">
-            Balance:{' '}
-            {parseFloat(accountERC20Balance).toFixed(2) > 0
-              ? parseFloat(accountERC20Balance).toFixed(2)
-              : '0.00'}
+        {token[1] !== 1 && accountERC20Balance && 
+          accountERC20Balance > 0 ?   <h1 className="text-sm text-dexfi-violet">
+            Balance: {parseFloat(accountERC20Balance).toFixed(2)}
           </h1>
         )}
 

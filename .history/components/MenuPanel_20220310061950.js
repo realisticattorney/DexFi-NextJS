@@ -45,15 +45,8 @@ const MenuPanel = ({ currencies, section }) => {
       (inputToken[1] === 1 &&
         (accountEthBalance < inputOne || accountEthBalance <= 0)));
 
-  const isInputDisabled =
-    inputOne <= 0 ||
-    inputTwo <= 0 ||
-    inputOne === '' ||
-    inputTwo === '' ||
-    inputOne === null ||
-    inputTwo === null;
+  console.log('isSwapDisabled', isSwapDisabled);
 
-  console.log('accountERC20Balance', accountERC20Balance);
   const erc20AccountBalance = useCallback(async () => {
     if (user && provider) {
       const result = await Web3Api.account
@@ -98,17 +91,19 @@ const MenuPanel = ({ currencies, section }) => {
 
   const setExchangeCallback = useCallback(
     async (exchange) => {
-      const data = await fetchERC20Balances();
-      const tokenBalance = data.find(
-        (token) => token.token_address === exchange.toLowerCase()
-      );
-      tokenBalance
-        ? setAccountERC20Balance(ethers.utils.formatEther(tokenBalance.balance))
-        : setAccountERC20Balance(0);
-
+      if (data) {
+        const tokenBalance = data.find(
+          (token) => token.token_address === exchange.toLowerCase()
+        );
+        tokenBalance
+          ? setAccountERC20Balance(
+              ethers.utils.formatEther(tokenBalance.balance)
+            )
+          : setAccountERC20Balance(0);
+      }
       await setExchangeCurrent(exchange);
     },
-    [setExchangeCurrent, fetchERC20Balances]
+    [setExchangeCurrent, data]
   );
   useEffect(() => {
     currentTokenExchangeAddress.current = scammExchangeAddress;
@@ -419,8 +414,8 @@ const MenuPanel = ({ currencies, section }) => {
           currencies={currencies}
           token={inputToken}
           open={open}
+          data={data}
           input={inputOne}
-          accountERC20Balance={accountERC20Balance}
           accountEthBalance={accountEthBalance}
           handleInputChange={handleInputChange}
           handleMenuItemClick={handleMenuItemClick}
@@ -444,9 +439,9 @@ const MenuPanel = ({ currencies, section }) => {
           currencies={currencies}
           token={outputToken}
           open={openSecond}
+          data={data}
           input={inputTwo}
           accountEthBalance={accountEthBalance}
-          accountERC20Balance={accountERC20Balance}
           handleInputChange={handleInputChange}
           handleMenuItemClick={handleMenuItemClick}
           key={2}
@@ -475,7 +470,15 @@ const MenuPanel = ({ currencies, section }) => {
                 ? 'bg-gray-300 disabled:cursor-not-allowed'
                 : 'bg-pink-500'
             } ${user && 'disabled:cursor-not-allowed'}`}
-            disabled={(user && isSwapDisabled) || isInputDisabled}
+            disabled={
+              (user && isSwapDisabled) ||
+              inputOne <= 0 ||
+              inputTwo <= 0 ||
+              inputOne === '' ||
+              inputTwo === '' ||
+              inputOne === null ||
+              inputTwo === null
+            }
             onClick={() => {
               user ? (section === 'swap' ? swap() : add()) : authenticate();
             }}

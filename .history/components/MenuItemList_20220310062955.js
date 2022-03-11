@@ -30,7 +30,7 @@ const MenuItemList = ({
   token,
   open,
   input,
-  accountERC20Balance,
+  data,
   accountEthBalance,
   handleInputChange,
   handleMenuItemClick,
@@ -62,21 +62,18 @@ const MenuItemList = ({
           </h1>
           <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />
         </button>
-        {token[1] !== 1 && (
-          <h1 className="text-sm text-dexfi-violet">
-            Balance:{' '}
-            {parseFloat(accountERC20Balance).toFixed(2) > 0
-              ? parseFloat(accountERC20Balance).toFixed(2)
-              : '0.00'}
-          </h1>
-        )}
-
+        {token[1] !== 1 &&
+          data?.map((t, index) =>
+            t.token_address === token[0].address.toLowerCase() ? (
+              <h1 key={index} className="text-sm text-dexfi-violet">
+                Balance:{' '}
+                {parseFloat(ethers.utils.formatEther(t.balance)).toFixed(2)}
+              </h1>
+            ) : null
+          )}
         {token[1] === 1 && (
           <h1 className="text-sm text-dexfi-violet">
-            Balance:{' '}
-            {parseFloat(accountEthBalance).toFixed(2) > 0
-              ? parseFloat(accountEthBalance).toFixed(2)
-              : '0.00'}
+            Balance: {parseFloat(accountEthBalance).toFixed(2)}
           </h1>
         )}
       </div>

@@ -419,6 +419,7 @@ const MenuPanel = ({ currencies, section }) => {
           currencies={currencies}
           token={inputToken}
           open={open}
+          data={data}
           input={inputOne}
           accountERC20Balance={accountERC20Balance}
           accountEthBalance={accountEthBalance}
@@ -444,6 +445,7 @@ const MenuPanel = ({ currencies, section }) => {
           currencies={currencies}
           token={outputToken}
           open={openSecond}
+          data={data}
           input={inputTwo}
           accountEthBalance={accountEthBalance}
           accountERC20Balance={accountERC20Balance}

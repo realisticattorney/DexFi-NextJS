@@ -96,19 +96,30 @@ const MenuPanel = ({ currencies, section }) => {
     }
   }, [inputToken, outputToken]);
 
+  const setErc20AccountBalance = useCallback(async (ercAddress) => {
+    const tokenBalance = data.find(
+      (token) => token.token_address === ercAddress.toLowerCase()
+    );
+    tokenBalance
+      ? setAccountERC20Balance(ethers.utils.formatEther(tokenBalance.balance))
+      : setAccountERC20Balance(0);
+  }, [data]);
+
+  useEffect(() => {
+    async function getErc20AccountBalance() {
+    if (data) {
+      if (inputToken[1] === 1) {
+        await setErc20AccountBalance();
+      } }else { await setErc20AccountBalance();
+    }
+    getErc20AccountBalance();
+  }, [data, setErc20AccountBalance]);
+
   const setExchangeCallback = useCallback(
     async (exchange) => {
-      const data = await fetchERC20Balances();
-      const tokenBalance = data.find(
-        (token) => token.token_address === exchange.toLowerCase()
-      );
-      tokenBalance
-        ? setAccountERC20Balance(ethers.utils.formatEther(tokenBalance.balance))
-        : setAccountERC20Balance(0);
-
       await setExchangeCurrent(exchange);
     },
-    [setExchangeCurrent, fetchERC20Balances]
+    [setExchangeCurrent]
   );
   useEffect(() => {
     currentTokenExchangeAddress.current = scammExchangeAddress;
@@ -419,6 +430,7 @@ const MenuPanel = ({ currencies, section }) => {
           currencies={currencies}
           token={inputToken}
           open={open}
+          data={data}
           input={inputOne}
           accountERC20Balance={accountERC20Balance}
           accountEthBalance={accountEthBalance}
@@ -444,6 +456,7 @@ const MenuPanel = ({ currencies, section }) => {
           currencies={currencies}
           token={outputToken}
           open={openSecond}
+          data={data}
           input={inputTwo}
           accountEthBalance={accountEthBalance}
           accountERC20Balance={accountERC20Balance}

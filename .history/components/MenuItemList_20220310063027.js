@@ -30,7 +30,7 @@ const MenuItemList = ({
   token,
   open,
   input,
-  accountERC20Balance,
+  data,
   accountEthBalance,
   handleInputChange,
   handleMenuItemClick,
@@ -64,19 +64,13 @@ const MenuItemList = ({
         </button>
         {token[1] !== 1 && (
           <h1 className="text-sm text-dexfi-violet">
-            Balance:{' '}
-            {parseFloat(accountERC20Balance).toFixed(2) > 0
-              ? parseFloat(accountERC20Balance).toFixed(2)
-              : '0.00'}
+            Balance: {parseFloat(accountERC20Balance).toFixed(2)}
           </h1>
         )}
 
         {token[1] === 1 && (
           <h1 className="text-sm text-dexfi-violet">
-            Balance:{' '}
-            {parseFloat(accountEthBalance).toFixed(2) > 0
-              ? parseFloat(accountEthBalance).toFixed(2)
-              : '0.00'}
+            Balance: {parseFloat(accountEthBalance).toFixed(2)}
           </h1>
         )}
       </div>
