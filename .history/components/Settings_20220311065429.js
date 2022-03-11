@@ -54,10 +54,9 @@ const Settings = () => {
 
   const setTxSpeedCallback = useCallback(
     (event) => {
-      setTxSpeed(event);
-    },
-    [setTxSpeed]
-  );
+      if (event.target) {
+        if (isNaN(parseFloat(event.target.value))) {
+  
 
   return (
     <>

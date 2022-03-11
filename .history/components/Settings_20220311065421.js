@@ -52,12 +52,7 @@ const Settings = () => {
     [setSlippage]
   );
 
-  const setTxSpeedCallback = useCallback(
-    (event) => {
-      setTxSpeed(event);
-    },
-    [setTxSpeed]
-  );
+  
 
   return (
     <>

@@ -56,8 +56,9 @@ const Settings = () => {
     (event) => {
       setTxSpeed(event);
     },
-    [setTxSpeed]
-  );
+        
+
+  
 
   return (
     <>

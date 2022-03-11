@@ -25,7 +25,7 @@ const Settings = () => {
   const handleOpenSettings = useCallback(() => setOpenSettings(true), []);
   const handleCloseSettings = useCallback(() => setOpenSettings(false), []);
   const [openSettings, setOpenSettings] = useState(false);
-  const { slippage, setSlippage, txSpeed, setTxSpeed } = useWeb3();
+  const { slippage, setSlippage } = useWeb3();
   const [isSlippageCustom, setIsSlippageCustom] = useState(false);
   console.log('slippage', slippage);
   const setSlippageCallback = useCallback(
@@ -52,12 +52,7 @@ const Settings = () => {
     [setSlippage]
   );
 
-  const setTxSpeedCallback = useCallback(
-    (event) => {
-      setTxSpeed(event);
-    },
-    [setTxSpeed]
-  );
+  
 
   return (
     <>

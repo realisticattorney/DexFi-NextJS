@@ -55,9 +55,10 @@ const Settings = () => {
   const setTxSpeedCallback = useCallback(
     (event) => {
       setTxSpeed(event);
-    },
-    [setTxSpeed]
-  );
+      
+        
+
+  
 
   return (
     <>
