@@ -25,18 +25,6 @@ const Settings = () => {
   const handleCloseSettings = useCallback(() => setOpenSettings(false), []);
   const [openSettings, setOpenSettings] = useState(false);
   const { slippage, setSlippage } = useWeb3();
-
-  const setSlippageCallback = useCallback(
-    (event) => {
-      if (event.target) {
-        setSlippage(event.target.value);
-      } else {
-        setSlippage(event);
-      }
-    },
-    [setSlippage]
-  );
-
   return (
     <>
       <button

@@ -28,14 +28,8 @@ const Settings = () => {
 
   const setSlippageCallback = useCallback(
     (event) => {
-      if (event.target) {
-        setSlippage(event.target.value);
-      } else {
-        setSlippage(event);
-      }
+      setSlippage(event.target.value);
     },
-    [setSlippage]
-  );
 
   return (
     <>

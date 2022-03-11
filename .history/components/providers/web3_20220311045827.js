@@ -56,7 +56,7 @@ export default function Web3Provider({ children }) {
         setWeb3Api({
           provider,
           registry,
-          slippage: 0.5,
+          
           exchangeBunny: {
             balance: exchangeBalance,
             reserve: getReserve,
@@ -81,9 +81,6 @@ export default function Web3Provider({ children }) {
   const _web3Api = useMemo(() => {
     return {
       ...web3Api,
-      setSlippage: (slippage) => {
-        setWeb3Api((api) => ({ ...api, slippage }));
-      },
       setExchangeCurrent: async (exchange) => {
         let newExchangeAddress = await web3Api.registry
           .getExchange(exchange)

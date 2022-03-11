@@ -82,8 +82,7 @@ export default function Web3Provider({ children }) {
     return {
       ...web3Api,
       setSlippage: (slippage) => {
-        setWeb3Api((api) => ({ ...api, slippage }));
-      },
+        
       setExchangeCurrent: async (exchange) => {
         let newExchangeAddress = await web3Api.registry
           .getExchange(exchange)

@@ -28,11 +28,12 @@ const Settings = () => {
 
   const setSlippageCallback = useCallback(
     (event) => {
-      if (event.target) {
-        setSlippage(event.target.value);
-      } else {
-        setSlippage(event);
-      }
+      if(event.target) {
+      setSlippage(event.target.value);
+    } else{ 
+      setSlippage(event.target.value);
+    }
+
     },
     [setSlippage]
   );

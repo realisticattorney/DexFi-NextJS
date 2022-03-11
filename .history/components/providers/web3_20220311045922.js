@@ -81,9 +81,7 @@ export default function Web3Provider({ children }) {
   const _web3Api = useMemo(() => {
     return {
       ...web3Api,
-      setSlippage: (slippage) => {
-        setWeb3Api((api) => ({ ...api, slippage }));
-      },
+      setSlippage: 
       setExchangeCurrent: async (exchange) => {
         let newExchangeAddress = await web3Api.registry
           .getExchange(exchange)

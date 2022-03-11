@@ -24,19 +24,7 @@ const Settings = () => {
   const handleOpenSettings = useCallback(() => setOpenSettings(true), []);
   const handleCloseSettings = useCallback(() => setOpenSettings(false), []);
   const [openSettings, setOpenSettings] = useState(false);
-  const { slippage, setSlippage } = useWeb3();
-
-  const setSlippageCallback = useCallback(
-    (event) => {
-      if (event.target) {
-        setSlippage(event.target.value);
-      } else {
-        setSlippage(event);
-      }
-    },
-    [setSlippage]
-  );
-
+  const { slippage } = useWeb3();
   return (
     <>
       <button
@@ -127,31 +115,13 @@ const Settings = () => {
                     </h2>
                   </div>
                   <div className="flex justify-between my-4">
-                    <button
-                      className={`shadow-sm ${
-                        slippage === 0.1
-                          ? 'text-white bg-dexfi-cyan'
-                          : 'text-dexfi-cyan bg-gray-100'
-                      }  py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90`}
-                    >
+                    <button className={`shadow-sm text-white py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
                       0.1%
                     </button>
-                    <button
-                      className={`shadow-sm ${
-                        slippage === 0.5
-                          ? 'text-white bg-dexfi-cyan'
-                          : 'text-dexfi-cyan bg-gray-100'
-                      }  py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90`}
-                    >
+                    <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
                       0.5%
                     </button>
-                    <button
-                      className={`shadow-sm ${
-                        slippage === 1
-                          ? 'text-white bg-dexfi-cyan'
-                          : 'text-dexfi-cyan bg-gray-100'
-                      }  py-0.5 px-4 bg-dexfi-cyan  rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90`}
-                    >
+                    <button className="shadow-sm text-dexfi-cyan py-0.5 px-4 bg-gray-100   rounded-3xl font-bold hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
                       1.0%
                     </button>
                     <button className="shadow-sm text-dexfi-grayviolet py-0.5 px-4 bg-gray-200 border-dexfi-grayviolet border rounded-3xl font-medium hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
