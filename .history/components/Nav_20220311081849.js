@@ -148,6 +148,7 @@ const Nav = () => {
               </>
             ) : (
               <>
+                x
                 <WarningIcon
                   sx={{
                     color: '#7c6484',
