@@ -203,8 +203,10 @@ const Settings = () => {
                           variant="standard"
                           required
                           type="text"
-                          value={isSlippageCustom ? slippage : ''}
-                          placeholder={slippage ? slippage.toFixed(2) : '0.00'}
+                          value={slippage}
+                          placeholder={
+                            isSlippageCustom ? slippage.toFixed(3) : '0.00'
+                          }
                           onChange={(e) => {
                             if (
                               !e.target.value ||

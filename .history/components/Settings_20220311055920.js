@@ -42,7 +42,7 @@ const Settings = () => {
         setIsSlippageCustom(true);
       } else {
         setSlippage(event);
-        setIsSlippageCustom(false);
+        setIsSlippageCustom
       }
     },
     [setSlippage]
@@ -190,9 +190,6 @@ const Settings = () => {
                           backgroundColor: '#EEEAF4',
                           borderRadius: 6,
                           textIndent: 20,
-                          border: isSlippageCustom
-                            ? '1px solid #1FC7D4'
-                            : '1px solid #CCC',
                         },
                       }}
                       noValidate
@@ -203,8 +200,16 @@ const Settings = () => {
                           variant="standard"
                           required
                           type="text"
-                          value={isSlippageCustom ? slippage : ''}
-                          placeholder={slippage ? slippage.toFixed(2) : '0.00'}
+                          value={
+                            slippage === 0.1 ||
+                            slippage === 0.5 ||
+                            slippage === 1
+                              ? ''
+                              : slippage
+                          }
+                          placeholder={
+                            slippage ? slippage.toFixed(2).toString() : '0.00'
+                          }
                           onChange={(e) => {
                             if (
                               !e.target.value ||
