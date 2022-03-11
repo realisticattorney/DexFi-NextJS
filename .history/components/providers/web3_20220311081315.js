@@ -26,10 +26,10 @@ export default function Web3Provider({ children }) {
   useEffect(() => {
     const loadProvider = async () => {
       let provider;
-      let chainId;
+      let chainId
       if (window.ethereum) {
         provider = await Moralis.enableWeb3();
-        chainId = Moralis.chainId;
+         =  Moralis.chainId;
       } else {
         const url = `https://eth-rinkeby.alchemyapi.io/v2/${API_KEY}`;
         provider = new ethers.providers.JsonRpcProvider(url);
@@ -58,7 +58,7 @@ export default function Web3Provider({ children }) {
         setWeb3Api({
           provider,
           registry,
-          chainId,
+          chainId: chainId ? chainId : '',
           slippage: 0.5,
           txSpeed: 5,
           exchangeBunny: {

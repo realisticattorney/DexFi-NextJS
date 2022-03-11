@@ -58,7 +58,7 @@ export default function Web3Provider({ children }) {
         setWeb3Api({
           provider,
           registry,
-          chainId,
+          chainId: chainId ? chainId : '',
           slippage: 0.5,
           txSpeed: 5,
           exchangeBunny: {

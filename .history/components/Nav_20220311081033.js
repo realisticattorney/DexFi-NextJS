@@ -35,7 +35,7 @@ const modalstyle = {
 };
 
 const Nav = () => {
-  const { exchangeBunny, provider, slippage, chainId } = useWeb3();
+  const { exchangeBunny, provider, slippage } = useWeb3();
   const Web3Api = useMoralisWeb3Api();
   let router = useRouter();
   const [pathname, setPathname] = useState(router.pathname);
@@ -45,7 +45,8 @@ const Nav = () => {
   const handleCloseWallet = useCallback(() => setOpenWallet(false), []);
   const { isAuthenticated, authenticate, user, logout } = useMoralis();
   const [accountBalance, setAccountBalance] = useState(0);
-  console.log('chainId chainId chainIdchainIds', chainId);
+  const chainId =  Moralis.chainId;
+  console.log("chainId",chainId);
   const ethAccountBalance = useCallback(async () => {
     if (user && provider) {
       const ScammCoinAbi = new ethers.Contract(
@@ -121,59 +122,28 @@ const Nav = () => {
             className="ml-5 mr-4 text-violet-900 font-bold py-0.8 px-6 shadow-slate-400 shadow-sm tracking-wide bg-gray-100 rounded-full relative z-40 group hover:opacity-90 cursor-pointer"
             disabled={true}
           >
-            {chainId === '0x4' ? (
-              <>
-                <AccountBalanceWalletIcon
-                  sx={{
-                    color: '#7c6484',
-                    fontSize: 38,
-                    position: 'absolute',
-                    border: '2px solid #1FC7D4',
-                    padding: '4px',
-                    borderRadius: '50%',
-                    left: '-20px',
-                    backgroundColor: '#fff',
-                    top: '-2px',
-                    color: '#1FC7D4',
-                  }}
-                />
-                <div className="flex max-w-[100px]">
-                  <div className="truncate">{user.get('ethAddress')}</div>
-                  <KeyboardArrowDownIcon
-                    sx={{
-                      marginRight: '-18px',
-                    }}
-                  />
-                </div>
-              </>
-            ) : (
-              <>
-                x
-                <AccountBalanceWalletIcon
-                  sx={{
-                    color: '#7c6484',
-                    fontSize: 38,
-                    position: 'absolute',
-                    border: '2px solid #1FC7D4',
-                    padding: '4px',
-                    borderRadius: '50%',
-                    left: '-20px',
-                    backgroundColor: '#fff',
-                    top: '-2px',
-                    color: '#1FC7D4',
-                  }}
-                />
-                <div className="flex max-w-[100px]">
-                  <div className="truncate">{user.get('ethAddress')}</div>
-                  <KeyboardArrowDownIcon
-                    sx={{
-                      marginRight: '-18px',
-                    }}
-                  />
-                </div>
-              </>
-            )}
-
+            <AccountBalanceWalletIcon
+              sx={{
+                color: '#7c6484',
+                fontSize: 38,
+                position: 'absolute',
+                border: '2px solid #1FC7D4',
+                padding: '4px',
+                borderRadius: '50%',
+                left: '-20px',
+                backgroundColor: '#fff',
+                top: '-2px',
+                color: '#1FC7D4',
+              }}
+            />
+            <div className="flex max-w-[100px]">
+              <div className="truncate">{user.get('ethAddress')}</div>
+              <KeyboardArrowDownIcon
+                sx={{
+                  marginRight: '-18px',
+                }}
+              />
+            </div>
             <ul className="absolute right-0 top-0 mt-8 py-1  w-[280px] rounded-2xl border shadow-sm bg-white z-40 hidden group-hover:block">
               <button
                 className="px-2 w-full whitespace-no-wrap h-[48px] flex items-center text-gray-600 hover:text-gray-800 hover:bg-gray-100"
