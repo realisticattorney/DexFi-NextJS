@@ -33,11 +33,10 @@ const Settings = () => {
       if (event.target) {
         console.log('lalalalasadfasdadsfadsffasd');
         if (isNaN(parseFloat(event.target.value))) {
-          console.log('aca');
+          console.log("aca")
           setSlippage(0);
-        } else {
-          setSlippage(parseFloat(event.target.value));
         }
+        setSlippage(parseFloat(event.target.value));
       } else {
         setSlippage(event);
       }

@@ -29,15 +29,11 @@ const Settings = () => {
   console.log('slippage', slippage);
   const setSlippageCallback = useCallback(
     (event) => {
-      console.log('event', event?.target);
+      if (typeof event?.target.value !== Number) {
+        setSlippage(0);
+      }
       if (event.target) {
-        console.log('lalalalasadfasdadsfadsffasd');
-        if (isNaN(parseFloat(event.target.value))) {
-          console.log('aca');
-          setSlippage(0);
-        } else {
-          setSlippage(parseFloat(event.target.value));
-        }
+        setSlippage(parseFloat(event.target.value));
       } else {
         setSlippage(event);
       }
