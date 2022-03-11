@@ -167,7 +167,9 @@ const Settings = () => {
                     {/* <button className="shadow-sm text-dexfi-grayviolet py-0.5 px-4 bg-gray-200 border-dexfi-grayviolet border rounded-3xl font-medium hover:opacity-75 transition-opacity duration-150 active:translate-y-0.1 active:shadow-none active:opacity-90">
                       0.50
                     </button>
-                    */}
+                    <p className="mr-10 text-dexfi-cyan font-bold hidden sm:block">
+                      %
+                    </p> */}
                     <Box
                       component="form"
                       sx={{
@@ -179,19 +181,19 @@ const Settings = () => {
                         '& .MuiInputBase-input': {
                           backgroundColor: '#EEEAF4',
                           borderRadius: 6,
-                          textIndent: 20,
+                          textIndent: 0,
                         },
                       }}
                       noValidate
                       autoComplete="off"
                     >
-                      <div className='flex'>
+                      <div>
                         <TextField
                           variant="standard"
                           required
                           type="text"
                           value={slippage}
-                          placeholder="0.00"
+                          placeholder="0.0"
                           onChange={(e) => {
                             if (
                               !e.target.value ||
@@ -203,18 +205,15 @@ const Settings = () => {
                             disableUnderline: true,
                             inputProps: {
                               style: {
-                                textAlign: 'left',
-                                fontSize: '0.9rem',
+                                textAlign: 'right',
+                                fontSize: '1rem',
                                 paddingRight: '1rem',
                               },
                             },
                           }}
+                          
                         />
-                         <p className="mr-10 mt-0.7 ml-0.5 text-dexfi-cyan font-extrabold hidden sm:block">
-                       {" "}%
-                    </p>
                       </div>
-                      
                     </Box>
                   </div>
                 </div>

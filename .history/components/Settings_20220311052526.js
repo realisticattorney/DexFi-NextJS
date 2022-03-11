@@ -191,7 +191,7 @@ const Settings = () => {
                           required
                           type="text"
                           value={slippage}
-                          placeholder="0.00"
+                          placeholder="0.0"
                           onChange={(e) => {
                             if (
                               !e.target.value ||
@@ -204,7 +204,7 @@ const Settings = () => {
                             inputProps: {
                               style: {
                                 textAlign: 'left',
-                                fontSize: '0.9rem',
+                                fontSize: '0.8rem',
                                 paddingRight: '1rem',
                               },
                             },

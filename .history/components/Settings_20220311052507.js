@@ -191,7 +191,7 @@ const Settings = () => {
                           required
                           type="text"
                           value={slippage}
-                          placeholder="0.00"
+                          placeholder="0.0"
                           onChange={(e) => {
                             if (
                               !e.target.value ||

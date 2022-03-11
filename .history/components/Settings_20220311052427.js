@@ -179,7 +179,7 @@ const Settings = () => {
                         '& .MuiInputBase-input': {
                           backgroundColor: '#EEEAF4',
                           borderRadius: 6,
-                          textIndent: 20,
+                          textIndent: 0,
                         },
                       }}
                       noValidate
@@ -191,7 +191,7 @@ const Settings = () => {
                           required
                           type="text"
                           value={slippage}
-                          placeholder="0.00"
+                          placeholder="0.0"
                           onChange={(e) => {
                             if (
                               !e.target.value ||
@@ -204,7 +204,7 @@ const Settings = () => {
                             inputProps: {
                               style: {
                                 textAlign: 'left',
-                                fontSize: '0.9rem',
+                                fontSize: '1rem',
                                 paddingRight: '1rem',
                               },
                             },

@@ -190,7 +190,7 @@ const Settings = () => {
                           variant="standard"
                           required
                           type="text"
-                          value={slippage}
+                          value={slippage.toFixed(2)}
                           placeholder="0.00"
                           onChange={(e) => {
                             if (
