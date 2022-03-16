@@ -52,6 +52,7 @@ const Nav = () => {
   const { isAuthenticated, authenticate, user, logout } = useMoralis();
   const [accountBalance, setAccountBalance] = useState(0);
   console.log('chainId chainId chainIdchainIds', chainId);
+console.log("web3",web3)
 console.log("provider", provider?.network)
   // useEffect(() => {
   //   if (chainId !== '0x4') {

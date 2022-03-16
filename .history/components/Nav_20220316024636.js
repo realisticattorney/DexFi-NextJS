@@ -40,7 +40,9 @@ const Nav = () => {
     provider,
     slippage,
     chainId,
-    // switchNetwork,
+    switchNetwork,
+    connectorAuth,
+    web3,
   } = useWeb3();
   const Web3Api = useMoralisWeb3Api();
   let router = useRouter();
@@ -52,12 +54,13 @@ const Nav = () => {
   const { isAuthenticated, authenticate, user, logout } = useMoralis();
   const [accountBalance, setAccountBalance] = useState(0);
   console.log('chainId chainId chainIdchainIds', chainId);
+console.log("web3",web3)
 console.log("provider", provider?.network)
-  // useEffect(() => {
-  //   if (chainId !== '0x4') {
-  //     await Moralis.switchNetwork(chainId);
-  //   }
-  // }, [chainId, switchNetwork]);
+  useEffect(() => {
+    if (chainId !== '0x4') {
+      MoralisswitchNetwork(chainId);
+    }
+  }, [chainId, switchNetwork]);
 
   const ethAccountBalance = useCallback(async () => {
     if (user && provider) {
@@ -84,13 +87,13 @@ console.log("provider", provider?.network)
   }, [user, provider, Web3Api.account]);
 
   const switchNetworkCallback = useCallback(async () => {
-    await Moralis.switchNetwork("0x4");
-  }, []);
+    await switchNetwork();
+  }, [switchNetwork]);
 
   const authenticateCallback = useCallback(async () => {
     await authenticate();
-    await Moralis.switchNetwork("0x4");
-  }, [authenticate]);
+    await switchNetwork();
+  }, [authenticate, switchNetwork]);
 
   useEffect(() => {
     async function getEthAccountBalance() {
