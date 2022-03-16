@@ -122,7 +122,6 @@ const MenuPanel = ({ currencies, section }) => {
   const setExchangeCallback = useCallback(
     async (exchange) => {
       if (chainId === '0x4') {
-        console.log("lalalalallalalaalkdjfdakljfjdaklafsdkjlfdsjl")
         const data = await fetchERC20Balances();
         const tokenBalance = data?.find(
           (token) => token.token_address === exchange.toLowerCase()

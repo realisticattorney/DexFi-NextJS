@@ -17,7 +17,7 @@ import handler from './hooks/useChain';
 import { useMoralis, useMoralisWeb3Api } from 'react-moralis';
 export default function Web3Provider({ children }) {
   const { web3, user } = useMoralis();
-  const moralis = useMoralis();
+  const moralis = useMoralis()
   const [web3Api, setWeb3Api] = useState({
     provider: null,
     web3: null,
@@ -30,7 +30,19 @@ export default function Web3Provider({ children }) {
     Moralis.onChainChanged(function (chain) {
       setWeb3Api((api) => ({ ...api, chainId: chain }));
     });
+
+    // Moralis.onAccountsChanged(function (address) {
+    //   setWalletAddress(address[0]);
+    // });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => setChainId(web3.givenProvider?.chainId));
+  useEffect(
+    () => setWalletAddress(web3.givenProvider?.selectedAddress || user?.get("ethAddress")),
+    [web3, user]
+  );
+
 
   useEffect(() => {
     const loadProvider = async () => {
@@ -97,11 +109,11 @@ export default function Web3Provider({ children }) {
     return {
       ...web3Api,
       switchNetwork: async () => {
-        // const didChange = await handler();
-        // if (didChange) {
-        //   setWeb3Api((api) => ({ ...api, chainId: "0x4" }));
-        // }
-      },
+          // const didChange = await handler();
+          // if (didChange) {
+          //   setWeb3Api((api) => ({ ...api, chainId: "0x4" }));
+          // }
+        },
       setSlippage: (slippage) => {
         setWeb3Api((api) => ({ ...api, slippage }));
       },

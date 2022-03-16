@@ -12,12 +12,11 @@ import Registry from '../../utils/Registry.json';
 import Exchange from '../../utils/Exchange.json';
 const Web3Context = createContext(null);
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
-import { setupHooks } from './hooks/setupHooks';
-import handler from './hooks/useChain';
+// import { setupHooks } from "./hooks/setupHooks";
+import handler  from './hooks/useChain';
 import { useMoralis, useMoralisWeb3Api } from 'react-moralis';
 export default function Web3Provider({ children }) {
-  const { web3, user } = useMoralis();
-  const moralis = useMoralis();
+  // const { web3, Moralis, user } = useMoralis();
   const [web3Api, setWeb3Api] = useState({
     provider: null,
     web3: null,
@@ -25,12 +24,6 @@ export default function Web3Provider({ children }) {
     registry: null,
     exchangeCurrent: null,
   });
-
-  useEffect(() => {
-    Moralis.onChainChanged(function (chain) {
-      setWeb3Api((api) => ({ ...api, chainId: chain }));
-    });
-  }, []);
 
   useEffect(() => {
     const loadProvider = async () => {
@@ -92,15 +85,12 @@ export default function Web3Provider({ children }) {
 
     loadProvider();
   }, []);
-
   const _web3Api = useMemo(() => {
     return {
       ...web3Api,
       switchNetwork: async () => {
-        // const didChange = await handler();
-        // if (didChange) {
-        //   setWeb3Api((api) => ({ ...api, chainId: "0x4" }));
-        // }
+        const lalala = setupHooks();
+        setWeb3Api((api) => ({ ...api, chainId: lalala }));
       },
       setSlippage: (slippage) => {
         setWeb3Api((api) => ({ ...api, slippage }));
@@ -154,7 +144,8 @@ export async function useExchange(exchange) {
   await setExchangeCurrent(exchange);
 }
 
+
 export function useHooks(cb) {
-  const { hooks } = useWeb3();
-  return cb(hooks);
+  const { hooks } = useWeb3()
+  return cb(hooks)
 }

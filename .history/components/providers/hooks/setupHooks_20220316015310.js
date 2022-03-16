@@ -2,6 +2,6 @@
 
 // export const setupHooks = () => {
 //   return {
-//     useChain: createNetworkHook(),
+//     useChain: createNetworkHook,
 //   };
 // };

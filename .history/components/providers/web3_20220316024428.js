@@ -30,6 +30,7 @@ export default function Web3Provider({ children }) {
     Moralis.onChainChanged(function (chain) {
       setWeb3Api((api) => ({ ...api, chainId: chain }));
     });
+
   }, []);
 
   useEffect(() => {

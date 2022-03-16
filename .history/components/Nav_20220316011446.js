@@ -55,7 +55,7 @@ const Nav = () => {
   const [accountBalance, setAccountBalance] = useState(0);
   console.log('chainId chainId chainIdchainIds', chainId);
 console.log("web3",web3)
-console.log("provider", provider?.network)
+console.log()
   useEffect(() => {
     if (chainId !== '0x4') {
       switchNetwork(chainId);

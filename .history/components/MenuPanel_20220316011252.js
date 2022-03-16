@@ -74,9 +74,6 @@ const MenuPanel = ({ currencies, section }) => {
   // console.log('isInputDisabled', isInputDisabled);
   // console.log('inputOne', inputOne);
   // console.log('inputTwo', inputTwo);
-
-
-  
   const erc20AccountBalance = useCallback(async () => {
     if (user && provider) {
       const result = await Web3Api.account
@@ -122,7 +119,6 @@ const MenuPanel = ({ currencies, section }) => {
   const setExchangeCallback = useCallback(
     async (exchange) => {
       if (chainId === '0x4') {
-        console.log("lalalalallalalaalkdjfdakljfjdaklafsdkjlfdsjl")
         const data = await fetchERC20Balances();
         const tokenBalance = data?.find(
           (token) => token.token_address === exchange.toLowerCase()

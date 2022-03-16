@@ -16,8 +16,7 @@ import { setupHooks } from './hooks/setupHooks';
 import handler from './hooks/useChain';
 import { useMoralis, useMoralisWeb3Api } from 'react-moralis';
 export default function Web3Provider({ children }) {
-  const { web3, user } = useMoralis();
-  const moralis = useMoralis();
+  // const { web3, Moralis, user } = useMoralis();
   const [web3Api, setWeb3Api] = useState({
     provider: null,
     web3: null,
@@ -25,12 +24,6 @@ export default function Web3Provider({ children }) {
     registry: null,
     exchangeCurrent: null,
   });
-
-  useEffect(() => {
-    Moralis.onChainChanged(function (chain) {
-      setWeb3Api((api) => ({ ...api, chainId: chain }));
-    });
-  }, []);
 
   useEffect(() => {
     const loadProvider = async () => {
@@ -92,15 +85,18 @@ export default function Web3Provider({ children }) {
 
     loadProvider();
   }, []);
-
   const _web3Api = useMemo(() => {
     return {
       ...web3Api,
       switchNetwork: async () => {
-        // const didChange = await handler();
-        // if (didChange) {
-        //   setWeb3Api((api) => ({ ...api, chainId: "0x4" }));
-        // }
+        const chain = web3Api.provider?.network?.chainId;
+        if (chain !== '0x4') {
+        const didChange = await handler(web3Api?.provider);
+        }
+        if(didChange) {
+          setWeb3Api((api) => ({ ...api, chainId: chain }));
+        }
+        
       },
       setSlippage: (slippage) => {
         setWeb3Api((api) => ({ ...api, slippage }));
