@@ -35,15 +35,7 @@ const modalstyle = {
 };
 
 const Nav = () => {
-  const {
-    exchangeBunny,
-    provider,
-    slippage,
-    chainId,
-    switchNetwork,
-    connectorAuth,
-    web3,
-  } = useWeb3();
+  const { exchangeBunny, provider, slippage, chainId, switchNetwork , connectorAuth} = useWeb3();
   const Web3Api = useMoralisWeb3Api();
   let router = useRouter();
   const [pathname, setPathname] = useState(router.pathname);
@@ -54,13 +46,6 @@ const Nav = () => {
   const { isAuthenticated, authenticate, user, logout } = useMoralis();
   const [accountBalance, setAccountBalance] = useState(0);
   console.log('chainId chainId chainIdchainIds', chainId);
-console.log("web3",web3)
-  useEffect(() => {
-    if (chainId !== '0x4') {
-      switchNetwork(chainId);
-    }
-  }, [chainId, switchNetwork]);
-
   const ethAccountBalance = useCallback(async () => {
     if (user && provider) {
       const ScammCoinAbi = new ethers.Contract(
@@ -87,12 +72,10 @@ console.log("web3",web3)
 
   const switchNetworkCallback = useCallback(async () => {
     await switchNetwork();
+
   }, [switchNetwork]);
 
-  const authenticateCallback = useCallback(async () => {
-    await authenticate();
-    await switchNetwork();
-  }, [authenticate, switchNetwork]);
+  const authenticate
 
   useEffect(() => {
     async function getEthAccountBalance() {
@@ -346,9 +329,7 @@ console.log("web3",web3)
                     </>
                   ) : (
                     <div className="w-full p-6 bg-white rounded-br-3xl rounded-bl-3xl">
-                      <h1 className="text-dexfi-violet font-medium text-center pb-6">
-                        You{"'"}re connected to the wrong network.
-                      </h1>
+                      <h1 className='text-dexfi-violet font-medium text-center pb-6'>You{"'"}re connected to the wrong network.</h1>
                       <button
                         className="w-full border-cyan-500 border-2  text-cyan-500 font-bold py-3 px-12 rounded-2xl hover:opacity-75 transition-opacity duration-300"
                         onClick={switchNetworkCallback}
@@ -365,7 +346,7 @@ console.log("web3",web3)
       ) : (
         <button
           className=" mr-6 text-white font-bold py-1 px-4 shadow-slate-400 shadow-sm tracking-wide bg-pink-500 rounded-full active:translate-y-0.1 active:shadow-none active:opacity-90 hover:opacity-75 transition-opacity duration-150"
-          onClick={authenticateCallback}
+          onClick={() => connectorAuth()}
         >
           Connect Wallet
         </button>

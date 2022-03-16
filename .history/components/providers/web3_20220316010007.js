@@ -14,7 +14,7 @@ const Web3Context = createContext(null);
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 import { useMoralis, useMoralisWeb3Api } from 'react-moralis';
 export default function Web3Provider({ children }) {
-  // const { web3, Moralis, user } = useMoralis();
+  const { web3, Moralis, user } = useMoralis();
   const [web3Api, setWeb3Api] = useState({
     provider: null,
     web3: null,
@@ -87,7 +87,7 @@ export default function Web3Provider({ children }) {
     return {
       ...web3Api,
       switchNetwork: async () => {
-        // await Moralis.switchNetwork('0x4');
+        await Moralis.switchNetwork('0x4');
         setWeb3Api((api) => ({ ...api, chainId: '0x4' }));
       },
       setSlippage: (slippage) => {

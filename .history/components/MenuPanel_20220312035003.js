@@ -18,14 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Moralis from 'moralis';
 
 const MenuPanel = ({ currencies, section }) => {
-  const {
-    registry,
-    exchangeCurrent,
-    setExchangeCurrent,
-    provider,
-    slippage,
-    chainId,
-  } = useWeb3();
+  const { registry, exchangeCurrent, setExchangeCurrent, provider, slippage, chainId } = useWeb3();
   const { contract, balance, reserve } = exchangeCurrent ?? {};
   const [inputToken, setInputToken] = useState([currencies[0], 0]);
   const [outputToken, setOutputToken] = useState([currencies[1], 1]);
@@ -44,6 +37,9 @@ const MenuPanel = ({ currencies, section }) => {
   const [accountEthBalance, setAccountEthBalance] = useState(0);
   const [accountERC20Balance, setAccountERC20Balance] = useState(0);
   const { fetchERC20Balances } = useERC20Balances();
+
+
+
 
   const isSwapDisabled =
     section === 'swap' &&
@@ -118,17 +114,15 @@ const MenuPanel = ({ currencies, section }) => {
 
   const setExchangeCallback = useCallback(
     async (exchange) => {
-      if (chainId === '0x4') {
-        const data = await fetchERC20Balances();
-        const tokenBalance = data?.find(
-          (token) => token.token_address === exchange.toLowerCase()
-        );
-        tokenBalance
-          ? setAccountERC20Balance(
-              ethers.utils.formatEther(tokenBalance.balance)
-            )
-          : setAccountERC20Balance(0);
-      }
+      
+      const data = await fetchERC20Balances();
+      const tokenBalance = data.find(
+        (token) => token.token_address === exchange.toLowerCase()
+      );
+      tokenBalance
+        ? setAccountERC20Balance(ethers.utils.formatEther(tokenBalance.balance))
+        : setAccountERC20Balance(0);
+
       await setExchangeCurrent(exchange);
     },
     [setExchangeCurrent, fetchERC20Balances, chainId]
@@ -179,10 +173,10 @@ const MenuPanel = ({ currencies, section }) => {
     setOutputToken([currencies[prevIndex], prevIndex]);
     if (inputOne > 0) {
       if (menuItem === 1) {
-        setInputOne((parseFloat(inputTwo) * 990) / 1000);
+        setInputOne(((parseFloat(inputTwo) * 990) / 1000));
         setInputTwo(parseFloat(inputOne));
       } else {
-        setInputTwo((parseFloat(inputOne) * 1000) / 990);
+        setInputTwo(((parseFloat(inputOne) * 1000) / 990));
         setInputOne(parseFloat(inputTwo));
       }
     } else {

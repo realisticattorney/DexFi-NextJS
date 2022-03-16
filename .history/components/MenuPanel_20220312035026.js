@@ -120,7 +120,7 @@ const MenuPanel = ({ currencies, section }) => {
     async (exchange) => {
       if (chainId === '0x4') {
         const data = await fetchERC20Balances();
-        const tokenBalance = data?.find(
+        const tokenBalance = data.find(
           (token) => token.token_address === exchange.toLowerCase()
         );
         tokenBalance

@@ -42,7 +42,6 @@ const Nav = () => {
     chainId,
     switchNetwork,
     connectorAuth,
-    web3,
   } = useWeb3();
   const Web3Api = useMoralisWeb3Api();
   let router = useRouter();
@@ -54,13 +53,14 @@ const Nav = () => {
   const { isAuthenticated, authenticate, user, logout } = useMoralis();
   const [accountBalance, setAccountBalance] = useState(0);
   console.log('chainId chainId chainIdchainIds', chainId);
-console.log("web3",web3)
+
   useEffect(() => {
-    if (chainId !== '0x4') {
+    if (chainId !== "0x4")
+    {
       switchNetwork(chainId);
     }
-  }, [chainId, switchNetwork]);
-
+    
+  
   const ethAccountBalance = useCallback(async () => {
     if (user && provider) {
       const ScammCoinAbi = new ethers.Contract(
