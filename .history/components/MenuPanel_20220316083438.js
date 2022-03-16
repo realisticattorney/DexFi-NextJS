@@ -44,8 +44,8 @@ const MenuPanel = ({ currencies, section }) => {
   const { authenticate, user, isAuthenticating } = useMoralis();
   const Web3Api = useMoralisWeb3Api();
   const [accountEthBalance, setAccountEthBalance] = useState(0);
-  const [accountERC20Balance, setAccountERC20Balance] =
-    useState(userTokenBalance);
+  // const [accountERC20Balance, setAccountERC20Balance] =
+  //   useState(userTokenBalance);
   const { fetchERC20Balances } = useERC20Balances();
   console.log(
     'userTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalance,',
@@ -102,14 +102,6 @@ const MenuPanel = ({ currencies, section }) => {
 
     getEthAccountBalance();
   }, [ethAccountBalance]);
-
-  // useEffect(() => {
-  //   async function getEthAccountBalance() {
-  //     setAccountERC20Balance(userTokenBalance);
-  //   }
-
-  //   getEthAccountBalance();
-  // }, [userTokenBalance]);
 
   const exchangeHandler = useCallback(() => {
     if (inputToken[1] !== 1) {

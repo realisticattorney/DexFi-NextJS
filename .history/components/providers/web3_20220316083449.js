@@ -106,12 +106,12 @@ export default function Web3Provider({ children }) {
         if (tokenBalance) {
           setWeb3Api((api) => ({
             ...api,
-            accountERC20Balance: ethers.utils.formatEther(tokenBalance.balance),
+            userTokenBalance: ethers.utils.formatEther(tokenBalance.balance),
           }));
         } else {
           setWeb3Api((api) => ({
             ...api,
-            accountERC20Balance: 0,
+            userTokenBalance: 0,
           }));
         }
       },

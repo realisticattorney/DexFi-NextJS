@@ -26,7 +26,7 @@ const MenuPanel = ({ currencies, section }) => {
     slippage,
     chainId,
     switchNetwork,
-    userTokenBalance,
+    accountERC20Balance,
   } = useWeb3();
   const { contract, balance, reserve } = exchangeCurrent ?? {};
   const [inputToken, setInputToken] = useState([currencies[0], 0]);
@@ -44,12 +44,12 @@ const MenuPanel = ({ currencies, section }) => {
   const { authenticate, user, isAuthenticating } = useMoralis();
   const Web3Api = useMoralisWeb3Api();
   const [accountEthBalance, setAccountEthBalance] = useState(0);
-  const [accountERC20Balance, setAccountERC20Balance] =
-    useState(userTokenBalance);
+  // const [accountERC20Balance, ;
+  //   useState(userTokenBalance);
   const { fetchERC20Balances } = useERC20Balances();
   console.log(
     'userTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalance,',
-    userTokenBalance
+    accountERC20Balance
   );
   const isSwapDisabled =
     section === 'swap' &&
@@ -103,14 +103,6 @@ const MenuPanel = ({ currencies, section }) => {
     getEthAccountBalance();
   }, [ethAccountBalance]);
 
-  // useEffect(() => {
-  //   async function getEthAccountBalance() {
-  //     setAccountERC20Balance(userTokenBalance);
-  //   }
-
-  //   getEthAccountBalance();
-  // }, [userTokenBalance]);
-
   const exchangeHandler = useCallback(() => {
     if (inputToken[1] !== 1) {
       return inputToken[0].address;
@@ -133,35 +125,35 @@ const MenuPanel = ({ currencies, section }) => {
 
   const setExchangeCallback = useCallback(
     async (exchange) => {
-      if (exchange) {
-        await setExchangeCurrent(exchange);
-        if (chainId === '0x4') {
-          console.log('lalalalallalalaalkdjfdakljfjdaklafsdkjlfdsjl');
-          const data = await fetchERC20Balances();
-          const tokenBalance = data?.find(
-            (token) => token.token_address === exchange.toLowerCase()
-          );
-          if (tokenBalance) {
-            return ethers.utils.formatEther(tokenBalance.balance);
-          } else {
-            return 0;
-          }
-        }
-      } else {
-        const toBeExchange = exchangeHandler();
-        console.log('toBeExchange', toBeExchange);
-        console.log('lalalalallalalaalkdjfdakljfjdaklafsdkjlfdsjl');
-        const data = await fetchERC20Balances({ params: { chain: '0x4' } });
-        console.log('DATOOO', data);
-        const tokenBalance = data?.find(
-          (token) => token.token_address === toBeExchange.toLowerCase()
-        );
-        if (tokenBalance) {
-          return ethers.utils.formatEther(tokenBalance.balance);
-        } else {
-          return 0;
-        }
-      }
+      // if (exchange) {
+      await setExchangeCurrent(exchange);
+      //   if (chainId === '0x4') {
+      //     console.log('lalalalallalalaalkdjfdakljfjdaklafsdkjlfdsjl');
+      //     const data = await fetchERC20Balances();
+      //     const tokenBalance = data?.find(
+      //       (token) => token.token_address === exchange.toLowerCase()
+      //     );
+      //     if (tokenBalance) {
+      //       return ethers.utils.formatEther(tokenBalance.balance);
+      //     } else {
+      //       return 0;
+      //     }
+      //   }
+      // } else {
+      //   const toBeExchange = exchangeHandler();
+      //   console.log('toBeExchange', toBeExchange);
+      //   console.log('lalalalallalalaalkdjfdakljfjdaklafsdkjlfdsjl');
+      //   const data = await fetchERC20Balances({ params: { chain: '0x4' } });
+      //   console.log('DATOOO', data);
+      //   const tokenBalance = data?.find(
+      //     (token) => token.token_address === toBeExchange.toLowerCase()
+      //   );
+      //   if (tokenBalance) {
+      //     return ethers.utils.formatEther(tokenBalance.balance);
+      //   } else {
+      //     return 0;
+      //   }
+      // }
     },
     [setExchangeCurrent, fetchERC20Balances, chainId, exchangeHandler]
   );
@@ -176,14 +168,14 @@ const MenuPanel = ({ currencies, section }) => {
     switchNetwork(toBeExchange);
   }, [exchangeHandler, switchNetwork]);
 
-  const authenticateCallback = useCallback(async () => {
-    console.log('bbbb');
-    await authenticate();
-    if (Moralis.chainId !== '0x4') {
-      await Moralis.switchNetwork('0x4');
-      setAccountERC20Balance(await setExchangeCallback(false));
-    }
-  }, [authenticate, setExchangeCallback, chainId]);
+  // const authenticateCallback = useCallback(async () => {
+  //   console.log('bbbb');
+  //   await authenticate();
+  //   if (Moralis.chainId !== '0x4') {
+  //     await Moralis.switchNetwork('0x4');
+  //     await setExchangeCallback(false);
+  //   }
+  // }, [authenticate, setExchangeCallback]);
 
   useEffect(() => {
     currentTokenExchangeAddress.current = scammExchangeAddress;
@@ -197,7 +189,7 @@ const MenuPanel = ({ currencies, section }) => {
         isAuthenticating
       ) {
         currentTokenExchangeAddress.current = toBeExchange;
-        setAccountERC20Balance(await setExchangeCallback(toBeExchange));
+        await setExchangeCallback(toBeExchange);
       }
       console.log('base exchange loaded');
     }

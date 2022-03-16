@@ -103,13 +103,13 @@ const MenuPanel = ({ currencies, section }) => {
     getEthAccountBalance();
   }, [ethAccountBalance]);
 
-  // useEffect(() => {
-  //   async function getEthAccountBalance() {
-  //     setAccountERC20Balance(userTokenBalance);
-  //   }
+  useEffect(() => {
+    async function getEthAccountBalance() {
+      setAccountERC20Balance(await ethAccountBalance());
+    }
 
-  //   getEthAccountBalance();
-  // }, [userTokenBalance]);
+    getEthAccountBalance();
+  }, [ethAccountBalance]);
 
   const exchangeHandler = useCallback(() => {
     if (inputToken[1] !== 1) {
