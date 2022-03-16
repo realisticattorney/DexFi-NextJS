@@ -79,6 +79,10 @@ const MenuPanel = ({ currencies, section }) => {
     await Moralis.switchNetwork('0x4');
   }, []);
 
+  const authenticateCallback = useCallback(() => {
+    authenticate();
+    // await Moralis.switchNetwork('0x4');
+  }, [authenticate]);
 
   const erc20AccountBalance = useCallback(async () => {
     if (user && provider) {
@@ -514,11 +518,11 @@ const MenuPanel = ({ currencies, section }) => {
               isSwapDisabled
                 ? 'bg-gray-300 disabled:cursor-not-allowed'
                 : 'bg-pink-500'
-            } ${user && 'disabled:cursor-not-allowed'}`}
+            } ${!user && 'disabled:cursor-not-allowed'}`}
             disabled={
               (user && isSwapDisabled) ||
               (user && isAddDisabled) ||
-              (user && isInputDisabled)
+              isInputDisabled
             }
             onClick={() => {
               user
@@ -527,7 +531,7 @@ const MenuPanel = ({ currencies, section }) => {
                   : section === 'swap'
                   ? swap()
                   : add()
-                :  authenticate();
+                : authenticateCallback;
             }}
           >
             {user

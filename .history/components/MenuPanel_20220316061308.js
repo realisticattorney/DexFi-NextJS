@@ -515,11 +515,11 @@ const MenuPanel = ({ currencies, section }) => {
                 ? 'bg-gray-300 disabled:cursor-not-allowed'
                 : 'bg-pink-500'
             } ${user && 'disabled:cursor-not-allowed'}`}
-            disabled={
-              (user && isSwapDisabled) ||
-              (user && isAddDisabled) ||
-              (user && isInputDisabled)
-            }
+            // disabled={
+            //   (user && isSwapDisabled) ||
+            //   (user && isAddDisabled) ||
+            //   (user && isInputDisabled)
+            // }
             onClick={() => {
               user
                 ? chainId !== '0x4'
@@ -527,7 +527,7 @@ const MenuPanel = ({ currencies, section }) => {
                   : section === 'swap'
                   ? swap()
                   : add()
-                :  authenticate();
+                :  authenticate;
             }}
           >
             {user

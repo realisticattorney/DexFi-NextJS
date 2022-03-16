@@ -52,7 +52,7 @@ const Nav = () => {
   const { isAuthenticated, authenticate, user, logout } = useMoralis();
   const [accountBalance, setAccountBalance] = useState(0);
   console.log('chainId chainId chainIdchainIds', chainId);
-  console.log('provider', provider?.network);
+console.log("provider", provider?.network)
   // useEffect(() => {
   //   if (chainId !== '0x4') {
   //     await Moralis.switchNetwork(chainId);
@@ -84,18 +84,17 @@ const Nav = () => {
   }, [user, provider, Web3Api.account]);
 
   const switchNetworkCallback = useCallback(async () => {
-    await Moralis.switchNetwork('0x4');
+    await Moralis.switchNetwork("0x4");
   }, []);
 
   const authenticateCallback = useCallback(async () => {
     await authenticate();
-    await Moralis.switchNetwork('0x4');
+    await Moralis.switchNetwork("0x4");
   }, [authenticate]);
-
-  const logoutCallback = useCallback(async () => {
-    await logout();
-    window.location.reload();
-  }, [logout]);
+  const authenticateCallback = useCallback(async () => {
+    await authenticate();
+    await Moralis.switchNetwork("0x4");
+  }, [authenticate]);
 
   useEffect(() => {
     async function getEthAccountBalance() {
@@ -340,7 +339,7 @@ const Nav = () => {
                           </div>
                           <button
                             className="w-full border-cyan-500 border-2  text-cyan-500 font-bold py-3 px-12 rounded-2xl hover:opacity-75 transition-opacity duration-300"
-                            onClick={logoutCallback}
+                            onClick={logout}
                           >
                             Disconnect Wallet
                           </button>

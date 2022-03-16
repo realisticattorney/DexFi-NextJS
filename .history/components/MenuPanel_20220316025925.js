@@ -74,11 +74,9 @@ const MenuPanel = ({ currencies, section }) => {
   // console.log('isInputDisabled', isInputDisabled);
   // console.log('inputOne', inputOne);
   // console.log('inputTwo', inputTwo);
-
   const switchNetworkCallback = useCallback(async () => {
     await Moralis.switchNetwork('0x4');
   }, []);
-
 
   const erc20AccountBalance = useCallback(async () => {
     if (user && provider) {
@@ -518,20 +516,20 @@ const MenuPanel = ({ currencies, section }) => {
             disabled={
               (user && isSwapDisabled) ||
               (user && isAddDisabled) ||
-              (user && isInputDisabled)
+              isInputDisabled
             }
             onClick={() => {
               user
-                ? chainId !== '0x4'
+                ? chainId === '0x4'
                   ? switchNetworkCallback
                   : section === 'swap'
                   ? swap()
                   : add()
-                :  authenticate();
+                : authenticate();
             }}
           >
             {user
-              ? chainId !== '0x4'
+              ? chainId === '0x4'
                 ? 'Switch Network'
                 : section === 'swap'
                 ? isSwapDisabled

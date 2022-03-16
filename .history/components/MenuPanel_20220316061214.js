@@ -527,7 +527,7 @@ const MenuPanel = ({ currencies, section }) => {
                   : section === 'swap'
                   ? swap()
                   : add()
-                :  authenticate();
+                : authenticateCallback;
             }}
           >
             {user

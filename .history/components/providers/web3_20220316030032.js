@@ -31,7 +31,11 @@ export default function Web3Provider({ children }) {
       setWeb3Api((api) => ({ ...api, chainId: chain }));
     });
   }, []);
-  
+
+  const authenticateCallback = useCallback(async () => {
+    await authenticate();
+    await Moralis.switchNetwork("0x4");
+  }, [authenticate]);
 
   useEffect(() => {
     const loadProvider = async () => {

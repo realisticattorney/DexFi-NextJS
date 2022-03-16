@@ -340,7 +340,7 @@ const Nav = () => {
                           </div>
                           <button
                             className="w-full border-cyan-500 border-2  text-cyan-500 font-bold py-3 px-12 rounded-2xl hover:opacity-75 transition-opacity duration-300"
-                            onClick={logoutCallback}
+                            onClick={logout}
                           >
                             Disconnect Wallet
                           </button>
