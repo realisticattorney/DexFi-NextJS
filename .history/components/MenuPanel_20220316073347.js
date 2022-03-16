@@ -565,7 +565,7 @@ const MenuPanel = ({ currencies, section }) => {
             onClick={() => {
               user
                 ? chainId !== '0x4'
-                  ? switchNetworkCallback()
+                  ? switchNetworkCallback
                   : section === 'swap'
                   ? swap()
                   : add()

@@ -167,7 +167,7 @@ const MenuPanel = ({ currencies, section }) => {
   }, [setExchangeCallback]);
 
   const authenticateCallback = useCallback(async () => {
-    console.log("bbbb")
+    console.log('bbbb');
     await authenticate();
     if (chainId !== '0x4') {
       await Moralis.switchNetwork('0x4');
@@ -562,15 +562,15 @@ const MenuPanel = ({ currencies, section }) => {
               (user && isAddDisabled) ||
               (user && isInputDisabled && chainId === '0x4')
             }
-            onClick={() => {
+            onClick={
               user
                 ? chainId !== '0x4'
-                  ? switchNetworkCallback()
+                  ? switchNetworkCallback
                   : section === 'swap'
                   ? swap()
                   : add()
-                : authenticate();
-            }}
+                : authenticate()
+            }
           >
             {user
               ? chainId !== '0x4'

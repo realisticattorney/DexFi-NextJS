@@ -119,10 +119,6 @@ const MenuPanel = ({ currencies, section }) => {
 
   const setExchangeCallback = useCallback(
     async (exchange) => {
-      console.log('exchange', exchange);
-      console.log(
-        'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
-      );
       if (exchange) {
         await setExchangeCurrent(exchange);
         console.log('chainIDdddddd00000000000000000000000000', chainId);
@@ -140,11 +136,10 @@ const MenuPanel = ({ currencies, section }) => {
         }
       } else {
         if (chainId === '0x4') {
-          const toBeExchange = exchangeHandler();
           console.log('lalalalallalalaalkdjfdakljfjdaklafsdkjlfdsjl');
           const data = await fetchERC20Balances();
           const tokenBalance = data?.find(
-            (token) => token.token_address === toBeExchange.toLowerCase()
+            (token) => token.token_address === contract.address.toLowerCase()
           );
           if (tokenBalance) {
             return ethers.utils.formatEther(tokenBalance.balance);
@@ -154,26 +149,13 @@ const MenuPanel = ({ currencies, section }) => {
         }
       }
     },
-    [setExchangeCurrent, fetchERC20Balances, chainId, exchangeHandler]
+    [setExchangeCurrent, fetchERC20Balances, chainId, contract?.address]
   );
 
   const switchNetworkCallback = useCallback(async () => {
-    console.log('999999999999999999999999999999999999999999999999999');
     await Moralis.switchNetwork('0x4');
-    console.log(
-      '77777777777777777777777777777777777777777777777777777777777777777777777777777'
-    );
     setAccountERC20Balance(await setExchangeCallback(false));
-  }, [setExchangeCallback]);
-
-  const authenticateCallback = useCallback(async () => {
-    console.log("bbbb")
-    await authenticate();
-    if (chainId !== '0x4') {
-      await Moralis.switchNetwork('0x4');
-      setAccountERC20Balance(await setExchangeCallback(false));
-    }
-  }, [authenticate, setExchangeCallback, chainId]);
+  }, []);
 
   useEffect(() => {
     currentTokenExchangeAddress.current = scammExchangeAddress;
@@ -560,12 +542,12 @@ const MenuPanel = ({ currencies, section }) => {
             disabled={
               (user && isSwapDisabled) ||
               (user && isAddDisabled) ||
-              (user && isInputDisabled && chainId === '0x4')
+              (user && isInputDisabled)
             }
             onClick={() => {
               user
                 ? chainId !== '0x4'
-                  ? switchNetworkCallback()
+                  ? switchNetworkCallback
                   : section === 'swap'
                   ? swap()
                   : add()

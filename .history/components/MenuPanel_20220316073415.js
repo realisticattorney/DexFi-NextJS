@@ -562,15 +562,15 @@ const MenuPanel = ({ currencies, section }) => {
               (user && isAddDisabled) ||
               (user && isInputDisabled && chainId === '0x4')
             }
-            onClick={() => {
+            onClick={
               user
                 ? chainId !== '0x4'
-                  ? switchNetworkCallback()
+                  ? switchNetworkCallback
                   : section === 'swap'
                   ? swap()
                   : add()
                 : authenticate();
-            }}
+            }
           >
             {user
               ? chainId !== '0x4'

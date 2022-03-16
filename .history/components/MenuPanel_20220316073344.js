@@ -560,12 +560,12 @@ const MenuPanel = ({ currencies, section }) => {
             disabled={
               (user && isSwapDisabled) ||
               (user && isAddDisabled) ||
-              (user && isInputDisabled && chainId === '0x4')
+              (user && isInputDisabled && chainId !== '0x4')
             }
             onClick={() => {
               user
                 ? chainId !== '0x4'
-                  ? switchNetworkCallback()
+                  ? switchNetworkCallback
                   : section === 'swap'
                   ? swap()
                   : add()

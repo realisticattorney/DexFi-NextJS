@@ -167,13 +167,12 @@ const MenuPanel = ({ currencies, section }) => {
   }, [setExchangeCallback]);
 
   const authenticateCallback = useCallback(async () => {
-    console.log("bbbb")
     await authenticate();
     if (chainId !== '0x4') {
       await Moralis.switchNetwork('0x4');
       setAccountERC20Balance(await setExchangeCallback(false));
     }
-  }, [authenticate, setExchangeCallback, chainId]);
+  }, [authenticate, ]);
 
   useEffect(() => {
     currentTokenExchangeAddress.current = scammExchangeAddress;
@@ -560,16 +559,16 @@ const MenuPanel = ({ currencies, section }) => {
             disabled={
               (user && isSwapDisabled) ||
               (user && isAddDisabled) ||
-              (user && isInputDisabled && chainId === '0x4')
+              (user && isInputDisabled)
             }
             onClick={() => {
               user
                 ? chainId !== '0x4'
-                  ? switchNetworkCallback()
+                  ? switchNetworkCallback
                   : section === 'swap'
                   ? swap()
                   : add()
-                : authenticate();
+                : authenticateCallback;
             }}
           >
             {user
