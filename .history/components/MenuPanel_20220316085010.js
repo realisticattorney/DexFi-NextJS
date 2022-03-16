@@ -137,8 +137,8 @@ const MenuPanel = ({ currencies, section }) => {
         const toBeExchange = exchangeHandler();
         console.log('toBeExchange', toBeExchange);
         console.log('lalalalallalalaalkdjfdakljfjdaklafsdkjlfdsjl');
-        const data = await fetchERC20Balances({ params: { chain: '0x4' } });
-        console.log('DATOOO', data);
+        const data = await fetchERC20Balances({ params: { chain: "0x4" } });
+        console.log("DATOOO", data);
         const tokenBalance = data?.find(
           (token) => token.token_address === toBeExchange.toLowerCase()
         );
@@ -161,14 +161,14 @@ const MenuPanel = ({ currencies, section }) => {
     setAccountERC20Balance(await setExchangeCallback(null));
   }, [setExchangeCallback]);
 
-  // const authenticateCallback = useCallback(async () => {
-  //   console.log('bbbb');
-  //   await authenticate();
-  //   if (Moralis.chainId !== '0x4') {
-  //     await Moralis.switchNetwork('0x4');
-  //     setAccountERC20Balance(await setExchangeCallback(false));
-  //   }
-  // }, [authenticate, setExchangeCallback, chainId]);
+  const authenticateCallback = useCallback(async () => {
+    console.log('bbbb');
+    await authenticate();
+    if (Moralis.chainId !== '0x4') {
+      await Moralis.switchNetwork('0x4');
+      setAccountERC20Balance(await setExchangeCallback(false));
+    }
+  }, [authenticate, setExchangeCallback, chainId]);
 
   useEffect(() => {
     currentTokenExchangeAddress.current = scammExchangeAddress;

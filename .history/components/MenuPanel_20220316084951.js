@@ -25,6 +25,8 @@ const MenuPanel = ({ currencies, section }) => {
     provider,
     slippage,
     chainId,
+    switchNetwork,
+    userTokenBalance,
   } = useWeb3();
   const { contract, balance, reserve } = exchangeCurrent ?? {};
   const [inputToken, setInputToken] = useState([currencies[0], 0]);
@@ -42,9 +44,13 @@ const MenuPanel = ({ currencies, section }) => {
   const { authenticate, user, isAuthenticating } = useMoralis();
   const Web3Api = useMoralisWeb3Api();
   const [accountEthBalance, setAccountEthBalance] = useState(0);
-  const [accountERC20Balance, setAccountERC20Balance] = useState(0);
+  const [accountERC20Balance, setAccountERC20Balance] =
+    useState(userTokenBalance);
   const { fetchERC20Balances } = useERC20Balances();
-
+  console.log(
+    'userTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalance,',
+    userTokenBalance
+  );
   const isSwapDisabled =
     section === 'swap' &&
     ((inputToken[1] !== 1 &&
@@ -96,6 +102,14 @@ const MenuPanel = ({ currencies, section }) => {
 
     getEthAccountBalance();
   }, [ethAccountBalance]);
+
+  // useEffect(() => {
+  //   async function getEthAccountBalance() {
+  //     setAccountERC20Balance(userTokenBalance);
+  //   }
+
+  //   getEthAccountBalance();
+  // }, [userTokenBalance]);
 
   const exchangeHandler = useCallback(() => {
     if (inputToken[1] !== 1) {
@@ -158,17 +172,18 @@ const MenuPanel = ({ currencies, section }) => {
     console.log(
       '77777777777777777777777777777777777777777777777777777777777777777777777777777'
     );
-    setAccountERC20Balance(await setExchangeCallback(null));
-  }, [setExchangeCallback]);
+    const toBeExchange = exchangeHandler();
+    switchNetwork(toBeExchange);
+  }, [exchangeHandler, switchNetwork]);
 
-  // const authenticateCallback = useCallback(async () => {
-  //   console.log('bbbb');
-  //   await authenticate();
-  //   if (Moralis.chainId !== '0x4') {
-  //     await Moralis.switchNetwork('0x4');
-  //     setAccountERC20Balance(await setExchangeCallback(false));
-  //   }
-  // }, [authenticate, setExchangeCallback, chainId]);
+  const authenticateCallback = useCallback(async () => {
+    console.log('bbbb');
+    await authenticate();
+    if (Moralis.chainId !== '0x4') {
+      await Moralis.switchNetwork('0x4');
+      setAccountERC20Balance(await setExchangeCallback(false));
+    }
+  }, [authenticate, setExchangeCallback, chainId]);
 
   useEffect(() => {
     currentTokenExchangeAddress.current = scammExchangeAddress;

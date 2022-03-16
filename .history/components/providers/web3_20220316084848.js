@@ -98,7 +98,7 @@ export default function Web3Provider({ children }) {
   const _web3Api = useMemo(() => {
     return {
       ...web3Api,
-      switchNetwork: async () => {
+      switchNetwork: async (toBeExchange) => {
         // const data = await fetchERC20Balances({ params: { chain: '0x4' } });
         // const tokenBalance = data?.find(
         //   (token) => token.token_address === toBeExchange.toLowerCase()

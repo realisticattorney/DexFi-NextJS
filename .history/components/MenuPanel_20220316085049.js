@@ -25,6 +25,7 @@ const MenuPanel = ({ currencies, section }) => {
     provider,
     slippage,
     chainId,
+    
   } = useWeb3();
   const { contract, balance, reserve } = exchangeCurrent ?? {};
   const [inputToken, setInputToken] = useState([currencies[0], 0]);
@@ -161,14 +162,14 @@ const MenuPanel = ({ currencies, section }) => {
     setAccountERC20Balance(await setExchangeCallback(null));
   }, [setExchangeCallback]);
 
-  // const authenticateCallback = useCallback(async () => {
-  //   console.log('bbbb');
-  //   await authenticate();
-  //   if (Moralis.chainId !== '0x4') {
-  //     await Moralis.switchNetwork('0x4');
-  //     setAccountERC20Balance(await setExchangeCallback(false));
-  //   }
-  // }, [authenticate, setExchangeCallback, chainId]);
+  const authenticateCallback = useCallback(async () => {
+    console.log('bbbb');
+    await authenticate();
+    if (Moralis.chainId !== '0x4') {
+      await Moralis.switchNetwork('0x4');
+      setAccountERC20Balance(await setExchangeCallback(false));
+    }
+  }, [authenticate, setExchangeCallback, chainId]);
 
   useEffect(() => {
     currentTokenExchangeAddress.current = scammExchangeAddress;
