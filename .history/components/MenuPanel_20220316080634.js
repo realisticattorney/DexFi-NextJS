@@ -137,8 +137,7 @@ const MenuPanel = ({ currencies, section }) => {
         const toBeExchange = exchangeHandler();
         console.log('toBeExchange', toBeExchange);
         console.log('lalalalallalalaalkdjfdakljfjdaklafsdkjlfdsjl');
-        const data = await fetchERC20Balances({ params: { chain: '0x4' } });
-        console.log('DATOOO', data);
+        const data = await fetchERC20Balances();
         const tokenBalance = data?.find(
           (token) => token.token_address === toBeExchange.toLowerCase()
         );

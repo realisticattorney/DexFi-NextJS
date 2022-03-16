@@ -67,7 +67,7 @@ const MenuPanel = ({ currencies, section }) => {
     inputOne === null ||
     inputTwo === null;
 
-  console.log('accountERC20Balance', accountERC20Balance);
+  // console.log('accountERC20Balance', accountERC20Balance);
   // console.log('accountEthBalance', accountEthBalance);
   // console.log('isSwapDisabled', isSwapDisabled);
   // console.log('isAddDisabled', isAddDisabled);
@@ -121,7 +121,8 @@ const MenuPanel = ({ currencies, section }) => {
     async (exchange) => {
       if (exchange) {
         await setExchangeCurrent(exchange);
-        if (chainId === '0x4') {
+        console.log('chainIDdddddd00000000000000000000000000', chainId);
+        if (Moralis.chainId === '0x4') {
           console.log('lalalalallalalaalkdjfdakljfjdaklafsdkjlfdsjl');
           const data = await fetchERC20Balances();
           const tokenBalance = data?.find(
@@ -134,20 +135,18 @@ const MenuPanel = ({ currencies, section }) => {
           }
         }
       } else {
-        const toBeExchange = exchangeHandler();
-        console.log('toBeExchange', toBeExchange);
-        console.log('lalalalallalalaalkdjfdakljfjdaklafsdkjlfdsjl');
-        const data = await fetchERC20Balances({ params: { chain: '0x4' } });
-        console.log('DATOOO', data);
-        const tokenBalance = data?.find(
-          (token) => token.token_address === toBeExchange.toLowerCase()
-        );
-        if (tokenBalance) {
-          return ethers.utils.formatEther(tokenBalance.balance);
-        } else {
-          return 0;
+          const toBeExchange = exchangeHandler();
+          console.log('lalalalallalalaalkdjfdakljfjdaklafsdkjlfdsjl');
+          const data = await fetchERC20Balances();
+          const tokenBalance = data?.find(
+            (token) => token.token_address === toBeExchange.toLowerCase()
+          );
+          if (tokenBalance) {
+            return ethers.utils.formatEther(tokenBalance.balance);
+          } else {
+            return 0;
+          }
         }
-      }
     },
     [setExchangeCurrent, fetchERC20Balances, chainId, exchangeHandler]
   );
@@ -158,7 +157,7 @@ const MenuPanel = ({ currencies, section }) => {
     console.log(
       '77777777777777777777777777777777777777777777777777777777777777777777777777777'
     );
-    setAccountERC20Balance(await setExchangeCallback(null));
+    setAccountERC20Balance(await setExchangeCallback(false));
   }, [setExchangeCallback]);
 
   const authenticateCallback = useCallback(async () => {

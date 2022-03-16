@@ -67,7 +67,7 @@ const MenuPanel = ({ currencies, section }) => {
     inputOne === null ||
     inputTwo === null;
 
-  console.log('accountERC20Balance', accountERC20Balance);
+  // console.log('accountERC20Balance', accountERC20Balance);
   // console.log('accountEthBalance', accountEthBalance);
   // console.log('isSwapDisabled', isSwapDisabled);
   // console.log('isAddDisabled', isAddDisabled);
@@ -135,10 +135,8 @@ const MenuPanel = ({ currencies, section }) => {
         }
       } else {
         const toBeExchange = exchangeHandler();
-        console.log('toBeExchange', toBeExchange);
         console.log('lalalalallalalaalkdjfdakljfjdaklafsdkjlfdsjl');
-        const data = await fetchERC20Balances({ params: { chain: '0x4' } });
-        console.log('DATOOO', data);
+        const data = await fetchERC20Balances();
         const tokenBalance = data?.find(
           (token) => token.token_address === toBeExchange.toLowerCase()
         );
@@ -158,7 +156,7 @@ const MenuPanel = ({ currencies, section }) => {
     console.log(
       '77777777777777777777777777777777777777777777777777777777777777777777777777777'
     );
-    setAccountERC20Balance(await setExchangeCallback(null));
+    setAccountERC20Balance(await setExchangeCallback(false));
   }, [setExchangeCallback]);
 
   const authenticateCallback = useCallback(async () => {
