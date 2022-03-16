@@ -44,7 +44,7 @@ const MenuPanel = ({ currencies, section }) => {
   const { authenticate, user, isAuthenticating } = useMoralis();
   const Web3Api = useMoralisWeb3Api();
   const [accountEthBalance, setAccountEthBalance] = useState(0);
-  const [accountERC20Balance, setAccountERC20Balance] = useState(userTokenBalance);
+  const [accountERC20Balance, setAccountERC20Balance] = useState(0);
   const { fetchERC20Balances } = useERC20Balances();
   console.log(
     'userTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalance,',

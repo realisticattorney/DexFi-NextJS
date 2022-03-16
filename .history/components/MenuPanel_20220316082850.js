@@ -25,7 +25,6 @@ const MenuPanel = ({ currencies, section }) => {
     provider,
     slippage,
     chainId,
-    switchNetwork,
     userTokenBalance,
   } = useWeb3();
   const { contract, balance, reserve } = exchangeCurrent ?? {};
@@ -44,12 +43,9 @@ const MenuPanel = ({ currencies, section }) => {
   const { authenticate, user, isAuthenticating } = useMoralis();
   const Web3Api = useMoralisWeb3Api();
   const [accountEthBalance, setAccountEthBalance] = useState(0);
-  const [accountERC20Balance, setAccountERC20Balance] = useState(userTokenBalance);
+  const [accountERC20Balance, setAccountERC20Balance] = useState(0);
   const { fetchERC20Balances } = useERC20Balances();
-  console.log(
-    'userTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalance,',
-    userTokenBalance
-  );
+console.log()
   const isSwapDisabled =
     section === 'swap' &&
     ((inputToken[1] !== 1 &&
@@ -163,9 +159,8 @@ const MenuPanel = ({ currencies, section }) => {
     console.log(
       '77777777777777777777777777777777777777777777777777777777777777777777777777777'
     );
-    const toBeExchange = exchangeHandler();
-    switchNetwork(toBeExchange)
-  }, [exchangeHandler]);
+    setAccountERC20Balance(await setExchangeCallback(null));
+  }, [setExchangeCallback]);
 
   const authenticateCallback = useCallback(async () => {
     console.log('bbbb');

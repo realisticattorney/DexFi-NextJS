@@ -89,7 +89,7 @@ const Nav = () => {
 
   const authenticateCallback = useCallback(async () => {
     await authenticate();
-    // await Moralis.switchNetwork('0x4');
+    await Moralis.switchNetwork('0x4');
   }, [authenticate]);
 
   const logoutCallback = useCallback(async () => {

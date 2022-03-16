@@ -104,21 +104,16 @@ export default function Web3Provider({ children }) {
           (token) => token.token_address === toBeExchange.toLowerCase()
         );
         if (tokenBalance) {
-          setWeb3Api((api) => ({
-            ...api,
-            userTokenBalance: ethers.utils.formatEther(tokenBalance.balance),
-          }));
+          return ethers.utils.formatEther(tokenBalance.balance);
         } else {
-          setWeb3Api((api) => ({
-            ...api,
-            userTokenBalance: 0,
-          }));
+          return 0;
         }
       },
       setSlippage: (slippage) => {
         setWeb3Api((api) => ({ ...api, slippage }));
       },
       setTxSpeed: (txSpeed) => {
+        setWeb3Api((api) => ({ ...api, txSpeed }));
         setWeb3Api((api) => ({ ...api, txSpeed }));
       },
       setExchangeCurrent: async (exchange) => {

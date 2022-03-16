@@ -72,7 +72,6 @@ export default function Web3Provider({ children }) {
           chainId,
           slippage: 0.5,
           txSpeed: 5,
-          userTokenBalance: 0,
           exchangeBunny: {
             balance: exchangeBalance,
             reserve: getReserve,
@@ -104,15 +103,9 @@ export default function Web3Provider({ children }) {
           (token) => token.token_address === toBeExchange.toLowerCase()
         );
         if (tokenBalance) {
-          setWeb3Api((api) => ({
-            ...api,
-            userTokenBalance: ethers.utils.formatEther(tokenBalance.balance),
-          }));
+          return ethers.utils.formatEther(tokenBalance.balance);
         } else {
-          setWeb3Api((api) => ({
-            ...api,
-            userTokenBalance: 0,
-          }));
+          return 0;
         }
       },
       setSlippage: (slippage) => {

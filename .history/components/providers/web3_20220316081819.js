@@ -16,7 +16,6 @@ import { setupHooks } from './hooks/setupHooks';
 import handler from './hooks/useChain';
 import { useMoralis, useERC20Balances, useMoralisWeb3Api } from 'react-moralis';
 export default function Web3Provider({ children }) {
-  const { fetchERC20Balances } = useERC20Balances();
   const { web3, user } = useMoralis();
   const moralis = useMoralis();
   const [web3Api, setWeb3Api] = useState({
@@ -72,7 +71,6 @@ export default function Web3Provider({ children }) {
           chainId,
           slippage: 0.5,
           txSpeed: 5,
-          userTokenBalance: 0,
           exchangeBunny: {
             balance: exchangeBalance,
             reserve: getReserve,
@@ -98,22 +96,8 @@ export default function Web3Provider({ children }) {
   const _web3Api = useMemo(() => {
     return {
       ...web3Api,
-      switchNetwork: async (toBeExchange) => {
-        const data = await fetchERC20Balances({ params: { chain: '0x4' } });
-        const tokenBalance = data?.find(
-          (token) => token.token_address === toBeExchange.toLowerCase()
-        );
-        if (tokenBalance) {
-          setWeb3Api((api) => ({
-            ...api,
-            userTokenBalance: ethers.utils.formatEther(tokenBalance.balance),
-          }));
-        } else {
-          setWeb3Api((api) => ({
-            ...api,
-            userTokenBalance: 0,
-          }));
-        }
+      switchNetwork: async () => {
+        
       },
       setSlippage: (slippage) => {
         setWeb3Api((api) => ({ ...api, slippage }));

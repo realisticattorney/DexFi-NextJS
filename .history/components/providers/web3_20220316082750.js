@@ -109,10 +109,7 @@ export default function Web3Provider({ children }) {
             userTokenBalance: ethers.utils.formatEther(tokenBalance.balance),
           }));
         } else {
-          setWeb3Api((api) => ({
-            ...api,
-            userTokenBalance: 0,
-          }));
+          return 0;
         }
       },
       setSlippage: (slippage) => {
