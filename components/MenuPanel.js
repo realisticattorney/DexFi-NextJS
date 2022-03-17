@@ -290,6 +290,7 @@ const MenuPanel = ({ currencies, section }) => {
             ? (input * 99 * reserve) / (balance * 100 + input * 99)
             : (input * 99 * balance) / (reserve * 100 + input * 99);
       }
+      console.log("amount",amount);
       if (id === '1') {
         setInputOne(parseFloat(input));
         setInputTwo(parseFloat(amount));
@@ -475,6 +476,7 @@ const MenuPanel = ({ currencies, section }) => {
           <SwitchIcon
             handleMenuItemClick={handleMenuItemClick}
             outputToken={outputToken}
+            inputToken={inputToken}
             callExchange={callExchange}
           />
         ) : (

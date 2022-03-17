@@ -1,6 +1,7 @@
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ImportExportIcon from '@mui/icons-material/ImportExport';
 import { styled } from '@mui/material/styles';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 const Icon = styled((props) => (
   <div {...props}>
@@ -33,13 +34,23 @@ const Icon = styled((props) => (
   }
 `;
 
-const SwitchIcon = ({ handleMenuItemClick, outputToken }) => {
+const SwitchIcon = ({ handleMenuItemClick, outputToken, inputToken }) => {
+  const ref = useRef(true);
+  const handleClick = useCallback(() => {
+    if (outputToken[1] === 1 || inputToken[1] === 1) {
+      handleMenuItemClick(1, outputToken[1]);
+    } else if (ref.current === true) {
+      handleMenuItemClick(outputToken[1], 1);
+      ref.current = false;
+    } else {
+      handleMenuItemClick(inputToken[1], 2);
+      ref.current = true;
+    }
+  }, [handleMenuItemClick, outputToken, inputToken]);
+
   return (
     <div className="text-center -mt-2 -mb-2">
-      <button
-        className="w-fit"
-        onClick={() => handleMenuItemClick(1, outputToken[1])}
-      >
+      <button className="w-fit" onClick={() => handleClick()}>
         <Icon
           sx={{
             color: '#EC4899',
