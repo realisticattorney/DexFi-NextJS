@@ -64,7 +64,7 @@ const MenuItemList = ({
           <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />
         </button>
         {token[1] !== 1 && (
-          <h1 className="text-sm text-dexfi-violet">
+          <h1 className="text-sm text-dexfi-grayviolet font-medium">
             Balance:{' '}
             {user && parseFloat(accountERC20Balance).toFixed(2) > 0
               ? parseFloat(accountERC20Balance).toFixed(2)
@@ -73,7 +73,7 @@ const MenuItemList = ({
         )}
 
         {token[1] === 1 && (
-          <h1 className="text-sm text-dexfi-violet">
+          <h1 className="text-sm text-dexfi-grayviolet font-medium">
             Balance:{' '}
             {parseFloat(accountEthBalance).toFixed(2) > 0
               ? parseFloat(accountEthBalance).toFixed(2)
