@@ -9,7 +9,6 @@ const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
 const isServerInfo = Boolean(APP_ID && SERVER_URL);
 
-///progress bar
 const progress = new ProgressBar({
   size: 3,
   color: '#7645D9',
