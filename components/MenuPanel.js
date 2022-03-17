@@ -332,7 +332,6 @@ const MenuPanel = ({ currencies, section }) => {
         currentExchangeAddress
       )
     );
-    console.log('allowanceAmount', allowanceAmount);
     if (allowanceAmount > inputOne) {
       return [exchangeUserConnection, allowanceAmount];
     }

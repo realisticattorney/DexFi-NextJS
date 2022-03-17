@@ -5,7 +5,6 @@ import MenuPanel from '../components/MenuPanel';
 
 export default function Add(props) {
   const { currencies } = props;
-  console.log(currencies);
   return (
     <div className="flex-col ">
       <div className="p-6 mx-auto w-min">

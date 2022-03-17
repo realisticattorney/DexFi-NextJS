@@ -83,15 +83,12 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
       success: 'Approve resolved 👌',
       error: 'Approve rejected 🤯',
     });
-    console.log('was approved?', wasApproved);
     const allowanceAmount = ethers.utils.formatEther(
       await tokenUserConnection.allowance(
         await signer.getAddress(),
         contract.address
       )
     );
-
-    console.log('allowanceAmount', allowanceAmount);
 
     if (allowanceAmount === '0') {
       toast.error('No allowance');
@@ -115,7 +112,6 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
         error: 'Tx rejected 🤯',
       }
     );
-    console.log('transaction', transaction);
     await toast.promise(transaction.wait(), {
       pending: 'Mining of tx is pending',
       success: 'Mining of tx resolved 👌',
