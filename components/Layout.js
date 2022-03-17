@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
       <Head>
         <title>Bunny Swap</title>
         <link rel="icon" href="/favicon.svg" />
-        <meta property="og:image" content="/images/ogg.png" />
+        <meta property="og:image" content="/bunnyogg.png" />
       </Head>
       <div className="flex flex-col sm:min-h-screen min-w-full w-fit sm:w-full">
         <Nav />
