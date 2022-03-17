@@ -9,7 +9,6 @@ const MenuPanelFooter = ({
   balance,
   reserve,
 }) => {
-  console.log('inputTokeninputToken', inputToken);
   if (inputOne > 0 && section === 'swap') {
     return (
       <div className="flex-col mt-5 relative py-4 w-[328px] min-h-[95px] bg-white rounded-3xl border border-gray-50">
@@ -26,7 +25,8 @@ const MenuPanelFooter = ({
             Price Impact
           </h2>
           {inputTwo > 0 ? (
-            outputToken[1] === 1 ? (
+            outputToken[1] === 1 ||
+            (outputToken[1] !== 1 && inputToken[1] !== 1) ? (
               <h2 className="text-emerald-400 font-medium text-sm tracking-wide">
                 {'<'}
                 {(

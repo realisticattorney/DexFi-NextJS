@@ -239,7 +239,6 @@ const MenuPanel = ({ currencies, section }) => {
         return;
       }
       let intoNumb;
-      let inpot;
       let amount;
       amount =
         id === '1' ? (balance * input) / reserve : (reserve * input) / balance;
@@ -252,8 +251,7 @@ const MenuPanel = ({ currencies, section }) => {
         setInputTwo(parseFloat(input));
         setInputOne(amount);
       }
-      inpot = parseInt(input);
-      setShareOfPool((inpot / (inpot + intoNumb)) * 100);
+      setShareOfPool((parseInt(input) / (parseInt(input) + intoNumb)) * 100);
     },
     [balance, reserve]
   );
@@ -292,7 +290,6 @@ const MenuPanel = ({ currencies, section }) => {
             ? (input * 99 * reserve) / (balance * 100 + input * 99)
             : (input * 99 * balance) / (reserve * 100 + input * 99);
       }
-
       if (id === '1') {
         setInputOne(parseFloat(input));
         setInputTwo(parseFloat(amount));
@@ -585,6 +582,7 @@ const MenuPanel = ({ currencies, section }) => {
         section={section}
         balance={balance}
         reserve={reserve}
+        shareOfPool={shareOfPool}
       />
     </>
   );
