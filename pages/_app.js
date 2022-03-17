@@ -12,7 +12,7 @@ const isServerInfo = Boolean(APP_ID && SERVER_URL);
 ///progress bar
 const progress = new ProgressBar({
   size: 3,
-  color: '#302E2F',
+  color: '#7645D9',
   className: 'z-50',
   delay: 30,
 });
@@ -21,14 +21,17 @@ Router.events.on('routeChangeStart', progress.start);
 Router.events.on('routeChangeComplete', progress.finish);
 Router.events.on('routeChangeError', progress.finish);
 
-
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
-  
+
   return (
     <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
       <Layout>
-        <Component {...pageProps} isServerInfo={isServerInfo} key={router.asPath}  />
+        <Component
+          {...pageProps}
+          isServerInfo={isServerInfo}
+          key={router.asPath}
+        />
       </Layout>
     </MoralisProvider>
   );
