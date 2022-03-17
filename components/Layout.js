@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
   return (
     <Web3Provider>
       <Head>
-        <title>Bunny Swap</title>
+        <title>BunnySwap</title>
         <link rel="icon" href="/favicon.svg" />
         <meta property="og:image" content="/bunnyogg.png" />
       </Head>
