@@ -72,7 +72,7 @@ export default function Web3Provider({ children }) {
           chainId,
           slippage: 0.5,
           txSpeed: 5,
-          // accountERC20Balance: 0,
+          accountERC20Balance: 0,
           exchangeBunny: {
             balance: exchangeBalance,
             reserve: getReserve,
@@ -98,22 +98,11 @@ export default function Web3Provider({ children }) {
   const _web3Api = useMemo(() => {
     return {
       ...web3Api,
-      switchNetwork: async () => {
-        // const data = await fetchERC20Balances({ params: { chain: '0x4' } });
-        // const tokenBalance = data?.find(
-        //   (token) => token.token_address === toBeExchange.toLowerCase()
-        // );
-        // if (tokenBalance) {
-        //   setWeb3Api((api) => ({
-        //     ...api,
-        //     accountERC20Balance: ethers.utils.formatEther(tokenBalance.balance),
-        //   }));
-        // } else {
-        //   setWeb3Api((api) => ({
-        //     ...api,
-        //     accountERC20Balance: 0,
-        //   }));
-        // }
+      switchNetwork: async (tokenBalance) => {
+        setWeb3Api((api) => ({
+          ...api,
+          accountERC20Balance: tokenBalance,
+        }));
       },
       setSlippage: (slippage) => {
         setWeb3Api((api) => ({ ...api, slippage }));
