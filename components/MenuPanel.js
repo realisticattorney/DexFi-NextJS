@@ -44,13 +44,7 @@ const MenuPanel = ({ currencies, section }) => {
   const { authenticate, user, isAuthenticating } = useMoralis();
   const Web3Api = useMoralisWeb3Api();
   const [accountEthBalance, setAccountEthBalance] = useState(0);
-  // const [accountERC20Balance, ;
-  //   useState(userTokenBalance);
   const { fetchERC20Balances } = useERC20Balances();
-  console.log(
-    'userTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalance,',
-    accountERC20Balance
-  );
   const isSwapDisabled =
     section === 'swap' &&
     ((inputToken[1] !== 1 &&
@@ -72,14 +66,6 @@ const MenuPanel = ({ currencies, section }) => {
     inputTwo === '' ||
     inputOne === null ||
     inputTwo === null;
-
-  console.log('accountERC20Balance', accountERC20Balance);
-  // console.log('accountEthBalance', accountEthBalance);
-  // console.log('isSwapDisabled', isSwapDisabled);
-  // console.log('isAddDisabled', isAddDisabled);
-  // console.log('isInputDisabled', isInputDisabled);
-  // console.log('inputOne', inputOne);
-  // console.log('inputTwo', inputTwo);
 
   const ethAccountBalance = useCallback(async () => {
     if (user && provider) {
@@ -126,9 +112,8 @@ const MenuPanel = ({ currencies, section }) => {
   const setExchangeCallback = useCallback(
     async (exchange) => {
       if (exchange) {
-        await setExchangeCurrent(exchange);
         if (chainId === '0x4') {
-          console.log('lalalalallalalaalkdjfdakljfjdaklafsdkjlfdsjl');
+          await setExchangeCurrent(exchange);
           const data = await fetchERC20Balances();
           const tokenBalance = data?.find(
             (token) => token.token_address === exchange.toLowerCase()
@@ -141,10 +126,7 @@ const MenuPanel = ({ currencies, section }) => {
         }
       } else {
         const toBeExchange = exchangeHandler();
-        console.log('toBeExchange', toBeExchange);
-        console.log('lalalalallalalaalkdjfdakljfjdaklafsdkjlfdsjl');
         const data = await fetchERC20Balances({ params: { chain: '0x4' } });
-        console.log('DATOOO', data);
         const tokenBalance = data?.find(
           (token) => token.token_address === toBeExchange.toLowerCase()
         );
@@ -159,22 +141,9 @@ const MenuPanel = ({ currencies, section }) => {
   );
 
   const switchNetworkCallback = useCallback(async () => {
-    console.log('999999999999999999999999999999999999999999999999999');
     await Moralis.switchNetwork('0x4');
-    console.log(
-      '77777777777777777777777777777777777777777777777777777777777777777777777777777'
-    );
     switchNetwork(await setExchangeCallback(null));
   }, [switchNetwork, setExchangeCallback]);
-
-  // const authenticateCallback = useCallback(async () => {
-  //   console.log('bbbb');
-  //   await authenticate();
-  //   if (Moralis.chainId !== '0x4') {
-  //     await Moralis.switchNetwork('0x4');
-  //     await setExchangeCallback(false);
-  //   }
-  // }, [authenticate, setExchangeCallback]);
 
   useEffect(() => {
     currentTokenExchangeAddress.current = scammExchangeAddress;

@@ -35,13 +35,7 @@ const modalstyle = {
 };
 
 const Nav = () => {
-  const {
-    exchangeBunny,
-    provider,
-    slippage,
-    chainId,
-    // switchNetwork,
-  } = useWeb3();
+  const { exchangeBunny, provider, chainId } = useWeb3();
   const Web3Api = useMoralisWeb3Api();
   let router = useRouter();
   const [pathname, setPathname] = useState(router.pathname);
@@ -51,13 +45,6 @@ const Nav = () => {
   const handleCloseWallet = useCallback(() => setOpenWallet(false), []);
   const { isAuthenticated, authenticate, user, logout } = useMoralis();
   const [accountBalance, setAccountBalance] = useState(0);
-  console.log('chainId chainId chainIdchainIds', chainId);
-  console.log('provider', provider?.network);
-  // useEffect(() => {
-  //   if (chainId !== '0x4') {
-  //     await Moralis.switchNetwork(chainId);
-  //   }
-  // }, [chainId, switchNetwork]);
 
   const ethAccountBalance = useCallback(async () => {
     if (user && provider) {
@@ -89,7 +76,6 @@ const Nav = () => {
 
   const authenticateCallback = useCallback(async () => {
     await authenticate();
-    // await Moralis.switchNetwork('0x4');
   }, [authenticate]);
 
   const logoutCallback = useCallback(async () => {
@@ -278,7 +264,7 @@ const Nav = () => {
                     </div>
                   </div>
                   {chainId === '0x4' ? (
-                    <>
+                    <div>
                       <div className="w-full p-7 border-gray-200 border-b  bg-gray-50"></div>
                       <div className="w-full p-6 bg-white rounded-br-3xl rounded-bl-3xl">
                         <div className="flex flex-col">
@@ -346,7 +332,7 @@ const Nav = () => {
                           </button>
                         </div>
                       </div>
-                    </>
+                    </div>
                   ) : (
                     <div className="w-full p-6 bg-white rounded-br-3xl rounded-bl-3xl">
                       <h1 className="text-dexfi-violet font-medium text-center pb-6">

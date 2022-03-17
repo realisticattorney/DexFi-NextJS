@@ -30,7 +30,6 @@ const MenuItemList = ({
   token,
   open,
   input,
-  chainId,
   user,
   accountERC20Balance,
   accountEthBalance,
