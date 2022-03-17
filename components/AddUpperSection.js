@@ -6,7 +6,7 @@ import Settings from './Settings';
 const AddLiquidityPanel = () => {
   return (
     <div className="h-[100px] p-6 justify-between flex border-b">
-      <div className="flex items-center -mr-9">
+      <div className="flex items-center -mr-3 sm:-mr-9">
         <Link href="/liquidity">
           <a>
             <ArrowBackIcon
