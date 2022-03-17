@@ -42,6 +42,7 @@ const MenuItemList = ({
   const modalIsDisabled = id === '2' && section === 'add' ? 'yes' : 'no';
   const ethIsDisabled = id === '1' && section === 'add' ? 'yes' : 'no';
   const reg = /^(0|[1-9]\d*)(\.\d+)?$/;
+  console.log('currenciescurrenciescurrenciescurrenciescurrencies', currencies);
   return (
     <div className="flex flex-col space-y-2 px-4 py-5">
       <div className="flex justify-between">
@@ -117,7 +118,9 @@ const MenuItemList = ({
                     quality={50}
                     alt=""
                   />
-                  <h1 className="ml-3">{currency.symbol}</h1>
+                  <h1 className="ml-3 text-dexfi-violet font-semibold">
+                    {currency.symbol}
+                  </h1>
                 </MenuItem>
               ))}
             </MenuList>
