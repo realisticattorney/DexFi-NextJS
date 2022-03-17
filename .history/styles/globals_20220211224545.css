@@ -1,0 +1,12 @@
+/* ./styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.MuiBackdrop-root {
+  background-color: rgba(40, 13, 95, 0.6);
+}
+
+.MuiTextField-root {
+  borderRadius: 4 !important;
+}

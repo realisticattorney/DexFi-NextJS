@@ -1,0 +1,15 @@
+/* ./styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.MuiBackdrop-root {
+  background-color: rgba(40, 13, 95, 0.6);
+}
+
+.MuiInputBase-input,
+.MuiOutlinedInput-input {
+  display: 'flex';
+  flex-direction: 'row-reverse';
+  border-radius: 4;
+}

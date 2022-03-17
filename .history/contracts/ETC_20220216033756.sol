@@ -1,0 +1,10 @@
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+contract ETC is ERC20 {
+    constructor(uint256 initialSupply) ERC20("ETC FAKE", "ETC") {
+        _mint(msg.sender, initialSupply);
+    }
+}

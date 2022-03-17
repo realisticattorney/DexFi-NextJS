@@ -1,0 +1,27 @@
+/* ./styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.MuiBackdrop-root {
+  background-color: rgba(40, 13, 95, 0.6);
+}
+
+.MuiInputBase-input,
+.MuiOutlinedInput-input {
+  display: 'flex';
+  flex-direction: 'row-reverse';
+  border-radius: 4;
+  border: none !important;
+}
+svg path {
+  stroke-width: 1.2;
+  /* color: #302e2f; */
+}
+
+.svg-stroke {
+  stroke-width: 3;
+}
+.MuiFormControl-root > * {
+  border: none;
+}

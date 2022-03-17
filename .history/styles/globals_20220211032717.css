@@ -1,0 +1,9 @@
+/* ./styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.MuiBackdrop-root {
+   background-color: rgba(30, 0, 100, 0.5);
+}
