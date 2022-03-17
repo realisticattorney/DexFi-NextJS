@@ -116,10 +116,14 @@ const Footer = () => {
         </div>
 
         <div className="col-span-1 row-span-1 self-start hidden sm:flex sm:place-self-end">
-          <div className="items-center">
-            <Image src="/bunny.svg" height={28} width={28} alt="" />
-          </div>
-          <p className="text-xl font-bold ml-2 tracking-wide">BunnySwap</p>
+          <Link href="/" passHref>
+            <a className="flex">
+              <div className="items-center">
+                <Image src="/bunny.svg" height={28} width={28} alt="" />
+              </div>
+              <p className="text-xl font-bold ml-2 tracking-wide">BunnySwap</p>
+            </a>
+          </Link>
         </div>
       </div>
 
