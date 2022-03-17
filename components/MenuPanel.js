@@ -45,6 +45,7 @@ const MenuPanel = ({ currencies, section }) => {
   const Web3Api = useMoralisWeb3Api();
   const [accountEthBalance, setAccountEthBalance] = useState(0);
   const { fetchERC20Balances } = useERC20Balances();
+
   const isSwapDisabled =
     section === 'swap' &&
     ((inputToken[1] !== 1 &&
@@ -307,7 +308,6 @@ const MenuPanel = ({ currencies, section }) => {
     const web3modal = new Web3Modal();
     const connection = await web3modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
-    console.log('providerrrrr', provider);
     const signer = provider.getSigner();
     let currentExchangeAddress = await registry.getExchange(
       currentTokenExchangeAddress.current

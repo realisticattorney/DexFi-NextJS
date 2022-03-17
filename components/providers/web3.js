@@ -12,13 +12,7 @@ import Registry from '../../utils/Registry.json';
 import Exchange from '../../utils/Exchange.json';
 const Web3Context = createContext(null);
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
-import { setupHooks } from './hooks/setupHooks';
-import handler from './hooks/useChain';
-import { useMoralis, useERC20Balances, useMoralisWeb3Api } from 'react-moralis';
 export default function Web3Provider({ children }) {
-  const { fetchERC20Balances } = useERC20Balances();
-  const { web3, user } = useMoralis();
-  const moralis = useMoralis();
   const [web3Api, setWeb3Api] = useState({
     provider: null,
     web3: null,
