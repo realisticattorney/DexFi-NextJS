@@ -584,6 +584,7 @@ const MenuPanel = ({ currencies, section }) => {
         outputToken={outputToken}
         section={section}
         balance={balance}
+        reserve={reserve}
       />
     </>
   );

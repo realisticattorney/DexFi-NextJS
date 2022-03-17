@@ -7,16 +7,18 @@ const MenuPanelFooter = ({
   outputToken,
   section,
   balance,
+  reserve,
 }) => {
+  console.log('inputTokeninputToken', inputToken);
   if (inputOne > 0 && section === 'swap') {
     return (
       <div className="flex-col mt-5 relative py-4 w-[328px] min-h-[95px] bg-white rounded-3xl border border-gray-50">
         <div className="flex justify-between px-4">
           <h2 className="text-dexfi-grayviolet opacity-95 font-medium text-sm">
-            Minimun received
+            Minimum received
           </h2>
           <h2 className="text-dexfi-violet font-medium text-sm tracking-wide">
-            {(inputTwo * 99).toFixed(3)} {outputToken[0].symbol}
+            {((inputTwo * 99) / 100).toFixed(3)} {outputToken[0].symbol}
           </h2>
         </div>
         <div className="flex justify-between px-4">
@@ -24,16 +26,27 @@ const MenuPanelFooter = ({
             Price Impact
           </h2>
           {inputTwo > 0 ? (
-            <h2 className="text-emerald-400 font-medium text-sm tracking-wide">
-              {'<'}
-              {(
-                (parseInt(inputTwo) /
-                  (parseInt(balance) + parseInt(inputTwo))) *
-                  99 +
-                0.01
-              ).toFixed(2)}
-              %
-            </h2>
+            outputToken[1] === 1 ? (
+              <h2 className="text-emerald-400 font-medium text-sm tracking-wide">
+                {'<'}
+                {(
+                  (parseFloat(inputOne) /
+                    (parseFloat(reserve) + parseFloat(inputOne))) *
+                  100
+                ).toFixed(2)}
+                %
+              </h2>
+            ) : (
+              <h2 className="text-emerald-400 font-medium text-sm tracking-wide">
+                {'<'}
+                {(
+                  (parseFloat(inputOne) /
+                    (parseFloat(balance) + parseFloat(inputOne))) *
+                  100
+                ).toFixed(2)}
+                %
+              </h2>
+            )
           ) : (
             <h2 className="text-emerald-400 font-medium text-sm tracking-wide">
               {'<'}0.01%
