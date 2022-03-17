@@ -19,7 +19,6 @@ const RemovePanel = ({ address, currency, backCurrency }) => {
   const [userLps, setUserLps] = useState(0);
   const [userLpsToRemove, setUserLpsToRemove] = useState(0);
   const [expectedWithdrawn, setExpectedWithdrawn] = useState([0, 0, 0]);
-  console.log('exchangeCurrent', exchangeCurrent);
   const handleSliderChange = (event, newValue) => {
     setUserLpsToRemove(newValue);
     returnsEstimator(newValue);

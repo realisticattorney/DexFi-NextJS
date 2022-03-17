@@ -27,12 +27,9 @@ const Settings = () => {
   const [openSettings, setOpenSettings] = useState(false);
   const { slippage, setSlippage, txSpeed, setTxSpeed } = useWeb3();
   const [isSlippageCustom, setIsSlippageCustom] = useState(false);
-  console.log('slippage', slippage);
   const setSlippageCallback = useCallback(
     (event) => {
-      console.log('event', event?.target);
       if (event.target) {
-        console.log('lalalalasadfasdadsfadsffasd');
         if (isNaN(parseFloat(event.target.value))) {
           console.log('aca');
           setSlippage(0);
