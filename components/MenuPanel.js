@@ -25,6 +25,8 @@ const MenuPanel = ({ currencies, section }) => {
     provider,
     slippage,
     chainId,
+    switchNetwork,
+    accountERC20Balance,
   } = useWeb3();
   const { contract, balance, reserve } = exchangeCurrent ?? {};
   const [inputToken, setInputToken] = useState([currencies[0], 0]);
@@ -42,9 +44,13 @@ const MenuPanel = ({ currencies, section }) => {
   const { authenticate, user, isAuthenticating } = useMoralis();
   const Web3Api = useMoralisWeb3Api();
   const [accountEthBalance, setAccountEthBalance] = useState(0);
-  const [accountERC20Balance, setAccountERC20Balance] = useState(0);
+  // const [accountERC20Balance, ;
+  //   useState(userTokenBalance);
   const { fetchERC20Balances } = useERC20Balances();
-
+  console.log(
+    'userTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalanceuserTokenBalance,',
+    accountERC20Balance
+  );
   const isSwapDisabled =
     section === 'swap' &&
     ((inputToken[1] !== 1 &&
@@ -158,17 +164,17 @@ const MenuPanel = ({ currencies, section }) => {
     console.log(
       '77777777777777777777777777777777777777777777777777777777777777777777777777777'
     );
-    setAccountERC20Balance(await setExchangeCallback(null));
-  }, [setExchangeCallback]);
+    switchNetwork(await setExchangeCallback(null));
+  }, [switchNetwork, setExchangeCallback]);
 
   // const authenticateCallback = useCallback(async () => {
   //   console.log('bbbb');
   //   await authenticate();
   //   if (Moralis.chainId !== '0x4') {
   //     await Moralis.switchNetwork('0x4');
-  //     setAccountERC20Balance(await setExchangeCallback(false));
+  //     await setExchangeCallback(false);
   //   }
-  // }, [authenticate, setExchangeCallback, chainId]);
+  // }, [authenticate, setExchangeCallback]);
 
   useEffect(() => {
     currentTokenExchangeAddress.current = scammExchangeAddress;
@@ -179,7 +185,7 @@ const MenuPanel = ({ currencies, section }) => {
       const toBeExchange = exchangeHandler();
       if (currentTokenExchangeAddress.current !== toBeExchange) {
         currentTokenExchangeAddress.current = toBeExchange;
-        setAccountERC20Balance(await setExchangeCallback(toBeExchange));
+        switchNetwork(await setExchangeCallback(toBeExchange));
       }
       console.log('base exchange loaded');
     }
@@ -189,6 +195,7 @@ const MenuPanel = ({ currencies, section }) => {
     registry?.address,
     setExchangeCallback,
     isAuthenticating,
+    switchNetwork,
   ]);
 
   const handleMenuItemClick = async (index, menuItem) => {
@@ -493,6 +500,7 @@ const MenuPanel = ({ currencies, section }) => {
           accountEthBalance={accountEthBalance}
           handleInputChange={handleInputChange}
           handleMenuItemClick={handleMenuItemClick}
+          user={user}
           key={1}
           menuNumber={1}
           section={section}
@@ -518,6 +526,7 @@ const MenuPanel = ({ currencies, section }) => {
           accountERC20Balance={accountERC20Balance}
           handleInputChange={handleInputChange}
           handleMenuItemClick={handleMenuItemClick}
+          user={user}
           key={2}
           menuNumber={2}
           section={section}
