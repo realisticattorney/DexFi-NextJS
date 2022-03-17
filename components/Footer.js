@@ -124,7 +124,7 @@ const Footer = () => {
       </div>
 
       <div className="flex space-x-6 items-center px-6 sm:pt-10 pt-5 pb-7 w-full border-b border-gray-700">
-        <div className="rounded-full shadow">
+        <div className="rounded-full shadow cursor-pointer">
           <TwitterIcon
             sx={{
               color: '#B8ADD2',
@@ -132,7 +132,7 @@ const Footer = () => {
             }}
           />
         </div>
-        <div className="px-0.5 rounded-full bg-dexfi-other_gray shadow">
+        <div className="px-0.5 rounded-full bg-dexfi-other_gray shadow cursor-pointer">
           <TelegramIcon
             sx={{
               color: '#27262C',
@@ -142,7 +142,7 @@ const Footer = () => {
             }}
           />
         </div>
-        <div className="px-0.5 rounded-full bg-dexfi-other_gray shadow">
+        <div className="px-0.5 rounded-full bg-dexfi-other_gray shadow cursor-pointer">
           <RedditIcon
             sx={{
               color: '#27262C',
@@ -151,7 +151,7 @@ const Footer = () => {
             }}
           />
         </div>
-        <div className="rounded-full shadow">
+        <div className="rounded-full shadow cursor-pointer">
           <InstagramIcon
             sx={{
               color: '#B8ADD2',
@@ -159,7 +159,7 @@ const Footer = () => {
             }}
           />
         </div>
-        <div className="rounded-full shadow">
+        <div className="rounded-full shadow cursor-pointer">
           <GitHubIcon
             sx={{
               color: '#B8ADD2',
