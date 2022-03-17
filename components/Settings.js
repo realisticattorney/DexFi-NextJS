@@ -124,7 +124,7 @@ const Settings = () => {
                       Default Transaction Speed {'(GWEI)'}
                     </h2>
                   </div>
-                  <div className="flex justify-between px-4 sm:px-0 mt-4 pb-6 border-b border-gray-200">
+                  <div className="flex justify-between px-2 sm:px-0 mt-4 pb-6 border-b border-gray-200">
                     <button
                       className={`shadow-sm ${
                         txSpeed === 5
@@ -172,7 +172,7 @@ const Settings = () => {
                       Slippage Tolerance
                     </h2>
                   </div>
-                  <div className="flex justify-between my-4 px-4 sm:px-0">
+                  <div className="flex justify-between my-4 px-3 sm:px-0">
                     <button
                       className={`shadow-sm ${
                         slippage === 0.1
