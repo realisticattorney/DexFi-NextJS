@@ -210,7 +210,7 @@ const MenuPanel = ({ currencies, section }) => {
   };
 
   const handleInputChange = (event, id) => {
-    if (event > 0) {
+    if (event > 0 && event[event.length - 1] !== '.') {
       if (section === 'swap') {
         callExchange(event, id);
       } else {
@@ -223,8 +223,11 @@ const MenuPanel = ({ currencies, section }) => {
       setInputOne(inputOne);
       setInputTwo(inputTwo);
     } else {
-      setInputOne(event);
-      setInputTwo(event);
+      if (id === '1') {
+        setInputOne(event);
+      } else {
+        setInputTwo(event);
+      }
     }
   };
 
