@@ -163,10 +163,12 @@ const MenuItemList = ({
             InputProps={{
               disableUnderline: true,
               inputProps: {
+                inputMode: 'numeric',
                 style: {
                   textAlign: 'right',
                   fontSize: '1rem',
                   paddingRight: '1rem',
+                  inputMode: 'numeric',
                 },
               },
             }}
