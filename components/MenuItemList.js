@@ -160,6 +160,9 @@ const MenuItemList = ({
               if (!input || input.match(/^(\d*)((\.(\d*)?)?)$/i))
                 handleInputChange(input, e.target.id);
             }}
+            onKeyPress={(e) => {
+              e.key === 'Enter' && e.preventDefault();
+            }}
             InputProps={{
               disableUnderline: true,
               inputProps: {
