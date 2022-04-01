@@ -210,7 +210,7 @@ const MenuPanel = ({ currencies, section }) => {
   };
 
   const handleInputChange = (event, id) => {
-    if (event > 0) {
+    if (event > 0 && event[event.length - 1] !== '.') {
       if (section === 'swap') {
         callExchange(event, id);
       } else {
@@ -223,8 +223,11 @@ const MenuPanel = ({ currencies, section }) => {
       setInputOne(inputOne);
       setInputTwo(inputTwo);
     } else {
-      setInputOne(event);
-      setInputTwo(event);
+      if (id === '1') {
+        setInputOne(event);
+      } else {
+        setInputTwo(event);
+      }
     }
   };
 
@@ -239,7 +242,6 @@ const MenuPanel = ({ currencies, section }) => {
         return;
       }
       let intoNumb;
-      let inpot;
       let amount;
       amount =
         id === '1' ? (balance * input) / reserve : (reserve * input) / balance;
@@ -252,8 +254,7 @@ const MenuPanel = ({ currencies, section }) => {
         setInputTwo(parseFloat(input));
         setInputOne(amount);
       }
-      inpot = parseInt(input);
-      setShareOfPool((inpot / (inpot + intoNumb)) * 100);
+      setShareOfPool((parseInt(input) / (parseInt(input) + intoNumb)) * 100);
     },
     [balance, reserve]
   );
@@ -292,7 +293,7 @@ const MenuPanel = ({ currencies, section }) => {
             ? (input * 99 * reserve) / (balance * 100 + input * 99)
             : (input * 99 * balance) / (reserve * 100 + input * 99);
       }
-
+      console.log('amount', amount);
       if (id === '1') {
         setInputOne(parseFloat(input));
         setInputTwo(parseFloat(amount));
@@ -453,7 +454,7 @@ const MenuPanel = ({ currencies, section }) => {
         className={`${
           section === 'swap'
             ? 'py-5 w-[328px] min-h-[518px]'
-            : 'sm:w-[436px] sm:h-[626px]'
+            : 'sm:w-[436px] min-h-[626px]'
         } flex-col relative  bg-white rounded-3xl border shadow-sm shadow-slate-300`}
       >
         {section === 'swap' ? <SwapUpperSection /> : <AddUpperSection />}
@@ -478,6 +479,7 @@ const MenuPanel = ({ currencies, section }) => {
           <SwitchIcon
             handleMenuItemClick={handleMenuItemClick}
             outputToken={outputToken}
+            inputToken={inputToken}
             callExchange={callExchange}
           />
         ) : (
@@ -584,6 +586,8 @@ const MenuPanel = ({ currencies, section }) => {
         outputToken={outputToken}
         section={section}
         balance={balance}
+        reserve={reserve}
+        shareOfPool={shareOfPool}
       />
     </>
   );

@@ -42,6 +42,7 @@ const MenuItemList = ({
   const modalIsDisabled = id === '2' && section === 'add' ? 'yes' : 'no';
   const ethIsDisabled = id === '1' && section === 'add' ? 'yes' : 'no';
   const reg = /^(0|[1-9]\d*)(\.\d+)?$/;
+  console.log('currenciescurrenciescurrenciescurrenciescurrencies', currencies);
   return (
     <div className="flex flex-col space-y-2 px-4 py-5">
       <div className="flex justify-between">
@@ -64,7 +65,7 @@ const MenuItemList = ({
           <KeyboardArrowDownIcon sx={{ color: '#280D5F', fontSize: 20 }} />
         </button>
         {token[1] !== 1 && (
-          <h1 className="text-sm text-dexfi-violet">
+          <h1 className="text-sm text-dexfi-grayviolet font-medium">
             Balance:{' '}
             {user && parseFloat(accountERC20Balance).toFixed(2) > 0
               ? parseFloat(accountERC20Balance).toFixed(2)
@@ -73,7 +74,7 @@ const MenuItemList = ({
         )}
 
         {token[1] === 1 && (
-          <h1 className="text-sm text-dexfi-violet">
+          <h1 className="text-sm text-dexfi-grayviolet font-medium">
             Balance:{' '}
             {parseFloat(accountEthBalance).toFixed(2) > 0
               ? parseFloat(accountEthBalance).toFixed(2)
@@ -117,7 +118,9 @@ const MenuItemList = ({
                     quality={50}
                     alt=""
                   />
-                  <h1 className="ml-3">{currency.symbol}</h1>
+                  <h1 className="ml-3 text-dexfi-violet font-semibold">
+                    {currency.symbol}
+                  </h1>
                 </MenuItem>
               ))}
             </MenuList>
@@ -157,9 +160,13 @@ const MenuItemList = ({
               if (!input || input.match(/^(\d*)((\.(\d*)?)?)$/i))
                 handleInputChange(input, e.target.id);
             }}
+            onKeyPress={(e) => {
+              e.key === 'Enter' && e.preventDefault();
+            }}
             InputProps={{
               disableUnderline: true,
               inputProps: {
+                inputMode: 'numeric',
                 style: {
                   textAlign: 'right',
                   fontSize: '1rem',

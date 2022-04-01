@@ -149,8 +149,3 @@ export async function useExchange(exchange) {
   const { setExchangeCurrent } = useWeb3();
   await setExchangeCurrent(exchange);
 }
-
-export function useHooks(cb) {
-  const { hooks } = useWeb3();
-  return cb(hooks);
-}

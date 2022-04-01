@@ -40,7 +40,7 @@ const PriceEstimator = ({
   } else {
     return (
       <div className="p-6 pt-0">
-        <div className="h-[136px] rounded-lg w-full shadow-sm  flex-col">
+        <div className="sm:h-[136px] rounded-lg w-full shadow-sm  flex-col">
           <h1 className="text-sm p-4  font-semibold text-dexfi-violet">
             Prices and pool share
           </h1>
